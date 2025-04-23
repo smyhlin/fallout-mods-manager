@@ -97,5 +97,4 @@ Contributions, issues, and feature requests are welcome! Feel free to check [iss
 
 ## 📄 License
 
-*(Optional: Choose a license if you want)*
 This project is open source and available under the [MIT License](LICENSE.md). <!-- Create a LICENSE.md file if you choose one -->
