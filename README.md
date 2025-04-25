@@ -10,7 +10,7 @@ Tired of losing track of which legendary modules you've learned across your char
 
 You can access the live version of this manager hosted via GitHub Pages here:
 
-**[➡️ Live Application](https://s_myhlin.github.io/fallout-mods-manager/)**
+**[➡️ Live Application](https://smyhlin.github.io/fallout-mods-manager/)**
 
 
 ---
@@ -68,7 +68,7 @@ You can access the live version of this manager hosted via GitHub Pages here:
 
 ## 💡 How to Use
 
-1.  **Access the application:** Simply open the [Live Demo link](https://s_myhlin.github.io/fallout-mods-manager/) provided above.
+1.  **Access the application:** Simply open the [Live Demo link](https://smyhlin.github.io/fallout-mods-manager/) provided above.
 2.  **Mark modules:** Use the checkbox (💡) in the first column (or at the top of the card on mobile) to mark modules as learned.
 3.  **Filter/Sort/Search:** Use the controls in the sidebar (accessible via the ⚙️ button on mobile) to filter, sort, and search the module list.
 4.  **Customize View:** Adjust column visibility and width (on desktop) via the sidebar settings.
@@ -91,11 +91,10 @@ You can access the live version of this manager hosted via GitHub Pages here:
 
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome! Feel free to check [issues page](https://github.com/s_myhlin/fallout-mods-manager/issues).
+Contributions, issues, and feature requests are welcome! Feel free to check [issues page](https://github.com/smyhlin/fallout-mods-manager/issues).
 
 ---
 
 ## 📄 License
 
-*(Optional: Choose a license if you want)*
 This project is open source and available under the [MIT License](LICENSE.md). <!-- Create a LICENSE.md file if you choose one -->
