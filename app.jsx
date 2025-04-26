@@ -232,7 +232,7 @@ function App() {
 
     // --- Render ---
     if (isLoading || initialModulesData === null) {
-        return <div className="loading-indicator">Завантаження модулів...</div>;
+        return <div className="loading-indicator">Загрузка модулей...</div>;
     }
 
     return (
