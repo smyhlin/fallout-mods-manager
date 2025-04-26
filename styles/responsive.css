@@ -82,8 +82,8 @@
         left: 0;
         bottom: 0;
         height: 100vh;
-        width: 85%;
-        max-width: 300px;
+        width: 50%; /* Set width to 50% of the screen size */
+        max-width: none; /* Remove max-width constraint */
         transform: translateX(-100%); /* Default hidden */
         z-index: 1100;
         transition: transform var(--transition-speed) ease-in-out;
@@ -96,7 +96,8 @@
         padding: 0;
     }
     .pipboy-sidebar.mobile-sidebar-open {
-        transform: translateX(0); /* Show sidebar */
+        height: 100vh !important; /* Ensure full height when open */
+        transform: translateX(0); /* Ensure it is fully visible */
     }
     .pipboy-sidebar.mobile-sidebar-open .mobile-close-button {
         display: block; /* Show close button */
@@ -241,4 +242,4 @@
     }
     .scroll-arrow-up { top: var(--spacing-xs); }
     .scroll-arrow-down { bottom: var(--spacing-xs); }
- }
+}
