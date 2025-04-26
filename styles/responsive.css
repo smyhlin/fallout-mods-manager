@@ -43,7 +43,6 @@
      #desktop-sidebar-toggle { display: block; }
      .card-header, .card-body { display: none; } /* Hide mobile card elements */
      .pipboy-content {
-        overflow-x: auto; /* Apply horizontal scroll directly to content area */
      }
 
      /* Add collapsed sidebar styles ONLY for desktop */

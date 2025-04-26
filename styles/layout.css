@@ -10,8 +10,8 @@
     box-shadow: 0 0 25px var(--primary-color-glow), inset 0 0 10px rgba(0,0,0,0.5); /* Outer and inner glow */
     border-radius: var(--border-radius);
     background-color: var(--background-color);
-    overflow: hidden; /* Prevent content from overflowing container */
     position: relative;
+    height: calc(100vh - var(--spacing-xl)*2); /* Constrain height to viewport minus margins */
 }
 
 /* --- Sidebar --- */
