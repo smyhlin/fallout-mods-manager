@@ -2,67 +2,63 @@
 
 **A Pip-Boy themed web application to track your learned legendary modules in Fallout 76.**
 
-Tired of losing track of which legendary modules you've learned across your characters or forgetting the effects of that obscure 4-star mod? This tool provides a simple, efficient, and thematic way to manage your known legendary modules directly in your browser.
+This tool helps Fallout 76 players manage their legendary modules. It provides a simple, efficient, and thematic way to track which modules you have learned across characters and remember their effects, all within your browser.
 
 ---
 
 ## ✨ Live Demo
 
-You can access the live version of this manager hosted via GitHub Pages here:
+Access the live application hosted on GitHub Pages:
 
 **[➡️ Live Application](https://smyhlin.github.io/fallout-mods-manager/)**
-
 
 ---
 
 ## 🚀 Features
 
-*   **Comprehensive Module List:** Pre-populated with a wide range of 1-star, 2-star, 3-star, and 4-star legendary modules, including their Russian names, Editor IDs, and effects.
-*   **Learned Status Tracking:** Easily mark modules as "learned" or "not learned" using checkboxes (💡).
+*   **Comprehensive Module Database:** Includes a pre-populated list of 1-star, 2-star, 3-star, and 4-star legendary modules with Russian names, Editor IDs, and effects.
+*   **Learned Status Tracking:** Mark modules as "learned" or "not learned" using checkboxes.
 *   **Custom Module Management:**
-    *   **Add:** Add your own custom modules that might not be in the default list.
-    *   **Edit:** Modify the Editor ID and Effect of any module (Name and Stars are locked for predefined modules to maintain data integrity). Edits are performed via a convenient modal window.
-    *   **Delete:** Remove any module (predefined or custom) with a confirmation prompt.
+    *   Add new modules not present in the default list.
+    *   Edit the Editor ID and Effect of any module (predefined module names and stars are locked).
+    *   Delete any module (predefined or custom).
 *   **Filtering & Sorting:**
-    *   **Filter:** View "All", "Learned", or "Not Learned" modules.
-    *   **Sort:** Click on column headers (💡, Русское Название, Editor ID, Звёзды, Эффект) to sort the list ascending or descending.
-*   **Text Search:** Instantly filter modules by typing parts of the Russian Name, Editor ID, or Effect text. Matching text is highlighted.
+    *   Filter the list to show "All", "Learned", or "Not Learned" modules.
+    *   Sort the list by clicking column headers (Learned Status, Russian Name, Editor ID, Stars, Effect).
+*   **Text Search:** Quickly filter modules by searching for text within Russian Name, Editor ID, or Effect fields. Matching text is highlighted.
 *   **Responsive Design:**
-    *   **Desktop:** Classic table view with customizable column visibility and width.
-    *   **Mobile:** Adapts to a user-friendly "Card View" for easy readability and interaction on smaller screens.
-*   **Customizable View (Desktop):**
-    *   Toggle visibility for most columns.
-    *   Adjust the width of resizable columns using sliders in the sidebar.
-    *   Settings are saved locally.
-*   **Collapsible Sidebar (Desktop):** Hide the sidebar on larger screens to maximize space for the module list.
-*   **Data Persistence:** Your module list (learned status, custom modules) and view settings (column visibility/width) are automatically saved in your browser's `localStorage`.
-*   **Import/Export:** Backup your data (modules and settings) to a JSON file or import data from a previously exported file. Useful for transferring data or keeping backups.
-*   **Statistics:** See a quick overview of total modules, learned count, and percentage learned in the sidebar.
-*   **Pip-Boy Theme:** Styled to resemble the iconic Fallout Pip-Boy interface.
+    *   Desktop view features a classic table with customizable columns.
+    *   Mobile view adapts to a user-friendly "Card View".
+*   **Customizable View (Desktop):** Toggle column visibility and adjust column widths via sidebar settings. Settings are saved locally.
+*   **Collapsible Sidebar (Desktop):** Hide the sidebar to maximize space for the module list.
+*   **Data Persistence:** Module learned status, custom modules, and view settings are automatically saved in the browser's `localStorage`.
+*   **Import/Export:** Backup your data to a JSON file or import data from a previous export.
+*   **Statistics:** View a summary of total modules, learned count, and percentage learned in the sidebar.
+*   **Pip-Boy Theme:** The application is styled to resemble the iconic Fallout Pip-Boy interface.
 
 ---
 
-## 📸 Screenshots (Optional)
+## 📸 Screenshots
 
 **Desktop View:**
-![Desktop Screenshot](images/desktop_screenshot.png) <!-- Replace with link to your screenshot -->
+![Desktop Screenshot](images/desktop_screenshot.png)
 
 **Mobile Card View:**
-![Mobile Screenshot](images/mobile_screenshot.png) <!-- Replace with link to your screenshot -->
+![Mobile Screenshot](images/mobile_screenshot.png)
 
 **Edit Modal:**
-![Edit Modal Screenshot](images/edit_modal_screenshot.png) <!-- Replace with link to your screenshot -->
+![Edit Modal Screenshot](images/edit_modal_screenshot.png)
 
 ---
 
 ## 🛠️ Technology Stack
 
 *   **HTML5**
-*   **CSS3:** Custom styling for the Pip-Boy theme, responsive design (Flexbox, Grid, Media Queries), and animations.
+*   **CSS3:** Custom Pip-Boy theme, responsive design (Flexbox, Grid, Media Queries), animations.
 *   **JavaScript (ES6+):** Core application logic.
 *   **React (v18):** UI library (loaded via CDN).
-*   **Babel Standalone:** Used to transpile JSX directly in the browser (loaded via CDN).
-*   **Browser `localStorage`:** For client-side data persistence.
+*   **Babel Standalone:** Transpiles JSX in the browser (loaded via CDN).
+*   **Browser `localStorage`:** Client-side data persistence.
 
 ---
 
@@ -84,8 +80,6 @@ You can access the live version of this manager hosted via GitHub Pages here:
 *   User accounts and cloud synchronization (would require a backend).
 *   Ability to track modules per character.
 *   More detailed filtering options (e.g., by weapon/armor type if data allows).
-*   Improved accessibility audit.
-*   Refactoring into separate JS/CSS files and adding a build step (Vite, Parcel).
 
 ---
 
