@@ -30,10 +30,10 @@ function App() {
 
     // Use modal state hook
     const {
-        isEditModalOpen,
-        moduleBeingEdited,
-        openEditModal,
-        closeEditModal,
+        isModalOpen, // Changed from isEditModalOpen
+        itemBeingEdited, // Changed from moduleBeingEdited
+        openModal, // Changed from openEditModal
+        closeModal, // Changed from closeEditModal
     } = useModalState();
 
     // Use module management hook
@@ -42,7 +42,7 @@ function App() {
         handleAddNewModule,
         handleSaveChangesInModal,
         handleDeleteModule,
-    } = useModuleManagement(modules, setModules, showNotification, closeEditModal);
+    } = useModuleManagement(modules, setModules, showNotification, closeModal); // Pass the correct closeModal
 
     const debouncedSearchTerm = useDebounce(searchTerm, DEBOUNCE_DELAY.SEARCH);
     const fileInputRef = React.useRef(null);
@@ -83,11 +83,11 @@ function App() {
     // Module CRUD handlers now come from useModuleManagement hook
     // Modal open handlers come from useModalState hook
     const handleOpenEditModal = React.useCallback((module) => {
-        openEditModal(module);
-    }, [openEditModal]);
+        openModal(module); // Use openModal
+    }, [openModal]);
     const handleOpenAddModal = React.useCallback(() => {
-        openEditModal();
-    }, [openEditModal]);
+        openModal(); // Use openModal
+    }, [openModal]);
 
     // --- Other handlers (unchanged) ---
     const handleSearchChange = React.useCallback((e) => { setSearchTerm(e.target.value); }, []);
@@ -291,10 +291,10 @@ function App() {
             </div>
 
              <EditModuleModal
-                 isOpen={isEditModalOpen}
-                 module={moduleBeingEdited}
-                 onClose={closeEditModal}
-                 onSave={moduleBeingEdited ? handleSaveChangesInModal : handleAddNewModule}
+                 isOpen={isModalOpen} // Use isModalOpen
+                 module={itemBeingEdited} // Use itemBeingEdited
+                 onClose={closeModal} // Use closeModal
+                 onSave={itemBeingEdited ? handleSaveChangesInModal : handleAddNewModule} // Use itemBeingEdited
              />
              <Notification {...notification} />
         </React.Fragment>
