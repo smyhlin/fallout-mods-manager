@@ -22,7 +22,7 @@
     box-shadow: var(--box-shadow-light);
     overflow: hidden;
     max-height: none !important; /* Remove any max-height constraints */
-    height: 100vh !important; /* Enforce full viewport height */
+    height: 100%; /* Enforce full height of the parent container */
     transition: width var(--transition-speed) ease-in-out, padding var(--transition-speed) ease-in-out, border var(--transition-speed) ease-in-out;
     position: relative;
     display: flex;
