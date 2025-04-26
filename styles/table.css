@@ -1,0 +1,60 @@
+/* styles/table.css */
+
+/* --- Table Styles (Desktop) --- */
+.module-table {
+    width: 100%;
+    border-collapse: separate; /* Use separate for spacing */
+    border-spacing: 0 2px; /* Vertical spacing between rows */
+    margin-top: var(--spacing-lg);
+    font-size: var(--font-size-sm); /* Slightly smaller table text */
+    table-layout: fixed;
+}
+.module-table thead { display: table-header-group; }
+.module-table tbody { display: table-row-group; }
+.module-table tr { display: table-row; }
+.module-table th, .module-table td {
+    display: table-cell;
+    border: none; /* Remove default borders */
+    border-bottom: 1px solid var(--border-color); /* Bottom border only */
+    padding: var(--spacing-sm) var(--spacing-md);
+    text-align: left;
+    vertical-align: middle; /* Align middle */
+    overflow-wrap: break-word;
+    word-break: break-word; /* Force breaking long words/IDs */
+    color: var(--text-color-secondary);
+}
+.module-table th {
+    background-color: rgba(0,0,0,0.3); /* Darker header */
+    color: var(--primary-color);
+    font-weight: bold;
+    text-shadow: none;
+    position: sticky; /* Sticky header */
+    top: 0;
+    z-index: 10;
+    font-size: var(--font-size-md);
+    border-bottom: 2px solid var(--border-color-strong);
+}
+.module-table th.sortable { cursor: pointer; }
+.module-table th.sortable:hover { background-color: rgba(0,0,0,0.4); color: var(--primary-color); }
+.sort-indicator { margin-left: var(--spacing-xs); font-size: 0.8em; }
+/* Column Alignment / Width */
+.module-table th:first-child, .module-table td:first-child { width: 60px; text-align: center; padding-left: var(--spacing-sm); padding-right: var(--spacing-sm); } /* Learned */
+.module-table th:nth-child(4), .module-table td:nth-child(4) { text-align: center; } /* Stars */
+.module-table th:last-child, .module-table td:last-child { width: var(--actions-column-width); text-align: center; padding: var(--spacing-xs); } /* Actions */
+
+.module-table td.effect-cell { white-space: pre-line; line-height: 1.4; }
+.module-table tbody tr { background-color: transparent; transition: background-color var(--transition-speed) ease; }
+.module-table tbody tr:nth-child(even) { background-color: rgba(30, 255, 132, 0.03); } /* Very subtle striping */
+
+.no-modules-message { text-align: center; padding: var(--spacing-lg); font-size: var(--font-size-lg); color: var(--text-color-muted); }
+.module-actions { display: flex; gap: var(--spacing-sm); justify-content: center; align-items: center; }
+
+/* Row Hover/Focus */
+.module-table tbody tr:hover {
+    background-color: rgba(30, 255, 132, 0.1);
+    outline: none;
+}
+.module-table tbody tr:focus-within {
+    outline: 1px dashed var(--primary-color); /* Focus outline */
+    background-color: rgba(30, 255, 132, 0.1);
+}

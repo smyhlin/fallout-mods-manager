@@ -1,0 +1,134 @@
+/* styles/components.css */
+
+/* --- Buttons --- */
+.action-button {
+    background: none; border: none; border-radius: var(--border-radius);
+    cursor: pointer; padding: var(--spacing-xs); font-size: 1.3em; /* Larger icons */
+    line-height: 1; transition: color var(--transition-speed) ease, transform var(--transition-speed) ease;
+}
+.action-button:hover { transform: scale(1.2); }
+.edit-button { color: var(--action-color); }
+.edit-button:hover { color: var(--action-color); text-shadow: 0 0 8px var(--action-color-glow); }
+.delete-button { color: var(--danger-color); }
+.delete-button:hover { color: var(--danger-color); text-shadow: 0 0 8px var(--danger-color-glow); }
+
+.clear-search-button {
+    position: absolute; right: var(--spacing-xs); top: 50%;
+    transform: translateY(-50%); background: none; border: none;
+    color: var(--text-color-muted); font-size: 1.6em; line-height: 1;
+    padding: 0 var(--spacing-sm); cursor: pointer; transition: color var(--transition-speed) ease;
+}
+.clear-search-button:hover, .clear-search-button:focus { color: var(--danger-color); outline: none; }
+
+/* --- Checkboxes --- */
+.learned-checkbox { /* Keep custom checkbox style */
+    accent-color: var(--primary-color);
+    transform: scale(1.2);
+    cursor: pointer;
+    appearance: none; width: 16px; height: 16px;
+    border: 1px solid var(--border-color); border-radius: var(--border-radius);
+    position: relative; background-color: rgba(0,0,0,0.2);
+    vertical-align: middle;
+}
+.learned-checkbox:checked { background-color: var(--primary-color); border-color: var(--primary-color); box-shadow: 0 0 5px var(--primary-color-glow); }
+.learned-checkbox:checked::after { content: '✔'; position: absolute; top: -2px; left: 2px; font-size: 12px; color: var(--text-color-inverse); }
+
+/* --- Modal Styles --- */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(17, 28, 23, 0.85); /* Darker overlay */
+    backdrop-filter: blur(3px); /* Blur background */
+    z-index: 1200; display: flex; justify-content: center; align-items: center;
+    opacity: 0; visibility: hidden; transition: opacity var(--transition-speed) ease, visibility var(--transition-speed) ease; padding: var(--spacing-md);
+}
+.modal-overlay.active { opacity: 1; visibility: visible; }
+.modal-content {
+    background-color: var(--background-color-light); color: var(--text-color);
+    padding: var(--spacing-lg); border-radius: var(--border-radius);
+    border: 1px solid var(--border-color-strong);
+    box-shadow: var(--box-shadow-medium), 0 0 20px var(--primary-color-glow);
+    max-width: 90%; width: 600px; position: relative;
+    transform: scale(0.95); transition: transform var(--transition-speed) ease;
+    max-height: 90vh; display: flex; flex-direction: column;
+}
+.modal-overlay.active .modal-content { transform: scale(1); }
+.modal-header { flex-shrink: 0; padding-bottom: var(--spacing-md); border-bottom: 1px solid var(--border-color); margin-bottom: var(--spacing-lg); position: relative; }
+.modal-body { flex-grow: 1; overflow-y: auto; padding-right: var(--spacing-sm); /* Space for scrollbar */ margin-bottom: var(--spacing-lg); }
+.modal-close-button {
+    position: absolute; top: -10px; right: -5px; background: none; border: none;
+    color: var(--text-color-muted); font-size: 2em; cursor: pointer;
+    line-height: 1; padding: var(--spacing-xs); font-family: sans-serif;
+    transition: color var(--transition-speed) ease, transform var(--transition-speed) ease;
+}
+.modal-close-button:hover { color: var(--danger-color); transform: scale(1.1); }
+.modal-content h3 { /* Title inside modal */
+    text-align: center; margin: 0; font-size: var(--font-size-lg); color: var(--primary-color);
+}
+
+/* --- Notification --- */
+.notification {
+    position: fixed; bottom: var(--spacing-lg); left: 50%;
+    transform: translateX(-50%) translateY(100px); /* Start hidden below */
+    background-color: var(--background-color-darker); color: var(--text-color);
+    padding: var(--spacing-sm) var(--spacing-md); border-radius: var(--border-radius);
+    /* border: 1px solid var(--notification-success-border); /* This variable is not defined */
+    border: 1px solid var(--primary-color); /* Default to primary */
+    box-shadow: var(--box-shadow-medium), 0 0 10px var(--primary-color-glow);
+    z-index: 1300; font-size: var(--font-size-md);
+    opacity: 0; visibility: hidden;
+    transition: opacity var(--transition-speed) ease, visibility var(--transition-speed) ease, transform var(--transition-speed) ease;
+}
+.notification.show { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+.notification.error { border-color: var(--danger-color); color: var(--danger-color); box-shadow: var(--box-shadow-medium), 0 0 10px var(--danger-color-glow); }
+.notification.success { border-color: var(--primary-color); color: var(--primary-color); box-shadow: var(--box-shadow-medium), 0 0 10px var(--primary-color-glow); }
+
+/* --- Consolidated Scroll Arrows --- */
+.scroll-arrow {
+    position: absolute;
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+    width: 40px; /* Adjust base size */
+    height: 24px; /* More rectangular */
+    background-color: rgba(var(--primary-color-rgb), 0.2); /* Subtler background */
+    color: var(--primary-color); /* Use primary color for arrow */
+    border: 1px solid var(--border-color); /* Match sidebar button border */
+    border-radius: var(--border-radius); /* Match other elements */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0.8;
+    z-index: 50;
+    transition: all 0.2s ease;
+    font-size: 1em; /* Adjust font size */
+    font-family: var(--font-family-body); /* Use mono font */
+    box-shadow: none; /* Remove circular glow */
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+.scroll-arrow:hover {
+    opacity: 1;
+    background-color: rgba(var(--primary-color-rgb), 0.4);
+    border-color: var(--primary-color);
+    box-shadow: inset 0 0 5px var(--primary-color-glow); /* Add inset glow on hover */
+}
+
+.scroll-arrow-up {
+    top: var(--spacing-sm); /* Position from top */
+    border-bottom: none;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.scroll-arrow-down {
+    bottom: var(--spacing-sm); /* Position from bottom */
+    border-top: none;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+.scroll-arrow.hidden {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+}

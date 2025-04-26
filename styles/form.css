@@ -1,0 +1,54 @@
+/* styles/form.css */
+
+/* --- Form Styles --- */
+.module-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--spacing-md); }
+.module-form label { display: block; margin-bottom: var(--spacing-xs); font-size: var(--font-size-sm); color: var(--text-color-secondary); font-weight: bold; }
+.module-form input, .module-form select {
+    width: 100%; padding: var(--spacing-sm);
+    background-color: var(--background-color); /* Match container bg */
+    border: 1px solid var(--border-color); color: var(--text-color);
+    font-family: var(--font-family-body); box-sizing: border-box;
+    border-radius: var(--border-radius); font-size: var(--font-size-md);
+    transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+.module-form input:focus, .module-form select:focus {
+    outline: none; border-color: var(--primary-color);
+    box-shadow: 0 0 8px var(--primary-color-glow);
+}
+.module-form input:disabled, .module-form select:disabled { opacity: 0.5; cursor: not-allowed; background-color: rgba(0,0,0,0.2); }
+.form-field-full-width { grid-column: 1 / -1; }
+
+.module-form-buttons {
+    display: flex; justify-content: flex-end; gap: var(--spacing-sm); margin-top: var(--spacing-md);
+}
+.module-form-buttons button {
+    /* Inherit base button styles, override specifics */
+    padding: var(--spacing-sm) var(--spacing-lg);
+    font-size: var(--font-size-md);
+    margin-top: 0; /* Reset margin */
+    background-color: var(--primary-color);
+    color: var(--text-color-inverse);
+    border: none;
+    font-weight: bold;
+    /* Re-add cursor and transition from .sidebar-button if needed */
+    cursor: pointer;
+    transition: background-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+.module-form-buttons button:hover {
+    background-color: var(--primary-color-dark);
+    box-shadow: var(--box-shadow-glow);
+}
+.module-form-buttons button[type="button"] { /* Cancel button */
+    background-color: var(--background-color-light);
+    color: var(--text-color-secondary);
+    border: 1px solid var(--border-color);
+}
+.module-form-buttons button[type="button"]:hover {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border-color: var(--text-color);
+     box-shadow: none;
+}
+
+/* Styles for the form within the modal */
+.modal-form .module-form-buttons { /* Already styled above, but ensures specificity if needed */ }

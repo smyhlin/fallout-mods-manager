@@ -1,0 +1,62 @@
+/* styles/layout.css */
+
+/* --- Container --- */
+.pipboy-container {
+    display: flex;
+    width: calc(100% - var(--spacing-xl)*2);
+    max-width: 1800px;
+    margin: var(--spacing-xl);
+    border: 2px solid var(--border-color-strong);
+    box-shadow: 0 0 25px var(--primary-color-glow), inset 0 0 10px rgba(0,0,0,0.5); /* Outer and inner glow */
+    border-radius: var(--border-radius);
+    background-color: var(--background-color);
+    overflow: hidden; /* Prevent content from overflowing container */
+    position: relative;
+}
+
+/* --- Sidebar --- */
+.pipboy-sidebar {
+    width: var(--sidebar-width);
+    flex-shrink: 0;
+    border-right: 1px solid var(--border-color);
+    box-shadow: var(--box-shadow-light);
+    overflow: hidden;
+    max-height: calc(100vh - var(--spacing-xl)*2 - 4px); /* Restore max-height limit */
+    transition: width var(--transition-speed) ease-in-out, padding var(--transition-speed) ease-in-out, border var(--transition-speed) ease-in-out;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-color-light); /* Slightly lighter sidebar */
+}
+
+.sidebar-content-wrapper {
+    flex-grow: 1;
+    overflow-y: auto;
+    transition: opacity 0.2s ease-in-out;
+    padding: var(--spacing-lg);
+    position: relative;
+}
+
+/* --- Main Content --- */
+.pipboy-content {
+    flex-grow: 1; padding: 0;
+    max-height: calc(100vh - var(--spacing-xl)*2 - 4px); /* Match sidebar */
+    position: relative;
+    min-width: 0; /* Allow content to shrink in flex container */
+}
+
+.pipboy-content-wrapper {
+    height: 100%;
+    overflow-y: auto;
+    padding: var(--spacing-lg);
+    -webkit-overflow-scrolling: touch; /* Keep smooth scrolling on iOS */
+}
+
+.pipboy-header {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    font-size: var(--font-size-xxl);
+    color: var(--primary-color);
+    font-family: var(--font-family-header);
+    text-shadow: var(--text-shadow-header);
+}

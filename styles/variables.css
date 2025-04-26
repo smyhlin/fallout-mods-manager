@@ -1,0 +1,56 @@
+/* styles/variables.css */
+:root {
+    /* --- Color Palette --- */
+    --primary-color: #1eff84; /* Brighter Pip-Boy Green */
+    --primary-color-rgb: 30, 255, 132; /* RGB for alpha variations */
+    --primary-color-dark: #18cd6b; /* Darker green for hover/active */
+    --primary-color-glow: rgba(30, 255, 132, 0.7);
+    --background-color: #1a2a24; /* Dark Greenish Background */
+    --background-color-light: #233b32; /* Lighter background for elements */
+    --background-color-darker: #111c17; /* Even darker for depth */
+    --border-color: rgba(30, 255, 132, 0.3); /* Semi-transparent border */
+    --border-color-strong: rgba(30, 255, 132, 0.6);
+    --text-color: var(--primary-color);
+    --text-color-secondary: rgba(30, 255, 132, 0.7); /* Slightly dimmer text */
+    --text-color-muted: rgba(30, 255, 132, 0.5);
+    --text-color-inverse: var(--background-color-darker); /* Text on primary background */
+    --accent-color: #ffb86c; /* Amber/Orange accent */
+    --accent-color-glow: rgba(255, 184, 108, 0.7);
+    --danger-color: #ff5555; /* Red for delete/error */
+    --danger-color-glow: rgba(255, 85, 85, 0.7);
+    --action-color: #8be9fd; /* Cyan for edit/info */
+    --action-color-glow: rgba(139, 233, 253, 0.7);
+    --highlight-bg: rgba(255, 184, 108, 0.2); /* Highlight background */
+
+    /* --- Typography --- */
+    --font-family-header: 'Press Start 2P', cursive;
+    --font-family-body: 'Fira Code', monospace;
+    --base-font-size: 14px;
+    --font-size-sm: 0.8rem; /* ~11px */
+    --font-size-md: 0.9rem; /* ~13px */
+    --font-size-lg: 1.1rem; /* ~15px */
+    --font-size-xl: 1.5rem; /* ~21px */
+    --font-size-xxl: 1.8rem; /* ~25px */
+
+    /* --- Layout & Spacing --- */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --border-radius: 4px;
+    --sidebar-width: 280px;
+    --sidebar-collapsed-width: 0px;
+    --actions-column-width: 80px;
+
+    /* --- Effects --- */
+    --text-shadow: 0 0 5px var(--primary-color-glow);
+    --text-shadow-header: 0 0 8px var(--primary-color-glow);
+    --box-shadow-light: 0 2px 5px rgba(0, 0, 0, 0.3);
+    --box-shadow-medium: 0 4px 10px rgba(0, 0, 0, 0.4);
+    --box-shadow-glow: 0 0 15px var(--primary-color-glow);
+    --box-shadow-glow-accent: 0 0 15px var(--accent-color-glow);
+    --box-shadow-glow-danger: 0 0 15px var(--danger-color-glow);
+    --box-shadow-glow-action: 0 0 15px var(--action-color-glow);
+    --transition-speed: 0.2s;
+}

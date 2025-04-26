@@ -1,0 +1,102 @@
+/* styles/base.css */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+/* Hide Default Scrollbars */
+.hide-scrollbar::-webkit-scrollbar { display: none !important; }
+.hide-scrollbar { -ms-overflow-style: none !important; scrollbar-width: none !important; }
+
+body {
+    background-color: var(--background-color-darker); /* Darkest background */
+    color: var(--text-color);
+    font-family: var(--font-family-body);
+    font-size: var(--base-font-size);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Subtle Scanline Effect */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
+    background-size: 100% 3px; /* Thinner lines */
+    opacity: 0.5; /* More subtle */
+    pointer-events: none;
+    z-index: 1000;
+    animation: scanline-flicker 20s linear infinite; /* Flicker effect */
+}
+
+@keyframes scanline-flicker {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.4; }
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-header);
+    text-shadow: var(--text-shadow-header);
+    margin-top: 0;
+    margin-bottom: var(--spacing-md);
+    line-height: 1.3;
+}
+
+mark {
+    background-color: var(--highlight-bg);
+    color: var(--accent-color);
+    padding: 0 2px;
+    border-radius: var(--border-radius);
+    font-weight: bold;
+}
+
+/* Add the dotted separator style */
+.dotted-separator {
+    height: 1px;
+    border: none;
+    border-top: 2px dotted var(--border-color);
+    margin: var(--spacing-lg) 0; /* Add vertical margin */
+    opacity: 0.6;
+}
+
+/* Loading Indicator */
+.loading-indicator {
+    display: flex; justify-content: center; align-items: center;
+    min-height: 100vh; font-size: var(--font-size-xl);
+    color: var(--loading-indicator-color); /* Note: --loading-indicator-color is not defined in variables.css, might cause issues */
+    text-shadow: var(--text-shadow-header);
+    font-family: var(--font-family-header);
+}
+
+/* Add global style for body scroll lock */
+body.body-no-scroll {
+    overflow: hidden;
+}
+
+/* Scrollbar Styles - Keep general webkit styles */
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+/* Keep .hide-scrollbar for specific elements */
+.hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+#file-import-input { display: none; }
