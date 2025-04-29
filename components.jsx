@@ -118,6 +118,7 @@ const SettingsSection = React.memo(({ columnConfig, columnVisibility, tempWidths
                              id={`vis-${col.id}`}
                              checked={!!columnVisibility[col.id]}
                              onChange={() => onVisibilityChange(col.id)}
+                             className="learned-checkbox" // Add this class
                          />
                         {col.label}
                     </label>
