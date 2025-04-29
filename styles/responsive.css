@@ -15,7 +15,7 @@
     font-size: 1.8em;
     text-align: center;
     cursor: pointer;
-    z-index: 1050; /* Below sidebar overlay, above content */
+    z-index: 1050;
     box-shadow: var(--box-shadow-medium), 0 0 10px var(--primary-color-glow);
     align-items: center;
     justify-content: center;
@@ -33,23 +33,22 @@
      left: 0;
      width: 100%;
      height: 100%;
-     background-color: rgba(17, 28, 23, 0.7); /* Match modal overlay darkness */
+     background-color: rgba(17, 28, 23, 0.7);
      z-index: 1090; /* Below sidebar, above content */
-     backdrop-filter: blur(2px); /* Optional: blur content behind */
+     backdrop-filter: blur(2px);
 }
 
 /* --- Desktop-Only Styles (> 1024px) --- */
 @media (min-width: 1025px) {
      #desktop-sidebar-toggle { display: block; }
-     .card-header, .card-body { display: none; } /* Hide mobile card elements */
-     .pipboy-content {
-     }
+     .card-header, .card-body { display: none; } /* Hide mobile card elements on desktop */
 
-     /* Add collapsed sidebar styles ONLY for desktop */
+     /* Collapsed sidebar styles for desktop */
      .pipboy-sidebar.sidebar-collapsed {
-         width: var(--sidebar-collapsed-width);
+         width: var(--sidebar-collapsed-width); /* 0px */
          border-right-width: 0;
      }
+     /* Adjust toggle button position when sidebar is collapsed */
      .sidebar-collapsed + #desktop-sidebar-toggle {
         left: var(--sidebar-collapsed-width);
         border-left: 2px solid var(--border-color);
@@ -63,27 +62,28 @@
 /* --- Mobile/Tablet Styles (<= 1024px) --- */
 @media (max-width: 1024px) {
     body.body-no-scroll {
-        overflow: hidden;
+        overflow: hidden; /* Prevent body scroll when mobile sidebar is open */
     }
     .pipboy-container {
-        flex-direction: column;
+        flex-direction: column; /* Stack sidebar and content vertically */
         margin: 0;
         border: none;
         box-shadow: none;
         border-radius: 0;
         max-width: 100%;
         width: 100%;
+        height: 100vh; /* Full viewport height */
     }
-    /* Mobile Sidebar - Re-apply ALL necessary styles */
+    /* Mobile Sidebar - Off-canvas style */
     .pipboy-sidebar {
         position: fixed;
         top: 0;
         left: 0;
         bottom: 0;
         height: 100vh;
-        width: 50%; /* Set width to 50% of the screen size */
-        max-width: none; /* Remove max-width constraint */
-        transform: translateX(-100%); /* Default hidden */
+        width: 50%; /* Adjust width as needed */
+        max-width: none;
+        transform: translateX(-100%); /* Hidden off-screen by default */
         z-index: 1100;
         transition: transform var(--transition-speed) ease-in-out;
         background-color: var(--background-color-light);
@@ -91,44 +91,46 @@
         box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
         display: flex;
         flex-direction: column;
-        overflow: hidden !important; /* Force hide overflow on the parent */
+        overflow: hidden !important; /* Prevent parent overflow */
         padding: 0;
     }
     .pipboy-sidebar.mobile-sidebar-open {
-        height: 100vh !important; /* Ensure full height when open */
-        transform: translateX(0); /* Ensure it is fully visible */
+        transform: translateX(0); /* Slide in */
     }
     .pipboy-sidebar.mobile-sidebar-open .mobile-close-button {
-        display: block; /* Show close button */
+        display: block; /* Show close button when open */
     }
 
+    /* Ensure sidebar content wrapper scrolls correctly on mobile */
     .sidebar-content-wrapper {
          padding: var(--spacing-lg);
-         padding-top: 50px;
+         padding-top: 50px; /* Space for close button */
          flex-grow: 1;
-         height: 100%;
-         position: relative;
+         height: 100%; /* Needed for flex-grow and scrolling */
+         position: relative; /* For scroll arrows */
+         /* Hide scrollbars */
          -ms-overflow-style: none !important;
-         scrollbar-width: none !important;  /* Firefox */
+         scrollbar-width: none !important;
     }
-    .sidebar-content-wrapper::-webkit-scrollbar { display: none !important; } /* Ensure WebKit hide */
+    .sidebar-content-wrapper::-webkit-scrollbar { display: none !important; }
 
-    /* Reduce header size and left-align them in mobile sidebar */
+    /* Adjust sidebar header styles for mobile */
     .settings-title,
     .settings-section h4 {
-        font-size: var(--font-size-sm); /* Smaller font */
-        text-align: left; /* Align left */
+        font-size: var(--font-size-sm);
+        text-align: left;
     }
 
     .pipboy-content { padding: 0; max-height: none; overflow: visible; width: 100%; }
     .pipboy-content-wrapper { padding: var(--spacing-md); height: auto; overflow-y: visible; }
     .pipboy-header { font-size: var(--font-size-xl); margin-top: var(--spacing-md); }
 
+    /* --- Mobile Table -> Card View --- */
     .module-table { display: block; border: none; font-size: var(--font-size-md); margin-top: var(--spacing-md); }
-    .module-table thead { display: none; }
+    .module-table thead { display: none; } /* Hide table header */
     .module-table tbody { display: block; width: 100%; }
     .module-table tr {
-        display: block;
+        display: block; /* Each row becomes a block */
         border: 1px solid var(--border-color);
         border-radius: var(--border-radius);
         margin-bottom: var(--spacing-md);
@@ -143,8 +145,9 @@
         border-color: var(--primary-color);
     }
 
-    .module-table tr > td { display: none !important; }
+    .module-table tr > td { display: none !important; } /* Hide actual TD elements */
 
+    /* Display card elements */
     .card-header, .card-body { display: block; }
 
     .card-header {
@@ -160,7 +163,7 @@
     .card-body { padding: var(--spacing-sm) var(--spacing-md); }
     .card-body .data-row {
         display: grid;
-        grid-template-columns: auto 1fr;
+        grid-template-columns: auto 1fr; /* Label | Value */
         gap: var(--spacing-sm);
         align-items: flex-start;
         padding: var(--spacing-sm) 0;
@@ -171,54 +174,45 @@
         font-size: var(--font-size-sm);
     }
     .card-body .data-row:last-child { border-bottom: none; }
+    /* Use pseudo-element for label */
     .card-body .data-row::before {
-        content: attr(data-label);
+        content: attr(data-label); /* Get label from data attribute */
         font-weight: bold;
         text-align: left;
         color: var(--text-color-secondary);
         flex-shrink: 0;
     }
     .card-body .data-row > span { grid-column: 2 / 3; word-break: break-word; color: var(--text-color); }
-    .card-body .data-row .effect-cell { white-space: pre-line; }
+    .card-body .data-row .effect-cell { white-space: pre-line; } /* Preserve line breaks in effect */
 
-    .column-width-settings { display: none; }
+    .column-width-settings { display: none; } /* Hide width sliders on mobile */
 
-    .add-module-form { grid-template-columns: 1fr; }
-    #mobile-settings-button { display: flex; }
-    #desktop-sidebar-toggle { display: none; }
-    #sidebar-overlay.active { display: block; }
-    .modal-content { width: 95%; padding: var(--spacing-md); }
-    .modal-form .module-form-buttons { justify-content: space-between; }
-    .scroll-arrow-up { top: var(--spacing-sm); }
-    .scroll-arrow-down { bottom: var(--spacing-sm); }
+    #mobile-settings-button { display: flex; } /* Show mobile menu button */
+    #desktop-sidebar-toggle { display: none; } /* Hide desktop toggle */
+    #sidebar-overlay.active { display: block; } /* Show overlay when mobile sidebar is open */
 
-    /* Mobile scroll arrow adjustments (already centered) */
+    /* Mobile scroll arrow adjustments */
     .scroll-arrow {
         width: 44px;
         height: 26px;
         font-size: 1.1em;
         opacity: 0.85;
     }
-
-    /* No need to adjust .sidebar-content-wrapper .scroll-arrow position */
-
     .scroll-arrow-up { top: var(--spacing-sm); }
     .scroll-arrow-down { bottom: var(--spacing-sm); }
 }
 
+/* --- Smaller Mobile Styles (<= 480px) --- */
  @media (max-width: 480px) {
-     body { font-size: calc(var(--base-font-size) - 1px); } /* Slightly smaller base */
-     .pipboy-sidebar { width: 90%; }
-     .pipboy-sidebar.sidebar-collapsed { width: 90% !important; }
+     body { font-size: calc(var(--base-font-size) - 1px); }
+     .pipboy-sidebar { width: 90%; } /* Wider sidebar on small screens */
      .pipboy-sidebar h2 { font-size: var(--font-size-md); }
      .sidebar-button { font-size: var(--font-size-sm); }
      .pipboy-header { font-size: var(--font-size-lg); }
      .module-table { font-size: var(--font-size-sm); }
      .card-header { padding: var(--spacing-xs) var(--spacing-sm); }
-     .card-header .learned-checkbox { }
      .card-body { padding: var(--spacing-xs) var(--spacing-sm); }
      .card-body .data-row { padding: var(--spacing-xs) 0; gap: var(--spacing-xs); }
-     .card-body .data-row::before { }
      .module-form label, .module-form input, .module-form select, .module-form button { font-size: var(--font-size-sm); }
      .settings-control label { font-size: var(--font-size-sm); }
      .width-value { font-size: calc(var(--font-size-sm) - 1px); }
@@ -231,9 +225,9 @@
      }
     .modal-content h3 { font-size: var(--font-size-md); }
     .clear-search-button { font-size: 1.4em; right: 3px; }
-    .search-input { padding-right: 28px; }
+    .search-input { padding-right: 28px; } /* Adjust padding for smaller clear button */
 
-    /* Adjustments for small screens (already centered) */
+    /* Adjust scroll arrows for small screens */
     .scroll-arrow {
         width: 40px;
         height: 24px;

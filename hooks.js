@@ -16,7 +16,7 @@ function useDebounce(value, delay) {
 }
 
 // Custom Hook: useNotification
-function useNotification(timeout = NOTIFICATION_TIMEOUT) { // Use constant
+function useNotification(timeout = NOTIFICATION_TIMEOUT) {
     const [notification, setNotification] = useState({ message: '', type: '', show: false });
     const timerRef = useRef(null);
 
@@ -30,43 +30,36 @@ function useNotification(timeout = NOTIFICATION_TIMEOUT) { // Use constant
         }, timeout);
     }, [timeout]);
 
-    // Cleanup timer on unmount
-    useEffect(() => () => clearTimeout(timerRef.current), []);
+    useEffect(() => () => clearTimeout(timerRef.current), []); // Cleanup timer on unmount
 
-    // Return state and function separately for easier use
     return [notification, showNotification];
 }
 
 
 // Custom Hook: useTableState
-// Manages table-related state like columns, sorting, and persistence
 function useTableState(columnConfig, showNotification) {
-    // Load initial settings from localStorage or defaults
-    const [columnSettings, setColumnSettings] = useState(() => loadColumnSettings()); // from utils.js
+    const [columnSettings, setColumnSettings] = useState(() => loadColumnSettings());
     const { visibility: columnVisibility, widths: columnWidths } = columnSettings;
 
-    // Temporary widths state for debouncing slider updates
+    // Temporary widths state for debouncing slider updates during drag
     const [tempWidths, setTempWidths] = useState(columnWidths);
-    const debouncedWidths = useDebounce(tempWidths, DEBOUNCE_DELAY.WIDTH); // from constants.js
+    const debouncedWidths = useDebounce(tempWidths, DEBOUNCE_DELAY.WIDTH);
 
-    // Sorting state
     const [sortConfig, setSortConfig] = useState({ key: 'stars', direction: 'asc' }); // Default sort
 
-    // Effect to save settings when visibility or (debounced) widths change
+    // Save settings when visibility or debounced widths change
     useEffect(() => {
-        // Use debouncedWidths for saving to prevent rapid saves during slider drag
-        saveColumnSettings(columnVisibility, debouncedWidths); // from utils.js
+        saveColumnSettings(columnVisibility, debouncedWidths);
     }, [columnVisibility, debouncedWidths]);
 
-    // Effect to update the actual column widths state once debouncing is complete
+    // Update actual column widths state after debouncing
     useEffect(() => {
-        // Only update if debounced widths are actually different from current widths
         if (JSON.stringify(debouncedWidths) !== JSON.stringify(columnWidths)) {
             setColumnSettings(prev => ({ ...prev, widths: debouncedWidths }));
         }
     }, [debouncedWidths, columnWidths]);
 
-    // Effect to sync temp widths when actual widths change (e.g., on reset or initial load)
+    // Sync temp widths when actual widths change (e.g., on reset or import)
     useEffect(() => {
         setTempWidths(columnWidths);
     }, [columnWidths]);
@@ -93,15 +86,15 @@ function useTableState(columnConfig, showNotification) {
 
     const handleResetSettings = useCallback(() => {
         const newSettings = {
-            visibility: defaultColumnVisibility, // from config.js
-            widths: defaultColumnWidths // from config.js
+            visibility: defaultColumnVisibility,
+            widths: defaultColumnWidths
         };
         setColumnSettings(newSettings);
-        // tempWidths will update via useEffect syncing with columnWidths
+        // tempWidths will update via useEffect sync
         showNotification('Настройки таблицы сброшены.', 'success');
     }, [showNotification]);
 
-    // Function to apply settings loaded from an import file
+    // Apply settings loaded from an import file
     const applyImportedSettings = useCallback((importedSettings) => {
         if (!importedSettings || typeof importedSettings !== 'object') return;
 
@@ -113,7 +106,7 @@ function useTableState(columnConfig, showNotification) {
                 if (col.isVisibilityToggleable && typeof importedSettings.visibility[col.id] === 'boolean') {
                     newVisibility[col.id] = importedSettings.visibility[col.id];
                 } else if (!col.isVisibilityToggleable) {
-                    newVisibility[col.id] = true; // Ensure non-toggleable columns remain visible
+                    newVisibility[col.id] = true;
                 }
             });
         }
@@ -121,20 +114,19 @@ function useTableState(columnConfig, showNotification) {
         if (importedSettings.widths && typeof importedSettings.widths === 'object') {
             columnConfig.forEach(col => {
                 if (col.isWidthAdjustable && typeof importedSettings.widths[col.id] === 'number') {
-                    // Clamp imported width within defined min/max
                     newWidths[col.id] = Math.max(
-                        col.minWidth || 50, // Use a default min if not specified
-                        Math.min(col.maxWidth || 600, importedSettings.widths[col.id]) // Use a default max
+                        col.minWidth || 50,
+                        Math.min(col.maxWidth || 600, importedSettings.widths[col.id])
                     );
                 } else if (!col.isWidthAdjustable) {
-                    newWidths[col.id] = col.defaultWidth; // Use default width if not adjustable
+                    newWidths[col.id] = col.defaultWidth;
                 }
             });
         }
 
         setColumnSettings({ visibility: newVisibility, widths: newWidths });
         // tempWidths will sync via useEffect
-    }, [columnConfig]); // Depends on columnConfig
+    }, [columnConfig]);
 
     return {
         columnSettings,
@@ -146,47 +138,43 @@ function useTableState(columnConfig, showNotification) {
         handleTempWidthChange,
         handleSort,
         handleResetSettings,
-        applyImportedSettings, // Expose the new function
+        applyImportedSettings,
     };
 }
 
 // Custom Hook: useSidebarState
-// Manages sidebar open/closed state and related effects
 function useSidebarState() {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
-    // Initialize desktop sidebar based on initial window width
     const [isDesktopSidebarCollapsed, setIsDesktopSidebarCollapsed] = useState(
-        () => window.innerWidth <= 1024
+        () => window.innerWidth <= 1024 // Initial state based on width
     );
 
-    // Toggle handlers
     const toggleMobileSidebar = useCallback(() => setIsMobileSidebarOpen(prev => !prev), []);
     const toggleDesktopSidebar = useCallback(() => setIsDesktopSidebarCollapsed(prev => !prev), []);
 
-    // Effect to handle window resize - closes mobile sidebar if window becomes desktop-sized
+    // Handle window resize
     useEffect(() => {
         const handleResize = () => {
             const isDesktop = window.innerWidth > 1024;
             if (isDesktop && isMobileSidebarOpen) {
                 setIsMobileSidebarOpen(false); // Close mobile sidebar if resizing to desktop
             }
-            // We might also want to set initial collapse state based on resize
-            // setIsDesktopSidebarCollapsed(window.innerWidth <= 1024);
+            // Optionally adjust desktop collapse state on resize if needed
+            // setIsDesktopSidebarCollapsed(!isDesktop);
         };
         window.addEventListener('resize', handleResize);
         handleResize(); // Initial check
         return () => window.removeEventListener('resize', handleResize);
-    }, [isMobileSidebarOpen]); // Re-run only if mobile sidebar state changes
+    }, [isMobileSidebarOpen]);
 
-    // Effect to lock body scroll when mobile sidebar is open
+    // Lock body scroll when mobile sidebar is open
     useEffect(() => {
         if (isMobileSidebarOpen) {
             document.body.classList.add('body-no-scroll');
         } else {
             document.body.classList.remove('body-no-scroll');
         }
-        // Cleanup function
-        return () => {
+        return () => { // Cleanup
             document.body.classList.remove('body-no-scroll');
         };
     }, [isMobileSidebarOpen]);
@@ -200,13 +188,12 @@ function useSidebarState() {
 }
 
 // Custom Hook: useModalState
-// Manages the state for the Add/Edit modal
 function useModalState() {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [itemBeingEdited, setItemBeingEdited] = useState(null);
+    const [itemBeingEdited, setItemBeingEdited] = useState(null); // null = Add mode, object = Edit mode
 
     const openModal = useCallback((item = null) => {
-        setItemBeingEdited(item); // null for adding, item object for editing
+        setItemBeingEdited(item);
         setIsModalOpen(true);
     }, []);
 
@@ -224,7 +211,6 @@ function useModalState() {
 }
 
 // Custom Hook: useModuleManagement
-// Manages CRUD operations for the modules list
 function useModuleManagement(modules, setModules, showNotification, closeEditModal) {
 
     const handleLearnedChange = useCallback((ruName, stars) => {
@@ -234,10 +220,10 @@ function useModuleManagement(modules, setModules, showNotification, closeEditMod
     }, [setModules]);
 
     const handleAddNewModule = useCallback((_ignoredKey, newModuleData) => {
-        const { ruName, stars } = newModuleData;
+        const { ruName, stars, effect } = newModuleData;
         const moduleKey = `${ruName}-${stars}`;
 
-        if (!ruName || !stars || !newModuleData.effect) {
+        if (!ruName || !stars || !effect) {
             showNotification('Пожалуйста, заполните обязательные поля: Название, Звёзды, Эффект.', 'error');
             return; // Keep modal open
         }
@@ -249,9 +235,9 @@ function useModuleManagement(modules, setModules, showNotification, closeEditMod
 
         setModules(prev => [
             ...prev,
-            { ...newModuleData, learned: true, isCustom: true } // Add the new module
+            { ...newModuleData, learned: true, isCustom: true } // Add new custom module, default to learned
         ]);
-        closeEditModal(); // Close modal on success
+        closeEditModal();
         showNotification(`Модуль "${ruName}" успешно добавлен!`, 'success');
     }, [modules, setModules, showNotification, closeEditModal]);
 
@@ -263,6 +249,7 @@ function useModuleManagement(modules, setModules, showNotification, closeEditMod
             return; // Keep modal open
         }
 
+        // Check for key collision only if the key actually changed
         if (originalKey !== newKey && modules.some(m => `${m.ruName}-${m.stars}` === newKey)) {
             showNotification('Модуль с таким новым названием и количеством звезд уже существует!', 'error');
             return; // Keep modal open
@@ -273,7 +260,7 @@ function useModuleManagement(modules, setModules, showNotification, closeEditMod
                 `${m.ruName}-${m.stars}` === originalKey ? { ...m, ...updatedData } : m
             )
         );
-        closeEditModal(); // Close modal on success
+        closeEditModal();
         showNotification(`Модуль "${updatedData.ruName}" успешно обновлен!`, 'success');
     }, [modules, setModules, closeEditModal, showNotification]);
 
@@ -290,4 +277,4 @@ function useModuleManagement(modules, setModules, showNotification, closeEditMod
         handleSaveChangesInModal,
         handleDeleteModule,
     };
-} 
+}

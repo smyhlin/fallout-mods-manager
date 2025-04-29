@@ -5,7 +5,7 @@
     margin-bottom: var(--spacing-lg);
     text-align: center;
     color: var(--primary-color);
-    overflow-wrap: break-word; /* Ensure title wraps */
+    overflow-wrap: break-word;
 }
 .sidebar-section {
     margin-bottom: var(--spacing-lg);
@@ -20,26 +20,26 @@
     font-size: var(--font-size-md);
     color: var(--text-color-secondary);
     font-weight: bold;
-    overflow-wrap: break-word; /* Add text wrapping */
+    overflow-wrap: break-word;
 }
-.settings-title { /* Specific style for section titles */
+.settings-title {
      font-family: var(--font-family-header);
-     font-size: var(--font-size-md); /* Smaller header font for titles */
+     font-size: var(--font-size-md);
      text-align: center;
      margin-bottom: var(--spacing-md);
      color: var(--primary-color);
-    white-space: normal; /* Allow text wrapping */
-    overflow-wrap: break-word; /* Ensure title wraps */
+    white-space: normal;
+    overflow-wrap: break-word;
 }
-.settings-section h4 { /* Sub-headers like "Видимость Колонок" */
+.settings-section h4 {
     font-family: var(--font-family-body);
     font-size: var(--font-size-md);
     color: var(--text-color-secondary);
     margin-top: var(--spacing-lg);
     margin-bottom: var(--spacing-sm);
     font-weight: bold;
-    white-space: normal; /* Allow text wrapping */
-    overflow-wrap: break-word; /* Ensure sub-header wraps */
+    white-space: normal;
+    overflow-wrap: break-word;
 }
 
 .sidebar-button {
@@ -52,12 +52,12 @@
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
     text-align: center;
-    font-family: var(--font-family-body); /* Use body font for buttons */
+    font-family: var(--font-family-body);
     font-size: var(--font-size-md);
     cursor: pointer;
     transition: background-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease, color var(--transition-speed) ease;
-    white-space: normal; /* Allow text wrapping */
-    overflow-wrap: break-word; /* Ensure button text wraps */
+    white-space: normal;
+    overflow-wrap: break-word;
 }
 .sidebar-button:hover {
     background-color: rgba(0,0,0,0.3);
@@ -98,15 +98,17 @@
     margin-bottom: var(--spacing-xs);
     cursor: pointer;
     color: var(--text-color-secondary);
-    overflow-wrap: break-word; /* Add text wrapping */
+    overflow-wrap: break-word;
 }
+/* Remove the following input[type="checkbox"] styles, as they are duplicated in components.css */
+/*
 .settings-control input[type="checkbox"] {
     width: auto;
     margin-right: var(--spacing-sm);
     transform: scale(1.2);
     accent-color: var(--primary-color);
     cursor: pointer;
-    appearance: none; /* Custom checkbox */
+    appearance: none;
     width: 16px;
     height: 16px;
     border: 1px solid var(--border-color);
@@ -119,7 +121,7 @@
     border-color: var(--primary-color);
     box-shadow: 0 0 5px var(--primary-color-glow);
 }
-.settings-control input[type="checkbox"]:checked::after { /* Checkmark */
+.settings-control input[type="checkbox"]:checked::after {
     content: '✔';
     position: absolute;
     top: -2px;
@@ -127,16 +129,16 @@
     font-size: 12px;
     color: var(--text-color-inverse);
 }
+*/
 .settings-control input[type="range"] {
      width: 100%;
      accent-color: var(--primary-color);
      cursor: pointer;
-     background: transparent; /* Needed for styling track */
+     background: transparent;
      height: 10px;
      padding: 0; margin: 0;
      appearance: none;
 }
-/* Track */
 .settings-control input[type=range]::-webkit-slider-runnable-track {
     height: 4px;
     background: rgba(0,0,0,0.4);
@@ -149,7 +151,6 @@
     border: none;
     border-radius: var(--border-radius);
 }
-/* Thumb */
 .settings-control input[type=range]::-webkit-slider-thumb {
     appearance: none;
     width: 14px;
@@ -157,7 +158,7 @@
     background: var(--primary-color);
     border-radius: 50%;
     cursor: pointer;
-    margin-top: -5px; /* Center thumb */
+    margin-top: -5px;
     box-shadow: 0 0 5px var(--primary-color-glow);
 }
 .settings-control input[type=range]::-moz-range-thumb {
@@ -174,7 +175,7 @@
 
 .mobile-close-button {
     display: none; position: absolute; top: 10px; right: 15px;
-    background: rgba(var(--primary-color-rgb), 0.3); /* Use primary color with alpha */
+    background: rgba(var(--primary-color-rgb), 0.3);
     color: var(--text-color);
     border: 1px solid var(--border-color);
     border-radius: 50%; width: 30px; height: 30px;
@@ -184,7 +185,7 @@
     transition: background-color var(--transition-speed) ease;
 }
 .mobile-close-button:hover {
-    background-color: rgba(var(--primary-color-rgb), 0.6); /* Darker primary color alpha */
+    background-color: rgba(var(--primary-color-rgb), 0.6);
 }
 
 #desktop-sidebar-toggle {
@@ -206,8 +207,8 @@
 .search-input {
     width: 100%;
     padding: var(--spacing-sm);
-    padding-right: 30px; /* Space for clear */
-    background-color: var(--background-color-darker); /* Darker input */
+    padding-right: 30px;
+    background-color: var(--background-color-darker);
     border: 1px solid var(--border-color);
     color: var(--text-color);
     font-family: var(--font-family-body);

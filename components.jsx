@@ -1,6 +1,5 @@
 // components.jsx
-// const { useState, useEffect, useMemo, useCallback, useRef, memo, Fragment } = React; // Removed global destructuring
-const PropTypes = window.PropTypes; // Access PropTypes from global scope
+const PropTypes = window.PropTypes;
 
 // --- Error Boundary ---
 class ErrorBoundary extends React.Component {
@@ -10,18 +9,15 @@ class ErrorBoundary extends React.Component {
   }
 
   static getDerivedStateFromError(error) {
-    // Update state so the next render will show the fallback UI.
     return { hasError: true, error };
   }
 
   componentDidCatch(error, errorInfo) {
-    // You can also log the error to an error reporting service
     console.error("Uncaught error:", error, errorInfo);
   }
 
   render() {
     if (this.state.hasError) {
-      // You can render any custom fallback UI
       return (
         <div style={{ padding: '20px', color: '#f56565', border: '2px dashed #f56565', margin: '20px' }}>
           <h2>Щось пішло не так.</h2>
@@ -30,7 +26,6 @@ class ErrorBoundary extends React.Component {
         </div>
       );
     }
-
     return this.props.children;
   }
 }
@@ -81,6 +76,7 @@ SearchInput.propTypes = {
     onSearchChange: PropTypes.func.isRequired,
 };
 
+// onSidebarClose is used to close the mobile sidebar after filter selection
 const FilterControls = React.memo(({ currentFilter, onFilterChange, onSidebarClose }) => (
     <div className="sidebar-section">
         <button className={`sidebar-button ${currentFilter === 'all' ? 'active' : ''}`} onClick={() => { onFilterChange('all'); onSidebarClose?.(); }}>Все Модули</button>
@@ -91,7 +87,7 @@ const FilterControls = React.memo(({ currentFilter, onFilterChange, onSidebarClo
 FilterControls.propTypes = {
     currentFilter: PropTypes.oneOf(['all', 'learned', 'notLearned']).isRequired,
     onFilterChange: PropTypes.func.isRequired,
-    onSidebarClose: PropTypes.func,
+    onSidebarClose: PropTypes.func, // Optional callback for mobile
 };
 
 const StatsDisplay = React.memo(({ stats }) => (
@@ -128,6 +124,7 @@ const SettingsSection = React.memo(({ columnConfig, columnVisibility, tempWidths
                 </div>
             )
         ))}
+        {/* Width settings only shown on desktop where table is visible */}
         <div className="column-width-settings">
             <h4 className="settings-label">Ширина Колонок:</h4>
             {columnConfig.map(col => (
@@ -175,60 +172,65 @@ IOSection.propTypes = {
     onAddModuleClick: PropTypes.func.isRequired,
 };
 
-// --- Scrollable Container Component ---
+// Scrollable Container with Up/Down Arrows
 const ScrollableContainer = ({ children, className = '' }) => {
     const scrollRef = React.useRef(null);
     const [canScrollUp, setCanScrollUp] = React.useState(false);
     const [canScrollDown, setCanScrollDown] = React.useState(false);
 
+    // Checks scroll position to determine if arrows should be shown
     const checkScroll = React.useCallback(() => {
         const el = scrollRef.current;
         if (!el) return;
         const isScrollable = el.scrollHeight > el.clientHeight;
+        // Use a small tolerance (1px) to avoid flickering
         setCanScrollUp(isScrollable && el.scrollTop > 1);
         setCanScrollDown(isScrollable && el.scrollTop < el.scrollHeight - el.clientHeight - 1);
     }, []);
 
+    // Setup observers and listeners to check scroll on changes
     React.useEffect(() => {
         const el = scrollRef.current;
         if (!el) return;
 
         const resizeObserver = new ResizeObserver(checkScroll);
         resizeObserver.observe(el);
-        // Observe changes in children that affect scroll height
         const mutationObserver = new MutationObserver(checkScroll);
         mutationObserver.observe(el, { childList: true, subtree: true, characterData: true });
 
-        el.addEventListener('scroll', checkScroll);
-        window.addEventListener('resize', checkScroll); // For window resize events
+        el.addEventListener('scroll', checkScroll, { passive: true }); // Use passive listener
+        window.addEventListener('resize', checkScroll);
 
         checkScroll(); // Initial check
 
-        return () => {
+        return () => { // Cleanup
             resizeObserver.unobserve(el);
             mutationObserver.disconnect();
             el.removeEventListener('scroll', checkScroll);
             window.removeEventListener('resize', checkScroll);
         };
-    // Dependency array now only contains checkScroll, which is stable
     }, [checkScroll]);
 
+    // Handles scrolling up or down by a fixed step
     const handleScroll = React.useCallback((direction) => {
         const el = scrollRef.current;
         if (!el) return;
-        const amount = direction === 'up' ? -SCROLL_STEP : SCROLL_STEP;
+        const amount = direction === 'up' ? -SCROLL_STEP : SCROLL_STEP; // SCROLL_STEP from constants.js
         el.scrollBy({ top: amount, behavior: 'smooth' });
-    }, []); // SCROLL_STEP from constants.js
+    }, []);
 
     return (
+        // Apply className and hide-scrollbar utility class
         <div ref={scrollRef} className={`${className} hide-scrollbar`} onScroll={checkScroll}>
             {children}
+            {/* Scroll Up Arrow */}
             <button
                 className={`scroll-arrow scroll-arrow-up ${!canScrollUp ? 'hidden' : ''}`}
                 onClick={() => handleScroll('up')}
                 aria-label="Прокрутить вверх"
                 disabled={!canScrollUp}
             >▲</button>
+            {/* Scroll Down Arrow */}
             <button
                 className={`scroll-arrow scroll-arrow-down ${!canScrollDown ? 'hidden' : ''}`}
                 onClick={() => handleScroll('down')}
@@ -241,7 +243,6 @@ const ScrollableContainer = ({ children, className = '' }) => {
 ScrollableContainer.propTypes = {
     children: PropTypes.node.isRequired,
     className: PropTypes.string,
-    // scrollDep: PropTypes.any, // Removed prop type
 };
 
 const Sidebar = React.memo(({
@@ -252,6 +253,7 @@ const Sidebar = React.memo(({
  }) => (
     <div className={`pipboy-sidebar ${isDesktopCollapsed ? 'sidebar-collapsed' : ''} ${isMobileOpen ? 'mobile-sidebar-open' : ''}`}>
          <button className="mobile-close-button" onClick={onMobileClose} aria-label="Закрыть меню">×</button>
+         {/* Use ScrollableContainer for sidebar content */}
          <ScrollableContainer className="sidebar-content-wrapper">
             <h2>Меню</h2>
             <SearchInput searchTerm={searchTerm} onSearchChange={onSearchChange} />
@@ -294,6 +296,7 @@ Sidebar.propTypes = {
     onAddModuleClick: PropTypes.func.isRequired,
 };
 
+
 const ModuleActions = React.memo(({ module, onEdit, onDelete }) => (
     <div className="module-actions">
         <button onClick={() => onEdit(module)} className="action-button edit-button" aria-label={`Редактировать модуль ${module.ruName}`}>🔧</button>
@@ -306,10 +309,13 @@ ModuleActions.propTypes = {
     onDelete: PropTypes.func.isRequired,
 };
 
+// Represents a single row in the table (desktop) or a card (mobile)
 const ModuleTableRow = React.memo(({ module, columnVisibility, dataLabels, onLearnedChange, onEdit, onDelete, highlightTerm }) => {
     const moduleKey = `${module.ruName}-${module.stars}`;
     return (
+     // The TR element acts as the container for both table cells and mobile card elements
      <tr key={moduleKey}>
+        {/* --- Desktop Table Cells (hidden on mobile via CSS) --- */}
         <td style={{ width: '60px', textAlign: 'center', verticalAlign: 'middle' }}>
             <input
                 type="checkbox"
@@ -326,6 +332,7 @@ const ModuleTableRow = React.memo(({ module, columnVisibility, dataLabels, onLea
             <ModuleActions module={module} onEdit={onEdit} onDelete={onDelete} />
         </td>
 
+        {/* --- Mobile Card Elements (display: block on mobile via CSS) --- */}
         <div className="card-header">
              <input
                 type="checkbox"
@@ -336,6 +343,7 @@ const ModuleTableRow = React.memo(({ module, columnVisibility, dataLabels, onLea
              <ModuleActions module={module} onEdit={onEdit} onDelete={onDelete} />
         </div>
         <div className="card-body">
+            {/* Render data rows only if the corresponding column is visible */}
             {columnVisibility.ruName && <div className="data-row" data-label={dataLabels.ruName}><span>{highlightText(module.ruName, highlightTerm)}</span></div>}
             {columnVisibility.enName && <div className="data-row" data-label={dataLabels.enName}><span>{highlightText(module.enName || '-', highlightTerm)}</span></div>}
             {columnVisibility.stars && <div className="data-row" data-label={dataLabels.stars}><span>{getStars(module.stars)}</span></div>}
@@ -354,23 +362,28 @@ ModuleTableRow.propTypes = {
     highlightTerm: PropTypes.string,
 };
 
+
 const ModuleTable = React.memo(({ modules, columnConfig, columnVisibility, columnWidths, sortConfig, onSort, dataLabels, onLearnedChange, onEdit, onDelete, highlightTerm }) => {
+    // Calculate visible columns for colSpan in empty message
     const visibleColumnCount = columnConfig.filter(c => columnVisibility[c.id]).length;
     return (
     <table className="module-table">
         <thead>
             <tr>
                 {columnConfig.map(col => (
+                    // Render header cell only if column is visible
                     columnVisibility[col.id] && (
                         <th
                             key={col.id}
                             className={col.isSortable ? 'sortable' : ''}
+                            // Apply width from state if adjustable, otherwise use default
                             style={col.isWidthAdjustable && columnWidths[col.id] ? { width: `${columnWidths[col.id]}px` } : { width: col.defaultWidth ? `${col.defaultWidth}px` : undefined }}
                             onClick={col.isSortable ? () => onSort(col.id) : undefined}
                             aria-label={col.isSortable ? `Сортировать по ${col.label}` : col.label}
                             title={col.isSortable ? `Сортировать по ${col.label}` : undefined}
                         >
                             {col.label}
+                            {/* Show sort indicator if this column is the active sort key */}
                             {col.isSortable && sortConfig.key === col.id && (
                                 <span className="sort-indicator">{sortConfig.direction === 'asc' ? '▲' : '▼'}</span>
                             )}
@@ -383,7 +396,7 @@ const ModuleTable = React.memo(({ modules, columnConfig, columnVisibility, colum
             {modules.length > 0 ? (
                 modules.map((module) => (
                     <ModuleTableRow
-                        key={`${module.ruName}-${module.stars}`}
+                        key={`${module.ruName}-${module.stars}`} // Unique key for each row
                         module={module}
                         columnVisibility={columnVisibility}
                         dataLabels={dataLabels}
@@ -394,6 +407,7 @@ const ModuleTable = React.memo(({ modules, columnConfig, columnVisibility, colum
                     />
                 ))
             ) : (
+                // Display message when no modules match filters/search
                 <tr>
                     <td colSpan={visibleColumnCount} className="no-modules-message">
                         {highlightTerm ? 'Модулей не найдено по вашему запросу.' : 'Нет модулей для отображения по текущим фильтрам.'}
@@ -418,7 +432,10 @@ ModuleTable.propTypes = {
     highlightTerm: PropTypes.string,
 };
 
+
+// Form used for adding or editing modules (inside modal)
 const ModuleForm = React.memo(({ formData, onChange, onSubmit, isEditMode = false, onCancelEdit = null, moduleBeingEdited = null }) => {
+    // Predefined modules (from initial JSON) cannot have their name/stars edited
     const isPredefined = isEditMode && moduleBeingEdited && !moduleBeingEdited.isCustom;
     const submitButtonText = isEditMode ? 'Сохранить Изменения' : 'Добавить Модуль';
     return (
@@ -432,7 +449,7 @@ const ModuleForm = React.memo(({ formData, onChange, onSubmit, isEditMode = fals
                     value={formData.ruName}
                     onChange={onChange}
                     required
-                    disabled={isPredefined}
+                    disabled={isPredefined} // Disable if predefined
                     aria-disabled={isPredefined}
                     aria-label="Название модуля"
                 />
@@ -456,14 +473,12 @@ const ModuleForm = React.memo(({ formData, onChange, onSubmit, isEditMode = fals
                     value={formData.stars}
                     onChange={onChange}
                     required
-                    disabled={isPredefined}
+                    disabled={isPredefined} // Disable if predefined
                     aria-disabled={isPredefined}
                     aria-label="Количество звезд модуля"
                 >
-                    <option value={1}>1</option>
-                    <option value={2}>2</option>
-                    <option value={3}>3</option>
-                    <option value={4}>4</option>
+                    {/* Generate options dynamically or list them */}
+                    {[1, 2, 3, 4].map(star => <option key={star} value={star}>{star}</option>)}
                 </select>
             </div>
             <div className="form-field-full-width">
@@ -479,6 +494,7 @@ const ModuleForm = React.memo(({ formData, onChange, onSubmit, isEditMode = fals
                 />
             </div>
             <div className="module-form-buttons form-field-full-width">
+                {/* Show Cancel button only in edit mode */}
                 {isEditMode && onCancelEdit && (
                     <button type="button" onClick={onCancelEdit}>Отменить</button>
                 )}
@@ -501,11 +517,15 @@ ModuleForm.propTypes = {
     moduleBeingEdited: PropTypes.object,
 };
 
-const EditModuleModal = React.memo(({ module, isOpen, onClose, onSave }) => {
-    const [formData, setFormData] = React.useState({ ruName: '', enName: '', stars: 1, effect: '' });
-    const [originalKey, setOriginalKey] = React.useState(null);
-    const isEditMode = !!module;
 
+// Modal for adding or editing modules
+const EditModuleModal = React.memo(({ module, isOpen, onClose, onSave }) => {
+    // Initialize form state based on whether editing or adding
+    const [formData, setFormData] = React.useState({ ruName: '', enName: '', stars: 1, effect: '' });
+    const [originalKey, setOriginalKey] = React.useState(null); // Store the original key for comparison on save
+    const isEditMode = !!module; // True if a module object is passed
+
+    // Update form data when the module prop changes (e.g., opening modal for edit)
     React.useEffect(() => {
         if (module) {
             setFormData({
@@ -513,35 +533,40 @@ const EditModuleModal = React.memo(({ module, isOpen, onClose, onSave }) => {
                 enName: module.enName || '',
                 stars: module.stars || 1,
                 effect: module.effect || '',
-                isCustom: module.isCustom
+                isCustom: module.isCustom // Keep track if it's custom
             });
             setOriginalKey(`${module.ruName}-${module.stars}`);
         } else {
+            // Reset form for adding a new module
             setFormData({ ruName: '', enName: '', stars: 1, effect: '' });
             setOriginalKey(null);
         }
     }, [module]);
 
+    // Handle form input changes
     const handleChange = React.useCallback((e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: name === 'stars' ? parseInt(value, 10) : value }));
     }, []);
 
+    // Handle form submission
     const handleSubmit = React.useCallback((e) => {
         e.preventDefault();
-        onSave(originalKey, formData);
+        onSave(originalKey, formData); // Pass original key and new data
     }, [formData, originalKey, onSave]);
 
+    // Close modal if overlay is clicked
     const handleOverlayClick = React.useCallback((e) => {
         if (e.target === e.currentTarget) {
             onClose();
         }
     }, [onClose]);
 
-    if (!isOpen) return null;
+    if (!isOpen) return null; // Don't render if not open
 
     return (
         <div className={`modal-overlay ${isOpen ? 'active' : ''}`} onClick={handleOverlayClick} role="dialog" aria-modal="true" aria-labelledby="edit-modal-title">
+            {/* Stop propagation to prevent overlay click when clicking inside content */}
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                 <div className="modal-header">
                     <button className="modal-close-button" onClick={onClose} aria-label="Закрыть модальное окно">×</button>
@@ -553,8 +578,8 @@ const EditModuleModal = React.memo(({ module, isOpen, onClose, onSave }) => {
                         onChange={handleChange}
                         onSubmit={handleSubmit}
                         isEditMode={isEditMode}
-                        onCancelEdit={onClose}
-                        moduleBeingEdited={module}
+                        onCancelEdit={onClose} // Pass close handler as cancel handler
+                        moduleBeingEdited={module} // Pass the module being edited for form logic
                     />
                 </div>
             </div>
@@ -562,8 +587,8 @@ const EditModuleModal = React.memo(({ module, isOpen, onClose, onSave }) => {
     );
 });
 EditModuleModal.propTypes = {
-    module: PropTypes.object,
+    module: PropTypes.object, // Null when adding
     isOpen: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
     onSave: PropTypes.func.isRequired,
-}; 
+};

@@ -71,7 +71,6 @@
     transform: translateX(-50%) translateY(100px); /* Start hidden below */
     background-color: var(--background-color-darker); color: var(--text-color);
     padding: var(--spacing-sm) var(--spacing-md); border-radius: var(--border-radius);
-    /* border: 1px solid var(--notification-success-border); /* This variable is not defined */
     border: 1px solid var(--primary-color); /* Default to primary */
     box-shadow: var(--box-shadow-medium), 0 0 10px var(--primary-color-glow);
     z-index: 1300; font-size: var(--font-size-md);

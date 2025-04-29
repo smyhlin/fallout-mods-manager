@@ -1,8 +1,4 @@
 // app.jsx
-// const { useState, useEffect, useMemo, useCallback, useRef, memo, Fragment } = React; // Removed global destructuring
-
-// Constants, Config, Hooks, Utils, Components are now in separate files
-// Ensure they are loaded in index.html before this script
 
 // --- Main App Component ---
 function App() {
@@ -13,14 +9,12 @@ function App() {
     const [searchTerm, setSearchTerm] = React.useState('');
     const [notification, showNotification] = useNotification();
 
-    // Use table state hook
     const {
         columnVisibility, columnWidths, sortConfig, tempWidths,
         handleVisibilityChange, handleTempWidthChange, handleSort, handleResetSettings,
         applyImportedSettings,
     } = useTableState(columnConfig, showNotification);
 
-    // Use sidebar state hook
     const {
         isMobileSidebarOpen,
         isDesktopSidebarCollapsed,
@@ -28,28 +22,25 @@ function App() {
         toggleDesktopSidebar,
     } = useSidebarState();
 
-    // Use modal state hook
     const {
-        isModalOpen, // Changed from isEditModalOpen
-        itemBeingEdited, // Changed from moduleBeingEdited
-        openModal, // Changed from openEditModal
-        closeModal, // Changed from closeEditModal
+        isModalOpen,
+        itemBeingEdited,
+        openModal,
+        closeModal,
     } = useModalState();
 
-    // Use module management hook
     const {
         handleLearnedChange,
         handleAddNewModule,
         handleSaveChangesInModal,
         handleDeleteModule,
-    } = useModuleManagement(modules, setModules, showNotification, closeModal); // Pass the correct closeModal
+    } = useModuleManagement(modules, setModules, showNotification, closeModal);
 
     const debouncedSearchTerm = useDebounce(searchTerm, DEBOUNCE_DELAY.SEARCH);
     const fileInputRef = React.useRef(null);
 
     // --- Effects ---
 
-    // Initial data load effect
     React.useEffect(() => {
         const loadInitialData = async () => {
             try {
@@ -71,7 +62,6 @@ function App() {
         loadInitialData();
     }, []);
 
-    // Save modules effect
     React.useEffect(() => {
         if (!isLoading && initialModulesData !== null) {
             saveModules(modules);
@@ -80,22 +70,20 @@ function App() {
 
     // --- Handlers ---
 
-    // Module CRUD handlers now come from useModuleManagement hook
-    // Modal open handlers come from useModalState hook
     const handleOpenEditModal = React.useCallback((module) => {
-        openModal(module); // Use openModal
+        openModal(module);
     }, [openModal]);
     const handleOpenAddModal = React.useCallback(() => {
-        openModal(); // Use openModal
+        openModal();
     }, [openModal]);
 
-    // --- Other handlers (unchanged) ---
     const handleSearchChange = React.useCallback((e) => { setSearchTerm(e.target.value); }, []);
+
     const handleExport = React.useCallback(() => {
         try {
             const dataToExport = {
                 modules: modules.map(({ ruName, stars, learned, enName, effect, isCustom }) => ({ ruName, stars, learned, enName, effect, isCustom })),
-                columnSettings: { visibility: columnVisibility, widths: columnWidths }, // Use state from hook
+                columnSettings: { visibility: columnVisibility, widths: columnWidths },
             };
             const jsonString = JSON.stringify(dataToExport, null, 2);
             const blob = new Blob([jsonString], { type: 'application/json' });
@@ -132,7 +120,7 @@ function App() {
                     return;
                 }
                 const hasSettings = importedData.columnSettings &&
-                                    typeof importedData.columnSettings === 'object'; // Simplified check
+                                    typeof importedData.columnSettings === 'object';
 
                 if (window.confirm('Импортировать данные? Текущие данные будут перезаписаны!')) {
                     let importedModules = [];
@@ -220,7 +208,7 @@ function App() {
             acc[col.id] = col.label;
             return acc;
         }, {});
-    }, []); // Depends only on columnConfig which is static
+    }, []);
 
     const stats = React.useMemo(() => {
         if (isLoading) return { totalCount: 0, learnedCount: 0, percentage: "0.0" };
@@ -291,10 +279,10 @@ function App() {
             </div>
 
              <EditModuleModal
-                 isOpen={isModalOpen} // Use isModalOpen
-                 module={itemBeingEdited} // Use itemBeingEdited
-                 onClose={closeModal} // Use closeModal
-                 onSave={itemBeingEdited ? handleSaveChangesInModal : handleAddNewModule} // Use itemBeingEdited
+                 isOpen={isModalOpen}
+                 module={itemBeingEdited}
+                 onClose={closeModal}
+                 onSave={itemBeingEdited ? handleSaveChangesInModal : handleAddNewModule}
              />
              <Notification {...notification} />
         </React.Fragment>
