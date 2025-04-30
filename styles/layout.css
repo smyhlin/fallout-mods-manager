@@ -18,23 +18,33 @@
     flex-shrink: 0;
     border-right: 1px solid var(--border-color);
     box-shadow: var(--box-shadow-light);
-    overflow: hidden; /* Hide overflow initially */
-    max-height: none !important; /* Override any max-height */
-    height: 100%; /* Full height of parent */
-    transition: width var(--transition-speed) ease-in-out, padding var(--transition-speed) ease-in-out, border var(--transition-speed) ease-in-out;
+    max-height: none !important;
+    height: 100%;
     position: relative;
     display: flex;
     flex-direction: column;
     background-color: var(--background-color-light);
+    overflow: hidden;
 }
 
 /* Wrapper for sidebar content to allow scrolling */
 .sidebar-content-wrapper {
-    flex-grow: 1;
-    overflow-y: auto; /* Enable vertical scroll */
-    transition: opacity 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    min-height: 0; /* Critical for Firefox flexbox scrolling */
+    flex: 1;
+    overflow-y: scroll; /* Force scrollbar to always show */
     padding: var(--spacing-lg);
-    position: relative; /* Needed for absolute positioned scroll arrows */
+    margin-right: -17px; /* Compensate for Windows scrollbar width */
+    padding-right: calc(var(--spacing-lg) + 17px); /* Add extra padding to compensate */
+}
+
+@supports (scrollbar-gutter: stable) {
+    .sidebar-content-wrapper {
+        margin-right: 0;
+        padding-right: var(--spacing-lg);
+        scrollbar-gutter: stable;
+    }
 }
 
 .pipboy-content {
