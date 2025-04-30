@@ -91,7 +91,7 @@
         box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
         display: flex;
         flex-direction: column;
-        overflow: hidden !important; /* Prevent parent overflow */
+        overflow: hidden; /* Prevent parent overflow */
         padding: 0;
     }
     .pipboy-sidebar.mobile-sidebar-open {
@@ -109,10 +109,10 @@
          height: 100%; /* Needed for flex-grow and scrolling */
          position: relative; /* For scroll arrows */
          /* Hide scrollbars */
-         -ms-overflow-style: none !important;
-         scrollbar-width: none !important;
+         -ms-overflow-style: none;
+         scrollbar-width: none;
     }
-    .sidebar-content-wrapper::-webkit-scrollbar { display: none !important; }
+    .sidebar-content-wrapper::-webkit-scrollbar { display: none; }
 
     /* Adjust sidebar header styles for mobile */
     .settings-title,
@@ -121,8 +121,23 @@
         text-align: left;
     }
 
-    .pipboy-content { padding: 0; max-height: none; overflow: visible; width: 100%; }
-    .pipboy-content-wrapper { padding: var(--spacing-md); height: auto; overflow-y: visible; }
+    .pipboy-content {
+        padding: 0;
+        max-height: none;
+        /* Remove overflow: visible; let the wrapper handle scroll */
+        width: 100%;
+        flex-grow: 1; /* Allow content area to take available space */
+        display: flex; /* Use flexbox for the wrapper */
+        flex-direction: column;
+        min-height: 0; /* Prevent flex item blowout */
+    }
+    .pipboy-content-wrapper {
+        padding: var(--spacing-md);
+        height: 100%; /* Take full height of parent */
+        overflow-y: auto; /* Enable scrolling within the wrapper */
+        flex-grow: 1; /* Allow wrapper to grow */
+        position: relative; /* Needed for absolutely positioned scroll arrows */
+    }
     .pipboy-header { font-size: var(--font-size-xl); margin-top: var(--spacing-md); }
 
     /* --- Mobile Table -> Card View --- */
@@ -145,7 +160,7 @@
         border-color: var(--primary-color);
     }
 
-    .module-table tr > td { display: none !important; } /* Hide actual TD elements */
+    .module-table tr > td { display: none; } /* Hide actual TD elements */
 
     /* Display card elements */
     .card-header, .card-body { display: block; }
@@ -193,13 +208,50 @@
 
     /* Mobile scroll arrow adjustments */
     .scroll-arrow {
-        width: 44px;
-        height: 26px;
-        font-size: 1.1em;
-        opacity: 0.85;
+        position: fixed; /* Stick to the viewport */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40px;
+        height: 24px;
+        background-color: rgba(var(--primary-color-rgb), 0.2);
+        color: var(--primary-color);
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        opacity: 0.8;
+        z-index: 50;
+        transition: all 0.2s ease;
+        font-size: 1em;
+        font-family: var(--font-family-body);
+        box-shadow: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
     }
-    .scroll-arrow-up { top: var(--spacing-sm); }
-    .scroll-arrow-down { bottom: var(--spacing-sm); }
+    .scroll-arrow:hover {
+        opacity: 1;
+        background-color: rgba(var(--primary-color-rgb), 0.4);
+        border-color: var(--primary-color);
+        box-shadow: inset 0 0 5px var(--primary-color-glow);
+    }
+    .scroll-arrow-up {
+        top: var(--spacing-sm); /* Stick to the top */
+        border-bottom: none;
+        border-radius: var(--border-radius) var(--border-radius) 0 0;
+    }
+    .scroll-arrow-down {
+        bottom: var(--spacing-sm); /* Stick to the bottom */
+        border-top: none;
+        border-radius: 0 0 var(--border-radius) var(--border-radius);
+    }
+    .scroll-arrow.hidden {
+        opacity: 0;
+        pointer-events: none;
+        visibility: hidden;
+    }
 }
 
 /* --- Smaller Mobile Styles (<= 480px) --- */
@@ -229,10 +281,8 @@
 
     /* Adjust scroll arrows for small screens */
     .scroll-arrow {
-        width: 40px;
-        height: 24px;
-        font-size: 1em;
+        width: 30px; /* Smaller width */
+        height: 20px; /* Smaller height */
+        font-size: 0.9em; /* Slightly smaller font size */
     }
-    .scroll-arrow-up { top: var(--spacing-xs); }
-    .scroll-arrow-down { bottom: var(--spacing-xs); }
 }

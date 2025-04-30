@@ -173,23 +173,22 @@ IOSection.propTypes = {
     onAddModuleClick: PropTypes.func.isRequired,
 };
 
-// Scrollable Container with Up/Down Arrows
+// Ensure consistent behavior for scroll arrows in mobile and desktop
 const ScrollableContainer = ({ children, className = '' }) => {
     const scrollRef = React.useRef(null);
     const [canScrollUp, setCanScrollUp] = React.useState(false);
     const [canScrollDown, setCanScrollDown] = React.useState(false);
 
-    // Checks scroll position to determine if arrows should be shown
+    // Update the checkScroll function to ensure arrows are hidden when no scrolling is possible
     const checkScroll = React.useCallback(() => {
         const el = scrollRef.current;
         if (!el) return;
+
         const isScrollable = el.scrollHeight > el.clientHeight;
-        // Use a small tolerance (1px) to avoid flickering
-        setCanScrollUp(isScrollable && el.scrollTop > 1);
-        setCanScrollDown(isScrollable && el.scrollTop < el.scrollHeight - el.clientHeight - 1);
+        setCanScrollUp(isScrollable && el.scrollTop > 0);
+        setCanScrollDown(isScrollable && el.scrollTop < el.scrollHeight - el.clientHeight);
     }, []);
 
-    // Setup observers and listeners to check scroll on changes
     React.useEffect(() => {
         const el = scrollRef.current;
         if (!el) return;
@@ -199,12 +198,12 @@ const ScrollableContainer = ({ children, className = '' }) => {
         const mutationObserver = new MutationObserver(checkScroll);
         mutationObserver.observe(el, { childList: true, subtree: true, characterData: true });
 
-        el.addEventListener('scroll', checkScroll, { passive: true }); // Use passive listener
+        el.addEventListener('scroll', checkScroll, { passive: true });
         window.addEventListener('resize', checkScroll);
 
-        checkScroll(); // Initial check
+        checkScroll();
 
-        return () => { // Cleanup
+        return () => {
             resizeObserver.unobserve(el);
             mutationObserver.disconnect();
             el.removeEventListener('scroll', checkScroll);
@@ -212,30 +211,26 @@ const ScrollableContainer = ({ children, className = '' }) => {
         };
     }, [checkScroll]);
 
-    // Handles scrolling up or down by a fixed step
     const handleScroll = React.useCallback((direction) => {
         const el = scrollRef.current;
         if (!el) return;
-        const amount = direction === 'up' ? -SCROLL_STEP : SCROLL_STEP; // SCROLL_STEP from constants.js
+        const amount = direction === 'up' ? -SCROLL_STEP : SCROLL_STEP;
         el.scrollBy({ top: amount, behavior: 'smooth' });
     }, []);
 
     return (
-        // Apply className and hide-scrollbar utility class
         <div ref={scrollRef} className={`${className} hide-scrollbar`} onScroll={checkScroll}>
             {children}
-            {/* Scroll Up Arrow */}
             <button
                 className={`scroll-arrow scroll-arrow-up ${!canScrollUp ? 'hidden' : ''}`}
                 onClick={() => handleScroll('up')}
-                aria-label="Прокрутить вверх"
+                aria-label="Scroll up"
                 disabled={!canScrollUp}
             >▲</button>
-            {/* Scroll Down Arrow */}
             <button
                 className={`scroll-arrow scroll-arrow-down ${!canScrollDown ? 'hidden' : ''}`}
                 onClick={() => handleScroll('down')}
-                aria-label="Прокрутить вниз"
+                aria-label="Scroll down"
                 disabled={!canScrollDown}
             >▼</button>
         </div>
