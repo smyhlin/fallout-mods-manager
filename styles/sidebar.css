@@ -242,3 +242,25 @@ select.language-selector option:focus {
     background-color: var(--primary-color);
     color: var(--text-color-inverse);
 }
+
+/* Star Filter Styles */
+.star-filter-section {
+    margin-bottom: var(--spacing-lg);
+}
+
+.star-filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+}
+
+.star-filter-buttons .sidebar-button {
+    flex: 1 1 calc(50% - var(--spacing-xs));
+    min-width: 0;
+    margin: 0;
+    padding: var(--spacing-sm);
+    font-size: var(--font-size-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

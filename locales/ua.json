@@ -66,5 +66,9 @@
     "columnLabelEffect": "Ефект",
     "columnLabelActions": "Дія",
     "settingsSortByLabel": "Сортувати за {{label}}",
-    "languageSwitcherLabel": "Мова"
+    "languageSwitcherLabel": "Мова",
+    "starFilterTitle": "Фільтр за Зірками",
+    "starFilterAll": "Усі Зірки",
+    "starFilterButtonLabel": "{{count}}-Зірковий Модуль",
+    "visibleModulesCount": "Відображається: {{count}}"
 }

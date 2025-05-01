@@ -6,6 +6,7 @@ function App() {
     const [initialModulesData, setInitialModulesData] = React.useState(null);
     const [modules, setModules] = React.useState([]);
     const [filter, setFilter] = React.useState('all');
+    const [selectedStars, setSelectedStars] = React.useState(null);
     const [searchTerm, setSearchTerm] = React.useState('');
     const [notification, showNotification] = useNotification();
 
@@ -225,6 +226,10 @@ function App() {
             default: filtered = searched; break;
         }
 
+        if (selectedStars !== null) {
+            filtered = filtered.filter(m => m.stars === selectedStars);
+        }
+
         const { key: sortKey, direction: sortDirection } = sortConfig;
         const sortMultiplier = sortDirection === 'asc' ? 1 : -1;
         const columnType = columnConfig.find(c => c.id === sortKey)?.type || 'string';
@@ -254,7 +259,7 @@ function App() {
         });
 
         return sorted;
-    }, [modules, filter, sortConfig, debouncedSearchTerm, isLoading, language]);
+    }, [modules, filter, selectedStars, sortConfig, debouncedSearchTerm, isLoading, language]);
 
     const dataLabels = React.useMemo(() => {
         return columnConfig.reduce((acc, col) => {
@@ -318,6 +323,8 @@ function App() {
                     onAddModuleClick={handleOpenAddModal}
                     currentLanguage={language}
                     onLanguageChange={switchLanguage}
+                    selectedStars={selectedStars}
+                    onStarFilterChange={setSelectedStars}
                 />
                 <button
                     id="desktop-sidebar-toggle"
@@ -330,7 +337,12 @@ function App() {
 
                 <div className="pipboy-content">
                     <ScrollableContainer className="pipboy-content-wrapper hide-scrollbar">
-                        <div className="pipboy-header">{t('headerTitle')}</div>
+                        <div className="pipboy-header">
+                            {t('headerTitle')}
+                            <div className="module-count-label">
+                                {t('visibleModulesCount', { count: processedModules.length })}
+                            </div>
+                        </div>
                         <ModuleTable
                             modules={processedModules}
                             columnConfig={columnConfig}

@@ -292,42 +292,77 @@ ScrollableContainer.propTypes = {
     className: PropTypes.string,
 };
 
+const StarFilter = React.memo(({ selectedStars, onStarFilterChange }) => {
+    const { t } = window.useTranslation();
+    const stars = [1, 2, 3, 4];
+
+    return (
+        <div className="sidebar-section star-filter-section">
+            <h3 className="settings-label settings-title">{t('starFilterTitle')}</h3>
+            <div className="star-filter-buttons">
+                <button
+                    className={`sidebar-button ${!selectedStars ? 'active' : ''}`}
+                    onClick={() => onStarFilterChange(null)}
+                >
+                    {t('starFilterAll')}
+                </button>
+                {stars.map(star => (
+                    <button
+                        key={star}
+                        className={`sidebar-button ${selectedStars === star ? 'active' : ''}`}
+                        onClick={() => onStarFilterChange(star)}
+                        aria-label={t('starFilterButtonLabel', { count: star })}
+                    >
+                        {'⭐'.repeat(star)}
+                    </button>
+                ))}
+            </div>
+        </div>
+    );
+});
+
+StarFilter.propTypes = {
+    selectedStars: PropTypes.number,
+    onStarFilterChange: PropTypes.func.isRequired,
+};
+
 const Sidebar = React.memo(({
     isMobileOpen, isDesktopCollapsed, onMobileClose,
     currentFilter, onFilterChange, stats, columnConfig, columnVisibility,
     tempWidths, onVisibilityChange, onTempWidthChange,
-    onResetSettings, onImportClick, onExport, searchTerm, onSearchChange, onAddModuleClick, currentLanguage, onLanguageChange
- }) => {
+    onResetSettings, onImportClick, onExport, searchTerm, onSearchChange, 
+    onAddModuleClick, currentLanguage, onLanguageChange, selectedStars, onStarFilterChange
+}) => {
     const { t } = window.useTranslation();
     return (
         <div className={`pipboy-sidebar ${isDesktopCollapsed ? 'sidebar-collapsed' : ''} ${isMobileOpen ? 'mobile-sidebar-open' : ''}`}>
-         <button className="mobile-close-button" onClick={onMobileClose} aria-label={t('mobileCloseButtonLabel')}>×</button>
-         {/* Use ScrollableContainer for sidebar content */}
-         <ScrollableContainer className="sidebar-content-wrapper">
-            <h2>{t('sidebarTitle')}</h2>
-            <SearchInput searchTerm={searchTerm} onSearchChange={onSearchChange} />
-            <FilterControls currentFilter={currentFilter} onFilterChange={onFilterChange} onSidebarClose={onMobileClose} />
-            <StatsDisplay stats={stats} />
-            <hr className="dotted-separator" />
-            <SettingsSection
-                columnConfig={columnConfig}
-                columnVisibility={columnVisibility}
-                tempWidths={tempWidths}
-                onVisibilityChange={onVisibilityChange}
-                onTempWidthChange={onTempWidthChange}
-                onResetSettings={onResetSettings}
-            />
-             <IOSection
-                 onImportClick={onImportClick}
-                 onExport={onExport}
-                 onAddModuleClick={onAddModuleClick}
-             />
-             <LanguageSwitcher 
-                currentLanguage={currentLanguage} 
-                onLanguageChange={onLanguageChange} 
-            />
-         </ScrollableContainer>
-    </div>
+            <button className="mobile-close-button" onClick={onMobileClose} aria-label={t('mobileCloseButtonLabel')}>×</button>
+            <ScrollableContainer className="sidebar-content-wrapper">
+                <h2>{t('sidebarTitle')}</h2>
+                <SearchInput searchTerm={searchTerm} onSearchChange={onSearchChange} />
+                <FilterControls currentFilter={currentFilter} onFilterChange={onFilterChange} onSidebarClose={onMobileClose} />
+                <StarFilter selectedStars={selectedStars} onStarFilterChange={onStarFilterChange} />
+                <StatsDisplay stats={stats} />
+                <hr className="dotted-separator" />
+                <SettingsSection
+                    columnConfig={columnConfig}
+                    columnVisibility={columnVisibility}
+                    tempWidths={tempWidths}
+                    onVisibilityChange={onVisibilityChange}
+                    onTempWidthChange={onTempWidthChange}
+                    onResetSettings={onResetSettings}
+                />
+                <IOSection
+                    onImportClick={onImportClick}
+                    onExport={onExport}
+                    onAddModuleClick={onAddModuleClick}
+                />
+                <LanguageSwitcher 
+                    currentLanguage={currentLanguage} 
+                    onLanguageChange={onLanguageChange} 
+                />
+            </ScrollableContainer>
+        </div>
     );
 });
 Sidebar.propTypes = {
@@ -350,6 +385,8 @@ Sidebar.propTypes = {
     onAddModuleClick: PropTypes.func.isRequired,
     currentLanguage: PropTypes.string.isRequired,
     onLanguageChange: PropTypes.func.isRequired,
+    selectedStars: PropTypes.number,
+    onStarFilterChange: PropTypes.func.isRequired,
 };
 
 

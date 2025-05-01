@@ -63,10 +63,19 @@
 }
 
 .pipboy-header {
-    text-align: center;
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space out title and count */
+    align-items: center; /* Vertically align items */
     margin-bottom: var(--spacing-lg);
     font-size: var(--font-size-xxl);
     color: var(--primary-color);
     font-family: var(--font-family-header);
     text-shadow: var(--text-shadow-header);
+}
+
+.module-count-label {
+    font-size: var(--font-size-md); /* Smaller font size for the count */
+    color: var(--text-color-secondary); /* Slightly less prominent color */
+    font-family: var(--font-family-body); /* Use body font */
+    text-shadow: none; /* No text shadow for the count */
 }

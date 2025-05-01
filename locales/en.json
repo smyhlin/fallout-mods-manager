@@ -66,5 +66,10 @@
     "columnLabelEffect": "Effects",
     "columnLabelActions": "Actions",
     "settingsSortByLabel": "Sort by {{label}}",
-    "languageSwitcherLabel": "Language"
+    "languageSwitcherLabel": "Language",
+    "starFilterTitle": "Filter by Stars",
+    "starFilterAll": "All Stars",
+    "starFilterButtonLabel": "{{count}} Star Module",
+    "moduleCount": "Displayed: {{count}} modules",
+    "visibleModulesCount": "Visible: {{count}}"
 }

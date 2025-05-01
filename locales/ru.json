@@ -66,5 +66,9 @@
     "columnLabelEffect": "Эффект",
     "columnLabelActions": "Действие",
     "settingsSortByLabel": "Сортировать по {{label}}",
-    "languageSwitcherLabel": "Язык"
+    "languageSwitcherLabel": "Язык",
+    "starFilterTitle": "Фильтр по Звёздам",
+    "starFilterAll": "Все Звёзды",
+    "starFilterButtonLabel": "{{count}}-Звёздочный Модуль",
+    "visibleModulesCount": "Отображается: {{count}}"
 }

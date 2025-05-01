@@ -138,7 +138,17 @@
         flex-grow: 1; /* Allow wrapper to grow */
         position: relative; /* Needed for absolutely positioned scroll arrows */
     }
-    .pipboy-header { font-size: var(--font-size-xl); margin-top: var(--spacing-md); }
+    .pipboy-header {
+        font-size: var(--font-size-xl);
+        margin-top: var(--spacing-md);
+        flex-direction: column; /* Stack title and count vertically on mobile */
+        align-items: flex-start; /* Align items to the start */
+    }
+
+    .module-count-label {
+        font-size: var(--font-size-sm); /* Smaller font size for mobile */
+        margin-top: var(--spacing-xs); /* Add some space above the count */
+    }
 
     /* --- Mobile Table -> Card View --- */
     .module-table { display: block; border: none; font-size: var(--font-size-md); margin-top: var(--spacing-md); }
@@ -260,7 +270,14 @@
      .pipboy-sidebar { width: 90%; } /* Wider sidebar on small screens */
      .pipboy-sidebar h2 { font-size: var(--font-size-md); }
      .sidebar-button { font-size: var(--font-size-sm); }
-     .pipboy-header { font-size: var(--font-size-lg); }
+     .pipboy-header {
+         font-size: var(--font-size-lg);
+         align-items: flex-start; /* Ensure alignment is consistent */
+     }
+     .module-count-label {
+         font-size: var(--font-size-xs); /* Even smaller font size on very small screens */
+         margin-top: var(--spacing-xs);
+     }
      .module-table { font-size: var(--font-size-sm); }
      .card-header { padding: var(--spacing-xs) var(--spacing-sm); }
      .card-body { padding: var(--spacing-xs) var(--spacing-sm); }
