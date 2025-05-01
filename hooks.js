@@ -1,5 +1,5 @@
 // hooks.js
-const { useState, useEffect, useCallback, useRef } = React;
+const { useState, useEffect, useCallback, useRef, useMemo } = React;
 
 // Custom Hook: useDebounce
 function useDebounce(value, delay) {
@@ -35,9 +35,9 @@ function useNotification(timeout = NOTIFICATION_TIMEOUT) {
     return [notification, showNotification];
 }
 
-
 // Custom Hook: useTableState
 function useTableState(columnConfig, showNotification) {
+    const { t } = window.useTranslation(); // Use translation hook
     const [columnSettings, setColumnSettings] = useState(() => loadColumnSettings());
     const { visibility: columnVisibility, widths: columnWidths } = columnSettings;
 
@@ -91,8 +91,8 @@ function useTableState(columnConfig, showNotification) {
         };
         setColumnSettings(newSettings);
         // tempWidths will update via useEffect sync
-        showNotification('Настройки таблицы сброшены.', 'success');
-    }, [showNotification]);
+        showNotification(t('settingsResetButton'), 'success'); // Use translation
+    }, [showNotification, t]); // Add t to dependencies
 
     // Apply settings loaded from an import file
     const applyImportedSettings = useCallback((importedSettings) => {
@@ -212,6 +212,7 @@ function useModalState() {
 
 // Custom Hook: useModuleManagement
 function useModuleManagement(modules, setModules, showNotification, closeEditModal) {
+    const { t } = window.useTranslation(); // Use translation hook
 
     const handleLearnedChange = useCallback((ruName, stars) => {
         setModules(prev => prev.map(m =>
@@ -224,12 +225,12 @@ function useModuleManagement(modules, setModules, showNotification, closeEditMod
         const moduleKey = `${ruName}-${stars}`;
 
         if (!ruName || !stars || !effect) {
-            showNotification('Пожалуйста, заполните обязательные поля: Название, Звёзды, Эффект.', 'error');
+            showNotification(t('notificationRequiredFields'), 'error'); // Use translation
             return; // Keep modal open
         }
 
         if (modules.some(m => `${m.ruName}-${m.stars}` === moduleKey)) {
-            showNotification('Модуль с таким названием и количеством звезд уже существует!', 'error');
+            showNotification(t('notificationModuleExists'), 'error'); // Use translation
             return; // Keep modal open
         }
 
@@ -238,20 +239,20 @@ function useModuleManagement(modules, setModules, showNotification, closeEditMod
             { ...newModuleData, learned: true, isCustom: true } // Add new custom module, default to learned
         ]);
         closeEditModal();
-        showNotification(`Модуль "${ruName}" успешно добавлен!`, 'success');
-    }, [modules, setModules, showNotification, closeEditModal]);
+        showNotification(t('notificationModuleAdded', { moduleName: ruName }), 'success'); // Use translation with parameter
+    }, [modules, setModules, showNotification, closeEditModal, t]); // Add t to dependencies
 
     const handleSaveChangesInModal = useCallback((originalKey, updatedData) => {
         const newKey = `${updatedData.ruName}-${updatedData.stars}`;
 
         if (!updatedData.ruName || !updatedData.stars || !updatedData.effect) {
-            showNotification('Пожалуйста, заполните обязательные поля: Название, Звёзды, Эффект.', 'error');
+            showNotification(t('notificationRequiredFields'), 'error'); // Use translation
             return; // Keep modal open
         }
 
         // Check for key collision only if the key actually changed
         if (originalKey !== newKey && modules.some(m => `${m.ruName}-${m.stars}` === newKey)) {
-            showNotification('Модуль с таким новым названием и количеством звезд уже существует!', 'error');
+            showNotification(t('notificationModuleExists'), 'error'); // Use translation
             return; // Keep modal open
         }
 
@@ -261,15 +262,15 @@ function useModuleManagement(modules, setModules, showNotification, closeEditMod
             )
         );
         closeEditModal();
-        showNotification(`Модуль "${updatedData.ruName}" успешно обновлен!`, 'success');
-    }, [modules, setModules, closeEditModal, showNotification]);
+        showNotification(t('notificationModuleUpdated', { moduleName: updatedData.ruName }), 'success'); // Use translation with parameter
+    }, [modules, setModules, closeEditModal, showNotification, t]); // Add t to dependencies
 
     const handleDeleteModule = useCallback((ruName, stars) => {
-        if (window.confirm(`Вы уверены, что хотите удалить модуль "${ruName}" (${stars}⭐)?`)) {
+        if (window.confirm(t('confirmDeleteModule', { moduleName: ruName, stars: stars }))) { // Use translation with parameters
             setModules(prev => prev.filter(m => !(m.ruName === ruName && m.stars === stars)));
-            showNotification(`Модуль "${ruName}" удален.`, 'success');
+            showNotification(t('notificationModuleDeleted', { moduleName: ruName }), 'success'); // Use translation with parameter
         }
-    }, [setModules, showNotification]);
+    }, [setModules, showNotification, t]); // Add t to dependencies
 
     return {
         handleLearnedChange,

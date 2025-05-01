@@ -2,7 +2,7 @@
 const PropTypes = window.PropTypes;
 
 // --- Error Boundary ---
-class ErrorBoundary extends React.Component {
+class ErrorBoundaryClass extends React.Component {
   constructor(props) {
     super(props);
     this.state = { hasError: false, error: null };
@@ -17,11 +17,12 @@ class ErrorBoundary extends React.Component {
   }
 
   render() {
+    const { t } = this.props;
     if (this.state.hasError) {
       return (
         <div style={{ padding: '20px', color: '#f56565', border: '2px dashed #f56565', margin: '20px' }}>
-          <h2>Щось пішло не так.</h2>
-          <p>Виникла помилка в застосунку. Спробуйте оновити сторінку.</p>
+          <h2>{t('errorBoundaryTitle')}</h2>
+          <p>{t('errorBoundaryMessage')}</p>
           {this.state.error && <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-all' }}>{this.state.error.toString()}</pre>}
         </div>
       );
@@ -29,6 +30,17 @@ class ErrorBoundary extends React.Component {
     return this.props.children;
   }
 }
+ErrorBoundaryClass.propTypes = {
+    children: PropTypes.node.isRequired,
+    t: PropTypes.func.isRequired,
+};
+
+// Wrapper functional component to use the hook
+const ErrorBoundary = (props) => {
+    const { t } = window.useTranslation();
+    return <ErrorBoundaryClass {...props} t={t} />;
+};
+
 ErrorBoundary.propTypes = {
     children: PropTypes.node.isRequired,
 };
@@ -45,58 +57,67 @@ Notification.propTypes = {
     show: PropTypes.bool.isRequired,
 };
 
-const SearchInput = React.memo(({ searchTerm, onSearchChange }) => (
-    <div className="sidebar-section search-section">
-        <label htmlFor="search-input" className="settings-label">Поиск:</label>
-        <div className="search-input-wrapper">
-            <input
-                type="search"
-                id="search-input"
-                className="search-input"
-                placeholder="Название, Editor ID, эффект..."
-                value={searchTerm}
-                onChange={onSearchChange}
-                aria-label="Поиск модулей"
-            />
-            {searchTerm && (
-                <button
-                    type="button"
-                    className="clear-search-button"
-                    onClick={() => onSearchChange({ target: { value: '' } })}
-                    aria-label="Очистить поиск"
-                >
-                    ×
-                </button>
-            )}
+const SearchInput = React.memo(({ searchTerm, onSearchChange }) => {
+    const { t } = window.useTranslation();
+    return (
+        <div className="sidebar-section search-section">
+            <label htmlFor="search-input" className="settings-label">{t('searchLabel')}</label>
+            <div className="search-input-wrapper">
+                <input
+                    type="search"
+                    id="search-input"
+                    className="search-input"
+                    placeholder={t('searchInputPlaceholder')}
+                    value={searchTerm}
+                    onChange={onSearchChange}
+                    aria-label={t('searchLabel')}
+                />
+                {searchTerm && (
+                    <button
+                        type="button"
+                        className="clear-search-button"
+                        onClick={() => onSearchChange({ target: { value: '' } })}
+                        aria-label={t('searchClearButtonLabel')}
+                    >
+                        ×
+                    </button>
+                )}
+            </div>
         </div>
-    </div>
-));
+    );
+});
 SearchInput.propTypes = {
     searchTerm: PropTypes.string.isRequired,
     onSearchChange: PropTypes.func.isRequired,
 };
 
 // onSidebarClose is used to close the mobile sidebar after filter selection
-const FilterControls = React.memo(({ currentFilter, onFilterChange, onSidebarClose }) => (
-    <div className="sidebar-section">
-        <button className={`sidebar-button ${currentFilter === 'all' ? 'active' : ''}`} onClick={() => { onFilterChange('all'); onSidebarClose?.(); }}>Все Модули</button>
-        <button className={`sidebar-button ${currentFilter === 'learned' ? 'active' : ''}`} onClick={() => { onFilterChange('learned'); onSidebarClose?.(); }}>Изученные</button>
-        <button className={`sidebar-button ${currentFilter === 'notLearned' ? 'active' : ''}`} onClick={() => { onFilterChange('notLearned'); onSidebarClose?.(); }}>Не Изученные</button>
-    </div>
-));
+const FilterControls = React.memo(({ currentFilter, onFilterChange, onSidebarClose }) => {
+    const { t } = window.useTranslation();
+    return (
+        <div className="sidebar-section">
+            <button className={`sidebar-button ${currentFilter === 'all' ? 'active' : ''}`} onClick={() => { onFilterChange('all'); onSidebarClose?.(); }}>{t('filterAll')}</button>
+            <button className={`sidebar-button ${currentFilter === 'learned' ? 'active' : ''}`} onClick={() => { onFilterChange('learned'); onSidebarClose?.(); }}>{t('filterLearned')}</button>
+            <button className={`sidebar-button ${currentFilter === 'notLearned' ? 'active' : ''}`} onClick={() => { onFilterChange('notLearned'); onSidebarClose?.(); }}>{t('filterNotLearned')}</button>
+        </div>
+    );
+});
 FilterControls.propTypes = {
     currentFilter: PropTypes.oneOf(['all', 'learned', 'notLearned']).isRequired,
     onFilterChange: PropTypes.func.isRequired,
     onSidebarClose: PropTypes.func, // Optional callback for mobile
 };
 
-const StatsDisplay = React.memo(({ stats }) => (
-     <div className="stats-display">
-         Итого: <strong>{stats.totalCount}</strong>
-         <span style={{ margin: '0 0.5em' }}>|</span>
-         Изучено: <strong>{stats.learnedCount}</strong> ({stats.percentage}%)
-     </div>
-));
+const StatsDisplay = React.memo(({ stats }) => {
+    const { t } = window.useTranslation();
+    return (
+        <div className="stats-display">
+            {t('statsTotal')} <strong>{stats.totalCount}</strong>
+            <span style={{ margin: '0 0.5em' }}>|</span>
+            {t('statsLearned')} <strong>{stats.learnedCount}</strong> ({stats.percentage}{t('statsPercentage')})
+        </div>
+    );
+});
 StatsDisplay.propTypes = {
     stats: PropTypes.shape({
         totalCount: PropTypes.number.isRequired,
@@ -105,51 +126,54 @@ StatsDisplay.propTypes = {
     }).isRequired,
 };
 
-const SettingsSection = React.memo(({ columnConfig, columnVisibility, tempWidths, onVisibilityChange, onTempWidthChange, onResetSettings }) => (
-     <div className="sidebar-section">
-        <h3 className="settings-label settings-title">Настройки Таблицы</h3>
-        <h4 className="settings-label">Видимость Колонок:</h4>
-        {columnConfig.map(col => (
-            col.isVisibilityToggleable && (
-                <div key={`vis-toggle-${col.id}`} className="settings-control">
-                    <label htmlFor={`vis-${col.id}`}>
-                        <input
-                             type="checkbox"
-                             id={`vis-${col.id}`}
-                             checked={!!columnVisibility[col.id]}
-                             onChange={() => onVisibilityChange(col.id)}
-                             className="learned-checkbox" // Add this class
-                         />
-                        {col.label}
-                    </label>
-                </div>
-            )
-        ))}
-        {/* Width settings only shown on desktop where table is visible */}
-        <div className="column-width-settings">
-            <h4 className="settings-label">Ширина Колонок:</h4>
+const SettingsSection = React.memo(({ columnConfig, columnVisibility, tempWidths, onVisibilityChange, onTempWidthChange, onResetSettings }) => {
+    const { t } = window.useTranslation();
+    return (
+        <div className="sidebar-section">
+            <h3 className="settings-label settings-title">{t('settingsTitle')}</h3>
+            <h4 className="settings-label">{t('settingsColumnVisibility')}</h4>
             {columnConfig.map(col => (
-                columnVisibility[col.id] && col.isWidthAdjustable && (
-                    <div key={`width-slider-${col.id}`} className="settings-control">
-                        <label htmlFor={`width-${col.id}`}>
-                            {col.label}: <span className="width-value">({tempWidths[col.id] || col.defaultWidth}px)</span>
+                col.isVisibilityToggleable && (
+                    <div key={`vis-toggle-${col.id}`} className="settings-control">
+                        <label htmlFor={`vis-${col.id}`}>
+                            <input
+                                type="checkbox"
+                                id={`vis-${col.id}`}
+                                checked={!!columnVisibility[col.id]}
+                                onChange={() => onVisibilityChange(col.id)}
+                                className="learned-checkbox" // Add this class
+                            />
+                            {t(col.labelKey)}
                         </label>
-                        <input
-                             type="range"
-                             id={`width-${col.id}`}
-                             min={col.minWidth || 50}
-                             max={col.maxWidth || 600}
-                             value={tempWidths[col.id] || col.defaultWidth}
-                             onChange={(e) => onTempWidthChange(col.id, e.target.value)}
-                             aria-label={`${col.label} width`}
-                         />
                     </div>
                 )
             ))}
+            {/* Width settings only shown on desktop where table is visible */}
+            <div className="column-width-settings">
+                <h4 className="settings-label">{t('settingsColumnWidth')}</h4>
+                {columnConfig.map(col => (
+                    columnVisibility[col.id] && col.isWidthAdjustable && (
+                        <div key={`width-slider-${col.id}`} className="settings-control">
+                            <label htmlFor={`width-${col.id}`}>
+                                {t(col.labelKey)}: <span className="width-value">({tempWidths[col.id] || col.defaultWidth}px)</span>
+                            </label>
+                            <input
+                                type="range"
+                                id={`width-${col.id}`}
+                                min={col.minWidth || 50}
+                                max={col.maxWidth || 600}
+                                value={tempWidths[col.id] || col.defaultWidth}
+                                onChange={(e) => onTempWidthChange(col.id, e.target.value)}
+                                aria-label={t('settingsSortByLabel', { label: t(col.labelKey) })}
+                            />
+                        </div>
+                    )
+                ))}
+            </div>
+            <button className="sidebar-button reset-button" onClick={onResetSettings} style={{marginTop: '20px'}} aria-label={t('settingsResetButton')}>{t('settingsResetButton')}</button>
         </div>
-        <button className="sidebar-button reset-button" onClick={onResetSettings} style={{marginTop: '20px'}}>Сбросить настройки</button>
-    </div>
-));
+    );
+});
 SettingsSection.propTypes = {
     columnConfig: PropTypes.array.isRequired,
     columnVisibility: PropTypes.object.isRequired,
@@ -159,18 +183,44 @@ SettingsSection.propTypes = {
     onResetSettings: PropTypes.func.isRequired,
 };
 
-const IOSection = React.memo(({ onImportClick, onExport, onAddModuleClick }) => (
-     <div className="sidebar-section">
-        <h3 className="settings-label settings-title">Импорт / Экспорт</h3>
-        <button className="sidebar-button io-button add-button" onClick={onAddModuleClick} aria-label="Добавить новый модуль">Добавить Модуль</button>
-        <button className="sidebar-button io-button" onClick={onImportClick} aria-label="Импортировать данные из файла">Импорт JSON</button>
-        <button className="sidebar-button io-button" onClick={onExport} aria-label="Экспортировать данные в файл">Экспорт JSON</button>
-     </div>
-));
+const IOSection = React.memo(({ onImportClick, onExport, onAddModuleClick }) => {
+    const { t } = window.useTranslation();
+    return (
+        <div className="sidebar-section">
+            <h3 className="settings-label settings-title">{t('ioTitle')}</h3>
+            <button className="sidebar-button io-button add-button" onClick={onAddModuleClick} aria-label={t('ioAddModuleButton')}>{t('ioAddModuleButton')}</button>
+            <button className="sidebar-button io-button" onClick={onImportClick} aria-label={t('ioImportButton')}>{t('ioImportButton')}</button>
+            <button className="sidebar-button io-button" onClick={onExport} aria-label={t('ioExportButton')}>{t('ioExportButton')}</button>
+        </div>
+    );
+});
 IOSection.propTypes = {
     onImportClick: PropTypes.func.isRequired,
     onExport: PropTypes.func.isRequired,
     onAddModuleClick: PropTypes.func.isRequired,
+};
+
+const LanguageSwitcher = React.memo(({ currentLanguage, onLanguageChange }) => {
+    const { t } = window.useTranslation();
+    return (
+        <div className="sidebar-section">
+            <h3 className="settings-label settings-title">{t('languageSwitcherLabel')}</h3>
+            <select 
+                value={currentLanguage} 
+                onChange={(e) => onLanguageChange(e.target.value)} 
+                className="language-selector"
+                aria-label={t('languageSwitcherLabel')}
+            >
+                <option value="en">English</option>
+                <option value="ua">Українська</option>
+                <option value="ru">Русский</option>
+            </select>
+        </div>
+    );
+});
+LanguageSwitcher.propTypes = {
+    currentLanguage: PropTypes.string.isRequired,
+    onLanguageChange: PropTypes.func.isRequired,
 };
 
 // Ensure consistent behavior for scroll arrows in mobile and desktop
@@ -178,6 +228,7 @@ const ScrollableContainer = ({ children, className = '' }) => {
     const scrollRef = React.useRef(null);
     const [canScrollUp, setCanScrollUp] = React.useState(false);
     const [canScrollDown, setCanScrollDown] = React.useState(false);
+    const { t } = window.useTranslation();
 
     // Update the checkScroll function to ensure arrows are hidden when no scrolling is possible
     const checkScroll = React.useCallback(() => {
@@ -224,13 +275,13 @@ const ScrollableContainer = ({ children, className = '' }) => {
             <button
                 className={`scroll-arrow scroll-arrow-up ${!canScrollUp ? 'hidden' : ''}`}
                 onClick={() => handleScroll('up')}
-                aria-label="Scroll up"
+                aria-label={t('scrollUpLabel')}
                 disabled={!canScrollUp}
             >▲</button>
             <button
                 className={`scroll-arrow scroll-arrow-down ${!canScrollDown ? 'hidden' : ''}`}
                 onClick={() => handleScroll('down')}
-                aria-label="Scroll down"
+                aria-label={t('scrollDownLabel')}
                 disabled={!canScrollDown}
             >▼</button>
         </div>
@@ -245,13 +296,15 @@ const Sidebar = React.memo(({
     isMobileOpen, isDesktopCollapsed, onMobileClose,
     currentFilter, onFilterChange, stats, columnConfig, columnVisibility,
     tempWidths, onVisibilityChange, onTempWidthChange,
-    onResetSettings, onImportClick, onExport, searchTerm, onSearchChange, onAddModuleClick
- }) => (
-    <div className={`pipboy-sidebar ${isDesktopCollapsed ? 'sidebar-collapsed' : ''} ${isMobileOpen ? 'mobile-sidebar-open' : ''}`}>
-         <button className="mobile-close-button" onClick={onMobileClose} aria-label="Закрыть меню">×</button>
+    onResetSettings, onImportClick, onExport, searchTerm, onSearchChange, onAddModuleClick, currentLanguage, onLanguageChange
+ }) => {
+    const { t } = window.useTranslation();
+    return (
+        <div className={`pipboy-sidebar ${isDesktopCollapsed ? 'sidebar-collapsed' : ''} ${isMobileOpen ? 'mobile-sidebar-open' : ''}`}>
+         <button className="mobile-close-button" onClick={onMobileClose} aria-label={t('mobileCloseButtonLabel')}>×</button>
          {/* Use ScrollableContainer for sidebar content */}
          <ScrollableContainer className="sidebar-content-wrapper">
-            <h2>Меню</h2>
+            <h2>{t('sidebarTitle')}</h2>
             <SearchInput searchTerm={searchTerm} onSearchChange={onSearchChange} />
             <FilterControls currentFilter={currentFilter} onFilterChange={onFilterChange} onSidebarClose={onMobileClose} />
             <StatsDisplay stats={stats} />
@@ -269,9 +322,14 @@ const Sidebar = React.memo(({
                  onExport={onExport}
                  onAddModuleClick={onAddModuleClick}
              />
+             <LanguageSwitcher 
+                currentLanguage={currentLanguage} 
+                onLanguageChange={onLanguageChange} 
+            />
          </ScrollableContainer>
     </div>
-));
+    );
+});
 Sidebar.propTypes = {
     isMobileOpen: PropTypes.bool.isRequired,
     isDesktopCollapsed: PropTypes.bool.isRequired,
@@ -290,15 +348,20 @@ Sidebar.propTypes = {
     searchTerm: PropTypes.string.isRequired,
     onSearchChange: PropTypes.func.isRequired,
     onAddModuleClick: PropTypes.func.isRequired,
+    currentLanguage: PropTypes.string.isRequired,
+    onLanguageChange: PropTypes.func.isRequired,
 };
 
 
-const ModuleActions = React.memo(({ module, onEdit, onDelete }) => (
-    <div className="module-actions">
-        <button onClick={() => onEdit(module)} className="action-button edit-button" aria-label={`Редактировать модуль ${module.ruName}`}>🔧</button>
-        <button onClick={() => onDelete(module.ruName, module.stars)} className="action-button delete-button" aria-label={`Удалить модуль ${module.ruName}`}>💀</button>
-    </div>
-));
+const ModuleActions = React.memo(({ module, onEdit, onDelete }) => {
+    const { t } = window.useTranslation();
+    return (
+        <div className="module-actions">
+            <button onClick={() => onEdit(module)} className="action-button edit-button" aria-label={t('moduleActionsEditLabel', { moduleName: module.ruName })}>🔧</button>
+            <button onClick={() => onDelete(module.ruName, module.stars)} className="action-button delete-button" aria-label={t('moduleActionsDeleteLabel', { moduleName: module.ruName })}>💀</button>
+        </div>
+    );
+});
 ModuleActions.propTypes = {
     module: PropTypes.object.isRequired,
     onEdit: PropTypes.func.isRequired,
@@ -308,6 +371,8 @@ ModuleActions.propTypes = {
 // Represents a single row in the table (desktop) or a card (mobile)
 const ModuleTableRow = React.memo(({ module, columnVisibility, dataLabels, onLearnedChange, onEdit, onDelete, highlightTerm }) => {
     const moduleKey = `${module.ruName}-${module.stars}`;
+    const { t } = window.useTranslation();
+    const learnedStatusText = module.learned ? t('learnedStatusLearned') : t('learnedStatusNotLearned');
     return (
      // The TR element acts as the container for both table cells and mobile card elements
      <tr key={moduleKey}>
@@ -318,7 +383,7 @@ const ModuleTableRow = React.memo(({ module, columnVisibility, dataLabels, onLea
                 className="learned-checkbox"
                 checked={!!module.learned}
                 onChange={() => onLearnedChange(module.ruName, module.stars)}
-                aria-label={`Отметить ${module.ruName} как ${module.learned ? 'не изученный' : 'изученный'}`} />
+                aria-label={t('learnedCheckboxLabel', { moduleName: module.ruName, status: learnedStatusText })} />
         </td>
         {columnVisibility.ruName && <td>{highlightText(module.ruName, highlightTerm)}</td>}
         {columnVisibility.enName && <td>{highlightText(module.enName || '-', highlightTerm)}</td>}
@@ -335,7 +400,7 @@ const ModuleTableRow = React.memo(({ module, columnVisibility, dataLabels, onLea
                 className="learned-checkbox"
                 checked={!!module.learned}
                 onChange={() => onLearnedChange(module.ruName, module.stars)}
-                aria-label={`Отметить ${module.ruName} как ${module.learned ? 'не изученный' : 'изученный'}`} />
+                aria-label={t('learnedCheckboxLabel', { moduleName: module.ruName, status: learnedStatusText })} />
              <ModuleActions module={module} onEdit={onEdit} onDelete={onDelete} />
         </div>
         <div className="card-body">
@@ -360,6 +425,7 @@ ModuleTableRow.propTypes = {
 
 
 const ModuleTable = React.memo(({ modules, columnConfig, columnVisibility, columnWidths, sortConfig, onSort, dataLabels, onLearnedChange, onEdit, onDelete, highlightTerm }) => {
+    const { t } = window.useTranslation();
     // Calculate visible columns for colSpan in empty message
     const visibleColumnCount = columnConfig.filter(c => columnVisibility[c.id]).length;
     return (
@@ -375,10 +441,10 @@ const ModuleTable = React.memo(({ modules, columnConfig, columnVisibility, colum
                             // Apply width from state if adjustable, otherwise use default
                             style={col.isWidthAdjustable && columnWidths[col.id] ? { width: `${columnWidths[col.id]}px` } : { width: col.defaultWidth ? `${col.defaultWidth}px` : undefined }}
                             onClick={col.isSortable ? () => onSort(col.id) : undefined}
-                            aria-label={col.isSortable ? `Сортировать по ${col.label}` : col.label}
-                            title={col.isSortable ? `Сортировать по ${col.label}` : undefined}
+                            aria-label={col.isSortable ? t('settingsSortByLabel', { label: t(col.labelKey) }) : t(col.labelKey)}
+                            title={col.isSortable ? t('settingsSortByLabel', { label: t(col.labelKey) }) : undefined}
                         >
-                            {col.label}
+                            {t(col.labelKey)}
                             {/* Show sort indicator if this column is the active sort key */}
                             {col.isSortable && sortConfig.key === col.id && (
                                 <span className="sort-indicator">{sortConfig.direction === 'asc' ? '▲' : '▼'}</span>
@@ -406,7 +472,7 @@ const ModuleTable = React.memo(({ modules, columnConfig, columnVisibility, colum
                 // Display message when no modules match filters/search
                 <tr>
                     <td colSpan={visibleColumnCount} className="no-modules-message">
-                        {highlightTerm ? 'Модулей не найдено по вашему запросу.' : 'Нет модулей для отображения по текущим фильтрам.'}
+                        {highlightTerm ? t('tableEmptySearch') : t('tableEmptyFilter')}
                     </td>
                 </tr>
             )}
@@ -431,13 +497,14 @@ ModuleTable.propTypes = {
 
 // Form used for adding or editing modules (inside modal)
 const ModuleForm = React.memo(({ formData, onChange, onSubmit, isEditMode = false, onCancelEdit = null, moduleBeingEdited = null }) => {
+    const { t } = window.useTranslation();
     // Predefined modules (from initial JSON) cannot have their name/stars edited
     const isPredefined = isEditMode && moduleBeingEdited && !moduleBeingEdited.isCustom;
-    const submitButtonText = isEditMode ? 'Сохранить Изменения' : 'Добавить Модуль';
+    const submitButtonText = isEditMode ? t('formButtonSaveEdit') : t('formButtonAddModule');
     return (
         <form onSubmit={onSubmit} className={`module-form ${isEditMode ? 'modal-form' : ''}`}>
             <div>
-                <label htmlFor={isEditMode ? "edit-ruName" : "add-ruName"}>Название:</label>
+                <label htmlFor={isEditMode ? "edit-ruName" : "add-ruName"}>{t('formLabelRuName')}</label>
                 <input
                     type="text"
                     id={isEditMode ? "edit-ruName" : "add-ruName"}
@@ -447,22 +514,22 @@ const ModuleForm = React.memo(({ formData, onChange, onSubmit, isEditMode = fals
                     required
                     disabled={isPredefined} // Disable if predefined
                     aria-disabled={isPredefined}
-                    aria-label="Название модуля"
+                    aria-label={t('formLabelRuName')}
                 />
             </div>
             <div>
-                <label htmlFor={isEditMode ? "edit-enName" : "add-enName"}>Editor ID:</label>
+                <label htmlFor={isEditMode ? "edit-enName" : "add-enName"}>{t('formLabelEnName')}</label>
                 <input
                     type="text"
                     id={isEditMode ? "edit-enName" : "add-enName"}
                     name="enName"
                     value={formData.enName}
                     onChange={onChange}
-                    aria-label="Editor ID модуля"
+                    aria-label={t('formLabelEnName')}
                  />
             </div>
             <div>
-                <label htmlFor={isEditMode ? "edit-stars" : "add-stars"}>Количество Звёзд:</label>
+                <label htmlFor={isEditMode ? "edit-stars" : "add-stars"}>{t('formLabelStars')}</label>
                 <select
                     id={isEditMode ? "edit-stars" : "add-stars"}
                     name="stars"
@@ -471,14 +538,14 @@ const ModuleForm = React.memo(({ formData, onChange, onSubmit, isEditMode = fals
                     required
                     disabled={isPredefined} // Disable if predefined
                     aria-disabled={isPredefined}
-                    aria-label="Количество звезд модуля"
+                    aria-label={t('formLabelStars')}
                 >
                     {/* Generate options dynamically or list them */}
                     {[1, 2, 3, 4].map(star => <option key={star} value={star}>{star}</option>)}
                 </select>
             </div>
             <div className="form-field-full-width">
-                <label htmlFor={isEditMode ? "edit-effect" : "add-effect"}>Эффект:</label>
+                <label htmlFor={isEditMode ? "edit-effect" : "add-effect"}>{t('formLabelEffect')}</label>
                 <input
                     type="text"
                     id={isEditMode ? "edit-effect" : "add-effect"}
@@ -486,13 +553,13 @@ const ModuleForm = React.memo(({ formData, onChange, onSubmit, isEditMode = fals
                     value={formData.effect}
                     onChange={onChange}
                     required
-                    aria-label="Эффект модуля"
+                    aria-label={t('formLabelEffect')}
                 />
             </div>
             <div className="module-form-buttons form-field-full-width">
                 {/* Show Cancel button only in edit mode */}
                 {isEditMode && onCancelEdit && (
-                    <button type="button" onClick={onCancelEdit}>Отменить</button>
+                    <button type="button" onClick={onCancelEdit}>{t('formButtonCancel')}</button>
                 )}
                 <button type="submit">{submitButtonText}</button>
             </div>
@@ -516,6 +583,7 @@ ModuleForm.propTypes = {
 
 // Modal for adding or editing modules
 const EditModuleModal = React.memo(({ module, isOpen, onClose, onSave }) => {
+    const { t } = window.useTranslation();
     // Initialize form state based on whether editing or adding
     const [formData, setFormData] = React.useState({ ruName: '', enName: '', stars: 1, effect: '' });
     const [originalKey, setOriginalKey] = React.useState(null); // Store the original key for comparison on save
@@ -565,8 +633,8 @@ const EditModuleModal = React.memo(({ module, isOpen, onClose, onSave }) => {
             {/* Stop propagation to prevent overlay click when clicking inside content */}
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                 <div className="modal-header">
-                    <button className="modal-close-button" onClick={onClose} aria-label="Закрыть модальное окно">×</button>
-                    <h3 id="edit-modal-title">{isEditMode ? 'Редактировать Модуль' : 'Добавить Новый Модуль'}</h3>
+                    <button className="modal-close-button" onClick={onClose} aria-label={t('modalCloseButtonLabel')}>×</button>
+                    <h3 id="edit-modal-title">{isEditMode ? t('modalTitleEdit') : t('modalTitleAdd')}</h3>
                 </div>
                 <div className="modal-body">
                     <ModuleForm

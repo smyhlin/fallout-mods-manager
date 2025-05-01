@@ -22,17 +22,33 @@
     <link rel="stylesheet" href="styles/form.css">
     <link rel="stylesheet" href="styles/components.css">
     <link rel="stylesheet" href="styles/responsive.css">
+    <style>
+        /* Hide noscript tags for other languages */
+        noscript[lang]:not([lang="en"]) {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-    <noscript>You need to enable JavaScript to run this app!.</noscript>
+    <noscript lang="en">You need to enable JavaScript to run this app!.</noscript>
+    <noscript lang="ua">Для роботи застосунку необхідно увімкнути JavaScript!.</noscript>
+    <noscript lang="ru">Для работы приложения необходимо включить JavaScript!.</noscript>
     <div id="root"></div>
 
     <!-- Load App Scripts (Order Matters) -->
+    <script type="text/babel" data-type="module">
+        // Import React hooks once at the top level
+        const { 
+            createContext, useState, useEffect, useContext, 
+            useCallback, useRef, useMemo 
+        } = React;
+    </script>
     <script src="constants.js"></script>
-    <script src="config.js"></script>
-    <script src="hooks.js"></script> 
+    <script type="text/babel" src="LanguageContext.jsx"></script>
     <script src="utils.js"></script>
-    <script type="text/babel" src="components.jsx"></script> 
+    <script type="text/babel" src="hooks.js"></script>
+    <script type="text/babel" src="config.js"></script>
+    <script type="text/babel" src="components.jsx"></script>
     <script type="text/babel" src="app.jsx"></script>
 </body>
 </html>
