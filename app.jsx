@@ -9,6 +9,7 @@ function App() {
     const [selectedStars, setSelectedStars] = React.useState(null);
     const [searchTerm, setSearchTerm] = React.useState('');
     const [notification, showNotification] = useNotification();
+    const [isDesktopSidebarCollapsed, setIsDesktopSidebarCollapsed] = React.useState(false);
 
     // Use translation hook
     const { t, language, switchLanguage } = useTranslation();
@@ -28,9 +29,7 @@ function App() {
 
     const {
         isMobileSidebarOpen,
-        isDesktopCollapsed,
         toggleMobileSidebar,
-        toggleDesktopSidebar,
     } = useSidebarState();
 
     const {
@@ -208,6 +207,14 @@ function App() {
         reader.readAsText(file);
     }, [showNotification, initialModulesData, handleResetSettings, applyImportedSettings, t]);
 
+    const toggleDesktopSidebar = React.useCallback(() => {
+        const container = document.querySelector('.pipboy-container');
+        if (container) {
+            container.style.transition = 'margin var(--transition-speed) ease-in-out';
+            setIsDesktopSidebarCollapsed(prev => !prev);
+        }
+    }, []);
+
     // --- Memoized Derived Data ---
     const processedModules = React.useMemo(() => {
         if (isLoading) return [];
@@ -302,10 +309,10 @@ function App() {
                 style={{ display: 'none' }}
             />
 
-            <div className="pipboy-container">
+            <div className={`pipboy-container ${isDesktopSidebarCollapsed ? 'sidebar-collapsed' : ''}`}>
                 <Sidebar
                     isMobileOpen={isMobileSidebarOpen}
-                    isDesktopCollapsed={isDesktopCollapsed}
+                    isDesktopCollapsed={isDesktopSidebarCollapsed}
                     onMobileClose={toggleMobileSidebar}
                     currentFilter={filter}
                     onFilterChange={setFilter}
@@ -329,10 +336,10 @@ function App() {
                 <button
                     id="desktop-sidebar-toggle"
                     onClick={toggleDesktopSidebar}
-                    aria-label={isDesktopCollapsed ? t('desktopSidebarToggleExpandLabel') : t('desktopSidebarToggleCollapseLabel')}
-                    title={isDesktopCollapsed ? t('desktopSidebarToggleExpandLabel') : t('desktopSidebarToggleCollapseLabel')}
+                    aria-label={isDesktopSidebarCollapsed ? t('desktopSidebarToggleExpandLabel') : t('desktopSidebarToggleCollapseLabel')}
+                    title={isDesktopSidebarCollapsed ? t('desktopSidebarToggleExpandLabel') : t('desktopSidebarToggleCollapseLabel')}
                 >
-                    {isDesktopCollapsed ? '»' : '«'}
+                    <span>{isDesktopSidebarCollapsed ? '»' : '«'}</span>
                 </button>
 
                 <div className="pipboy-content">

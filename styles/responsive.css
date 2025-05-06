@@ -40,22 +40,73 @@
 
 /* --- Desktop-Only Styles (> 1024px) --- */
 @media (min-width: 1025px) {
-     #desktop-sidebar-toggle { display: block; }
-     .card-header, .card-body { display: none; } /* Hide mobile card elements on desktop */
 
-     /* Collapsed sidebar styles for desktop */
-     .pipboy-sidebar.sidebar-collapsed {
-         width: var(--sidebar-collapsed-width); /* 0px */
-         border-right-width: 0;
-     }
-     /* Adjust toggle button position when sidebar is collapsed */
-     .sidebar-collapsed + #desktop-sidebar-toggle {
-        left: var(--sidebar-collapsed-width);
-        border-left: 2px solid var(--border-color);
+    #desktop-sidebar-toggle { display: flex; }
+
+    .sidebar-toggle-container {
+        flex-shrink: 0;
+        position: relative;
+    }
+
+
+    #desktop-sidebar-toggle {
+        position: absolute;
+        top: 50%;
+        right: -20px;
+        transform: translateY(-50%);
+        height: var(--desktop-toggle-height);
+        width: var(--desktop-toggle-width);
+        background-color: rgba(var(--primary-color-rgb), 0.08);
+        border: 2px solid var(--border-color);
+        border-left: none;
+
+        display: flex;
+        align-items: center;
+        justify-content: center; 
+    }
+
+    .sidebar-collapsed .sidebar-toggle-container {
+        width: var(--desktop-toggle-width);
+    }
+
+    .sidebar-collapsed #desktop-sidebar-toggle {
+        right: 0;
+        border: 2px solid var(--border-color);
+        border-radius: var(--border-radius);
+        /* If the icon flips, you might need to adjust justify-content here too,
+           but usually, the icon itself is changed or rotated, not its centering. */
+    }
+
+    .card-header,
+    .card-body {
+        display: none;
+    }
+
+
+    /* Ensure proper content layout when sidebar is collapsed */
+    .pipboy-sidebar.sidebar-collapsed + .pipboy-content {
+        margin-left: 0;
+    }
+
+    /* Main container adjustments */
+    .pipboy-container {
+        overflow: hidden;
+    }
+
+    /* Collapsed sidebar styles for desktop */
+    .pipboy-sidebar.sidebar-collapsed {
+        width: 0;
+        padding: 0;
+        margin: 0;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
         border-right: none;
-        border-radius: 0;
-        border-top-left-radius: 8px;
-        border-bottom-left-radius: 8px;
+    }
+
+    .pipboy-content {
+        margin-left: 0;
+        transition: margin-left var(--transition-speed) ease-in-out;
     }
 }
 
@@ -222,7 +273,7 @@
         left: 50%;
         transform: translateX(-50%);
         width: 40px;
-        height: 24px;
+        height: 16px;
         background-color: rgba(var(--primary-color-rgb), 0.2);
         color: var(--primary-color);
         border: 1px solid var(--border-color);
@@ -262,6 +313,10 @@
         pointer-events: none;
         visibility: hidden;
     }
+
+    .sidebar-toggle-container {
+        display: none;
+    }
 }
 
 /* --- Smaller Mobile Styles (<= 480px) --- */
@@ -298,8 +353,8 @@
 
     /* Adjust scroll arrows for small screens */
     .scroll-arrow {
-        width: 30px; /* Smaller width */
-        height: 20px; /* Smaller height */
+        width: 40px; /* Smaller width */
+        height: 16px; /* Smaller height */
         font-size: 0.9em; /* Slightly smaller font size */
     }
 }

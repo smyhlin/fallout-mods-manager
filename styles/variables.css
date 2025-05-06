@@ -40,8 +40,11 @@
     --spacing-xl: 32px;
     --border-radius: 4px;
     --sidebar-width: 280px;
-    --sidebar-collapsed-width: 0px;
+    --sidebar-collapsed-width: 0;
     --actions-column-width: 80px;
+    --transition-speed: 0.3s;
+    --desktop-toggle-width: 20px;
+    --desktop-toggle-height: 100px;
 
     /* --- Effects --- */
     --text-shadow: 0 0 5px var(--primary-color-glow);
@@ -52,5 +55,5 @@
     --box-shadow-glow-accent: 0 0 15px var(--accent-color-glow);
     --box-shadow-glow-danger: 0 0 15px var(--danger-color-glow);
     --box-shadow-glow-action: 0 0 15px var(--action-color-glow);
-    --transition-speed: 0.2s;
+    --transition-speed: 0.3s;
 }

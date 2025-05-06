@@ -87,7 +87,7 @@
     left: 50%; /* Center horizontally */
     transform: translateX(-50%); /* Center horizontally */
     width: 40px; /* Adjust base size */
-    height: 24px; /* More rectangular */
+    height: 16px; /* More rectangular */
     background-color: rgba(var(--primary-color-rgb), 0.2); /* Subtler background */
     color: var(--primary-color); /* Use primary color for arrow */
     border: 1px solid var(--border-color); /* Match sidebar button border */
