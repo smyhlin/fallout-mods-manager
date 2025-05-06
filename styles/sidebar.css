@@ -1,50 +1,59 @@
 /* styles/sidebar.css */
-
 .pipboy-sidebar {
-    /* Base styles */
     background-color: var(--background-color-light);
-    z-index: 1000;
-    position: relative;  /* Ensure this is a positioning context for the button */
+    z-index: 100; /* Ensure it's above content if any overlap, but below toggle */
+    position: relative;
 }
 
 .pipboy-sidebar h2 {
     font-size: var(--font-size-lg);
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
     text-align: center;
     color: var(--primary-color);
     overflow-wrap: break-word;
+    border-bottom: 1px solid rgba(var(--primary-color-rgb), 0.2);
 }
 .sidebar-section {
-    margin-bottom: var(--spacing-lg);
-    padding-bottom: var(--spacing-lg);
-    border-bottom: 1px dashed var(--border-color);
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid rgba(var(--border-color-rgb), 0.3);
 }
-.sidebar-section:last-of-type { border-bottom: none; padding-bottom: 0; }
+.sidebar-section:last-of-type {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
 
 .settings-label {
     display: block;
-    margin-bottom: var(--spacing-sm);
-    font-size: var(--font-size-md);
+    margin-bottom: var(--spacing-xs);
+    font-size: var(--font-size-sm);
     color: var(--text-color-secondary);
-    font-weight: bold;
+    font-weight: normal;
     overflow-wrap: break-word;
 }
+
 .settings-title {
      font-family: var(--font-family-header);
-     font-size: var(--font-size-md);
-     text-align: center;
-     margin-bottom: var(--spacing-md);
+     font-size: calc(var(--font-size-sm) - 1px);
+     text-align: left;
+     margin-bottom: var(--spacing-sm);
      color: var(--primary-color);
+     text-transform: uppercase;
+     letter-spacing: 0.5px;
     white-space: normal;
     overflow-wrap: break-word;
 }
 .settings-section h4 {
     font-family: var(--font-family-body);
-    font-size: var(--font-size-md);
+    font-size: calc(var(--font-size-sm) - 1px);
     color: var(--text-color-secondary);
-    margin-top: var(--spacing-lg);
-    margin-bottom: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-xs);
     font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
     white-space: normal;
     overflow-wrap: break-word;
 }
@@ -52,24 +61,25 @@
 .sidebar-button {
     display: block;
     width: 100%;
-    padding: var(--spacing-sm) var(--spacing-md);
-    margin-bottom: var(--spacing-sm);
-    background-color: rgba(0,0,0,0.2);
+    padding: calc(var(--spacing-sm) - 2px) var(--spacing-md);
+    margin-bottom: var(--spacing-xs);
+    background-color: transparent;
     color: var(--text-color-secondary);
     border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-sm);
     text-align: center;
     font-family: var(--font-family-body);
     font-size: var(--font-size-md);
     cursor: pointer;
-    transition: background-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease, color var(--transition-speed) ease;
+    transition: background-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease, color var(--transition-speed) ease, border-color var(--transition-speed) ease;
     white-space: normal;
     overflow-wrap: break-word;
 }
 .sidebar-button:hover {
-    background-color: rgba(0,0,0,0.3);
-    color: var(--text-color);
-    box-shadow: inset 0 0 5px var(--primary-color-glow);
+    background-color: rgba(var(--primary-color-rgb), 0.15);
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    box-shadow: none;
 }
 .sidebar-button.active {
     background-color: var(--primary-color);
@@ -80,21 +90,23 @@
 }
 .sidebar-button.reset-button {
     border-color: var(--accent-color);
-    color: var (--accent-color);
-    background-color: rgba(0,0,0,0.2);
+    color: var(--accent-color);
+    background-color: transparent;
 }
 .sidebar-button.reset-button:hover {
-    background-color: rgba(0,0,0,0.3);
-    box-shadow: inset 0 0 5px var(--accent-color-glow);
+    background-color: rgba(var(--accent-color-rgb), 0.15);
+    border-color: var(--accent-color);
+    color: var(--accent-color);
 }
 .sidebar-button.io-button {
     border-color: var(--action-color);
     color: var(--action-color);
-    background-color: rgba(0,0,0,0.2);
+    background-color: transparent;
 }
 .sidebar-button.io-button:hover {
-    background-color: rgba(0,0,0,0.3);
-    box-shadow: inset 0 0 5px var(--action-color-glow);
+    background-color: rgba(var(--action-color-rgb), 0.15);
+    border-color: var(--action-color);
+    color: var(--action-color);
 }
 
 .settings-control { margin-bottom: var(--spacing-md); }
@@ -118,13 +130,13 @@
 }
 .settings-control input[type=range]::-webkit-slider-runnable-track {
     height: 4px;
-    background: rgba(0,0,0,0.4);
+    background: rgba(var(--border-color-rgb), 0.5);
     border: none;
     border-radius: var(--border-radius);
 }
 .settings-control input[type=range]::-moz-range-track {
     height: 4px;
-    background: rgba(0,0,0,0.4);
+    background: rgba(var(--border-color-rgb), 0.5);
     border: none;
     border-radius: var(--border-radius);
 }
@@ -165,53 +177,11 @@
     background-color: rgba(var(--primary-color-rgb), 0.6);
 }
 
-#desktop-sidebar-toggle {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translate(100%, -50%);
-    width: var(--desktop-toggle-width);
-    height: var(--desktop-toggle-height);
-    background-color: rgba(var(--primary-color-rgb), 0.08);
-    border: 2px solid var(--border-color);
-    border-left: none;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
-    color: var(--text-color);
-    cursor: pointer;
-    z-index: 1001;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.9em;
-    /* Ensure no extra padding or line-height */
-    padding: 0;
-    line-height: 1;
-    text-align: center; /* Ensure text is centered */
-}
+/* #desktop-sidebar-toggle is now primarily in responsive.css for desktop view */
+/* This file can contain base styles if any are shared or for non-media query scenarios */
+/* However, for this specific toggle, responsive.css @media (min-width: 1025px) is the main controller */
 
-#desktop-sidebar-toggle span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    text-align: center; /* Ensure span content is centered */
-}
 
-#desktop-sidebar-toggle:hover {
-    background-color: rgba(var(--primary-color-rgb), 0.2);
-    color: var(--primary-color);
-    box-shadow: 1px 0 8px rgba(var(--primary-color-rgb), 0.2);
-}
-
-.sidebar-collapsed + #desktop-sidebar-toggle {
-    left: 0;
-    border-left: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
-}
-
-/* --- Search --- */
 .search-section .settings-label {
     text-align: left;
     margin-top: 0;
@@ -226,7 +196,7 @@
     border: 1px solid var(--border-color);
     color: var(--text-color);
     font-family: var(--font-family-body);
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-sm);
     font-size: var(--font-size-md);
     transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
 }
@@ -236,18 +206,16 @@
     box-shadow: 0 0 8px var(--primary-color-glow);
 }
 
-/* --- Stats --- */
 .stats-display { font-size: var(--font-size-sm); color: var(--text-color-secondary); text-align: center; margin-top: var(--spacing-md); line-height: 1.4; }
 .stats-display strong { color: var(--text-color); font-weight: bold; }
 
-/* Language Selector Styles */
 select.language-selector {
     width: 100%;
     padding: var(--spacing-sm) var(--spacing-md);
     background-color: rgba(0,0,0,0.2);
     color: var(--text-color);
     border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-sm);
     font-family: var(--font-family-body);
     font-size: var(--font-size-md);
     cursor: pointer;
@@ -262,17 +230,16 @@ select.language-selector {
 }
 
 select.language-selector:hover {
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(var(--primary-color-rgb), 0.15);
     border-color: var(--primary-color);
     color: var(--primary-color);
-    box-shadow: inset 0 0 5px var(--primary-color-glow);
 }
 
 select.language-selector:focus {
     outline: none;
     border-color: var(--primary-color);
     box-shadow: 0 0 8px var(--primary-color-glow);
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(var(--primary-color-rgb), 0.2);
 }
 
 select.language-selector option {
@@ -287,7 +254,6 @@ select.language-selector option:focus {
     color: var(--text-color-inverse);
 }
 
-/* Star Filter Styles */
 .star-filter-section {
     margin-bottom: var(--spacing-lg);
 }
@@ -307,17 +273,4 @@ select.language-selector option:focus {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.pipboy-sidebar.sidebar-collapsed {
-    width: 0;
-    overflow: hidden;
-    border-right: none;
-}
-
-.sidebar-collapsed #desktop-sidebar-toggle {
-    left: 0;
-    border-left: 2px solid var(--border-color);
-    border-right: none;
-    border-radius: var(--border-radius);
 }

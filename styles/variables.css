@@ -1,52 +1,52 @@
 /* styles/variables.css */
 :root {
-    /* --- Color Palette --- */
-    --primary-color: #1eff84; /* Brighter Pip-Boy Green */
-    --primary-color-rgb: 30, 255, 132; /* RGB for alpha variations */
-    --primary-color-dark: #18cd6b; /* Darker green for hover/active */
+    --primary-color: #1eff84;
+    --primary-color-rgb: 30, 255, 132;
+    --primary-color-dark: #18cd6b;
     --primary-color-glow: rgba(30, 255, 132, 0.7);
-    --background-color: #1a2a24; /* Dark Greenish Background */
-    --background-color-light: #233b32; /* Lighter background for elements */
-    --background-color-darker: #111c17; /* Even darker for depth */
-    --border-color: rgba(30, 255, 132, 0.3); /* Semi-transparent border */
+    --background-color: #1a2a24;
+    --background-color-light: #233b32;
+    --background-color-darker: #111c17;
+    --border-color: rgba(30, 255, 132, 0.3);
+    --border-color-rgb: 30, 255, 132;
     --border-color-strong: rgba(30, 255, 132, 0.6);
     --text-color: var(--primary-color);
-    --text-color-secondary: rgba(30, 255, 132, 0.7); /* Slightly dimmer text */
+    --text-color-secondary: rgba(30, 255, 132, 0.7);
     --text-color-muted: rgba(30, 255, 132, 0.5);
-    --text-color-inverse: var(--background-color-darker); /* Text on primary background */
-    --accent-color: #ffb86c; /* Amber/Orange accent */
+    --text-color-inverse: var(--background-color-darker);
+    --accent-color: #ffb86c;
+    --accent-color-rgb: 255, 184, 108;
     --accent-color-glow: rgba(255, 184, 108, 0.7);
-    --danger-color: #ff5555; /* Red for delete/error */
+    --danger-color: #ff5555;
     --danger-color-glow: rgba(255, 85, 85, 0.7);
-    --action-color: #8be9fd; /* Cyan for edit/info */
+    --action-color: #8be9fd;
+    --action-color-rgb: 139, 233, 253;
     --action-color-glow: rgba(139, 233, 253, 0.7);
-    --highlight-bg: rgba(255, 184, 108, 0.2); /* Highlight background */
+    --highlight-bg: rgba(255, 184, 108, 0.2);
 
-    /* --- Typography --- */
     --font-family-header: 'Press Start 2P', cursive;
     --font-family-body: 'Fira Code', monospace;
     --base-font-size: 14px;
-    --font-size-sm: 0.8rem; /* ~11px */
-    --font-size-md: 0.9rem; /* ~13px */
-    --font-size-lg: 1.1rem; /* ~15px */
-    --font-size-xl: 1.5rem; /* ~21px */
-    --font-size-xxl: 1.8rem; /* ~25px */
+    --font-size-sm: 0.8rem;
+    --font-size-md: 0.9rem;
+    --font-size-lg: 1.1rem;
+    --font-size-xl: 1.5rem;
+    --font-size-xxl: 1.8rem;
 
-    /* --- Layout & Spacing --- */
     --spacing-xs: 4px;
     --spacing-sm: 8px;
     --spacing-md: 16px;
     --spacing-lg: 24px;
     --spacing-xl: 32px;
     --border-radius: 4px;
+    --border-radius-sm: 3px;
     --sidebar-width: 280px;
-    --sidebar-collapsed-width: 0;
+    --sidebar-collapsed-width: 0px; /* CRITICAL */
     --actions-column-width: 80px;
-    --transition-speed: 0.3s;
-    --desktop-toggle-width: 20px;
-    --desktop-toggle-height: 100px;
+    --desktop-toggle-width: 25px; /* Added for toggle button */
+    --desktop-toggle-height: 60px; /* Added for toggle button */
 
-    /* --- Effects --- */
+
     --text-shadow: 0 0 5px var(--primary-color-glow);
     --text-shadow-header: 0 0 8px var(--primary-color-glow);
     --box-shadow-light: 0 2px 5px rgba(0, 0, 0, 0.3);
@@ -55,5 +55,5 @@
     --box-shadow-glow-accent: 0 0 15px var(--accent-color-glow);
     --box-shadow-glow-danger: 0 0 15px var(--danger-color-glow);
     --box-shadow-glow-action: 0 0 15px var(--action-color-glow);
-    --transition-speed: 0.3s;
+    --transition-speed: 0.2s;
 }
