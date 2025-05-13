@@ -8,22 +8,22 @@
     box-shadow: 0 0 25px var(--primary-color-glow), inset 0 0 10px rgba(0,0,0,0.5);
     border-radius: var(--border-radius);
     background-color: var(--background-color);
-    position: relative; /* For absolute positioning of the toggle button */
+    position: relative; 
     height: calc(100vh - var(--spacing-xl)*2);
-    overflow: hidden; /* Prevent content spill during transitions */
+    overflow: hidden; 
 }
 
 .pipboy-sidebar {
     width: var(--sidebar-width);
-    flex-shrink: 0; /* Prevent sidebar from shrinking beyond its defined width */
+    flex-shrink: 0; 
     height: 100%;
     display: flex;
     flex-direction: column;
     background-color: var(--background-color-light);
-    border-right: 1px solid var(--border-color); /* Default border */
+    border-right: 1px solid var(--border-color); 
     box-shadow: var(--box-shadow-light);
-    overflow: hidden; /* Hide content when collapsing */
-    position: relative; /* For stacking context if needed, not strictly for layout here */
+    overflow: hidden; 
+    position: relative; 
     transition: width var(--transition-speed) ease-in-out,
                 padding var(--transition-speed) ease-in-out,
                 border-right-width var(--transition-speed) ease-in-out,
@@ -34,46 +34,82 @@
 .sidebar-content-wrapper {
     display: flex;
     flex-direction: column;
-    flex-grow: 1; /* Allow content to take available vertical space */
-    min-height: 0; /* Important for flex item scrolling */
-    overflow-y: auto; /* Enable vertical scroll for sidebar content */
+    flex-grow: 1; 
+    min-height: 0; 
+    overflow-y: auto; 
     padding: var(--spacing-lg);
-    /* Scrollbar hiding for non-webkit, if desired and not handled by .hide-scrollbar globally */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none;  /* IE 10+ */
+    scrollbar-width: none; 
+    -ms-overflow-style: none;  
 }
 .sidebar-content-wrapper::-webkit-scrollbar {
-    display: none; /* Safari and Chrome */
+    display: none; 
 }
 
 
 .pipboy-content {
-    flex-grow: 1; /* Takes up remaining space */
-    min-width: 0; /* Prevent content from overflowing flex container */
+    flex-grow: 1; 
+    min-width: 0; 
     height: 100%;
     display: flex;
     flex-direction: column;
-    position: relative; /* For scroll arrows if they are inside this */
+    position: relative; 
 }
 
-.pipboy-content-wrapper {
-    flex-grow: 1;
-    min-height: 0; /* Important for flex item scrolling */
-    overflow-y: auto; /* Enable vertical scroll for main content */
-    padding: var(--spacing-lg);
-    height: 100%; /* Ensure it tries to fill parent */
-    -webkit-overflow-scrolling: touch;
+.app-main-header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: var(--spacing-md) var(--spacing-lg);
+   border-bottom: 1px solid var(--border-color); 
+   background-color: var(--background-color); 
+   flex-shrink: 0; 
 }
+
+.app-main-header-title-area {
+   display: flex;
+   align-items: center;
+   gap: var(--spacing-sm);
+}
+
+.app-main-header-title {
+   font-family: var(--font-family-header);
+   font-size: var(--font-size-xxl); 
+   color: var(--primary-color);
+   text-shadow: var(--text-shadow-header);
+   margin: 0;
+   line-height: 1.2;
+}
+
+.app-main-header-actions {
+   display: flex;
+   align-items: center;
+   gap: var(--spacing-sm);
+}
+
 
 .pipboy-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: var(--spacing-lg);
-    font-size: var(--font-size-xxl);
-    color: var(--primary-color);
-    font-family: var(--font-family-header);
-    text-shadow: var(--text-shadow-header);
+    align-items: center; 
+    padding: 0 var(--spacing-lg); 
+    padding-top: var(--spacing-md); 
+    padding-bottom: var(--spacing-md); 
+    flex-shrink: 0; 
+}
+
+.pipboy-header-main {
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start; 
+}
+
+.pipboy-view-title { 
+   font-size: var(--font-size-xl); 
+   color: var(--primary-color);
+   font-family: var(--font-family-header);
+   text-shadow: var(--text-shadow-header);
+   margin: 0;
+   line-height: 1.2;
 }
 
 .module-count-label {
@@ -81,8 +117,19 @@
     color: var(--text-color-secondary);
     font-family: var(--font-family-body);
     text-shadow: none;
+    margin-top: var(--spacing-xs);
 }
 
-/* Remove the extra wrappers if they are not essential for other logic */
-/* .sidebar-toggle-container, .sidebar-wrapper might not be needed with this approach */
-/* If they are from your attempt, consider removing them from components.jsx if this works */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.pipboy-content-wrapper {
+    flex-grow: 1;
+    min-height: 0; 
+    overflow-y: auto; 
+    padding: var(--spacing-lg);
+    -webkit-overflow-scrolling: touch;
+}

@@ -35,12 +35,10 @@ ErrorBoundaryClass.propTypes = {
     t: PropTypes.func.isRequired,
 };
 
-// Wrapper functional component to use the hook
 const ErrorBoundary = (props) => {
     const { t } = window.useTranslation();
     return <ErrorBoundaryClass {...props} t={t} />;
 };
-
 ErrorBoundary.propTypes = {
     children: PropTypes.node.isRequired,
 };
@@ -91,7 +89,6 @@ SearchInput.propTypes = {
     onSearchChange: PropTypes.func.isRequired,
 };
 
-// onSidebarClose is used to close the mobile sidebar after filter selection
 const FilterControls = React.memo(({ currentFilter, onFilterChange, onSidebarClose }) => {
     const { t } = window.useTranslation();
     return (
@@ -105,24 +102,82 @@ const FilterControls = React.memo(({ currentFilter, onFilterChange, onSidebarClo
 FilterControls.propTypes = {
     currentFilter: PropTypes.oneOf(['all', 'learned', 'notLearned']).isRequired,
     onFilterChange: PropTypes.func.isRequired,
-    onSidebarClose: PropTypes.func, // Optional callback for mobile
+    onSidebarClose: PropTypes.func, 
 };
 
-const StatsDisplay = React.memo(({ stats }) => {
+const StatsBanner = React.memo(({ stats }) => {
     const { t } = window.useTranslation();
+    const percentage = parseFloat(stats.percentage);
+
     return (
-        <div className="stats-display">
-            {t('statsTotal')} <strong>{stats.totalCount}</strong>
-            <span style={{ margin: '0 0.5em' }}>|</span>
-            {t('statsLearned')} <strong>{stats.learnedCount}</strong> ({stats.percentage}{t('statsPercentage')})
+        <div className="stats-banner-container">
+            <div className="stat-card">
+                <div className="stat-card-content">
+                    <span className="stat-card-title">{t('bannerTotalModules')}</span>
+                    <span className="stat-card-value">{stats.totalCount}</span>
+                </div>
+                <div className="stat-card-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor"> {/* Layers icon */}
+                        <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zm0-10h14V7H7v2z"/>
+                    </svg>
+                </div>
+            </div>
+            <div className="stat-card">
+                <div className="stat-card-content">
+                    <span className="stat-card-title">{t('bannerModulesLearned')}</span>
+                    <span className="stat-card-value">{stats.learnedCount}</span>
+                </div>
+                <div className="stat-card-icon">
+                     <svg viewBox="0 0 24 24" fill="currentColor"> {/* Checkbox/list icon */}
+                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17zM19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/>
+                    </svg>
+                </div>
+            </div>
+            {/* Percentage Learned Card - MOVED TO BE THIRD */}
+            <div className="stat-card">
+                <div className="stat-card-content">
+                    <span className="stat-card-title">{t('bannerPercentageLearned')}</span>
+                    <span className="stat-card-value">{stats.percentage}%</span>
+                    <div className="stat-progress-bar-container">
+                        <div 
+                            className="stat-progress-bar-filled" 
+                            style={{ width: `${percentage}%` }}
+                            aria-valuenow={percentage}
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                            role="progressbar"
+                        ></div>
+                    </div>
+                </div>
+                <div className="stat-card-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor"> {/* Percent icon */}
+                        <path d="M7.5 11C8.33 11 9 10.33 9 9.5S8.33 8 7.5 8 6 8.67 6 9.5 6.67 11 7.5 11zm9 4c.83 0 1.5-.67 1.5-1.5S17.33 12 16.5 12s-1.5.67-1.5 1.5.67 1.5 1.5 1.5zm-9.95-5.71L17.29 19.04c.39.39 1.02.39 1.41 0s.39-1.02 0-1.41L7.96 6.88a.9959.9959 0 00-1.41 0c-.39.39-.39 1.03 0 1.41z"/>
+                    </svg>
+                </div>
+            </div>
+            {/* Visible Modules Card - NOW FOURTH */}
+            <div className="stat-card">
+                <div className="stat-card-content">
+                    <span className="stat-card-title">{t('bannerVisibleModules')}</span>
+                    <span className="stat-card-value">{stats.visibleCount}</span>
+                    {stats.visibleCount > 0 && stats.visibleModuleSamples && stats.visibleModuleSamples.length > 0}
+                </div>
+                <div className="stat-card-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor"> {/* Filter icon */}
+                        <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/>
+                    </svg>
+                </div>
+            </div>
         </div>
     );
 });
-StatsDisplay.propTypes = {
+StatsBanner.propTypes = {
     stats: PropTypes.shape({
         totalCount: PropTypes.number.isRequired,
         learnedCount: PropTypes.number.isRequired,
         percentage: PropTypes.string.isRequired,
+        visibleCount: PropTypes.number.isRequired,
+        visibleModuleSamples: PropTypes.arrayOf(PropTypes.string).isRequired, // Added visibleModuleSamples
     }).isRequired,
 };
 
@@ -141,14 +196,13 @@ const SettingsSection = React.memo(({ columnConfig, columnVisibility, tempWidths
                                 id={`vis-${col.id}`}
                                 checked={!!columnVisibility[col.id]}
                                 onChange={() => onVisibilityChange(col.id)}
-                                className="learned-checkbox" // Add this class
+                                className="learned-checkbox"
                             />
                             {t(col.labelKey)}
                         </label>
                     </div>
                 )
             ))}
-            {/* Width settings only shown on desktop where table is visible */}
             <div className="column-width-settings">
                 <h4 className="settings-label">{t('settingsColumnWidth')}</h4>
                 {columnConfig.map(col => (
@@ -183,23 +237,6 @@ SettingsSection.propTypes = {
     onResetSettings: PropTypes.func.isRequired,
 };
 
-const IOSection = React.memo(({ onImportClick, onExport, onAddModuleClick }) => {
-    const { t } = window.useTranslation();
-    return (
-        <div className="sidebar-section">
-            <h3 className="settings-label settings-title">{t('ioTitle')}</h3>
-            <button className="sidebar-button io-button add-button" onClick={onAddModuleClick} aria-label={t('ioAddModuleButton')}>{t('ioAddModuleButton')}</button>
-            <button className="sidebar-button io-button" onClick={onImportClick} aria-label={t('ioImportButton')}>{t('ioImportButton')}</button>
-            <button className="sidebar-button io-button" onClick={onExport} aria-label={t('ioExportButton')}>{t('ioExportButton')}</button>
-        </div>
-    );
-});
-IOSection.propTypes = {
-    onImportClick: PropTypes.func.isRequired,
-    onExport: PropTypes.func.isRequired,
-    onAddModuleClick: PropTypes.func.isRequired,
-};
-
 const LanguageSwitcher = React.memo(({ currentLanguage, onLanguageChange }) => {
     const { t } = window.useTranslation();
     return (
@@ -223,18 +260,15 @@ LanguageSwitcher.propTypes = {
     onLanguageChange: PropTypes.func.isRequired,
 };
 
-// Ensure consistent behavior for scroll arrows in mobile and desktop
 const ScrollableContainer = ({ children, className = '' }) => {
     const scrollRef = React.useRef(null);
     const [canScrollUp, setCanScrollUp] = React.useState(false);
     const [canScrollDown, setCanScrollDown] = React.useState(false);
     const { t } = window.useTranslation();
 
-    // Update the checkScroll function to ensure arrows are hidden when no scrolling is possible
     const checkScroll = React.useCallback(() => {
         const el = scrollRef.current;
         if (!el) return;
-
         const isScrollable = el.scrollHeight > el.clientHeight;
         setCanScrollUp(isScrollable && el.scrollTop > 0);
         setCanScrollDown(isScrollable && el.scrollTop < el.scrollHeight - el.clientHeight);
@@ -243,24 +277,27 @@ const ScrollableContainer = ({ children, className = '' }) => {
     React.useEffect(() => {
         const el = scrollRef.current;
         if (!el) return;
-
         const resizeObserver = new ResizeObserver(checkScroll);
         resizeObserver.observe(el);
         const mutationObserver = new MutationObserver(checkScroll);
-        mutationObserver.observe(el, { childList: true, subtree: true, characterData: true });
-
+        mutationObserver.observe(el, { childList: true, subtree: true, characterData: true, attributes: true }); // Added attributes
         el.addEventListener('scroll', checkScroll, { passive: true });
         window.addEventListener('resize', checkScroll);
-
-        checkScroll();
+        checkScroll(); // Initial check
+        
+        // Re-check on children update might be too frequent, but let's try with MutationObserver
+        const observerTimeout = setTimeout(checkScroll, 50); // Small delay after potential DOM changes
 
         return () => {
-            resizeObserver.unobserve(el);
+            clearTimeout(observerTimeout);
+            resizeObserver.disconnect(); // Use disconnect instead of unobserve for multiple elements
             mutationObserver.disconnect();
-            el.removeEventListener('scroll', checkScroll);
+            if (el) { // Check if el still exists
+               el.removeEventListener('scroll', checkScroll);
+            }
             window.removeEventListener('resize', checkScroll);
         };
-    }, [checkScroll]);
+    }, [checkScroll, children]); // Re-run if children change to re-evaluate scroll state
 
     const handleScroll = React.useCallback((direction) => {
         const el = scrollRef.current;
@@ -320,7 +357,6 @@ const StarFilter = React.memo(({ selectedStars, onStarFilterChange }) => {
         </div>
     );
 });
-
 StarFilter.propTypes = {
     selectedStars: PropTypes.number,
     onStarFilterChange: PropTypes.func.isRequired,
@@ -328,10 +364,10 @@ StarFilter.propTypes = {
 
 const Sidebar = React.memo(({
     isMobileOpen, isDesktopCollapsed, onMobileClose,
-    currentFilter, onFilterChange, stats, columnConfig, columnVisibility,
+    currentFilter, onFilterChange, columnConfig, columnVisibility,
     tempWidths, onVisibilityChange, onTempWidthChange,
-    onResetSettings, onImportClick, onExport, searchTerm, onSearchChange, 
-    onAddModuleClick, currentLanguage, onLanguageChange, selectedStars, onStarFilterChange
+    onResetSettings, searchTerm, onSearchChange, 
+    currentLanguage, onLanguageChange, selectedStars, onStarFilterChange
 }) => {
     const { t } = window.useTranslation();
     return (
@@ -342,7 +378,6 @@ const Sidebar = React.memo(({
                 <SearchInput searchTerm={searchTerm} onSearchChange={onSearchChange} />
                 <FilterControls currentFilter={currentFilter} onFilterChange={onFilterChange} onSidebarClose={onMobileClose} />
                 <StarFilter selectedStars={selectedStars} onStarFilterChange={onStarFilterChange} />
-                <StatsDisplay stats={stats} />
                 <hr className="dotted-separator" />
                 <SettingsSection
                     columnConfig={columnConfig}
@@ -351,11 +386,6 @@ const Sidebar = React.memo(({
                     onVisibilityChange={onVisibilityChange}
                     onTempWidthChange={onTempWidthChange}
                     onResetSettings={onResetSettings}
-                />
-                <IOSection
-                    onImportClick={onImportClick}
-                    onExport={onExport}
-                    onAddModuleClick={onAddModuleClick}
                 />
                 <LanguageSwitcher 
                     currentLanguage={currentLanguage} 
@@ -371,18 +401,14 @@ Sidebar.propTypes = {
     onMobileClose: PropTypes.func.isRequired,
     currentFilter: PropTypes.string.isRequired,
     onFilterChange: PropTypes.func.isRequired,
-    stats: PropTypes.object.isRequired,
     columnConfig: PropTypes.array.isRequired,
     columnVisibility: PropTypes.object.isRequired,
     tempWidths: PropTypes.object.isRequired,
     onVisibilityChange: PropTypes.func.isRequired,
     onTempWidthChange: PropTypes.func.isRequired,
     onResetSettings: PropTypes.func.isRequired,
-    onImportClick: PropTypes.func.isRequired,
-    onExport: PropTypes.func.isRequired,
     searchTerm: PropTypes.string.isRequired,
     onSearchChange: PropTypes.func.isRequired,
-    onAddModuleClick: PropTypes.func.isRequired,
     currentLanguage: PropTypes.string.isRequired,
     onLanguageChange: PropTypes.func.isRequired,
     selectedStars: PropTypes.number,
@@ -394,8 +420,16 @@ const ModuleActions = React.memo(({ module, onEdit, onDelete }) => {
     const { t } = window.useTranslation();
     return (
         <div className="module-actions">
-            <button onClick={() => onEdit(module)} className="action-button edit-button" aria-label={t('moduleActionsEditLabel', { moduleName: module.ruName })}>🔧</button>
-            <button onClick={() => onDelete(module.ruName, module.stars)} className="action-button delete-button" aria-label={t('moduleActionsDeleteLabel', { moduleName: module.ruName })}>💀</button>
+            <button onClick={() => onEdit(module)} className="action-button edit-button" aria-label={t('moduleActionsEditLabel', { moduleName: module.ruName })}>
+                <svg viewBox="0 0 24 24">
+                    <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                </svg>
+            </button>
+            <button onClick={() => onDelete(module.ruName, module.stars)} className="action-button delete-button" aria-label={t('moduleActionsDeleteLabel', { moduleName: module.ruName })}>
+                <svg viewBox="0 0 24 24">
+                    <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                </svg>
+            </button>
         </div>
     );
 });
@@ -405,15 +439,12 @@ ModuleActions.propTypes = {
     onDelete: PropTypes.func.isRequired,
 };
 
-// Represents a single row in the table (desktop) or a card (mobile)
 const ModuleTableRow = React.memo(({ module, columnVisibility, dataLabels, onLearnedChange, onEdit, onDelete, highlightTerm }) => {
     const moduleKey = `${module.ruName}-${module.stars}`;
     const { t } = window.useTranslation();
     const learnedStatusText = module.learned ? t('learnedStatusLearned') : t('learnedStatusNotLearned');
     return (
-     // The TR element acts as the container for both table cells and mobile card elements
      <tr key={moduleKey}>
-        {/* --- Desktop Table Cells (hidden on mobile via CSS) --- */}
         <td style={{ width: '60px', textAlign: 'center', verticalAlign: 'middle' }}>
             <input
                 type="checkbox"
@@ -429,8 +460,6 @@ const ModuleTableRow = React.memo(({ module, columnVisibility, dataLabels, onLea
         <td style={{ textAlign: 'center', verticalAlign: 'middle' }}>
             <ModuleActions module={module} onEdit={onEdit} onDelete={onDelete} />
         </td>
-
-        {/* --- Mobile Card Elements (display: block on mobile via CSS) --- */}
         <div className="card-header">
              <input
                 type="checkbox"
@@ -441,7 +470,6 @@ const ModuleTableRow = React.memo(({ module, columnVisibility, dataLabels, onLea
              <ModuleActions module={module} onEdit={onEdit} onDelete={onDelete} />
         </div>
         <div className="card-body">
-            {/* Render data rows only if the corresponding column is visible */}
             {columnVisibility.ruName && <div className="data-row" data-label={dataLabels.ruName}><span>{highlightText(module.ruName, highlightTerm)}</span></div>}
             {columnVisibility.enName && <div className="data-row" data-label={dataLabels.enName}><span>{highlightText(module.enName || '-', highlightTerm)}</span></div>}
             {columnVisibility.stars && <div className="data-row" data-label={dataLabels.stars}><span>{getStars(module.stars)}</span></div>}
@@ -463,26 +491,22 @@ ModuleTableRow.propTypes = {
 
 const ModuleTable = React.memo(({ modules, columnConfig, columnVisibility, columnWidths, sortConfig, onSort, dataLabels, onLearnedChange, onEdit, onDelete, highlightTerm }) => {
     const { t } = window.useTranslation();
-    // Calculate visible columns for colSpan in empty message
     const visibleColumnCount = columnConfig.filter(c => columnVisibility[c.id]).length;
     return (
     <table className="module-table">
         <thead>
             <tr>
                 {columnConfig.map(col => (
-                    // Render header cell only if column is visible
                     columnVisibility[col.id] && (
                         <th
                             key={col.id}
                             className={col.isSortable ? 'sortable' : ''}
-                            // Apply width from state if adjustable, otherwise use default
                             style={col.isWidthAdjustable && columnWidths[col.id] ? { width: `${columnWidths[col.id]}px` } : { width: col.defaultWidth ? `${col.defaultWidth}px` : undefined }}
                             onClick={col.isSortable ? () => onSort(col.id) : undefined}
                             aria-label={col.isSortable ? t('settingsSortByLabel', { label: t(col.labelKey) }) : t(col.labelKey)}
                             title={col.isSortable ? t('settingsSortByLabel', { label: t(col.labelKey) }) : undefined}
                         >
                             {t(col.labelKey)}
-                            {/* Show sort indicator if this column is the active sort key */}
                             {col.isSortable && sortConfig.key === col.id && (
                                 <span className="sort-indicator">{sortConfig.direction === 'asc' ? '▲' : '▼'}</span>
                             )}
@@ -495,7 +519,7 @@ const ModuleTable = React.memo(({ modules, columnConfig, columnVisibility, colum
             {modules.length > 0 ? (
                 modules.map((module) => (
                     <ModuleTableRow
-                        key={`${module.ruName}-${module.stars}`} // Unique key for each row
+                        key={`${module.ruName}-${module.stars}`}
                         module={module}
                         columnVisibility={columnVisibility}
                         dataLabels={dataLabels}
@@ -506,7 +530,6 @@ const ModuleTable = React.memo(({ modules, columnConfig, columnVisibility, colum
                     />
                 ))
             ) : (
-                // Display message when no modules match filters/search
                 <tr>
                     <td colSpan={visibleColumnCount} className="no-modules-message">
                         {highlightTerm ? t('tableEmptySearch') : t('tableEmptyFilter')}
@@ -531,11 +554,8 @@ ModuleTable.propTypes = {
     highlightTerm: PropTypes.string,
 };
 
-
-// Form used for adding or editing modules (inside modal)
 const ModuleForm = React.memo(({ formData, onChange, onSubmit, isEditMode = false, onCancelEdit = null, moduleBeingEdited = null }) => {
     const { t } = window.useTranslation();
-    // Predefined modules (from initial JSON) cannot have their name/stars edited
     const isPredefined = isEditMode && moduleBeingEdited && !moduleBeingEdited.isCustom;
     const submitButtonText = isEditMode ? t('formButtonSaveEdit') : t('formButtonAddModule');
     return (
@@ -549,7 +569,7 @@ const ModuleForm = React.memo(({ formData, onChange, onSubmit, isEditMode = fals
                     value={formData.ruName}
                     onChange={onChange}
                     required
-                    disabled={isPredefined} // Disable if predefined
+                    disabled={isPredefined}
                     aria-disabled={isPredefined}
                     aria-label={t('formLabelRuName')}
                 />
@@ -573,11 +593,10 @@ const ModuleForm = React.memo(({ formData, onChange, onSubmit, isEditMode = fals
                     value={formData.stars}
                     onChange={onChange}
                     required
-                    disabled={isPredefined} // Disable if predefined
+                    disabled={isPredefined}
                     aria-disabled={isPredefined}
                     aria-label={t('formLabelStars')}
                 >
-                    {/* Generate options dynamically or list them */}
                     {[1, 2, 3, 4].map(star => <option key={star} value={star}>{star}</option>)}
                 </select>
             </div>
@@ -594,7 +613,6 @@ const ModuleForm = React.memo(({ formData, onChange, onSubmit, isEditMode = fals
                 />
             </div>
             <div className="module-form-buttons form-field-full-width">
-                {/* Show Cancel button only in edit mode */}
                 {isEditMode && onCancelEdit && (
                     <button type="button" onClick={onCancelEdit}>{t('formButtonCancel')}</button>
                 )}
@@ -617,16 +635,12 @@ ModuleForm.propTypes = {
     moduleBeingEdited: PropTypes.object,
 };
 
-
-// Modal for adding or editing modules
 const EditModuleModal = React.memo(({ module, isOpen, onClose, onSave }) => {
     const { t } = window.useTranslation();
-    // Initialize form state based on whether editing or adding
     const [formData, setFormData] = React.useState({ ruName: '', enName: '', stars: 1, effect: '' });
-    const [originalKey, setOriginalKey] = React.useState(null); // Store the original key for comparison on save
-    const isEditMode = !!module; // True if a module object is passed
+    const [originalKey, setOriginalKey] = React.useState(null);
+    const isEditMode = !!module;
 
-    // Update form data when the module prop changes (e.g., opening modal for edit)
     React.useEffect(() => {
         if (module) {
             setFormData({
@@ -634,40 +648,35 @@ const EditModuleModal = React.memo(({ module, isOpen, onClose, onSave }) => {
                 enName: module.enName || '',
                 stars: module.stars || 1,
                 effect: module.effect || '',
-                isCustom: module.isCustom // Keep track if it's custom
+                isCustom: module.isCustom
             });
             setOriginalKey(`${module.ruName}-${module.stars}`);
         } else {
-            // Reset form for adding a new module
             setFormData({ ruName: '', enName: '', stars: 1, effect: '' });
             setOriginalKey(null);
         }
     }, [module]);
 
-    // Handle form input changes
     const handleChange = React.useCallback((e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: name === 'stars' ? parseInt(value, 10) : value }));
     }, []);
 
-    // Handle form submission
     const handleSubmit = React.useCallback((e) => {
         e.preventDefault();
-        onSave(originalKey, formData); // Pass original key and new data
+        onSave(originalKey, formData); 
     }, [formData, originalKey, onSave]);
 
-    // Close modal if overlay is clicked
     const handleOverlayClick = React.useCallback((e) => {
         if (e.target === e.currentTarget) {
             onClose();
         }
     }, [onClose]);
 
-    if (!isOpen) return null; // Don't render if not open
+    if (!isOpen) return null;
 
     return (
         <div className={`modal-overlay ${isOpen ? 'active' : ''}`} onClick={handleOverlayClick} role="dialog" aria-modal="true" aria-labelledby="edit-modal-title">
-            {/* Stop propagation to prevent overlay click when clicking inside content */}
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                 <div className="modal-header">
                     <button className="modal-close-button" onClick={onClose} aria-label={t('modalCloseButtonLabel')}>×</button>
@@ -679,8 +688,8 @@ const EditModuleModal = React.memo(({ module, isOpen, onClose, onSave }) => {
                         onChange={handleChange}
                         onSubmit={handleSubmit}
                         isEditMode={isEditMode}
-                        onCancelEdit={onClose} // Pass close handler as cancel handler
-                        moduleBeingEdited={module} // Pass the module being edited for form logic
+                        onCancelEdit={onClose}
+                        moduleBeingEdited={module}
                     />
                 </div>
             </div>
@@ -688,7 +697,7 @@ const EditModuleModal = React.memo(({ module, isOpen, onClose, onSave }) => {
     );
 });
 EditModuleModal.propTypes = {
-    module: PropTypes.object, // Null when adding
+    module: PropTypes.object,
     isOpen: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
     onSave: PropTypes.func.isRequired,

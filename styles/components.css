@@ -3,12 +3,21 @@
 /* --- Buttons --- */
 .action-button {
     background: none; border: none; border-radius: var(--border-radius);
-    cursor: pointer; padding: var(--spacing-xs); font-size: 1.3em; /* Larger icons */
+    cursor: pointer; padding: var(--spacing-xs); font-size: 1.3em; /* Base icon size */
     line-height: 1; transition: color var(--transition-speed) ease, transform var(--transition-speed) ease;
+    display: inline-flex; /* Align SVG nicely */
+    align-items: center;
+    justify-content: center;
+}
+.action-button svg {
+    width: 1em; /* Scale with button's font-size */
+    height: 1em; /* Scale with button's font-size */
+    fill: currentColor;
 }
 .action-button:hover { transform: scale(1.2); }
-.edit-button { color: var(--action-color); }
-.edit-button:hover { color: var(--action-color); text-shadow: 0 0 8px var(--action-color-glow); }
+
+.edit-button { color: var(--primary-color); } /* Changed to primary-color (green) for pencil */
+.edit-button:hover { color: var(--primary-color); text-shadow: 0 0 8px var(--primary-color-glow); } /* Adjusted glow */
 .delete-button { color: var(--danger-color); }
 .delete-button:hover { color: var(--danger-color); text-shadow: 0 0 8px var(--danger-color-glow); }
 
@@ -19,6 +28,41 @@
     padding: 0 var(--spacing-sm); cursor: pointer; transition: color var(--transition-speed) ease;
 }
 .clear-search-button:hover, .clear-search-button:focus { color: var(--danger-color); outline: none; }
+
+/* --- Header Action Buttons --- */
+.header-action-button {
+    background: none;
+    border: 1px solid transparent;
+    border-radius: var(--border-radius);
+    color: var(--text-color-secondary);
+    cursor: pointer;
+    padding: var(--spacing-xs);
+    line-height: 1;
+    transition: color var(--transition-speed) ease, border-color var(--transition-speed) ease, transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.header-action-button:hover {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    transform: scale(1.1);
+    box-shadow: 0 0 5px var(--primary-color-glow);
+}
+.header-action-button svg {
+    width: 20px; /* Default icon size */
+    height: 20px; /* Default icon size */
+}
+/* Default for filled icons */
+.header-action-button:not(#desktop-sidebar-toggle-header) svg {
+    fill: currentColor;
+}
+/* For stroked icons like the sidebar toggle */
+#desktop-sidebar-toggle-header svg {
+    stroke: currentColor;
+    fill: none; 
+}
+
 
 /* --- Checkboxes --- */
 .learned-checkbox { /* Keep custom checkbox style */
@@ -130,4 +174,74 @@
     opacity: 0;
     pointer-events: none;
     visibility: hidden;
+}
+.stats-banner-container {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.stat-card {
+    background-color: var(--background-color-light);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-md);
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--box-shadow-light);
+    transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+.stat-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: var(--box-shadow-medium), 0 0 8px var(--primary-color-glow);
+}
+
+.stat-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    flex-grow: 1; /* Allow content to take space before icon */
+}
+
+.stat-card-title {
+    font-size: var(--font-size-sm);
+    color: var(--text-color-secondary);
+    font-family: var(--font-family-body);
+}
+
+.stat-card-value {
+    font-size: var(--font-size-xl);
+    font-weight: bold;
+    color: var(--text-color);
+    font-family: var(--font-family-header);
+    line-height: 1.1;
+}
+
+.stat-card-icon {
+    flex-shrink: 0;
+    margin-left: var(--spacing-sm);
+}
+
+.stat-card-icon svg {
+    width: 28px;
+    height: 28px;
+    fill: var(--text-color-muted);
+}
+
+.stat-progress-bar-container {
+    width: 100%;
+    height: 10px;
+    background-color: rgba(var(--primary-color-rgb), 0.15); /* Darker green track */
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+    margin-top: var(--spacing-sm);
+}
+
+.stat-progress-bar-filled {
+    height: 100%;
+    background-color: #00A8F3; /* Bright blue from image */
+    border-radius: var(--border-radius-sm);
+    transition: width var(--transition-speed) ease-out;
 }

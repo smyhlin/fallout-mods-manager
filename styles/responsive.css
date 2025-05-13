@@ -38,72 +38,20 @@
 
 /* --- Desktop-Only Styles (> 1024px) --- */
 @media (min-width: 1025px) {
-    #desktop-sidebar-toggle {
-        display: flex; /* Changed from block to flex for align/justify */
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        top: 50%;
-        /* Default state: sidebar is open */
-        left: var(--sidebar-width);
-        transform: translateY(-50%);
-        width: var(--desktop-toggle-width, 25px); /* Use variable or default */
-        height: var(--desktop-toggle-height, 60px); /* Use variable or default */
-        background-color: var(--background-color);
-        border: 2px solid var(--border-color);
-        border-left-width: 0;
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-        border-top-right-radius: var(--border-radius);
-        border-bottom-right-radius: var(--border-radius);
-        color: var(--text-color);
-        cursor: pointer;
-        z-index: 101; /* Ensure it's above sidebar if any overlap during transition */
-        font-size: 1.2em; /* Match previous */
-        line-height: 1; /* For better vertical centering of text/icon */
-        padding: 0; /* Remove any default padding */
-        transition: left var(--transition-speed) ease-in-out,
-                    background-color var(--transition-speed) ease,
-                    color var(--transition-speed) ease,
-                    border-left-width var(--transition-speed) ease-in-out,
-                    border-right-width var(--transition-speed) ease-in-out,
-                    border-top-left-radius var(--transition-speed) ease-in-out,
-                    border-bottom-left-radius var(--transition-speed) ease-in-out,
-                    border-top-right-radius var(--transition-speed) ease-in-out,
-                    border-bottom-right-radius var(--transition-speed) ease-in-out;
-    }
-    #desktop-sidebar-toggle span { /* If you have a span inside for the icon */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
-    }
-
-
     .pipboy-container.sidebar-collapsed .pipboy-sidebar {
-        width: var(--sidebar-collapsed-width, 0px); /* Should be 0px */
+        width: var(--sidebar-collapsed-width, 0px); 
         padding-left: 0;
         padding-right: 0;
         border-right-width: 0;
         opacity: 0;
-        /* visibility: hidden; applied by transition delay */
-        /* pointer-events: none; applied by transition delay */
-    }
-
-    .pipboy-container.sidebar-collapsed #desktop-sidebar-toggle {
-        left: var(--sidebar-collapsed-width, 0px); /* Should be 0px */
-        border-left-width: 2px;
-        border-right-width: 0;
-        border-top-left-radius: var(--border-radius);
-        border-bottom-left-radius: var(--border-radius);
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
     }
 
     .card-header,
     .card-body {
-        display: none; /* Hide mobile card elements on desktop */
+        display: none; 
+    }
+    #desktop-sidebar-toggle-header { 
+        display: flex;
     }
 }
 
@@ -111,6 +59,20 @@
 @media (max-width: 1024px) {
     body.body-no-scroll {
         overflow: hidden;
+    }
+    .stats-banner-container {
+        flex-direction: column; /* Stack cards vertically on mobile */
+        padding: 0 var(--spacing-md); /* Adjust padding for mobile */
+        margin-bottom: var(--spacing-md);
+    }
+
+    .stat-card-value {
+        font-size: var(--font-size-lg); /* Slightly smaller value text on mobile */
+    }
+
+    .stat-card-icon svg {
+        width: 24px;
+        height: 24px;
     }
     .pipboy-container {
         flex-direction: column;
@@ -121,7 +83,7 @@
         max-width: 100%;
         width: 100%;
         height: 100vh;
-        overflow: visible; /* Allow mobile sidebar to slide out if needed */
+        overflow: visible; 
     }
 
     .pipboy-sidebar {
@@ -130,8 +92,8 @@
         left: 0;
         bottom: 0;
         height: 100vh;
-        width: 75%; /* Can be adjusted */
-        max-width: 320px; /* Max width for mobile sidebar */
+        width: 75%; 
+        max-width: 320px; 
         transform: translateX(-100%);
         z-index: 1100;
         transition: transform var(--transition-speed) ease-in-out;
@@ -142,7 +104,7 @@
         flex-direction: column;
         overflow: hidden;
         padding: 0;
-        opacity: 1; /* Ensure visible for mobile */
+        opacity: 1; 
     }
     .pipboy-sidebar.mobile-sidebar-open {
         transform: translateX(0);
@@ -166,16 +128,23 @@
     .settings-section h4 {
         font-size: var(--font-size-sm);
         text-align: left;
-        text-transform: none; /* Reset desktop uppercase if any */
-        letter-spacing: normal; /* Reset desktop letter-spacing if any */
+        text-transform: none; 
+        letter-spacing: normal; 
     }
-    .pipboy-sidebar h2 { /* For mobile, if h2 is used as main title */
+    .pipboy-sidebar h2 { 
         border-bottom: none;
         padding-bottom: 0;
     }
 
+    .app-main-header {
+       padding: var(--spacing-sm) var(--spacing-md);
+    }
+    .app-main-header-title {
+       font-size: var(--font-size-xl); 
+    }
+
     .pipboy-content {
-        padding: 0;
+        padding: 0; 
         max-height: none;
         width: 100%;
         flex-grow: 1;
@@ -184,23 +153,42 @@
         min-height: 0;
     }
     .pipboy-content-wrapper {
-        padding: var(--spacing-md);
+        padding: var(--spacing-md); 
         height: 100%;
         overflow-y: auto;
         flex-grow: 1;
         position: relative;
     }
+
     .pipboy-header {
-        font-size: var(--font-size-xl);
-        margin-top: var(--spacing-md);
-        flex-direction: column;
-        align-items: flex-start;
+        padding: var(--spacing-sm) var(--spacing-md); 
+        padding-top: var(--spacing-sm);
+        padding-bottom: var(--spacing-sm);
+    }
+    .pipboy-header-main {
+       flex-grow: 1;
+       display: flex;
+       flex-direction: column;
+       align-items: flex-start;
+    }
+    .pipboy-view-title {
+        font-size: var(--font-size-lg); 
+    }
+    .module-count-label {
+        font-size: var(--font-size-xs); 
+        margin-top: 2px;
+    }
+    .header-actions {
+        gap: var(--spacing-xs); 
+    }
+    .header-action-button svg {
+        width: 18px; 
+        height: 18px;
+    }
+    #desktop-sidebar-toggle-header { 
+        display: none;
     }
 
-    .module-count-label {
-        font-size: var(--font-size-sm);
-        margin-top: var(--spacing-xs);
-    }
 
     .module-table { display: block; border: none; font-size: var(--font-size-md); margin-top: var(--spacing-md); }
     .module-table thead { display: none; }
@@ -262,7 +250,6 @@
     .column-width-settings { display: none; }
 
     #mobile-settings-button { display: flex; }
-    #desktop-sidebar-toggle { display: none; }
     #sidebar-overlay.active { display: block; }
 
     .scroll-arrow {
@@ -317,14 +304,50 @@
      .pipboy-sidebar { width: 90%; }
      .pipboy-sidebar h2 { font-size: var(--font-size-md); }
      .sidebar-button { font-size: var(--font-size-sm); }
+     .stats-banner-container {
+        gap: var(--spacing-sm);
+    }
+    .stat-card {
+        padding: var(--spacing-sm);
+    }
+    .stat-card-value {
+        font-size: var(--font-size-md);
+    }
+     .stat-card-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+    .stat-progress-bar-container {
+        height: 8px;
+    }
+     .app-main-header {
+        padding: var(--spacing-xs) var(--spacing-sm);
+     }
+     .app-main-header-title {
+        font-size: var(--font-size-lg); 
+     }
+
      .pipboy-header {
-         font-size: var(--font-size-lg);
-         align-items: flex-start;
+         padding: var(--spacing-xs) var(--spacing-sm);
+     }
+     .pipboy-view-title {
+         font-size: var(--font-size-md); 
      }
      .module-count-label {
-         font-size: var(--font-size-xs);
-         margin-top: var(--spacing-xs);
+         font-size: calc(var(--font-size-xs) - 1px);
+         margin-top: 1px;
      }
+     .header-actions {
+        gap: 2px; 
+     }
+     .header-action-button svg {
+        width: 16px;
+        height: 16px;
+     }
+     .header-action-button {
+        padding: 2px;
+     }
+
      .module-table { font-size: var(--font-size-sm); }
      .card-header { padding: var(--spacing-xs) var(--spacing-sm); }
      .card-body { padding: var(--spacing-xs) var(--spacing-sm); }

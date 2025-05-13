@@ -10,50 +10,29 @@ function App() {
     const [searchTerm, setSearchTerm] = React.useState('');
     const [notification, showNotification] = useNotification();
     const [isDesktopSidebarCollapsed, setIsDesktopSidebarCollapsed] = React.useState(false);
+    const [activeView, setActiveView] = React.useState('modules'); 
+    const fileInputRef = React.useRef(null); // Moved here for consistency
 
-    // Use translation hook
     const { t, language, switchLanguage } = useTranslation();
 
     const {
-        columnSettings,
-        columnVisibility,
-        columnWidths,
-        sortConfig,
-        tempWidths,
-        handleVisibilityChange,
-        handleTempWidthChange,
-        handleSort,
-        handleResetSettings,
-        applyImportedSettings,
+        columnSettings, columnVisibility, columnWidths, sortConfig, tempWidths,
+        handleVisibilityChange, handleTempWidthChange, handleSort,
+        handleResetSettings, applyImportedSettings,
     } = useTableState(columnConfig, showNotification);
 
+    const { isMobileSidebarOpen, toggleMobileSidebar } = useSidebarState();
+    const { isModalOpen, itemBeingEdited, openModal, closeModal } = useModalState();
     const {
-        isMobileSidebarOpen,
-        toggleMobileSidebar,
-    } = useSidebarState();
-
-    const {
-        isModalOpen,
-        itemBeingEdited,
-        openModal,
-        closeModal,
-    } = useModalState();
-
-    const {
-        handleLearnedChange,
-        handleAddNewModule,
-        handleSaveChangesInModal,
-        handleDeleteModule,
+        handleLearnedChange, handleAddNewModule, handleSaveChangesInModal, handleDeleteModule,
     } = useModuleManagement(modules, setModules, showNotification, closeModal, t);
 
     const debouncedSearchTerm = useDebounce(searchTerm, DEBOUNCE_DELAY.SEARCH);
-    const fileInputRef = React.useRef(null);
+    // const fileInputRef = React.useRef(null); // Already defined above
 
-    // Update document title and html lang when language changes
     React.useEffect(() => {
         document.title = t('appTitle');
         document.documentElement.lang = language;
-        // Show noscript tag for current language
         document.querySelectorAll('noscript[lang]').forEach(tag => {
             tag.style.display = tag.getAttribute('lang') === language ? 'block' : 'none';
         });
@@ -81,25 +60,13 @@ function App() {
     }, [showNotification, t]);
 
     React.useEffect(() => {
-        if (!isLoading && initialModulesData !== null) {
-            saveModules(modules);
-        }
+        if (!isLoading && initialModulesData !== null) saveModules(modules);
     }, [modules, isLoading, initialModulesData]);
 
-    // --- Handlers ---
-
-    const handleOpenEditModal = React.useCallback((module) => {
-        openModal(module);
-    }, [openModal]);
-
-    const handleOpenAddModal = React.useCallback(() => {
-        openModal();
-    }, [openModal]);
-
-    const handleSearchChange = React.useCallback((e) => {
-        setSearchTerm(e.target.value);
-    }, []);
-
+    const handleOpenEditModal = React.useCallback((module) => openModal(module), [openModal]);
+    const handleOpenAddModal = React.useCallback(() => openModal(), [openModal]);
+    const handleSearchChange = React.useCallback((e) => setSearchTerm(e.target.value), []);
+    
     const handleExport = React.useCallback(() => {
         try {
             const dataToExport = {
@@ -136,8 +103,8 @@ function App() {
         reader.onload = (e) => {
             try {
                 const importedData = JSON.parse(e.target.result);
-                if (!importedData || typeof importedData !== 'object') throw new Error("Invalid file format.");
-                if (!Array.isArray(importedData.modules)) throw new Error("Missing or invalid 'modules' data.");
+                if (!importedData || typeof importedData !== 'object') throw new Error(t('notificationImportErrorInvalidFormat'));
+                if (!Array.isArray(importedData.modules)) throw new Error(t('notificationImportErrorMissingModules'));
                 
                 if (initialModulesData === null) {
                     showNotification(t('notificationImportInitialDataNotLoaded'), 'error');
@@ -193,113 +160,85 @@ function App() {
                 }
             } catch (error) {
                 console.error("Import failed:", error);
-                showNotification(t('notificationImportError', { message: error.message }), 'error');
+                const errorMessage = error.message || t('notificationImportErrorUnknown');
+                showNotification(t('notificationImportError', { message: errorMessage }), 'error');
             } finally {
                 if (fileInputRef.current) fileInputRef.current.value = '';
             }
         };
-
         reader.onerror = () => {
-            showNotification(t('notificationImportError', { message: 'Failed to read file.' }), 'error');
+            showNotification(t('notificationImportError', { message: t('notificationImportErrorReadFile') }), 'error');
             if (fileInputRef.current) fileInputRef.current.value = '';
         };
-
         reader.readAsText(file);
-    }, [showNotification, initialModulesData, handleResetSettings, applyImportedSettings, t]);
-
-    const toggleDesktopSidebar = React.useCallback(() => {
-        const container = document.querySelector('.pipboy-container');
-        if (container) {
-            container.style.transition = 'margin var(--transition-speed) ease-in-out';
-            setIsDesktopSidebarCollapsed(prev => !prev);
+    }, [showNotification, initialModulesData, applyImportedSettings, handleResetSettings, setModules, t]);
+    
+    const toggleDesktopSidebar = React.useCallback(() => setIsDesktopSidebarCollapsed(prev => !prev), []);
+    
+    const currentPageTitle = React.useMemo(() => {
+        switch (activeView) {
+            case 'modules': return t('pageTitleModules');
+            default: return t('pageTitleModules');
         }
-    }, []);
+    }, [activeView, t]);
 
-    // --- Memoized Derived Data ---
     const processedModules = React.useMemo(() => {
         if (isLoading) return [];
-
         const searchTermLower = debouncedSearchTerm.toLowerCase();
         const searched = !searchTermLower ? modules : modules.filter(m =>
             m.ruName.toLowerCase().includes(searchTermLower) ||
             (m.enName && m.enName.toLowerCase().includes(searchTermLower)) ||
             (m.effect && m.effect.toLowerCase().includes(searchTermLower))
         );
-
         let filtered = [];
         switch (filter) {
             case 'learned': filtered = searched.filter(m => m.learned); break;
             case 'notLearned': filtered = searched.filter(m => !m.learned); break;
             default: filtered = searched; break;
         }
-
-        if (selectedStars !== null) {
-            filtered = filtered.filter(m => m.stars === selectedStars);
-        }
-
+        if (selectedStars !== null) filtered = filtered.filter(m => m.stars === selectedStars);
         const { key: sortKey, direction: sortDirection } = sortConfig;
         const sortMultiplier = sortDirection === 'asc' ? 1 : -1;
         const columnType = columnConfig.find(c => c.id === sortKey)?.type || 'string';
-
         const sorted = [...filtered];
         sorted.sort((a, b) => {
-            let valA = a[sortKey];
-            let valB = b[sortKey];
-
+            let valA = a[sortKey]; let valB = b[sortKey];
             if (columnType === 'string') {
-                valA = String(valA ?? '').toLowerCase();
-                valB = String(valB ?? '').toLowerCase();
-                // Use localeCompare with current language
+                valA = String(valA ?? '').toLowerCase(); valB = String(valB ?? '').toLowerCase();
                 const comp = valA.localeCompare(valB, language);
                 if (comp !== 0) return comp * sortMultiplier;
             } else if (columnType === 'number') {
-                valA = Number(valA ?? 0);
-                valB = Number(valB ?? 0);
+                valA = Number(valA ?? 0); valB = Number(valB ?? 0);
                 if (valA !== valB) return (valA - valB) * sortMultiplier;
             } else if (columnType === 'boolean') {
-                valA = Boolean(valA);
-                valB = Boolean(valB);
+                valA = Boolean(valA); valB = Boolean(valB);
                 if (valA !== valB) return (valA - valB) * sortMultiplier;
             }
-            // Fallback sort by ruName using current language
             return a.ruName.localeCompare(b.ruName, language);
         });
-
         return sorted;
     }, [modules, filter, selectedStars, sortConfig, debouncedSearchTerm, isLoading, language]);
-
-    const dataLabels = React.useMemo(() => {
-        return columnConfig.reduce((acc, col) => {
-            acc[col.id] = t(col.labelKey);
-            return acc;
-        }, {});
-    }, [columnConfig, t]);
-
+    
+    const dataLabels = React.useMemo(() => columnConfig.reduce((acc, col) => { acc[col.id] = t(col.labelKey); return acc; }, {}), [columnConfig, t]);
+    
+    // ***** CORRECTED stats CALCULATION *****
     const stats = React.useMemo(() => {
-        if (isLoading) return { totalCount: 0, learnedCount: 0, percentage: "0.0" };
+        if (isLoading) return { totalCount: 0, learnedCount: 0, percentage: "0.0", visibleCount: 0, visibleModuleSamples: [] };
         const totalCount = modules.length;
         const learnedCount = modules.filter(m => m.learned).length;
         const percentage = totalCount > 0 ? ((learnedCount / totalCount) * 100).toFixed(1) : "0.0";
-        return { totalCount, learnedCount, percentage };
-    }, [modules, isLoading]);
+        const visibleCount = processedModules.length;
+        const visibleModuleSamples = processedModules.slice(0, MAX_VISIBLE_MODULE_SAMPLES_IN_BANNER).map(m => m.ruName); // Get first N samples
+        return { totalCount, learnedCount, percentage, visibleCount, visibleModuleSamples };
+    }, [modules, isLoading, processedModules]); 
+    // ***** END OF CORRECTION *****
 
-    // --- Render ---
-    if (isLoading || initialModulesData === null) {
-        return <div className="loading-indicator">{t('loadingMessage')}</div>;
-    }
+    if (isLoading || initialModulesData === null) return <div className="loading-indicator">{t('loadingMessage')}</div>;
 
     return (
         <React.Fragment>
-            <button 
-                id="mobile-settings-button" 
-                onClick={toggleMobileSidebar} 
-                aria-label={t('mobileMenuButtonLabel')}
-            >☰</button>
-            <div 
-                id="sidebar-overlay" 
-                className={isMobileSidebarOpen ? 'active' : ''} 
-                onClick={toggleMobileSidebar}
-            ></div>
+            <button id="mobile-settings-button" onClick={toggleMobileSidebar} aria-label={t('mobileMenuButtonLabel')}>☰</button>
+            <div id="sidebar-overlay" className={isMobileSidebarOpen ? 'active' : ''} onClick={toggleMobileSidebar}></div>
             <input 
                 type="file" 
                 id="file-import-input" 
@@ -316,40 +255,58 @@ function App() {
                     onMobileClose={toggleMobileSidebar}
                     currentFilter={filter}
                     onFilterChange={setFilter}
-                    stats={stats}
                     columnConfig={columnConfig}
                     columnVisibility={columnVisibility}
                     tempWidths={tempWidths}
                     onVisibilityChange={handleVisibilityChange}
                     onTempWidthChange={handleTempWidthChange}
                     onResetSettings={handleResetSettings}
-                    onImportClick={handleImportClick}
-                    onExport={handleExport}
                     searchTerm={searchTerm}
                     onSearchChange={handleSearchChange}
-                    onAddModuleClick={handleOpenAddModal}
                     currentLanguage={language}
                     onLanguageChange={switchLanguage}
                     selectedStars={selectedStars}
                     onStarFilterChange={setSelectedStars}
                 />
-                <button
-                    id="desktop-sidebar-toggle"
-                    onClick={toggleDesktopSidebar}
-                    aria-label={isDesktopSidebarCollapsed ? t('desktopSidebarToggleExpandLabel') : t('desktopSidebarToggleCollapseLabel')}
-                    title={isDesktopSidebarCollapsed ? t('desktopSidebarToggleExpandLabel') : t('desktopSidebarToggleCollapseLabel')}
-                >
-                    <span>{isDesktopSidebarCollapsed ? '»' : '«'}</span>
-                </button>
-
+                
                 <div className="pipboy-content">
-                    <ScrollableContainer className="pipboy-content-wrapper hide-scrollbar">
-                        <div className="pipboy-header">
-                            {t('headerTitle')}
-                            <div className="module-count-label">
-                                {t('visibleModulesCount', { count: processedModules.length })}
-                            </div>
+                    <div className="app-main-header">
+                        <div className="app-main-header-title-area">
+                            <h1 className="app-main-header-title">{currentPageTitle}</h1>
                         </div>
+                        <div className="app-main-header-actions"></div>
+                    </div>
+
+                    <div className="pipboy-header">
+                        <div className="pipboy-header-main">
+                            <h2 className="pipboy-view-title">{t('headerTitleModules')}</h2>
+                        </div>
+                        <div className="header-actions">
+                             <button onClick={handleOpenAddModal} className="header-action-button" title={t('ioAddModuleButton')}>
+                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-13h-2v4H7v2h4v4h2v-4h4v-2h-4V7z"/></svg>
+                            </button>
+                            <button onClick={handleImportClick} className="header-action-button" title={t('ioImportButton')}>
+                                <svg viewBox="0 0 24 24"><path d="M9 16h6v-6h4l-7-7-7 7h4v6zm-4 2h14v2H5v-2z"/></svg>
+                            </button>
+                            <button onClick={handleExport} className="header-action-button" title={t('ioExportButton')}>
+                                <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18h14v2H5v-2z"/></svg>
+                            </button>
+                            <button
+                                id="desktop-sidebar-toggle-header"
+                                onClick={toggleDesktopSidebar}
+                                className="header-action-button"
+                                title={isDesktopSidebarCollapsed ? t('desktopSidebarToggleExpandLabel') : t('desktopSidebarToggleCollapseLabel')}
+                            >
+                                <svg viewBox="0 0 24 24" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <rect x="3" y="3" width="18" height="18" rx="1" ry="1"/>
+                                    <line x1="10" y1="3" x2="10" y2="21"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <ScrollableContainer className="pipboy-content-wrapper hide-scrollbar">
+                        <StatsBanner stats={stats} /> 
                         <ModuleTable
                             modules={processedModules}
                             columnConfig={columnConfig}
@@ -367,18 +324,12 @@ function App() {
                 </div>
             </div>
 
-            <EditModuleModal
-                isOpen={isModalOpen}
-                module={itemBeingEdited}
-                onClose={closeModal}
-                onSave={itemBeingEdited ? handleSaveChangesInModal : handleAddNewModule}
-            />
+            <EditModuleModal isOpen={isModalOpen} module={itemBeingEdited} onClose={closeModal} onSave={itemBeingEdited ? handleSaveChangesInModal : handleAddNewModule} />
             <Notification {...notification} />
         </React.Fragment>
     );
 }
 
-// --- React Initialization ---
 const container = document.getElementById('root');
 if (container) {
     const root = ReactDOM.createRoot(container);
