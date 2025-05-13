@@ -33,7 +33,7 @@
 }
 .module-form-buttons button:hover {
     background-color: var(--primary-color-dark);
-    box-shadow: var (--box-shadow-glow);
+    box-shadow: var(--box-shadow-glow); /* Corrected: removed extra space */
 }
 /* Cancel button style */
 .module-form-buttons button[type="button"] {

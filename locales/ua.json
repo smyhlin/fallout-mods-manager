@@ -107,5 +107,27 @@
     "weaponTierListContentPlaceholder": "Вміст Тир-листа модулів зброї скоро з'явиться...",
     "armorTierListContentPlaceholder": "Вміст Тир-листа модулів броні скоро з'явиться...",
     "unknownPage": "Невідома сторінка",
-    "unknownPageMessage": "Запитану сторінку Голо-Хабу не знайдено."
-  }
+    "unknownPageMessage": "Запитану сторінку Голо-Хабу не знайдено.",
+
+    "tierListTierS": "Це потрібно",
+    "tierListTierA": "Краще, ніж нічого",
+    "tierListTierF": "Навіщо воно існує?",
+
+    "tierListCategoryPower": "Силова",
+    "tierListCategoryRegular": "Звичайна",
+    "tierListCategoryEverywhere": "Скрізь",
+    "tierListCategoryGeneral": "Загальне",
+
+    "tierListNoteVATS": "(для VATS)",
+    "tierListNotePreFix": "(до фіксу)",
+    "tierListNoteNoVATSAfterFix": "(без VATS, після фіксу оновл.)",
+    "tierListNoteFullHpVATS": "(для фул-хп + VATS)",
+    "tierListNoteLowHp": "(для лоу-хп)",
+    "tierListNoteAfterFix": "(після фіксу)",
+    "tierListNoteNowAndAfterFix": "(зараз і після фіксу(?))",
+    "tierListNoteAfterFixes": "(після фіксів)",
+    "tierListNoteExplosiveOnly": "(тільки для вибухових)",
+    "tierListNoteNowBeforeFiligreeFix": "(зараз, до фіксу філігран.)",
+    "statusUnknownInCollection": "Немає в колекції",
+    "effectNotAvailable": "Опис ефекту для цього запису недоступний."
+}

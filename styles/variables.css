@@ -1,11 +1,13 @@
 /* styles/variables.css */
 :root {
+    --card-common-max-width: 600px; /* Adjust this to your desired width */
     --primary-color: #1eff84;
     --primary-color-rgb: 30, 255, 132;
     --primary-color-dark: #18cd6b;
     --primary-color-glow: rgba(30, 255, 132, 0.7);
     --background-color: #1a2a24;
-    --background-color-light: #233b32;
+    --background-color-light: #233b32; /* Main content bg for HoloHub pages */
+    --background-color-lighter: #2c483f; /* Slightly lighter for tier content areas */
     --background-color-darker: #111c17;
     --border-color: rgba(30, 255, 132, 0.3);
     --border-color-rgb: 30, 255, 132;
@@ -13,7 +15,7 @@
     --text-color: var(--primary-color);
     --text-color-secondary: rgba(30, 255, 132, 0.7);
     --text-color-muted: rgba(30, 255, 132, 0.5);
-    --text-color-inverse: var(--background-color-darker);
+    --text-color-inverse: var(--background-color-darker); 
     --accent-color: #ffb86c;
     --accent-color-rgb: 255, 184, 108;
     --accent-color-glow: rgba(255, 184, 108, 0.7);
@@ -40,20 +42,48 @@
     --spacing-xl: 32px;
     --border-radius: 4px;
     --border-radius-sm: 3px;
+    --border-radius-lg: 8px; 
     --sidebar-width: 280px;
-    --sidebar-collapsed-width: 0px; /* CRITICAL */
+    --sidebar-collapsed-width: 0px; 
     --actions-column-width: 80px;
-    --desktop-toggle-width: 25px; /* Added for toggle button */
-    --desktop-toggle-height: 60px; /* Added for toggle button */
-
+    --desktop-toggle-width: 25px; 
+    --desktop-toggle-height: 60px; 
 
     --text-shadow: 0 0 5px var(--primary-color-glow);
     --text-shadow-header: 0 0 8px var(--primary-color-glow);
-    --box-shadow-light: 0 2px 5px rgba(0, 0, 0, 0.3);
-    --box-shadow-medium: 0 4px 10px rgba(0, 0, 0, 0.4);
+    --box-shadow-light: 0 2px 4px rgba(0, 0, 0, 0.25); /* Slightly more defined */
+    --box-shadow-medium: 0 4px 8px rgba(0, 0, 0, 0.3); /* Slightly more defined */
+    --box-shadow-card-hover: 0 6px 12px rgba(0,0,0,0.35);
     --box-shadow-glow: 0 0 15px var(--primary-color-glow);
     --box-shadow-glow-accent: 0 0 15px var(--accent-color-glow);
     --box-shadow-glow-danger: 0 0 15px var(--danger-color-glow);
     --box-shadow-glow-action: 0 0 15px var(--action-color-glow);
     --transition-speed: 0.2s;
+    --transition-speed-fast: 0.15s;
+
+    --tier-header-height: 60px;
+
+    /* Tier List Colors */
+    --tier-s-color: #4caf50; 
+    --tier-s-rgb: 76, 175, 80;
+    --tier-s-border-color: #388e3c; 
+    --tier-s-text-color: #FFFFFF; 
+
+    --tier-a-color: #ffc107; 
+    --tier-a-rgb: 255, 193, 7;
+    --tier-a-border-color: #ffa000;
+    --tier-a-text-color: #212121; 
+    
+    --tier-f-color: #f44336; 
+    --tier-f-rgb: 244, 67, 54;
+    --tier-f-border-color: #d32f2f;
+    --tier-f-text-color: #FFFFFF; 
+
+    /* How much to darken the tier color for the tier's CONTENT AREA background. */
+    --tier-content-bg-darken-factor: 0.15; /* e.g., 15% brightness of original tier color */
+    /* Fallback for tier content background if tier color isn't available */
+    --tier-content-bg-fallback: var(--background-color-lighter); 
+    
+    /* Module cards will now use a more standard dark background */
+    --module-card-bg: var(--background-color-darker);
 }

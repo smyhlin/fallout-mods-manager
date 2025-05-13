@@ -179,6 +179,9 @@
     display: flex;
     gap: var(--spacing-md);
     margin-bottom: var(--spacing-lg);
+    /* Allow banner to center its content if cards don't fill width */
+    justify-content: center; 
+    flex-wrap: wrap; /* Allow cards to wrap if they exceed container width */
 }
 
 .stat-card {
@@ -186,7 +189,9 @@
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
     padding: var(--spacing-md);
-    flex: 1;
+    flex: 1 1 calc(25% - var(--spacing-md)); /* Example: Aim for 4 cards per row, adjust as needed */
+    min-width: 200px; /* Ensure cards don't get too small */
+    max-width: var(--card-common-max-width); /* Apply the shared max-width */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -244,4 +249,61 @@
     background-color: #00A8F3; /* Bright blue from image */
     border-radius: var(--border-radius-sm);
     transition: width var(--transition-speed) ease-out;
+}
+
+/* --- Module Description Modal Specific Styles --- */
+.module-description-modal-content {
+    max-width: 700px; /* Wider for description */
+    width: 90%;
+}
+
+.module-description-modal-content .modal-header h3 {
+    font-size: var(--font-size-xl); /* Larger title for module name */
+    color: var(--primary-color);
+    text-align: left;
+}
+
+.module-desc-details {
+    font-family: var(--font-family-body);
+    font-size: var(--font-size-md);
+    color: var(--text-color-secondary);
+    line-height: 1.6;
+}
+
+.module-desc-details strong {
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+.module-desc-details .dotted-separator {
+    margin-top: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.effect-text-modal {
+    white-space: pre-line; /* Preserve line breaks in effect */
+    color: var(--text-color);
+    background-color: rgba(var(--primary-color-rgb), 0.05); /* Subtle highlight for effect */
+    padding: var(--spacing-sm);
+    border-radius: var(--border-radius-sm);
+    border-left: 3px solid var(--primary-color);
+}
+
+.desc-modal-status {
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: var(--border-radius-sm);
+    margin-left: var(--spacing-xs);
+}
+.desc-modal-status.status-learned {
+    background-color: var(--primary-color);
+    color: var(--text-color-inverse);
+}
+.desc-modal-status.status-not-learned {
+    background-color: var(--danger-color);
+    color: #fff;
+}
+.desc-modal-status.status-unknown {
+    background-color: var(--text-color-muted);
+    color: var(--background-color-darker);
 }

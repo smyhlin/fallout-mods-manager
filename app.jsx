@@ -343,7 +343,7 @@ function App() {
                             </React.Fragment>
                         )}
                         {activeView === 'holohub' && (
-                            <HoloHubView activePage={activeHoloHubPage} />
+                            <HoloHubView activePage={activeHoloHubPage} allModules={modules} /> // Pass allModules
                         )}
                     </ScrollableContainer>
                 </div>

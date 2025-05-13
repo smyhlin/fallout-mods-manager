@@ -107,5 +107,27 @@
     "weaponTierListContentPlaceholder": "Weapon Modules Tier List content coming soon...",
     "armorTierListContentPlaceholder": "Armor Modules Tier List content coming soon...",
     "unknownPage": "Unknown Page",
-    "unknownPageMessage": "The requested Holo-Hub page could not be found."
-  }
+    "unknownPageMessage": "The requested Holo-Hub page could not be found.",
+
+    "tierListTierS": "S-Tier (Essential)",
+    "tierListTierA": "A-Tier (Better than Nothing)",
+    "tierListTierF": "F-Tier (Why does it exist?)",
+
+    "tierListCategoryPower": "Power Armor",
+    "tierListCategoryRegular": "Regular Armor",
+    "tierListCategoryEverywhere": "General / All Types",
+    "tierListCategoryGeneral": "General",
+
+    "tierListNoteVATS": "(for VATS)",
+    "tierListNotePreFix": "(pre-fix)",
+    "tierListNoteNoVATSAfterFix": "(Ranger, no VATS, post-fix update)",
+    "tierListNoteFullHpVATS": "(for full-HP + VATS)",
+    "tierListNoteLowHp": "(for low-HP)",
+    "tierListNoteAfterFix": "(post-fix)",
+    "tierListNoteNowAndAfterFix": "(current & post-fix (?))",
+    "tierListNoteAfterFixes": "(after fixes)",
+    "tierListNoteExplosiveOnly": "(explosives only)",
+    "tierListNoteNowBeforeFiligreeFix": "(current, pre-filigree fix)",
+    "statusUnknownInCollection": "Not in Collection",
+    "effectNotAvailable": "Effect description not available for this entry."
+}

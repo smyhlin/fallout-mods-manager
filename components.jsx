@@ -92,7 +92,7 @@ SearchInput.propTypes = {
 const FilterControls = React.memo(({ currentFilter, onFilterChange, onSidebarClose }) => {
     const { t } = window.useTranslation();
     return (
-        <div className="sidebar-section">
+        <div className="sidebar-section filter-buttons-container"> {/* Added a class for specific styling if needed */}
             <button className={`sidebar-button ${currentFilter === 'all' ? 'active' : ''}`} onClick={() => { onFilterChange('all'); onSidebarClose?.(); }}>{t('filterAll')}</button>
             <button className={`sidebar-button ${currentFilter === 'learned' ? 'active' : ''}`} onClick={() => { onFilterChange('learned'); onSidebarClose?.(); }}>{t('filterLearned')}</button>
             <button className={`sidebar-button ${currentFilter === 'notLearned' ? 'active' : ''}`} onClick={() => { onFilterChange('notLearned'); onSidebarClose?.(); }}>{t('filterNotLearned')}</button>
@@ -386,12 +386,12 @@ HoloHubNavigation.propTypes = {
 
 const Sidebar = React.memo(({
     isMobileOpen, isDesktopCollapsed, onMobileClose,
-    activeView, // New prop
+    activeView, 
     currentFilter, onFilterChange, columnConfig, columnVisibility,
     tempWidths, onVisibilityChange, onTempWidthChange,
     onResetSettings, searchTerm, onSearchChange, 
     currentLanguage, onLanguageChange, selectedStars, onStarFilterChange,
-    activeHoloHubPage, onHoloHubPageChange // New HoloHub props
+    activeHoloHubPage, onHoloHubPageChange 
 }) => {
     const { t } = window.useTranslation();
     return (
@@ -532,7 +532,7 @@ ModuleTableRow.propTypes = {
 
 const ModuleTable = React.memo(({ modules, columnConfig, columnVisibility, columnWidths, sortConfig, onSort, dataLabels, onLearnedChange, onEdit, onDelete, highlightTerm }) => {
     const { t } = window.useTranslation();
-    const visibleColumnCount = columnConfig.filter(c => columnVisibility[c.id]).length + 1; // +1 for actions
+    const visibleColumnCount = columnConfig.filter(c => columnVisibility[c.id]).length + 1; 
     return (
     <table className="module-table">
         <thead>
@@ -754,7 +754,7 @@ const TabNavigation = React.memo(({ activeView, onTabChange }) => {
                 aria-pressed={activeView === 'modules'}
             >
                 <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style={{ marginRight: '8px' }}>
-                    <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/> {/* Generic list/modules icon */}
+                    <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/> 
                 </svg>
                 {t('tabModules')}
             </button>
@@ -764,7 +764,7 @@ const TabNavigation = React.memo(({ activeView, onTabChange }) => {
                 aria-pressed={activeView === 'holohub'}
             >
                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style={{ marginRight: '8px' }}>
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/> {/* Info/Hub icon */}
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/> 
                 </svg>
                 {t('tabHoloHub')}
             </button>
@@ -776,50 +776,255 @@ TabNavigation.propTypes = {
     onTabChange: PropTypes.func.isRequired,
 };
 
-const HoloHubPageContent = ({ pageId, t }) => {
-    // Basic content structure, can be expanded
+// --- New Module Description Modal ---
+const ModuleDescriptionModal = React.memo(({ isOpen, onClose, moduleData }) => {
+    const { t } = window.useTranslation();
+
+    if (!isOpen || !moduleData) return null;
+
+    const { name, stars, effect, learnedStatus, noteKey } = moduleData;
+    const noteText = noteKey ? t(noteKey) : null;
+    const learnedStatusText = learnedStatus === 'learned' ? t('learnedStatusLearned') :
+                             learnedStatus === 'not-learned' ? t('learnedStatusNotLearned') :
+                             t('statusUnknownInCollection'); // New translation key
+
+    return (
+        <div className={`modal-overlay ${isOpen ? 'active' : ''}`} onClick={onClose} role="dialog" aria-modal="true" aria-labelledby="module-desc-title">
+            <div className="modal-content module-description-modal-content" onClick={(e) => e.stopPropagation()}>
+                <div className="modal-header">
+                    <button className="modal-close-button" onClick={onClose} aria-label={t('modalCloseButtonLabel')}>×</button>
+                    <h3 id="module-desc-title">{name}</h3>
+                </div>
+                <div className="modal-body">
+                    <div className="module-desc-details">
+                        {stars && (
+                            <p><strong>{t('columnLabelStars')}:</strong> {getStars(stars)}</p>
+                        )}
+                        <p>
+                            <strong>{t('columnLabelLearned')}:</strong>
+                            <span className={`desc-modal-status status-${learnedStatus}`}> {learnedStatusText}</span>
+                        </p>
+                        {noteText && (
+                            <p><em>{noteText}</em></p>
+                        )}
+                        <hr className="dotted-separator" />
+                        <p><strong>{t('columnLabelEffect')}:</strong></p>
+                        <p className="effect-text-modal">{effect || t('effectNotAvailable')}</p> {/* New translation key */}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+});
+ModuleDescriptionModal.propTypes = {
+    isOpen: PropTypes.bool.isRequired,
+    onClose: PropTypes.func.isRequired,
+    moduleData: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        stars: PropTypes.number,
+        effect: PropTypes.string,
+        learnedStatus: PropTypes.string, // 'learned', 'not-learned', 'unknown'
+        noteKey: PropTypes.string,
+    }),
+};
+
+
+// --- Modified Tier List Components ---
+
+const ModuleTierCard = React.memo(({ moduleName, moduleNoteKey, allModules, onCardClick }) => {
+    const { t } = window.useTranslation();
+    const userModule = allModules.find(m => m.ruName === moduleName);
+    
+    let learnedStatus = 'unknown'; 
+    let stars = null;
+    let effect = null;
+
+    if (userModule) {
+        learnedStatus = userModule.learned ? 'learned' : 'not-learned';
+        stars = userModule.stars;
+        effect = userModule.effect;
+    }
+
+    const noteText = moduleNoteKey ? t(moduleNoteKey) : null;
+
+    const handleClick = () => {
+        onCardClick({
+            name: moduleName,
+            stars,
+            effect,
+            learnedStatus,
+            noteKey: moduleNoteKey // Pass the original noteKey for the modal
+        });
+    };
+
+    return (
+        <div 
+            className={`tier-module-card status-${learnedStatus} clickable`} // Added 'clickable' class
+            onClick={handleClick}
+            role="button"
+            tabIndex="0" // Make it focusable
+            onKeyPress={(e) => (e.key === 'Enter' || e.key === ' ') && handleClick()} // Keyboard accessibility
+        >
+            <div className="tier-module-card-content">
+                <div className="tier-module-card-header">
+                    {learnedStatus === 'learned' && <span className="learned-badge" title={t('learnedStatusLearned')}>✔</span>}
+                    {learnedStatus === 'not-learned' && <span className="not-learned-badge" title={t('learnedStatusNotLearned')}>✖</span>}
+                </div>
+                <div className="tier-module-name">
+                    {moduleName}
+                    {stars && <span className="tier-module-stars"> ({getStars(stars)})</span>}
+                </div>
+                {noteText && <div className="tier-module-note">{noteText}</div>}
+            </div>
+        </div>
+    );
+});
+ModuleTierCard.propTypes = {
+    moduleName: PropTypes.string.isRequired,
+    moduleNoteKey: PropTypes.string,
+    allModules: PropTypes.array.isRequired,
+    onCardClick: PropTypes.func.isRequired, // Added prop type
+};
+
+const TierCategory = React.memo(({ categoryNameKey, modulesInTier, allModules, onCardClick }) => { // Added onCardClick
+    const { t } = window.useTranslation();
+    const categoryName = categoryNameKey ? t(categoryNameKey) : null;
+
+    return (
+        <div className="tier-category">
+            {categoryName && <h4 className="tier-category-name">{categoryName}</h4>}
+            <div className="tier-category-modules">
+                {modulesInTier.map((modInfo, index) => (
+                    <ModuleTierCard
+                        key={`${modInfo.name}-${index}`}
+                        moduleName={modInfo.name}
+                        moduleNoteKey={modInfo.noteKey}
+                        allModules={allModules}
+                        onCardClick={onCardClick} // Pass down
+                    />
+                ))}
+            </div>
+        </div>
+    );
+});
+TierCategory.propTypes = {
+    categoryNameKey: PropTypes.string,
+    modulesInTier: PropTypes.array.isRequired,
+    allModules: PropTypes.array.isRequired,
+    onCardClick: PropTypes.func.isRequired, // Added prop type
+};
+
+
+const TierRow = React.memo(({ tierNameKey, tierColor, tierBorderColor, textColor, categories, allModules, onCardClick }) => { // Added onCardClick
+    const { t } = window.useTranslation();
+    const headerStyle = {
+        backgroundColor: tierColor,
+        color: textColor,
+        borderColor: tierBorderColor
+    };
+    const contentAreaStyle = {
+        '--tier-content-base-color': tierColor
+    };
+
+    return (
+        <div className="tier-row-horizontal">
+            <div className="tier-header-horizontal" style={headerStyle}>
+                <span className="tier-label-horizontal">{t(tierNameKey)}</span>
+            </div>
+            <div className="tier-content-horizontal" style={contentAreaStyle}>
+                {categories.map((cat, index) => (
+                    <TierCategory
+                        key={cat.categoryNameKey || `cat-${index}`}
+                        categoryNameKey={cat.categoryNameKey}
+                        modulesInTier={cat.modules}
+                        allModules={allModules}
+                        onCardClick={onCardClick} // Pass down
+                    />
+                ))}
+            </div>
+        </div>
+    );
+});
+TierRow.propTypes = {
+    tierNameKey: PropTypes.string.isRequired,
+    tierColor: PropTypes.string.isRequired,
+    tierBorderColor: PropTypes.string.isRequired,
+    textColor: PropTypes.string.isRequired,
+    categories: PropTypes.array.isRequired,
+    allModules: PropTypes.array.isRequired,
+    onCardClick: PropTypes.func.isRequired, // Added prop type
+};
+
+const TierListPage = React.memo(({ tierListData, listTitleKey, allModules }) => {
+    const { t } = window.useTranslation();
+    const [isDescModalOpen, setIsDescModalOpen] = React.useState(false);
+    const [selectedModuleData, setSelectedModuleData] = React.useState(null);
+
+    const handleOpenDescriptionModal = React.useCallback((moduleData) => {
+        setSelectedModuleData(moduleData);
+        setIsDescModalOpen(true);
+    }, []);
+
+    const handleCloseDescriptionModal = React.useCallback(() => {
+        setIsDescModalOpen(false);
+        setSelectedModuleData(null);
+    }, []);
+
+    return (
+        <div className="tier-list-container holohub-page-content">
+            <h2>{t(listTitleKey)}</h2>
+            <div className="tier-list">
+                {tierListData.map(tier => (
+                    <TierRow
+                        key={tier.tierNameKey}
+                        tierNameKey={tier.tierNameKey}
+                        tierColor={tier.tierColor}
+                        tierBorderColor={tier.tierBorderColor}
+                        textColor={tier.textColor}
+                        categories={tier.categories}
+                        allModules={allModules}
+                        onCardClick={handleOpenDescriptionModal} // Pass handler
+                    />
+                ))}
+            </div>
+            <ModuleDescriptionModal
+                isOpen={isDescModalOpen}
+                onClose={handleCloseDescriptionModal}
+                moduleData={selectedModuleData}
+            />
+        </div>
+    );
+});
+TierListPage.propTypes = {
+    tierListData: PropTypes.array.isRequired,
+    listTitleKey: PropTypes.string.isRequired,
+    allModules: PropTypes.array.isRequired,
+};
+
+
+// --- HoloHub View and Page Content (HoloHubPageContent and HoloHubView remain the same as previous correct version) ---
+const HoloHubPageContent = ({ pageId, t, allModules }) => { 
     switch (pageId) {
         case 'xpFarming':
             return (
                 <div className="holohub-page-content">
                     <h2>{t('holoHubPageXPFarming')}</h2>
                     <p>{t('xpFarmingIntro')}</p>
-                    
                     <h3><span className="holohub-icon">⚡</span> {t('xpFarmingGeneralTipsTitle')}</h3>
-                    <ul>
-                        <li>{t('xpFarmingTipCasualTeam')}</li>
-                        <li>{t('xpFarmingTipConsumables')}</li>
-                        <li>{t('xpFarmingTipArmor')}</li>
-                        <li>{t('xpFarmingTipWellRested')}</li>
-                        <li>{t('xpFarmingTipLunchboxes')}</li>
-                        <li>{t('xpFarmingTipInspirational')}</li>
-                        <li>{t('xpFarmingTipPublicEvents')}</li>
-                    </ul>
-
+                    <ul><li>{t('xpFarmingTipCasualTeam')}</li><li>{t('xpFarmingTipConsumables')}</li><li>{t('xpFarmingTipArmor')}</li><li>{t('xpFarmingTipWellRested')}</li><li>{t('xpFarmingTipLunchboxes')}</li><li>{t('xpFarmingTipInspirational')}</li><li>{t('xpFarmingTipPublicEvents')}</li></ul>
                     <h3><span className="holohub-icon">⏫</span> {t('xpFarmingHighXpLocationsTitle')}</h3>
-                    <ul>
-                        <li>{t('xpFarmingLocationWestTek')}</li>
-                        <li>{t('xpFarmingLocationWhitespring')}</li>
-                        <li>{t('xpFarmingLocationGlassedCavern')}</li>
-                        <li>{t('xpFarmingLocationEvents')}</li>
-                        <li>{t('xpFarmingLocationNukeZones')}</li>
-                    </ul>
-                    
+                    <ul><li>{t('xpFarmingLocationWestTek')}</li><li>{t('xpFarmingLocationWhitespring')}</li><li>{t('xpFarmingLocationGlassedCavern')}</li><li>{t('xpFarmingLocationEvents')}</li><li>{t('xpFarmingLocationNukeZones')}</li></ul>
                     <h3><span className="holohub-icon">⭐</span> {t('xpFarmingImportantPerksTitle')}</h3>
-                     <ul>
-                        <li>{t('xpFarmingPerkIntelligence')}</li>
-                        <li>{t('xpFarmingPerkCharisma')}</li>
-                        <li>{t('xpFarmingPerkLuck')}</li>
-                    </ul>
+                    <ul><li>{t('xpFarmingPerkIntelligence')}</li><li>{t('xpFarmingPerkCharisma')}</li><li>{t('xpFarmingPerkLuck')}</li></ul>
                     <p className="holohub-footer">{t('xpFarmingOutro')}</p>
                 </div>
             );
         case 'critCalculator':
             return <div className="holohub-page-content"><h2>{t('holoHubPageCritCalculator')}</h2><p>{t('critCalculatorContentPlaceholder')}</p></div>;
         case 'weaponTierList':
-            return <div className="holohub-page-content"><h2>{t('holoHubPageWeaponTierList')}</h2><p>{t('weaponTierListContentPlaceholder')}</p></div>;
+            return <TierListPage tierListData={window.weaponTierListData} listTitleKey="holoHubPageWeaponTierList" allModules={allModules} />;
         case 'armorTierList':
-            return <div className="holohub-page-content"><h2>{t('holoHubPageArmorTierList')}</h2><p>{t('armorTierListContentPlaceholder')}</p></div>;
+            return <TierListPage tierListData={window.armorTierListData} listTitleKey="holoHubPageArmorTierList" allModules={allModules} />;
         default:
             return <div className="holohub-page-content"><h2>{t('unknownPage')}</h2><p>{t('unknownPageMessage')}</p></div>;
     }
@@ -827,18 +1032,18 @@ const HoloHubPageContent = ({ pageId, t }) => {
 HoloHubPageContent.propTypes = {
     pageId: PropTypes.string.isRequired,
     t: PropTypes.func.isRequired,
+    allModules: PropTypes.array.isRequired, 
 };
 
-
-const HoloHubView = React.memo(({ activePage }) => {
+const HoloHubView = React.memo(({ activePage, allModules }) => { 
     const { t } = window.useTranslation();
-    // This component wraps the content for the selected HoloHub page
     return (
         <div className="holohub-view-container">
-            <HoloHubPageContent pageId={activePage} t={t} />
+            <HoloHubPageContent pageId={activePage} t={t} allModules={allModules} /> 
         </div>
     );
 });
 HoloHubView.propTypes = {
     activePage: PropTypes.string.isRequired,
+    allModules: PropTypes.array.isRequired, 
 };

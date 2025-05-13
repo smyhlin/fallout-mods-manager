@@ -197,12 +197,16 @@
         display: block;
         border: 1px solid var(--border-color);
         border-radius: var(--border-radius);
+        margin-left: auto; /* Center the card if max-width is applied */
+        margin-right: auto; /* Center the card if max-width is applied */
         margin-bottom: var(--spacing-md);
         padding: 0;
         background-color: var(--background-color-light);
         box-shadow: var(--box-shadow-light);
         position: relative;
         transition: box-shadow var(--transition-speed) ease;
+        max-width: var(--card-common-max-width); /* Apply the shared max-width */
+        width: 100%; /* Ensure it tries to fill available space up to max-width */
     }
     .module-table tr:focus-within {
         box-shadow: 0 0 10px var(--primary-color-glow);
