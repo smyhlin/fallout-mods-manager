@@ -10,8 +10,11 @@ function App() {
     const [searchTerm, setSearchTerm] = React.useState('');
     const [notification, showNotification] = useNotification();
     const [isDesktopSidebarCollapsed, setIsDesktopSidebarCollapsed] = React.useState(false);
-    const [activeView, setActiveView] = React.useState('modules'); 
-    const fileInputRef = React.useRef(null); // Moved here for consistency
+    
+    const [activeView, setActiveView] = React.useState('modules'); // 'modules' or 'holohub'
+    const [activeHoloHubPage, setActiveHoloHubPage] = React.useState(holoHubPagesConfig[0].id); // Default to first Holo-Hub page
+
+    const fileInputRef = React.useRef(null);
 
     const { t, language, switchLanguage } = useTranslation();
 
@@ -28,7 +31,6 @@ function App() {
     } = useModuleManagement(modules, setModules, showNotification, closeModal, t);
 
     const debouncedSearchTerm = useDebounce(searchTerm, DEBOUNCE_DELAY.SEARCH);
-    // const fileInputRef = React.useRef(null); // Already defined above
 
     React.useEffect(() => {
         document.title = t('appTitle');
@@ -60,8 +62,10 @@ function App() {
     }, [showNotification, t]);
 
     React.useEffect(() => {
-        if (!isLoading && initialModulesData !== null) saveModules(modules);
-    }, [modules, isLoading, initialModulesData]);
+        if (!isLoading && initialModulesData !== null && activeView === 'modules') {
+            saveModules(modules);
+        }
+    }, [modules, isLoading, initialModulesData, activeView]);
 
     const handleOpenEditModal = React.useCallback((module) => openModal(module), [openModal]);
     const handleOpenAddModal = React.useCallback(() => openModal(), [openModal]);
@@ -175,15 +179,20 @@ function App() {
     
     const toggleDesktopSidebar = React.useCallback(() => setIsDesktopSidebarCollapsed(prev => !prev), []);
     
-    const currentPageTitle = React.useMemo(() => {
-        switch (activeView) {
-            case 'modules': return t('pageTitleModules');
-            default: return t('pageTitleModules');
+    const overallAppTitle = React.useMemo(() => t('pageTitleApp'), [t]);
+
+    const currentViewDisplayTitle = React.useMemo(() => {
+        // This is the H2 title for the current tab/view content area
+        if (activeView === 'modules') return t('headerTitleModules');
+        if (activeView === 'holohub') {
+            const pageConfig = holoHubPagesConfig.find(p => p.id === activeHoloHubPage);
+            return pageConfig ? t(pageConfig.labelKey) : t('headerTitleHoloHub');
         }
-    }, [activeView, t]);
+        return ''; 
+    }, [activeView, activeHoloHubPage, t]);
 
     const processedModules = React.useMemo(() => {
-        if (isLoading) return [];
+        if (isLoading || activeView !== 'modules') return [];
         const searchTermLower = debouncedSearchTerm.toLowerCase();
         const searched = !searchTermLower ? modules : modules.filter(m =>
             m.ruName.toLowerCase().includes(searchTermLower) ||
@@ -214,26 +223,26 @@ function App() {
                 valA = Boolean(valA); valB = Boolean(valB);
                 if (valA !== valB) return (valA - valB) * sortMultiplier;
             }
-            return a.ruName.localeCompare(b.ruName, language);
+            const compName = a.ruName.localeCompare(b.ruName, language);
+            if (compName !== 0) return compName;
+            return (a.stars - b.stars);
         });
         return sorted;
-    }, [modules, filter, selectedStars, sortConfig, debouncedSearchTerm, isLoading, language]);
+    }, [modules, filter, selectedStars, sortConfig, debouncedSearchTerm, isLoading, language, activeView]);
     
     const dataLabels = React.useMemo(() => columnConfig.reduce((acc, col) => { acc[col.id] = t(col.labelKey); return acc; }, {}), [columnConfig, t]);
     
-    // ***** CORRECTED stats CALCULATION *****
     const stats = React.useMemo(() => {
-        if (isLoading) return { totalCount: 0, learnedCount: 0, percentage: "0.0", visibleCount: 0, visibleModuleSamples: [] };
+        if (isLoading || activeView !== 'modules') return { totalCount: 0, learnedCount: 0, percentage: "0.0", visibleCount: 0, visibleModuleSamples: [] };
         const totalCount = modules.length;
         const learnedCount = modules.filter(m => m.learned).length;
         const percentage = totalCount > 0 ? ((learnedCount / totalCount) * 100).toFixed(1) : "0.0";
         const visibleCount = processedModules.length;
-        const visibleModuleSamples = processedModules.slice(0, MAX_VISIBLE_MODULE_SAMPLES_IN_BANNER).map(m => m.ruName); // Get first N samples
+        const visibleModuleSamples = processedModules.slice(0, MAX_VISIBLE_MODULE_SAMPLES_IN_BANNER).map(m => m.ruName);
         return { totalCount, learnedCount, percentage, visibleCount, visibleModuleSamples };
-    }, [modules, isLoading, processedModules]); 
-    // ***** END OF CORRECTION *****
+    }, [modules, isLoading, processedModules, activeView]); 
 
-    if (isLoading || initialModulesData === null) return <div className="loading-indicator">{t('loadingMessage')}</div>;
+    if (isLoading && initialModulesData === null) return <div className="loading-indicator">{t('loadingMessage')}</div>;
 
     return (
         <React.Fragment>
@@ -253,6 +262,7 @@ function App() {
                     isMobileOpen={isMobileSidebarOpen}
                     isDesktopCollapsed={isDesktopSidebarCollapsed}
                     onMobileClose={toggleMobileSidebar}
+                    activeView={activeView} // Pass activeView
                     currentFilter={filter}
                     onFilterChange={setFilter}
                     columnConfig={columnConfig}
@@ -267,30 +277,38 @@ function App() {
                     onLanguageChange={switchLanguage}
                     selectedStars={selectedStars}
                     onStarFilterChange={setSelectedStars}
+                    activeHoloHubPage={activeHoloHubPage} // Pass HoloHub page state
+                    onHoloHubPageChange={setActiveHoloHubPage} // Pass HoloHub page handler
                 />
                 
                 <div className="pipboy-content">
                     <div className="app-main-header">
                         <div className="app-main-header-title-area">
-                            <h1 className="app-main-header-title">{currentPageTitle}</h1>
+                            <h1 className="app-main-header-title">{overallAppTitle}</h1>
                         </div>
                         <div className="app-main-header-actions"></div>
                     </div>
 
+                    <TabNavigation activeView={activeView} onTabChange={setActiveView} />
+
                     <div className="pipboy-header">
                         <div className="pipboy-header-main">
-                            <h2 className="pipboy-view-title">{t('headerTitleModules')}</h2>
+                            <h2 className="pipboy-view-title">{currentViewDisplayTitle}</h2>
                         </div>
                         <div className="header-actions">
-                             <button onClick={handleOpenAddModal} className="header-action-button" title={t('ioAddModuleButton')}>
-                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-13h-2v4H7v2h4v4h2v-4h4v-2h-4V7z"/></svg>
-                            </button>
-                            <button onClick={handleImportClick} className="header-action-button" title={t('ioImportButton')}>
-                                <svg viewBox="0 0 24 24"><path d="M9 16h6v-6h4l-7-7-7 7h4v6zm-4 2h14v2H5v-2z"/></svg>
-                            </button>
-                            <button onClick={handleExport} className="header-action-button" title={t('ioExportButton')}>
-                                <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18h14v2H5v-2z"/></svg>
-                            </button>
+                            {activeView === 'modules' && (
+                                <React.Fragment>
+                                    <button onClick={handleOpenAddModal} className="header-action-button" title={t('ioAddModuleButton')}>
+                                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-13h-2v4H7v2h4v4h2v-4h4v-2h-4V7z"/></svg>
+                                    </button>
+                                    <button onClick={handleImportClick} className="header-action-button" title={t('ioImportButton')}>
+                                        <svg viewBox="0 0 24 24"><path d="M9 16h6v-6h4l-7-7-7 7h4v6zm-4 2h14v2H5v-2z"/></svg>
+                                    </button>
+                                    <button onClick={handleExport} className="header-action-button" title={t('ioExportButton')}>
+                                        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18h14v2H5v-2z"/></svg>
+                                    </button>
+                                </React.Fragment>
+                            )}
                             <button
                                 id="desktop-sidebar-toggle-header"
                                 onClick={toggleDesktopSidebar}
@@ -306,25 +324,34 @@ function App() {
                     </div>
                     
                     <ScrollableContainer className="pipboy-content-wrapper hide-scrollbar">
-                        <StatsBanner stats={stats} /> 
-                        <ModuleTable
-                            modules={processedModules}
-                            columnConfig={columnConfig}
-                            columnVisibility={columnVisibility}
-                            columnWidths={columnWidths}
-                            sortConfig={sortConfig}
-                            onSort={handleSort}
-                            dataLabels={dataLabels}
-                            onLearnedChange={handleLearnedChange}
-                            onEdit={handleOpenEditModal}
-                            onDelete={handleDeleteModule}
-                            highlightTerm={debouncedSearchTerm}
-                        />
+                        {activeView === 'modules' && (
+                            <React.Fragment>
+                                <StatsBanner stats={stats} /> 
+                                <ModuleTable
+                                    modules={processedModules}
+                                    columnConfig={columnConfig}
+                                    columnVisibility={columnVisibility}
+                                    columnWidths={columnWidths}
+                                    sortConfig={sortConfig}
+                                    onSort={handleSort}
+                                    dataLabels={dataLabels}
+                                    onLearnedChange={handleLearnedChange}
+                                    onEdit={handleOpenEditModal}
+                                    onDelete={handleDeleteModule}
+                                    highlightTerm={debouncedSearchTerm}
+                                />
+                            </React.Fragment>
+                        )}
+                        {activeView === 'holohub' && (
+                            <HoloHubView activePage={activeHoloHubPage} />
+                        )}
                     </ScrollableContainer>
                 </div>
             </div>
 
-            <EditModuleModal isOpen={isModalOpen} module={itemBeingEdited} onClose={closeModal} onSave={itemBeingEdited ? handleSaveChangesInModal : handleAddNewModule} />
+            {activeView === 'modules' && (
+                <EditModuleModal isOpen={isModalOpen} module={itemBeingEdited} onClose={closeModal} onSave={itemBeingEdited ? handleSaveChangesInModal : handleAddNewModule} />
+            )}
             <Notification {...notification} />
         </React.Fragment>
     );

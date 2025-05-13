@@ -67,14 +67,23 @@
     color: var(--text-color-secondary);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius-sm);
-    text-align: center;
+    text-align: left; /* Align text to left for HoloHub nav */
     font-family: var(--font-family-body);
     font-size: var(--font-size-md);
     cursor: pointer;
     transition: background-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease, color var(--transition-speed) ease, border-color var(--transition-speed) ease;
     white-space: normal;
     overflow-wrap: break-word;
+    display: flex; /* For icon alignment */
+    align-items: center; /* For icon alignment */
 }
+.sidebar-button-icon {
+    margin-right: var(--spacing-sm);
+    font-size: 1.1em;
+    min-width: 1.2em; /* Ensure space for icon */
+    text-align: center;
+}
+
 .sidebar-button:hover {
     background-color: rgba(var(--primary-color-rgb), 0.15);
     color: var(--primary-color);
@@ -92,6 +101,7 @@
     border-color: var(--accent-color);
     color: var(--accent-color);
     background-color: transparent;
+    justify-content: center; /* Center reset button text */
 }
 .sidebar-button.reset-button:hover {
     background-color: rgba(var(--accent-color-rgb), 0.15);
@@ -102,12 +112,18 @@
     border-color: var(--action-color);
     color: var(--action-color);
     background-color: transparent;
+    justify-content: center; /* Center IO button text */
 }
 .sidebar-button.io-button:hover {
     background-color: rgba(var(--action-color-rgb), 0.15);
     border-color: var(--action-color);
     color: var(--action-color);
 }
+/* Specific for filter buttons to keep them centered */
+.filter-buttons-container .sidebar-button {
+    justify-content: center;
+}
+
 
 .settings-control { margin-bottom: var(--spacing-md); }
 .settings-control label {
@@ -176,11 +192,6 @@
 .mobile-close-button:hover {
     background-color: rgba(var(--primary-color-rgb), 0.6);
 }
-
-/* #desktop-sidebar-toggle is now primarily in responsive.css for desktop view */
-/* This file can contain base styles if any are shared or for non-media query scenarios */
-/* However, for this specific toggle, responsive.css @media (min-width: 1025px) is the main controller */
-
 
 .search-section .settings-label {
     text-align: left;

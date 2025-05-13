@@ -22,9 +22,22 @@ window.defaultColumnVisibility = window.columnConfig.reduce((acc, col) => {
     acc[col.id] = true; // Default all columns to visible
     return acc;
 }, {});
+// Ensure 'actions' column is not in default visibility if it's handled separately or always visible
+// delete window.defaultColumnVisibility.actions;
+
 
 // Default width state based on columnConfig
 window.defaultColumnWidths = window.columnConfig.reduce((acc, col) => {
-    acc[col.id] = col.defaultWidth;
+    if (col.defaultWidth) { // Only add if defaultWidth is defined
+        acc[col.id] = col.defaultWidth;
+    }
     return acc;
 }, {});
+
+// Holo-Hub Pages Configuration
+window.holoHubPagesConfig = [
+    { id: 'xpFarming', labelKey: 'holoHubPageXPFarming', icon: '📖' },
+    { id: 'critCalculator', labelKey: 'holoHubPageCritCalculator', icon: '∑' },
+    { id: 'weaponTierList', labelKey: 'holoHubPageWeaponTierList', icon: '🔫' },
+    { id: 'armorTierList', labelKey: 'holoHubPageArmorTierList', icon: '🛡️' },
+];

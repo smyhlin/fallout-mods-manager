@@ -117,7 +117,7 @@ const StatsBanner = React.memo(({ stats }) => {
                     <span className="stat-card-value">{stats.totalCount}</span>
                 </div>
                 <div className="stat-card-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor"> {/* Layers icon */}
+                    <svg viewBox="0 0 24 24" fill="currentColor">
                         <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zm0-10h14V7H7v2z"/>
                     </svg>
                 </div>
@@ -128,12 +128,11 @@ const StatsBanner = React.memo(({ stats }) => {
                     <span className="stat-card-value">{stats.learnedCount}</span>
                 </div>
                 <div className="stat-card-icon">
-                     <svg viewBox="0 0 24 24" fill="currentColor"> {/* Checkbox/list icon */}
+                     <svg viewBox="0 0 24 24" fill="currentColor">
                         <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17zM19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/>
                     </svg>
                 </div>
             </div>
-            {/* Percentage Learned Card - MOVED TO BE THIRD */}
             <div className="stat-card">
                 <div className="stat-card-content">
                     <span className="stat-card-title">{t('bannerPercentageLearned')}</span>
@@ -150,12 +149,11 @@ const StatsBanner = React.memo(({ stats }) => {
                     </div>
                 </div>
                 <div className="stat-card-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor"> {/* Percent icon */}
+                    <svg viewBox="0 0 24 24" fill="currentColor">
                         <path d="M7.5 11C8.33 11 9 10.33 9 9.5S8.33 8 7.5 8 6 8.67 6 9.5 6.67 11 7.5 11zm9 4c.83 0 1.5-.67 1.5-1.5S17.33 12 16.5 12s-1.5.67-1.5 1.5.67 1.5 1.5 1.5zm-9.95-5.71L17.29 19.04c.39.39 1.02.39 1.41 0s.39-1.02 0-1.41L7.96 6.88a.9959.9959 0 00-1.41 0c-.39.39-.39 1.03 0 1.41z"/>
                     </svg>
                 </div>
             </div>
-            {/* Visible Modules Card - NOW FOURTH */}
             <div className="stat-card">
                 <div className="stat-card-content">
                     <span className="stat-card-title">{t('bannerVisibleModules')}</span>
@@ -163,7 +161,7 @@ const StatsBanner = React.memo(({ stats }) => {
                     {stats.visibleCount > 0 && stats.visibleModuleSamples && stats.visibleModuleSamples.length > 0}
                 </div>
                 <div className="stat-card-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor"> {/* Filter icon */}
+                    <svg viewBox="0 0 24 24" fill="currentColor">
                         <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/>
                     </svg>
                 </div>
@@ -177,7 +175,7 @@ StatsBanner.propTypes = {
         learnedCount: PropTypes.number.isRequired,
         percentage: PropTypes.string.isRequired,
         visibleCount: PropTypes.number.isRequired,
-        visibleModuleSamples: PropTypes.arrayOf(PropTypes.string).isRequired, // Added visibleModuleSamples
+        visibleModuleSamples: PropTypes.arrayOf(PropTypes.string).isRequired,
     }).isRequired,
 };
 
@@ -280,24 +278,23 @@ const ScrollableContainer = ({ children, className = '' }) => {
         const resizeObserver = new ResizeObserver(checkScroll);
         resizeObserver.observe(el);
         const mutationObserver = new MutationObserver(checkScroll);
-        mutationObserver.observe(el, { childList: true, subtree: true, characterData: true, attributes: true }); // Added attributes
+        mutationObserver.observe(el, { childList: true, subtree: true, characterData: true, attributes: true });
         el.addEventListener('scroll', checkScroll, { passive: true });
         window.addEventListener('resize', checkScroll);
-        checkScroll(); // Initial check
+        checkScroll(); 
         
-        // Re-check on children update might be too frequent, but let's try with MutationObserver
-        const observerTimeout = setTimeout(checkScroll, 50); // Small delay after potential DOM changes
+        const observerTimeout = setTimeout(checkScroll, 50); 
 
         return () => {
             clearTimeout(observerTimeout);
-            resizeObserver.disconnect(); // Use disconnect instead of unobserve for multiple elements
+            resizeObserver.disconnect();
             mutationObserver.disconnect();
-            if (el) { // Check if el still exists
+            if (el) {
                el.removeEventListener('scroll', checkScroll);
             }
             window.removeEventListener('resize', checkScroll);
         };
-    }, [checkScroll, children]); // Re-run if children change to re-evaluate scroll state
+    }, [checkScroll, children]);
 
     const handleScroll = React.useCallback((direction) => {
         const el = scrollRef.current;
@@ -362,31 +359,72 @@ StarFilter.propTypes = {
     onStarFilterChange: PropTypes.func.isRequired,
 };
 
+const HoloHubNavigation = React.memo(({ activeHoloHubPage, onHoloHubPageChange, onSidebarClose }) => {
+    const { t } = window.useTranslation();
+    return (
+        <div className="sidebar-section">
+            <h3 className="settings-label settings-title">{t('holoHubNavTitle')}</h3>
+            {holoHubPagesConfig.map(page => (
+                <button
+                    key={page.id}
+                    className={`sidebar-button ${activeHoloHubPage === page.id ? 'active' : ''}`}
+                    onClick={() => { onHoloHubPageChange(page.id); onSidebarClose?.(); }}
+                >
+                    {page.icon && <span className="sidebar-button-icon">{page.icon}</span>}
+                    {t(page.labelKey)}
+                </button>
+            ))}
+        </div>
+    );
+});
+HoloHubNavigation.propTypes = {
+    activeHoloHubPage: PropTypes.string.isRequired,
+    onHoloHubPageChange: PropTypes.func.isRequired,
+    onSidebarClose: PropTypes.func,
+};
+
+
 const Sidebar = React.memo(({
     isMobileOpen, isDesktopCollapsed, onMobileClose,
+    activeView, // New prop
     currentFilter, onFilterChange, columnConfig, columnVisibility,
     tempWidths, onVisibilityChange, onTempWidthChange,
     onResetSettings, searchTerm, onSearchChange, 
-    currentLanguage, onLanguageChange, selectedStars, onStarFilterChange
+    currentLanguage, onLanguageChange, selectedStars, onStarFilterChange,
+    activeHoloHubPage, onHoloHubPageChange // New HoloHub props
 }) => {
     const { t } = window.useTranslation();
     return (
         <div className={`pipboy-sidebar ${isDesktopCollapsed ? 'sidebar-collapsed' : ''} ${isMobileOpen ? 'mobile-sidebar-open' : ''}`}>
             <button className="mobile-close-button" onClick={onMobileClose} aria-label={t('mobileCloseButtonLabel')}>×</button>
             <ScrollableContainer className="sidebar-content-wrapper">
-                <h2>{t('sidebarTitle')}</h2>
-                <SearchInput searchTerm={searchTerm} onSearchChange={onSearchChange} />
-                <FilterControls currentFilter={currentFilter} onFilterChange={onFilterChange} onSidebarClose={onMobileClose} />
-                <StarFilter selectedStars={selectedStars} onStarFilterChange={onStarFilterChange} />
-                <hr className="dotted-separator" />
-                <SettingsSection
-                    columnConfig={columnConfig}
-                    columnVisibility={columnVisibility}
-                    tempWidths={tempWidths}
-                    onVisibilityChange={onVisibilityChange}
-                    onTempWidthChange={onTempWidthChange}
-                    onResetSettings={onResetSettings}
-                />
+                <h2>{activeView === 'modules' ? t('sidebarTitleControls') : t('sidebarTitleHoloHub')}</h2>
+                
+                {activeView === 'modules' && (
+                    <React.Fragment>
+                        <SearchInput searchTerm={searchTerm} onSearchChange={onSearchChange} />
+                        <FilterControls currentFilter={currentFilter} onFilterChange={onFilterChange} onSidebarClose={onMobileClose} />
+                        <StarFilter selectedStars={selectedStars} onStarFilterChange={onStarFilterChange} />
+                        <hr className="dotted-separator" />
+                        <SettingsSection
+                            columnConfig={columnConfig}
+                            columnVisibility={columnVisibility}
+                            tempWidths={tempWidths}
+                            onVisibilityChange={onVisibilityChange}
+                            onTempWidthChange={onTempWidthChange}
+                            onResetSettings={onResetSettings}
+                        />
+                    </React.Fragment>
+                )}
+
+                {activeView === 'holohub' && (
+                    <HoloHubNavigation 
+                        activeHoloHubPage={activeHoloHubPage}
+                        onHoloHubPageChange={onHoloHubPageChange}
+                        onSidebarClose={onMobileClose}
+                    />
+                )}
+                
                 <LanguageSwitcher 
                     currentLanguage={currentLanguage} 
                     onLanguageChange={onLanguageChange} 
@@ -399,6 +437,7 @@ Sidebar.propTypes = {
     isMobileOpen: PropTypes.bool.isRequired,
     isDesktopCollapsed: PropTypes.bool.isRequired,
     onMobileClose: PropTypes.func.isRequired,
+    activeView: PropTypes.oneOf(['modules', 'holohub']).isRequired,
     currentFilter: PropTypes.string.isRequired,
     onFilterChange: PropTypes.func.isRequired,
     columnConfig: PropTypes.array.isRequired,
@@ -413,6 +452,8 @@ Sidebar.propTypes = {
     onLanguageChange: PropTypes.func.isRequired,
     selectedStars: PropTypes.number,
     onStarFilterChange: PropTypes.func.isRequired,
+    activeHoloHubPage: PropTypes.string.isRequired,
+    onHoloHubPageChange: PropTypes.func.isRequired,
 };
 
 
@@ -491,7 +532,7 @@ ModuleTableRow.propTypes = {
 
 const ModuleTable = React.memo(({ modules, columnConfig, columnVisibility, columnWidths, sortConfig, onSort, dataLabels, onLearnedChange, onEdit, onDelete, highlightTerm }) => {
     const { t } = window.useTranslation();
-    const visibleColumnCount = columnConfig.filter(c => columnVisibility[c.id]).length;
+    const visibleColumnCount = columnConfig.filter(c => columnVisibility[c.id]).length + 1; // +1 for actions
     return (
     <table className="module-table">
         <thead>
@@ -701,4 +742,103 @@ EditModuleModal.propTypes = {
     isOpen: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
     onSave: PropTypes.func.isRequired,
+};
+
+const TabNavigation = React.memo(({ activeView, onTabChange }) => {
+    const { t } = window.useTranslation();
+    return (
+        <div className="tab-navigation">
+            <button 
+                className={`tab-button ${activeView === 'modules' ? 'active' : ''}`}
+                onClick={() => onTabChange('modules')}
+                aria-pressed={activeView === 'modules'}
+            >
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style={{ marginRight: '8px' }}>
+                    <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/> {/* Generic list/modules icon */}
+                </svg>
+                {t('tabModules')}
+            </button>
+            <button 
+                className={`tab-button ${activeView === 'holohub' ? 'active' : ''}`}
+                onClick={() => onTabChange('holohub')}
+                aria-pressed={activeView === 'holohub'}
+            >
+                 <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style={{ marginRight: '8px' }}>
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/> {/* Info/Hub icon */}
+                </svg>
+                {t('tabHoloHub')}
+            </button>
+        </div>
+    );
+});
+TabNavigation.propTypes = {
+    activeView: PropTypes.string.isRequired,
+    onTabChange: PropTypes.func.isRequired,
+};
+
+const HoloHubPageContent = ({ pageId, t }) => {
+    // Basic content structure, can be expanded
+    switch (pageId) {
+        case 'xpFarming':
+            return (
+                <div className="holohub-page-content">
+                    <h2>{t('holoHubPageXPFarming')}</h2>
+                    <p>{t('xpFarmingIntro')}</p>
+                    
+                    <h3><span className="holohub-icon">⚡</span> {t('xpFarmingGeneralTipsTitle')}</h3>
+                    <ul>
+                        <li>{t('xpFarmingTipCasualTeam')}</li>
+                        <li>{t('xpFarmingTipConsumables')}</li>
+                        <li>{t('xpFarmingTipArmor')}</li>
+                        <li>{t('xpFarmingTipWellRested')}</li>
+                        <li>{t('xpFarmingTipLunchboxes')}</li>
+                        <li>{t('xpFarmingTipInspirational')}</li>
+                        <li>{t('xpFarmingTipPublicEvents')}</li>
+                    </ul>
+
+                    <h3><span className="holohub-icon">⏫</span> {t('xpFarmingHighXpLocationsTitle')}</h3>
+                    <ul>
+                        <li>{t('xpFarmingLocationWestTek')}</li>
+                        <li>{t('xpFarmingLocationWhitespring')}</li>
+                        <li>{t('xpFarmingLocationGlassedCavern')}</li>
+                        <li>{t('xpFarmingLocationEvents')}</li>
+                        <li>{t('xpFarmingLocationNukeZones')}</li>
+                    </ul>
+                    
+                    <h3><span className="holohub-icon">⭐</span> {t('xpFarmingImportantPerksTitle')}</h3>
+                     <ul>
+                        <li>{t('xpFarmingPerkIntelligence')}</li>
+                        <li>{t('xpFarmingPerkCharisma')}</li>
+                        <li>{t('xpFarmingPerkLuck')}</li>
+                    </ul>
+                    <p className="holohub-footer">{t('xpFarmingOutro')}</p>
+                </div>
+            );
+        case 'critCalculator':
+            return <div className="holohub-page-content"><h2>{t('holoHubPageCritCalculator')}</h2><p>{t('critCalculatorContentPlaceholder')}</p></div>;
+        case 'weaponTierList':
+            return <div className="holohub-page-content"><h2>{t('holoHubPageWeaponTierList')}</h2><p>{t('weaponTierListContentPlaceholder')}</p></div>;
+        case 'armorTierList':
+            return <div className="holohub-page-content"><h2>{t('holoHubPageArmorTierList')}</h2><p>{t('armorTierListContentPlaceholder')}</p></div>;
+        default:
+            return <div className="holohub-page-content"><h2>{t('unknownPage')}</h2><p>{t('unknownPageMessage')}</p></div>;
+    }
+};
+HoloHubPageContent.propTypes = {
+    pageId: PropTypes.string.isRequired,
+    t: PropTypes.func.isRequired,
+};
+
+
+const HoloHubView = React.memo(({ activePage }) => {
+    const { t } = window.useTranslation();
+    // This component wraps the content for the selected HoloHub page
+    return (
+        <div className="holohub-view-container">
+            <HoloHubPageContent pageId={activePage} t={t} />
+        </div>
+    );
+});
+HoloHubView.propTypes = {
+    activePage: PropTypes.string.isRequired,
 };
