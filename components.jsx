@@ -1002,7 +1002,7 @@ TierListPage.propTypes = {
 };
 
 
-// --- HoloHub View and Page Content (HoloHubPageContent and HoloHubView remain the same as previous correct version) ---
+// --- HoloHub View and Page Content ---
 const HoloHubPageContent = ({ pageId, t, allModules }) => { 
     switch (pageId) {
         case 'xpFarming':
@@ -1010,12 +1010,71 @@ const HoloHubPageContent = ({ pageId, t, allModules }) => {
                 <div className="holohub-page-content">
                     <h2>{t('holoHubPageXPFarming')}</h2>
                     <p>{t('xpFarmingIntro')}</p>
-                    <h3><span className="holohub-icon">⚡</span> {t('xpFarmingGeneralTipsTitle')}</h3>
-                    <ul><li>{t('xpFarmingTipCasualTeam')}</li><li>{t('xpFarmingTipConsumables')}</li><li>{t('xpFarmingTipArmor')}</li><li>{t('xpFarmingTipWellRested')}</li><li>{t('xpFarmingTipLunchboxes')}</li><li>{t('xpFarmingTipInspirational')}</li><li>{t('xpFarmingTipPublicEvents')}</li></ul>
-                    <h3><span className="holohub-icon">⏫</span> {t('xpFarmingHighXpLocationsTitle')}</h3>
-                    <ul><li>{t('xpFarmingLocationWestTek')}</li><li>{t('xpFarmingLocationWhitespring')}</li><li>{t('xpFarmingLocationGlassedCavern')}</li><li>{t('xpFarmingLocationEvents')}</li><li>{t('xpFarmingLocationNukeZones')}</li></ul>
-                    <h3><span className="holohub-icon">⭐</span> {t('xpFarmingImportantPerksTitle')}</h3>
-                    <ul><li>{t('xpFarmingPerkIntelligence')}</li><li>{t('xpFarmingPerkCharisma')}</li><li>{t('xpFarmingPerkLuck')}</li></ul>
+
+                    <h3><span className="holohub-icon">🍀</span> {t('xpFarmingTitleSupplementaryPerks')}</h3>
+                    <ul>
+                        <li>{t('xpFarmingPerkStrangeInNumbersNote')}</li>
+                        <li>{t('xpFarmingPerkClassFreakNote')}</li>
+                        <li>{t('xpFarmingPerkCuratorNote')}</li>
+                        <li>{t('xpFarmingPerkChemFiendNote')}</li>
+                    </ul>
+
+                    <h3><span className="holohub-icon">🧠</span> {t('xpFarmingTitleCoreIntelBuild')}</h3>
+
+                    <h4><span className="holohub-icon">🛡️</span> {t('xpFarmingTitleEquippedGear')}</h4>
+                    <ul>
+                        <li>{t('xpFarmingGearBaseIntel')}</li>
+                        <li>{t('xpFarmingGearLegendaryIntel')}</li>
+                        <li>{t('xpFarmingGearUnyieldingArmor')}</li>
+                        <li>{t('xpFarmingGearArmorIntel')}</li>
+                        <li>{t('xpFarmingGearWeaponIntel')}</li>
+                        <li>{t('xpFarmingGearUnderarmorShielded')}</li>
+                        <li>{t('xpFarmingGearCasualTeamBase')}</li>
+                        <li><strong>{t('xpFarmingGearSubtotal')}</strong></li>
+                    </ul>
+
+                    <h4><span className="holohub-icon">🧬</span> {t('xpFarmingTitleMutationsPerks')}</h4>
+                    <ul>
+                        <li>{t('xpFarmingMutationHerdMentalityDetail')}</li>
+                        <li>{t('xpFarmingMutationEggHeadDetail')}</li>
+                        <li>{t('xpFarmingMutationMarsupialDetail')}</li>
+                        <li>{t('xpFarmingPerkInspirationalXPSpecific')}</li>
+                        <li><em>{t('xpFarmingNoteInspirationalCharismaSpecific')}</em></li>
+                        <li><strong>{t('xpFarmingMutationsPerksSubtotal')}</strong></li>
+                    </ul>
+
+                    <h4><span className="holohub-icon">⏱️</span> {t('xpFarmingTitleTimedBuffs')}</h4>
+                    <ul>
+                        <li>{t('xpFarmingBuffBerryMentatsSpecific')}</li>
+                        <li>{t('xpFarmingBuffBrainsSpecific')}</li>
+                        <li>{t('xpFarmingBuffCranberryRelishSpecific')}</li>
+                        <li>{t('xpFarmingBuffLiveLove8Detail')}</li>
+                        <li>{t('xpFarmingBuffLeaderBobbleheadSpecific')}</li>
+                        <li>{t('xpFarmingBuffMechanicalDerbySpecific')}</li>
+                        <li>{t('xpFarmingBuffMothmanTomeSpecific')}</li>
+                        <li>{t('xpFarmingBuffWellRestedSpecific')}</li>
+                        <li><strong>{t('xpFarmingTimedBuffsSubtotal')}</strong></li>
+                    </ul>
+
+                    <h4><span className="holohub-icon">⚡</span> {t('xpFarmingTitleUnreliableDifficult')}</h4>
+                    <ul>
+                        <li>{t('xpFarmingUDMarsupialSuppressionSpecific')}</li>
+                        <li>{t('xpFarmingUDCasualTeamFullSpecific')}</li>
+                        <li>{t('xpFarmingUDNightPersonSpecific')}</li>
+                        <li>{t('xpFarmingUDNukaTwistSpecific')}</li>
+                        <li>{t('xpFarmingUDNukaInspirationSpecific')}</li>
+                        <li>{t('xpFarmingUDLunchboxesDetail')}</li>
+                        <li><strong>{t('xpFarmingUDSubtotal')}</strong></li>
+                    </ul>
+
+                    <h3><span className="holohub-icon">🎯</span> {t('xpFarmingTitleFinalIntelTotals')}</h3>
+                    <ul>
+                        <li>{t('xpFarmingTotalCoreOnlySpecific')}</li>
+                        <li>{t('xpFarmingTotalCoreUDDaySpecific')}</li>
+                        <li>{t('xpFarmingTotalCoreUDNightSpecific')}</li>
+                        <li>{t('xpFarmingTotalXPModifiersSpecific')}</li>
+                    </ul>
+
                     <p className="holohub-footer">{t('xpFarmingOutro')}</p>
                 </div>
             );
