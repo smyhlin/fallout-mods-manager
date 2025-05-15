@@ -1002,78 +1002,290 @@ TierListPage.propTypes = {
 };
 
 
+// --- Reusable Stat List Item Component ---
+const StatListItem = React.memo(({ label, value, valueType = 'int', note, isSubtotal = false, isFinalTotal = false }) => {
+    const { t } = window.useTranslation();
+    let valueClass = 'stat-value';
+    if (valueType === 'xp') valueClass = 'xp-bonus';
+    // isSubtotal and isFinalTotal add their own classes via the li element
+
+    // Allow label to be a translation key or direct string
+    const displayLabel = label.startsWith('xpFarming') ? t(label) : label;
+    const displayValue = value.startsWith('xpFarming') ? t(value) : value; // For subtotals/totals from JSON
+
+    // Extract the actual numeric/percentage part for styling if it's a complex string like "Subtotal: +10 INT"
+    let mainText = displayLabel;
+    let statPart = displayValue;
+
+    if (isSubtotal || isFinalTotal) {
+        const parts = displayValue.split(':');
+        if (parts.length > 1) {
+            mainText = parts[0].trim() + ":"; // "Subtotal:"
+            statPart = parts.slice(1).join(':').trim(); // "+52 INT"
+        } else {
+            mainText = displayLabel; // Fallback if no colon
+            statPart = displayValue;
+        }
+    }
+
+    return (
+        <li className={`stat-list-item ${isSubtotal ? 'subtotal-line' : ''} ${isFinalTotal ? 'final-total-line' : ''}`}>
+            <span className="stat-label">{mainText}</span>
+            {note && <span className="stat-note"><em>{t(note)}</em></span>} {/* Note spans across */}
+            <span className={valueClass}>{statPart}</span> {/* Value is aligned right */}
+        </li>
+    );
+});
+
+StatListItem.propTypes = {
+    label: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired, // Can be direct value or a key for subtotal/final total
+    valueType: PropTypes.oneOf(['int', 'xp', 'generic']),
+    note: PropTypes.string, // Translation key for the note
+    isSubtotal: PropTypes.bool,
+    isFinalTotal: PropTypes.bool,
+};
+
+
 // --- HoloHub View and Page Content ---
-const HoloHubPageContent = ({ pageId, t, allModules }) => { 
+const HoloHubPageContent = ({ pageId, t, allModules }) => {
     switch (pageId) {
         case 'xpFarming':
             return (
-                <div className="holohub-page-content">
+                <div className="holohub-page-content holohub-xp-farming-guide"> {/* Added main container class */}
                     <h2>{t('holoHubPageXPFarming')}</h2>
                     <p>{t('xpFarmingIntro')}</p>
 
-                    <h3><span className="holohub-icon">🍀</span> {t('xpFarmingTitleSupplementaryPerks')}</h3>
-                    <ul>
-                        <li>{t('xpFarmingPerkStrangeInNumbersNote')}</li>
-                        <li>{t('xpFarmingPerkClassFreakNote')}</li>
-                        <li>{t('xpFarmingPerkCuratorNote')}</li>
-                        <li>{t('xpFarmingPerkChemFiendNote')}</li>
-                    </ul>
+                    {/* Key Principle Section */}
+                    <div className="info-card key-principle-card"> {/* Added info-card */}
+                        <h4>{t('xpFarmingKeyPrincipleTitle')}</h4>
+                        <p>{t('xpFarmingKeyPrincipleDesc')}</p>
+                    </div>
 
-                    <h3><span className="holohub-icon">🧠</span> {t('xpFarmingTitleCoreIntelBuild')}</h3>
+                    {/* Helpful Resources Section */}
+                     <div className="info-card"> {/* Added info-card */}
+                        <h4>{t('xpFarmingHelpfulResourcesTitle')}</h4>
+                        <ul>
+                            <li>{t('xpFarmingInteractiveMapsTitle')}</li>
+                            <li>{t('xpFarmingResourceFo76Map')}</li>
+                            <li>{t('xpFarmingResourceF76MapRu')}</li>
+                            <li><em>{t('xpFarmingResourceNote')}</em></li>
+                        </ul>
+                    </div>
 
-                    <h4><span className="holohub-icon">🛡️</span> {t('xpFarmingTitleEquippedGear')}</h4>
-                    <ul>
-                        <li>{t('xpFarmingGearBaseIntel')}</li>
-                        <li>{t('xpFarmingGearLegendaryIntel')}</li>
-                        <li>{t('xpFarmingGearUnyieldingArmor')}</li>
-                        <li>{t('xpFarmingGearArmorIntel')}</li>
-                        <li>{t('xpFarmingGearWeaponIntel')}</li>
-                        <li>{t('xpFarmingGearUnderarmorShielded')}</li>
-                        <li>{t('xpFarmingGearCasualTeamBase')}</li>
-                        <li><strong>{t('xpFarmingGearSubtotal')}</strong></li>
-                    </ul>
+                    {/* Farming Basics Section */}
+                    <div className="info-card"> {/* Added info-card */}
+                        <h4>{t('xpFarmingBasicsTitle')}</h4>
+                        <h5>{t('xpFarmingTeamTitle')}</h5>
+                        <ul>
+                            <li>{t('xpFarmingTeamAlwaysJoin')}</li>
+                            <li>{t('xpFarmingTeamCasualBonus')}</li>
+                        </ul>
+                        <h5>{t('xpFarmingArmorTitle')}</h5>
+                        <ul>
+                            <li>{t('xpFarmingArmorUnyieldingTitle')}: {t('xpFarmingArmorUnyieldingDesc')}</li>
+                            <li>{t('xpFarmingArmorBonusIntelTitle')}: {t('xpFarmingArmorBonusIntelDesc')}</li>
+                            <li><em>{t('xpFarmingArmorThirdStarNote')}</em></li>
+                        </ul>
+                         <h5>{t('xpFarmingUnderarmorTitle')}</h5>
+                        <ul>
+                            <li>{t('xpFarmingUnderarmorShieldedCasual')}<br/><em>{t('xpFarmingUnderarmorShieldedCasualObtain')}</em></li>
+                            <li>{t('xpFarmingUnderarmorShieldedVault76')}<br/><em>{t('xpFarmingUnderarmorShieldedVault76Obtain')}</em></li>
+                        </ul>
+                    </div>
 
-                    <h4><span className="holohub-icon">🧬</span> {t('xpFarmingTitleMutationsPerks')}</h4>
-                    <ul>
-                        <li>{t('xpFarmingMutationHerdMentalityDetail')}</li>
-                        <li>{t('xpFarmingMutationEggHeadDetail')}</li>
-                        <li>{t('xpFarmingMutationMarsupialDetail')}</li>
-                        <li>{t('xpFarmingPerkInspirationalXPSpecific')}</li>
-                        <li><em>{t('xpFarmingNoteInspirationalCharismaSpecific')}</em></li>
-                        <li><strong>{t('xpFarmingMutationsPerksSubtotal')}</strong></li>
-                    </ul>
+                    {/* Supplementary Perks / Mutations Section */}
+                    <div className="info-card"> {/* Added info-card */}
+                        <h4><span className="holohub-icon">🍀</span> {t('xpFarmingTitleSupplementaryPerks')}</h4>
+                        <ul>
+                            <StatListItem label="xpFarmingPerkStrangeInNumbersNote" value="" valueType="generic" />
+                            <StatListItem label="xpFarmingPerkClassFreakNote" value="" valueType="generic" />
+                            <StatListItem label="xpFarmingPerkCuratorNote" value="" valueType="generic" />
+                            <StatListItem label="xpFarmingPerkChemFiendNote" value="" valueType="generic" />
+                        </ul>
+                         <em>{t('xpFarmingMutationsPerksNote')}</em>
+                    </div>
 
-                    <h4><span className="holohub-icon">⏱️</span> {t('xpFarmingTitleTimedBuffs')}</h4>
-                    <ul>
-                        <li>{t('xpFarmingBuffBerryMentatsSpecific')}</li>
-                        <li>{t('xpFarmingBuffBrainsSpecific')}</li>
-                        <li>{t('xpFarmingBuffCranberryRelishSpecific')}</li>
-                        <li>{t('xpFarmingBuffLiveLove8Detail')}</li>
-                        <li>{t('xpFarmingBuffLeaderBobbleheadSpecific')}</li>
-                        <li>{t('xpFarmingBuffMechanicalDerbySpecific')}</li>
-                        <li>{t('xpFarmingBuffMothmanTomeSpecific')}</li>
-                        <li>{t('xpFarmingBuffWellRestedSpecific')}</li>
-                        <li><strong>{t('xpFarmingTimedBuffsSubtotal')}</strong></li>
-                    </ul>
 
-                    <h4><span className="holohub-icon">⚡</span> {t('xpFarmingTitleUnreliableDifficult')}</h4>
-                    <ul>
-                        <li>{t('xpFarmingUDMarsupialSuppressionSpecific')}</li>
-                        <li>{t('xpFarmingUDCasualTeamFullSpecific')}</li>
-                        <li>{t('xpFarmingUDNightPersonSpecific')}</li>
-                        <li>{t('xpFarmingUDNukaTwistSpecific')}</li>
-                        <li>{t('xpFarmingUDNukaInspirationSpecific')}</li>
-                        <li>{t('xpFarmingUDLunchboxesDetail')}</li>
-                        <li><strong>{t('xpFarmingUDSubtotal')}</strong></li>
-                    </ul>
+                    {/* Core Intelligence Build Section */}
+                    <h3 className="section-title"><span className="holohub-icon">🧠</span> {t('xpFarmingTitleCoreIntelBuild')}</h3>
 
-                    <h3><span className="holohub-icon">🎯</span> {t('xpFarmingTitleFinalIntelTotals')}</h3>
-                    <ul>
-                        <li>{t('xpFarmingTotalCoreOnlySpecific')}</li>
-                        <li>{t('xpFarmingTotalCoreUDDaySpecific')}</li>
-                        <li>{t('xpFarmingTotalCoreUDNightSpecific')}</li>
-                        <li>{t('xpFarmingTotalXPModifiersSpecific')}</li>
-                    </ul>
+                    <div className="info-card"> {/* Added info-card */}
+                        <h4><span className="holohub-icon">🛡️</span> {t('xpFarmingTitleEquippedGear')}</h4>
+                        <ul>
+                            <StatListItem label="xpFarmingGearBaseIntel" value="+15 INT" />
+                            <StatListItem label="xpFarmingGearLegendaryIntel" value="+5 INT" />
+                            <StatListItem label="xpFarmingGearUnyieldingArmor" value="+15 INT" />
+                            <StatListItem label="xpFarmingGearArmorIntel" value="+10 INT" />
+                            <StatListItem label="xpFarmingGearWeaponIntel" value="+3 INT" />
+                            <StatListItem label="xpFarmingGearUnderarmorShielded" value="+3 INT" />
+                            <StatListItem label="xpFarmingGearCasualTeamBase" value="+1 INT" />
+                            <StatListItem label="" value="xpFarmingGearSubtotal" isSubtotal={true} />
+                        </ul>
+                    </div>
+
+                    <div className="info-card"> {/* Added info-card */}
+                        <h4><span className="holohub-icon">🧬</span> {t('xpFarmingTitleMutationsPerks')}</h4>
+                        <ul>
+                            <StatListItem label="xpFarmingMutationHerdMentalityDetail" value="+3 INT" />
+                            <StatListItem label="xpFarmingMutationEggHeadDetail" value="+8 INT" />
+                            <StatListItem label="xpFarmingMutationMarsupialDetail" value="-1 INT" />
+                            <StatListItem label="xpFarmingPerkInspirationalXPSpecific" value="+22.67% XP" valueType="xp" note="xpFarmingNoteInspirationalCharismaSpecific" />
+                            <StatListItem label="" value="xpFarmingMutationsPerksSubtotal" isSubtotal={true} />
+                        </ul>
+                    </div>
+
+                    <div className="info-card"> {/* Added info-card */}
+                        <h4><span className="holohub-icon">⏱️</span> {t('xpFarmingTitleTimedBuffs')}</h4>
+                        <ul>
+                            <StatListItem label="xpFarmingBuffBerryMentatsSpecific" value="+5 INT (10 min)" />
+                            <StatListItem label="xpFarmingBuffBrainsSpecific" value="+8 INT (0.5 / 1.5 hrs)" />
+                            <StatListItem label="xpFarmingBuffCranberryRelishSpecific" value="+25% XP (1 hr)" valueType="xp" />
+                            <StatListItem label="xpFarmingBuffLiveLove8Detail" value="+5% XP (1 hr, extended by Curator)" valueType="xp" />
+                            <StatListItem label="xpFarmingBuffLeaderBobbleheadSpecific" value="+5% XP (2 hrs, extended by Curator)" valueType="xp" />
+                            <StatListItem label="xpFarmingBuffMechanicalDerbySpecific" value="+2 INT (30 min)" />
+                            <StatListItem label="xpFarmingBuffMothmanTomeSpecific" value="+5% XP (1 hr)" valueType="xp" />
+                            <StatListItem label="xpFarmingBuffWellRestedSpecific" value="+5% XP (lost on death, 2/3 hrs)" valueType="xp" />
+                            <StatListItem label="" value="xpFarmingTimedBuffsSubtotal" isSubtotal={true} />
+                        </ul>
+                    </div>
+
+                    <div className="info-card"> {/* Added info-card */}
+                        <h4><span className="holohub-icon">⚡</span> {t('xpFarmingTitleUnreliableDifficult')}</h4>
+                        <ul>
+                            <StatListItem label="xpFarmingUDMarsupialSuppressionSpecific" value="+1 INT" />
+                            <StatListItem label="xpFarmingUDCasualTeamFullSpecific" value="+4 INT" />
+                            <StatListItem label="xpFarmingUDNightPersonSpecific" value="+3 INT (50% of gameplay)" />
+                            <StatListItem label="xpFarmingUDNukaTwistSpecific" value="+2 INT (10 min)" />
+                            <StatListItem label="xpFarmingUDNukaInspirationSpecific" value="+5% XP (once per day, 1 hr)" valueType="xp" />
+                            <StatListItem label="xpFarmingUDLunchboxesDetail" value="+100% XP (1 hr)" valueType="xp" />
+                            <StatListItem label="" value="xpFarmingUDSubtotal" isSubtotal={true} />
+                        </ul>
+                    </div>
+
+                    {/* Consumables and Temporary Buffs Section */}
+                    <div className="info-card"> {/* Added info-card */}
+                        <h4>{t('xpFarmingConsumablesTitle')}</h4>
+                        <h5>{t('xpFarmingChemsIntelTitle')}</h5>
+                        <ul>
+                            <li>{t('xpFarmingChemMentats')}</li>
+                            <li>{t('xpFarmingChemBerryMentats')}</li>
+                        </ul>
+                        <h5>{t('xpFarmingFoodIntelTitle')}</h5>
+                        <h6>{t('xpFarmingFoodIntelHerbivoreTitle')}</h6>
+                        <ul>
+                            <li>{t('xpFarmingFoodBrainBombs')}</li>
+                            <li>{t('xpFarmingFoodBrainFungusSoup')}</li>
+                            <li>{t('xpFarmingFoodSteepedFernFlowerTea')}</li>
+                        </ul>
+                         <h6>{t('xpFarmingFoodIntelCarnivoreTitle')}</h6>
+                        <ul>
+                            <li>{t('xpFarmingFoodScorchbeastBrain')}</li>
+                        </ul>
+                         <h5>{t('xpFarmingFoodXPTitle')}</h5>
+                         <h6>{t('xpFarmingFoodXPHerbivoreTitle')}</h6>
+                        <ul>
+                            <li>{t('xpFarmingFoodCranberryRelish')}</li>
+                            <li>{t('xpFarmingFoodCranberryCobbler')}</li>
+                            <li>{t('xpFarmingFoodCranberryJuice')}</li>
+                        </ul>
+                         <h6>{t('xpFarmingFoodXPCarnivoreTitle')}</h6>
+                        <ul>
+                            <li>{t('xpFarmingFoodTastySquirrelStew')}</li>
+                        </ul>
+                         <h6>{t('xpFarmingFoodXPUniversalTitle')}</h6>
+                        <ul>
+                            <li>{t('xpFarmingFoodCannedMeatStew')}</li>
+                        </ul>
+                         <h5>{t('xpFarmingBobbleheadsTitle')}</h5>
+                        <ul>
+                            <li>{t('xpFarmingBobbleheadIntelligence')}</li>
+                            <li>{t('xpFarmingBobbleheadLeader')}</li>
+                        </ul>
+                         <h5>{t('xpFarmingMagazinesTitle')}</h5>
+                        <ul>
+                            <li>{t('xpFarmingMagazineLiveLove8')}</li>
+                            <li>{t('xpFarmingMagazineLiveLove3')}</li>
+                        </ul>
+                         <h5>{t('xpFarmingLunchboxes')}</h5>
+                         <h5>{t('xpFarmingOtherBuffsSubTitle')}</h5>
+                        <ul>
+                            <li>{t('xpFarmingBuffWellRestedExtended')}</li>
+                            <li>{t('xpFarmingBuffMothmanWisdomTrue')}</li>
+                            <li>{t('xpFarmingBuffMothmanWisdomRegular')}</li>
+                            <li><em>{t('xpFarmingBuffMothmanNote')}</em></li>
+                            <li>{t('xpFarmingBuffSacredMothmanTome')}</li>
+                            <li>{t('xpFarmingBuffAllySettlerForager')}</li>
+                            <li>{t('xpFarmingBuffDerbyGame')}</li>
+                            <li>{t('xpFarmingBuffMeatWeekPot')}</li>
+                            <li>{t('xpFarmingFoodNukaColaCranberry')}</li>
+                        </ul>
+                    </div>
+
+                    {/* Global Events & Where to Farm XP Section */}
+                    <div className="info-card"> {/* Added info-card */}
+                        <h4>{t('xpFarmingGlobalEventsTitle')}</h4>
+                        <ul>
+                            <li>{t('xpFarmingEventDoubleXP')}</li>
+                            <li>{t('xpFarmingEventMothmanEquinoxEvent')}</li>
+                            <li>{t('xpFarmingEventMeatWeekEvent')}</li>
+                        </ul>
+                        <h4>{t('xpFarmingLocationsTitle')}</h4>
+                        <h5>{t('xpFarmingLocationWestTekDetailed')}</h5>
+                        <ul>
+                            <li><em>{t('xpFarmingLocationWestTekPathNote')}</em></li>
+                        </ul>
+                        <em>{t('xpFarmingLocationBestOverallNote')}</em> {/* Added the new note here */}
+                        <h5>{t('xpFarmingPublicEventsSubTitle')}</h5>
+                        <ul>
+                            <li>{t('xpFarmingEventRadRumble')}</li>
+                            <li>{t('xpFarmingEventEvictionNotice')}</li>
+                            <li>{t('xpFarmingEventMoonshineJamboree')}</li>
+                            <li>{t('xpFarmingOtherGoodEventsList')}</li>
+                        </ul>
+                         <h5>{t('xpFarmingOtherLocationsSubTitle')}</h5>
+                        <ul>
+                            <li>{t('xpFarmingLocationTheBurrows')}</li>
+                            <li>{t('xpFarmingLocationAbandonedBogTown')}</li>
+                            <li>{t('xpFarmingLocationWhitespringGolfClub')}</li>
+                            <li>{t('xpFarmingLocationCharlestonCapitolFortDefiance')}</li>
+                            <li>{t('xpFarmingLocationGraftonSteelEtc')}</li>
+                            <li>{t('xpFarmingLocationDailyOpsExpeditions')}</li>
+                        </ul>
+                    </div>
+
+                    {/* Summary: Maximum XP Boost Strategy Section */}
+                    <div className="info-card"> {/* Added info-card */}
+                        <h4>{t('xpFarmingFinalBoostTitle')}</h4>
+                        <h5>{t('xpFarmingFinalBoostPrepTitle')}</h5>
+                        <ul>
+                            {/* Split steps by newline and format */}
+                            {t('xpFarmingFinalBoostPrepSteps').split('\n').map((step, index) => <li key={`prep-step-${index}`}>{step.trim()}</li>)}
+                        </ul>
+                        <h5>{t('xpFarmingFinalBoostBuffsTitle')}</h5>
+                         <ul>
+                            {/* Split steps by newline and format */}
+                            {t('xpFarmingFinalBoostBuffsSteps').split('\n').map((step, index) => <li key={`buff-step-${index}`}>{step.trim()}</li>)}
+                        </ul>
+                        <h5>{t('xpFarmingFinalBoostFarmTitle')}</h5>
+                         <ul>
+                            {/* Split steps by newline and format */}
+                            {t('xpFarmingFinalBoostFarmSteps').split('\n').map((step, index) => <li key={`farm-step-${index}`}>{step.trim()}</li>)}
+                        </ul>
+                    </div>
+
+
+                    {/* Final Intelligence Totals Section */}
+                     <div className="info-card"> {/* Added info-card */}
+                        <h4><span className="holohub-icon">🎯</span> {t('xpFarmingTitleFinalIntelTotals')}</h4>
+                        <ul>
+                            <StatListItem label="" value="xpFarmingTotalCoreOnlySpecific" isFinalTotal={true} />
+                            <StatListItem label="" value="xpFarmingTotalCoreUDDaySpecific" isFinalTotal={true} />
+                            <StatListItem label="" value="xpFarmingTotalCoreUDNightSpecific" isFinalTotal={true} />
+                            <StatListItem label="" value="xpFarmingTotalXPModifiersSpecific" valueType="xp" isFinalTotal={true} />
+                        </ul>
+                    </div>
+
 
                     <p className="holohub-footer">{t('xpFarmingOutro')}</p>
                 </div>
@@ -1088,12 +1300,6 @@ const HoloHubPageContent = ({ pageId, t, allModules }) => {
             return <div className="holohub-page-content"><h2>{t('unknownPage')}</h2><p>{t('unknownPageMessage')}</p></div>;
     }
 };
-HoloHubPageContent.propTypes = {
-    pageId: PropTypes.string.isRequired,
-    t: PropTypes.func.isRequired,
-    allModules: PropTypes.array.isRequired, 
-};
-
 const HoloHubView = React.memo(({ activePage, allModules }) => { 
     const { t } = window.useTranslation();
     return (

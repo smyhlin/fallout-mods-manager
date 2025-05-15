@@ -100,7 +100,7 @@
     padding: var(--spacing-sm) var(--spacing-md);
     font-family: var(--font-family-header);
     font-size: var(--font-size-md);
-    color: var(--text-color-secondary);
+    color: var (--text-color-secondary);
     background-color: transparent;
     border: 1px solid transparent;
     border-bottom: 2px solid transparent;
@@ -229,3 +229,182 @@
     text-align: center;
     font-size: var(--font-size-sm);
 }
+
+/* --- XP Farming Guide Specific Styles --- */
+.holohub-xp-farming-guide .section-title { /* For H3s */
+    font-family: var(--font-family-header); /* Using existing header font */
+    font-size: var(--font-size-lg);
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color); /* More prominent underline */
+    padding-bottom: var(--spacing-sm);
+    margin-top: var(--spacing-xl); /* More space between major sections */
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    align-items: center;
+}
+.holohub-xp-farming-guide .section-title:first-of-type {
+    margin-top: var(--spacing-lg); /* Less top margin for the very first section title */
+}
+
+
+.holohub-xp-farming-guide .section-title .holohub-icon {
+    margin-right: var(--spacing-md); /* More space for icon */
+    font-size: 1.3em;
+    line-height: 1;
+}
+
+.holohub-xp-farming-guide .info-card {
+    background-color: var(--background-color-lighter); /* Slightly lighter background */
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    box-shadow: var(--box-shadow-light);
+}
+
+.holohub-xp-farming-guide .info-card h4 { /* Titles within cards */
+    font-family: var(--font-family-header); /* Using existing header font */
+    font-weight: bold;
+    color: var(--text-color-secondary);
+    font-size: var(--font-size-md);
+    margin-top: 0;
+    margin-bottom: var(--spacing-sm);
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 1px dashed rgba(var(--border-color-rgb), 0.3); /* Subtle separator */
+    display: flex;
+    align-items: center;
+}
+.holohub-xp-farming-guide .info-card h4 .holohub-icon {
+    margin-right: var(--spacing-sm);
+    color: var(--primary-color); /* Ensure icon matches primary color */
+}
+
+
+.holohub-xp-farming-guide .info-card h5 { /* Sub-titles within cards */
+    font-family: var(--font-family-body); /* Using body font for sub-titles */
+    font-weight: bold;
+    color: var(--primary-color); /* Highlight sub-titles */
+    font-size: var(--font-size-md);
+    margin-top: var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
+}
+
+.holohub-xp-farming-guide .info-card h6 { /* Sub-sub-titles within cards */
+    font-family: var(--font-family-body);
+    font-weight: normal;
+    font-style: italic;
+    color: var(--text-color-muted);
+    font-size: var(--font-size-sm);
+    margin-top: var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
+}
+
+
+.holohub-xp-farming-guide .info-card ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: var(--spacing-sm); /* Add space above the list */
+    margin-bottom: 0; /* Remove default ul margin */
+}
+
+/* Style for the new StatListItem component */
+.stat-list-item {
+    display: grid; /* Use grid for precise alignment */
+    grid-template-columns: auto 1fr auto; /* Label, flexible space (for note), Value */
+    gap: var(--spacing-sm);
+    align-items: baseline; /* Align text baselines */
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px dashed rgba(var(--border-color-rgb), 0.2);
+    line-height: 1.5;
+}
+.holohub-xp-farming-guide .info-card ul .stat-list-item::before {
+    /* Remove default bullet for StatListItem */
+    content: none;
+}
+
+.stat-list-item:last-child {
+    border-bottom: none;
+}
+
+.stat-label {
+    grid-column: 1 / 2;
+    color: var(--text-color-secondary);
+    font-weight: 500; /* Slightly less bold than value */
+}
+
+.stat-value, .xp-bonus, .subtotal-value, .final-value {
+    grid-column: 3 / 4; /* Push to the right */
+    justify-self: end; /* Align to the end of its grid cell */
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.95em;
+    white-space: nowrap; /* Prevent value from wrapping if possible */
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+.stat-value { /* Default for INT */
+    color: var(--primary-color);
+    background-color: rgba(var(--primary-color-rgb), 0.1);
+}
+
+.xp-bonus {
+    color: var(--accent-color);
+    background-color: rgba(var(--accent-color-rgb), 0.1);
+}
+
+.stat-note {
+    grid-column: 1 / -1; /* Span all columns for the note */
+    grid-row: 2 / 3;    /* Place it on the next "row" within the list item */
+    font-size: 0.85em;
+    color: var(--text-color-muted);
+    padding-left: var(--spacing-md); /* Indent note slightly */
+    margin-top: -2px; /* Fine-tune spacing */
+}
+
+
+/* Subtotals and Final Totals styling */
+.subtotal-line .stat-label,
+.final-total-line .stat-label {
+    font-weight: bold;
+    color: var(--text-color); /* Make label more prominent */
+}
+
+.subtotal-value,
+.final-value {
+    font-size: 1.05em; /* Slightly larger */
+    color: var(--primary-color);
+    background-color: rgba(var(--primary-color-rgb), 0.15);
+}
+
+.final-total-line {
+    padding-top: var(--spacing-md);
+    margin-top: var(--spacing-sm);
+    border-top: 1px solid var(--border-color); /* Separator before final totals */
+}
+.final-total-line:first-child {
+    border-top: none; /* No top border for the very first final total item */
+}
+
+
+/* Add more specific styles for other sections (Consumables, Locations, etc.) as needed */
+
+/* Example for perk/mutation grid - Not implemented in JSX yet, but styles are here */
+.perk-mutation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: var(--spacing-md);
+}
+.perk-mutation-card {
+    /* Styles for individual perk/mutation cards */
+    background-color: var(--background-color-lighter);
+    padding: var(--spacing-sm);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+}
+.perk-mutation-card h5 { /* Perk/Mutation Name */
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-xs);
+}
+
+/* Add more specific styles for other sections (Consumables, Locations, etc.) as needed */
