@@ -264,5 +264,17 @@
     "tierListNoteExplosiveOnly": "(explosives only)",
     "tierListNoteNowBeforeFiligreeFix": "(current, pre-filigree fix)",
     "statusUnknownInCollection": "Not in Collection",
-    "effectNotAvailable": "Effect description not available for this entry."
+    "effectNotAvailable": "Effect description not available for this entry.",
+    "critCalcLabelCritSavvy": "Crit Savvy Perk Rank",
+    "critCalcLabelLimitBreaking": "Limit Breaking Armor Legendary Module",
+    "critCalcLabel15Fill": "Lucky Weapon Legendary Module",
+    "critCalcButtonYes": "Yes",
+    "critCalcButtonNo": "No",
+    "critCalcLabelLuckRequired": "Luck Required",
+    "critCalcLuckContext": "(For critical hit every 2nd shot with V.A.T.S.)",
+    "critCalcLegendTitle": "Legend / Input Guide",
+    "critCalcLegendCritSavvy": "Crit Savvy: 0/1/2/3 stars (perk rank).",
+    "critCalcLegendLimitBreaking": "Limit Breaking⭐⭐⭐⭐: 0/1/2/3/4/5 pieces module on armor.",
+    "critCalcLegend15Fill": "Lucky⭐⭐⭐: 0 = No, 1 = Yes (weapon has the legendary module).",
+    "critCalcValueNotAvailable": "N/A"
 }

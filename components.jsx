@@ -1291,7 +1291,7 @@ const HoloHubPageContent = ({ pageId, t, allModules }) => {
                 </div>
             );
         case 'critCalculator':
-            return <div className="holohub-page-content"><h2>{t('holoHubPageCritCalculator')}</h2><p>{t('critCalculatorContentPlaceholder')}</p></div>;
+            return <CritCalculatorPage />; // Use the new component
         case 'weaponTierList':
             return <TierListPage tierListData={window.weaponTierListData} listTitleKey="holoHubPageWeaponTierList" allModules={allModules} />;
         case 'armorTierList':
@@ -1312,3 +1312,95 @@ HoloHubView.propTypes = {
     activePage: PropTypes.string.isRequired,
     allModules: PropTypes.array.isRequired, 
 };
+
+// --- Crit Calculator Page Component ---
+const CritCalculatorPage = () => {
+    const { t } = window.useTranslation();
+    const [critSavvyRank, setCritSavvyRank] = React.useState(0);
+    const [LimitBreakingPieces, setLimitBreakingPieces] = React.useState(0);
+    const [hasLucky, sethasLucky] = React.useState(0); // 0 for No, 1 for Yes
+    const [luckRequired, setLuckRequired] = React.useState(null);
+
+    React.useEffect(() => {
+        const entry = window.critCalculatorData.find(
+            (data) =>
+                data.critSavvy === critSavvyRank &&
+                data.LimitBreaking === LimitBreakingPieces &&
+                data.lucky === hasLucky
+        );
+        setLuckRequired(entry ? entry.luck : t('critCalcValueNotAvailable'));
+    }, [critSavvyRank, LimitBreakingPieces, hasLucky, t]);
+
+    const critSavvyOptions = [0, 1, 2, 3];
+    const LimitBreakingOptions = [0, 1, 2, 3, 4, 5];
+
+    return (
+        <div className="holohub-page-content crit-calculator-page">
+            <h2>{t('holoHubPageCritCalculator')}</h2>
+
+            <div className="crit-calculator-grid">
+                <div className="info-card crit-input-card">
+                    <h4>{t('critCalcLabelCritSavvy')}</h4>
+                    <div className="segmented-control">
+                        {critSavvyOptions.map((rank) => (
+                            <button
+                                key={`savvy-${rank}`}
+                                className={`segment-button ${critSavvyRank === rank ? 'active' : ''}`}
+                                onClick={() => setCritSavvyRank(rank)}
+                            >
+                                {rank} {'🎴'.repeat(rank) || t('critCalcButtonNo')}
+                            </button>
+                        ))}
+                    </div>
+
+                    <h4>{t('critCalcLabelLimitBreaking')}</h4>
+                    <div className="segmented-control">
+                        {LimitBreakingOptions.map((pieces) => (
+                            <button
+                                key={`uny-${pieces}`}
+                                className={`segment-button ${LimitBreakingPieces === pieces ? 'active' : ''}`}
+                                onClick={() => setLimitBreakingPieces(pieces)}
+                            >
+                                {pieces}
+                            </button>
+                        ))}
+                    </div>
+
+                    <h4>{t('critCalcLabel15Fill')}</h4>
+                    <div className="toggle-switch">
+                        <button
+                            className={`toggle-button ${hasLucky === 0 ? 'active' : ''}`}
+                            onClick={() => sethasLucky(0)}
+                        >
+                            {t('critCalcButtonNo')}
+                        </button>
+                        <button
+                            className={`toggle-button ${hasLucky === 1 ? 'active' : ''}`}
+                            onClick={() => sethasLucky(1)}
+                        >
+                            {t('critCalcButtonYes')}
+                        </button>
+                    </div>
+                </div>
+
+                <div className="info-card crit-output-card">
+                    <h4>{t('critCalcLabelLuckRequired')}</h4>
+                    <div className="luck-display">
+                        {luckRequired !== null ? luckRequired : '...'}
+                    </div>
+                    <p className="luck-context">{t('critCalcLuckContext')}</p>
+                </div>
+            </div>
+
+            <div className="info-card crit-legend-card">
+                <h4>{t('critCalcLegendTitle')}</h4>
+                <ul>
+                    <li>{t('critCalcLegendCritSavvy')}</li>
+                    <li>{t('critCalcLegendLimitBreaking')}</li>
+                    <li>{t('critCalcLegend15Fill')}</li>
+                </ul>
+            </div>
+        </div>
+    );
+};
+

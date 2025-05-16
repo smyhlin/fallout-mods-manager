@@ -264,5 +264,17 @@
     "tierListNoteExplosiveOnly": "(тільки для вибухових)",
     "tierListNoteNowBeforeFiligreeFix": "(зараз, до фіксу філігран.)",
     "statusUnknownInCollection": "Немає в колекції",
-    "effectNotAvailable": "Опис ефекту для цього запису недоступний."
+    "effectNotAvailable": "Опис ефекту для цього запису недоступний.",
+    "critCalcLabelCritSavvy": "Ранг перку \"Крит. Мислення\"",
+    "critCalcLabelLimitBreaking": "Легендарний Модуль броні \"Непохитність\"",
+    "critCalcLabel15Fill": "Легендарний Модуль зброї \"Счасливе\"",
+    "critCalcButtonYes": "Так",
+    "critCalcButtonNo": "Ні",
+    "critCalcLabelLuckRequired": "Необхідна Вдача",
+    "critCalcLuckContext": "(Для критичного удару кожним 2-м пострілом у V.A.T.S.)",
+    "critCalcLegendTitle": "Позначення / Керівництво",
+    "critCalcLegendCritSavvy": "Крит.Мислення: 0/1/2/3 - зірки (прокачування) перку.",
+    "critCalcLegendLimitBreaking": "Непохитність⭐⭐⭐⭐: 0/1/2/3/4/5 - кількість модулів на броні.",
+    "critCalcLegend15Fill": "Счасливе⭐⭐⭐: 0 = немає/є, 1 = є (модуль на зброї).",
+    "critCalcValueNotAvailable": "Н/Д"
 }

@@ -407,4 +407,133 @@
     margin-bottom: var(--spacing-xs);
 }
 
-/* Add more specific styles for other sections (Consumables, Locations, etc.) as needed */
+.crit-calculator-page h2 {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.crit-calculator-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    align-items: flex-start; /* Align cards to the top if they have different heights */
+}
+
+.crit-input-card,
+.crit-output-card,
+.crit-legend-card {
+    /* Uses .info-card styles from layout.css */
+}
+
+.crit-input-card h4,
+.crit-output-card h4,
+.crit-legend-card h4 {
+    /* Uses .info-card h4 styles from layout.css */
+    margin-bottom: var(--spacing-md); /* More space after title in these cards */
+}
+
+/* Segmented Control for Radio-like Buttons */
+.segmented-control {
+    display: flex;
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    margin-bottom: var(--spacing-lg);
+}
+
+.segment-button {
+    flex-grow: 1;
+    padding: var(--spacing-sm) var(--spacing-xs); /* Adjust padding */
+    background-color: transparent;
+    color: var(--text-color-secondary);
+    border: none;
+    border-right: 1px solid var(--border-color);
+    cursor: pointer;
+    font-family: var(--font-family-body);
+    font-size: var(--font-size-sm); /* Smaller font for buttons */
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+    text-align: center;
+}
+.segment-button:last-child {
+    border-right: none;
+}
+.segment-button:hover {
+    background-color: rgba(var(--primary-color-rgb), 0.1);
+    color: var(--primary-color);
+}
+.segment-button.active {
+    background-color: var(--primary-color);
+    color: var(--text-color-inverse);
+    font-weight: bold;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+}
+.segment-button ⭐ {
+    margin-left: 2px;
+}
+
+
+/* Toggle Switch for Yes/No */
+.toggle-switch {
+    display: flex;
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    width: fit-content; /* Adjust width to content */
+}
+.toggle-button {
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: transparent;
+    color: var(--text-color-secondary);
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-family-body);
+    font-size: var(--font-size-md);
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+.toggle-button:first-child {
+    border-right: 1px solid var(--border-color);
+}
+.toggle-button:hover {
+    background-color: rgba(var(--primary-color-rgb), 0.1);
+    color: var(--primary-color);
+}
+.toggle-button.active {
+    background-color: var(--primary-color);
+    color: var(--text-color-inverse);
+    font-weight: bold;
+}
+
+/* Output Display */
+.crit-output-card {
+    text-align: center;
+}
+.luck-display {
+    font-size: 3em; /* Large display for the Luck value */
+    font-family: var(--font-family-header);
+    color: var(--primary-color);
+    text-shadow: var(--text-shadow-header);
+    margin: var(--spacing-sm) 0 var(--spacing-xs);
+    line-height: 1.1;
+    min-height: 1.2em; /* Prevent layout shift when value changes */
+}
+.luck-context {
+    font-size: var(--font-size-sm);
+    color: var(--text-color-muted);
+    margin-top: 0;
+}
+
+/* Legend Card */
+.crit-legend-card ul {
+    list-style: none;
+    padding-left: 0;
+}
+.crit-legend-card li {
+    font-size: var(--font-size-sm);
+    color: var(--text-color-secondary);
+    margin-bottom: var(--spacing-xs);
+}
+.crit-legend-card li::before {
+    content: "ℹ️"; /* Info icon or similar */
+    margin-right: var(--spacing-sm);
+    color: var(--primary-color);
+}

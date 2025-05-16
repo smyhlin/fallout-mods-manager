@@ -264,5 +264,17 @@
     "tierListNoteExplosiveOnly": "(только для взрывных)",
     "tierListNoteNowBeforeFiligreeFix": "(сейчас, до фикса филигран.)",
     "statusUnknownInCollection": "Не в коллекции",
-    "effectNotAvailable": "Описание эффекта для этой записи недоступно."
+    "effectNotAvailable": "Описание эффекта для этой записи недоступно.",
+    "critCalcLabelCritSavvy": "Ранг перка \"Крит. Мышление\"",
+    "critCalcLabelLimitBreaking": "Легендарный Модуль брони \"Неудержимость\"",
+    "critCalcLabel15Fill": "Легендарный Модуль оружия \"Счастливое\"",
+    "critCalcButtonYes": "Да",
+    "critCalcButtonNo": "Нет",
+    "critCalcLabelLuckRequired": "Требуемая Удача",
+    "critCalcLuckContext": "(Для критического удара каждым 2-м выстрелом в V.A.T.S.)",
+    "critCalcLegendTitle": "Обозначения / Руководство",
+    "critCalcLegendCritSavvy": "Крит.Мышление: 0/1/2/3 - звёзды (прокачка) перка.",
+    "critCalcLegendLimitBreaking": "Неудержимость⭐⭐⭐⭐: 0/1/2/3/4/5 - кол-во модулей на броне.",
+    "critCalcLegend15Fill": "Счастливое⭐⭐⭐: 0 = нет/есть, 1 = есть (модуль на оружии).",
+    "critCalcValueNotAvailable": "Н/Д"
 }
