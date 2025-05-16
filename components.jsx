@@ -1348,7 +1348,7 @@ const CritCalculatorPage = () => {
                                 className={`segment-button ${critSavvyRank === rank ? 'active' : ''}`}
                                 onClick={() => setCritSavvyRank(rank)}
                             >
-                                {rank} {'🎴'.repeat(rank) || t('critCalcButtonNo')}
+                                {rank} {'⭐'.repeat(rank) || t('critCalcButtonNo')}
                             </button>
                         ))}
                     </div>
