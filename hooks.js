@@ -30,41 +30,36 @@ function useNotification(timeout = NOTIFICATION_TIMEOUT) {
         }, timeout);
     }, [timeout]);
 
-    useEffect(() => () => clearTimeout(timerRef.current), []); // Cleanup timer on unmount
+    useEffect(() => () => clearTimeout(timerRef.current), []);
 
     return [notification, showNotification];
 }
 
 // Custom Hook: useTableState
 function useTableState(columnConfig, showNotification) {
-    const { t } = window.useTranslation(); // Use translation hook
+    const { t } = window.useTranslation();
     const [columnSettings, setColumnSettings] = useState(() => loadColumnSettings());
     const { visibility: columnVisibility, widths: columnWidths } = columnSettings;
 
-    // Temporary widths state for debouncing slider updates during drag
     const [tempWidths, setTempWidths] = useState(columnWidths);
     const debouncedWidths = useDebounce(tempWidths, DEBOUNCE_DELAY.WIDTH);
 
-    const [sortConfig, setSortConfig] = useState({ key: 'stars', direction: 'asc' }); // Default sort
+    const [sortConfig, setSortConfig] = useState({ key: 'stars', direction: 'asc' });
 
-    // Save settings when visibility or debounced widths change
     useEffect(() => {
         saveColumnSettings(columnVisibility, debouncedWidths);
     }, [columnVisibility, debouncedWidths]);
 
-    // Update actual column widths state after debouncing
     useEffect(() => {
         if (JSON.stringify(debouncedWidths) !== JSON.stringify(columnWidths)) {
             setColumnSettings(prev => ({ ...prev, widths: debouncedWidths }));
         }
     }, [debouncedWidths, columnWidths]);
 
-    // Sync temp widths when actual widths change (e.g., on reset or import)
     useEffect(() => {
         setTempWidths(columnWidths);
     }, [columnWidths]);
 
-    // --- Handlers ---
     const handleVisibilityChange = useCallback((columnId) => {
         setColumnSettings(prev => ({
             ...prev,
@@ -72,7 +67,6 @@ function useTableState(columnConfig, showNotification) {
         }));
     }, []);
 
-    // Updates temporary width state immediately for responsive slider UI
     const handleTempWidthChange = useCallback((columnId, newWidth) => {
         setTempWidths(prev => ({ ...prev, [columnId]: parseInt(newWidth, 10) }));
     }, []);
@@ -90,11 +84,9 @@ function useTableState(columnConfig, showNotification) {
             widths: defaultColumnWidths
         };
         setColumnSettings(newSettings);
-        // tempWidths will update via useEffect sync
-        showNotification(t('settingsResetButton'), 'success'); // Use translation
-    }, [showNotification, t]); // Add t to dependencies
+        showNotification(t('settingsResetButton'), 'success');
+    }, [showNotification, t]);
 
-    // Apply settings loaded from an import file
     const applyImportedSettings = useCallback((importedSettings) => {
         if (!importedSettings || typeof importedSettings !== 'object') return;
 
@@ -118,14 +110,10 @@ function useTableState(columnConfig, showNotification) {
                         col.minWidth || 50,
                         Math.min(col.maxWidth || 600, importedSettings.widths[col.id])
                     );
-                } else if (!col.isWidthAdjustable) {
-                    newWidths[col.id] = col.defaultWidth;
                 }
             });
         }
-
         setColumnSettings({ visibility: newVisibility, widths: newWidths });
-        // tempWidths will sync via useEffect
     }, [columnConfig]);
 
     return {
@@ -146,35 +134,31 @@ function useTableState(columnConfig, showNotification) {
 function useSidebarState() {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
     const [isDesktopSidebarCollapsed, setIsDesktopSidebarCollapsed] = useState(
-        () => window.innerWidth <= 1024 // Initial state based on width
+        () => window.innerWidth <= 1024
     );
 
     const toggleMobileSidebar = useCallback(() => setIsMobileSidebarOpen(prev => !prev), []);
     const toggleDesktopSidebar = useCallback(() => setIsDesktopSidebarCollapsed(prev => !prev), []);
 
-    // Handle window resize
     useEffect(() => {
         const handleResize = () => {
             const isDesktop = window.innerWidth > 1024;
             if (isDesktop && isMobileSidebarOpen) {
-                setIsMobileSidebarOpen(false); // Close mobile sidebar if resizing to desktop
+                setIsMobileSidebarOpen(false);
             }
-            // Optionally adjust desktop collapse state on resize if needed
-            // setIsDesktopSidebarCollapsed(!isDesktop);
         };
         window.addEventListener('resize', handleResize);
-        handleResize(); // Initial check
+        handleResize();
         return () => window.removeEventListener('resize', handleResize);
     }, [isMobileSidebarOpen]);
 
-    // Lock body scroll when mobile sidebar is open
     useEffect(() => {
         if (isMobileSidebarOpen) {
             document.body.classList.add('body-no-scroll');
         } else {
             document.body.classList.remove('body-no-scroll');
         }
-        return () => { // Cleanup
+        return () => {
             document.body.classList.remove('body-no-scroll');
         };
     }, [isMobileSidebarOpen]);
@@ -190,7 +174,7 @@ function useSidebarState() {
 // Custom Hook: useModalState
 function useModalState() {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [itemBeingEdited, setItemBeingEdited] = useState(null); // null = Add mode, object = Edit mode
+    const [itemBeingEdited, setItemBeingEdited] = useState(null);
 
     const openModal = useCallback((item = null) => {
         setItemBeingEdited(item);
@@ -199,7 +183,7 @@ function useModalState() {
 
     const closeModal = useCallback(() => {
         setIsModalOpen(false);
-        setItemBeingEdited(null); // Clear item on close
+        setItemBeingEdited(null);
     }, []);
 
     return {
@@ -210,67 +194,95 @@ function useModalState() {
     };
 }
 
-// Custom Hook: useModuleManagement
-function useModuleManagement(modules, setModules, showNotification, closeEditModal) {
-    const { t } = window.useTranslation(); // Use translation hook
+// Custom Hook: useModuleManagement (Modified to work with global `modules` state)
+function useModuleManagement(modules, setModules, showNotification, closeModal) {
+    const { t } = useTranslation();
 
-    const handleLearnedChange = useCallback((ruName, stars) => {
-        setModules(prev => prev.map(m =>
-            (m.ruName === ruName && m.stars === stars) ? { ...m, learned: !m.learned } : m
-        ));
+    const getModuleKey = (module) => module.module_editor_id || `${module.ruName}-${module.stars}`;
+
+    const handleLearnedChange = useCallback((moduleToToggle) => {
+        const keyToUpdate = getModuleKey(moduleToToggle);
+        setModules(prevModules =>
+            prevModules.map(m =>
+                getModuleKey(m) === keyToUpdate ? { ...m, learned: !m.learned } : m
+            )
+        );
     }, [setModules]);
 
     const handleAddNewModule = useCallback((_ignoredKey, newModuleData) => {
         const { ruName, stars, effect } = newModuleData;
-        const moduleKey = `${ruName}-${stars}`;
-
         if (!ruName || !stars || !effect) {
-            showNotification(t('notificationRequiredFields'), 'error'); // Use translation
-            return; // Keep modal open
+            showNotification(t('notificationRequiredFields'), 'error');
+            return;
+        }
+        const newModuleKey = `custom-${Date.now()}-${ruName}-${stars}`; // Ensure unique key for custom
+        
+        if (modules.some(m => getModuleKey(m) === `${ruName}-${stars}` && !m.isCustom) ||
+            modules.some(m => m.isCustom && m.ruName === ruName && m.stars === stars)) {
+            showNotification(t('notificationModuleExists'), 'error');
+            return;
         }
 
-        if (modules.some(m => `${m.ruName}-${m.stars}` === moduleKey)) {
-            showNotification(t('notificationModuleExists'), 'error'); // Use translation
-            return; // Keep modal open
-        }
+        const newCustomModule = {
+            ...newModuleData,
+            learned: true,
+            isCustom: true,
+            module_editor_id: newModuleKey, // Assign a unique ID
+            // Ensure all fields from the language files are present, even if empty
+            module_name: newModuleData.ruName, // Assuming ruName is the primary name for custom
+            module_description: newModuleData.effect,
+            module_compatibility: [], // Default or allow user to set
+            module_materials: "", // Default or allow user to set
+            module_form_id: "" // Default or allow user to set
+        };
+        setModules(prev => [...prev, newCustomModule]);
+        closeModal();
+        showNotification(t('notificationModuleAdded', { moduleName: ruName }), 'success');
+    }, [modules, setModules, showNotification, closeModal, t]);
 
-        setModules(prev => [
-            ...prev,
-            { ...newModuleData, learned: true, isCustom: true } // Add new custom module, default to learned
-        ]);
-        closeEditModal();
-        showNotification(t('notificationModuleAdded', { moduleName: ruName }), 'success'); // Use translation with parameter
-    }, [modules, setModules, showNotification, closeEditModal, t]); // Add t to dependencies
-
-    const handleSaveChangesInModal = useCallback((originalKey, updatedData) => {
-        const newKey = `${updatedData.ruName}-${updatedData.stars}`;
+    const handleSaveChangesInModal = useCallback((originalModule, updatedData) => {
+        const originalKey = getModuleKey(originalModule);
+        const newProposedKey = updatedData.module_editor_id || `${updatedData.ruName}-${updatedData.stars}`;
 
         if (!updatedData.ruName || !updatedData.stars || !updatedData.effect) {
-            showNotification(t('notificationRequiredFields'), 'error'); // Use translation
-            return; // Keep modal open
+            showNotification(t('notificationRequiredFields'), 'error');
+            return;
         }
 
-        // Check for key collision only if the key actually changed
-        if (originalKey !== newKey && modules.some(m => `${m.ruName}-${m.stars}` === newKey)) {
-            showNotification(t('notificationModuleExists'), 'error'); // Use translation
-            return; // Keep modal open
+        if (originalKey !== newProposedKey && modules.some(m => getModuleKey(m) === newProposedKey)) {
+             showNotification(t('notificationModuleExists'), 'error');
+             return;
         }
-
+        
         setModules(prevModules =>
             prevModules.map(m =>
-                `${m.ruName}-${m.stars}` === originalKey ? { ...m, ...updatedData } : m
+                getModuleKey(m) === originalKey
+                ? {
+                    ...m, // Preserve original fields like module_editor_id if it's a base module
+                    ...updatedData,
+                    // If it was a base module, its module_editor_id should not change.
+                    // If it's custom, its module_editor_id might be part of updatedData or remain.
+                    module_editor_id: originalModule.isCustom ? (updatedData.module_editor_id || originalModule.module_editor_id) : originalModule.module_editor_id,
+                    isCustom: originalModule.isCustom // Preserve custom status
+                  }
+                : m
             )
         );
-        closeEditModal();
-        showNotification(t('notificationModuleUpdated', { moduleName: updatedData.ruName }), 'success'); // Use translation with parameter
-    }, [modules, setModules, closeEditModal, showNotification, t]); // Add t to dependencies
+        closeModal();
+        showNotification(t('notificationModuleUpdated', { moduleName: updatedData.ruName }), 'success');
+    }, [modules, setModules, closeModal, showNotification, t]);
 
-    const handleDeleteModule = useCallback((ruName, stars) => {
-        if (window.confirm(t('confirmDeleteModule', { moduleName: ruName, stars: stars }))) { // Use translation with parameters
-            setModules(prev => prev.filter(m => !(m.ruName === ruName && m.stars === stars)));
-            showNotification(t('notificationModuleDeleted', { moduleName: ruName }), 'success'); // Use translation with parameter
+    const handleDeleteModule = useCallback((moduleToDelete) => {
+        if (!moduleToDelete.isCustom) {
+            showNotification(t('notificationCannotDeleteNonCustom'), 'error'); // Add this translation
+            return;
         }
-    }, [setModules, showNotification, t]); // Add t to dependencies
+        if (window.confirm(t('confirmDeleteModule', { moduleName: moduleToDelete.ruName, stars: moduleToDelete.stars }))) {
+            const keyToDelete = getModuleKey(moduleToDelete);
+            setModules(prev => prev.filter(m => getModuleKey(m) !== keyToDelete));
+            showNotification(t('notificationModuleDeleted', { moduleName: moduleToDelete.ruName }), 'success');
+        }
+    }, [setModules, showNotification, t]);
 
     return {
         handleLearnedChange,

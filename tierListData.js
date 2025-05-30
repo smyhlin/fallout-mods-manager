@@ -1,27 +1,34 @@
 // tierListData.js
 
-// --- Armor Tier List Data ---
 window.armorTierListData = [
   {
     tierNameKey: "tierListTierS",
     tierColor: "var(--tier-s-color)",
     tierBorderColor: "var(--tier-s-border-color)",
-    textColor: "var(--tier-s-text-color)", // Added
+    textColor: "var(--tier-s-text-color)",
     categories: [
       {
         categoryNameKey: "tierListCategoryPower",
         modules: [
-          { name: "Неудержимость", noteKey: "tierListNoteVATS" },
-          { name: "Обновление", noteKey: "tierListNotePreFix" },
-          { name: "Рейнджерский", noteKey: "tierListNoteNoVATSAfterFix" },
-          { name: "Неудержимость", noteKey: "tierListNoteFullHpVATS" },
+          // Assuming "Неудержимость" (Limit Breaking) for VATS
+          { id: "WIP4_LegendaryShard_Shared4_LimitBreak", noteKey: "tierListNoteVATS" },
+          // "Обновление" -> Rejuvenator's
+          { id: "WIP4_LegendaryShard_Armor4_Rejuvenators", noteKey: "tierListNotePreFix" },
+          // "Рейнджерский" -> Ranger's
+          { id: "WIP4_LegendaryShard_Shared4_Ranger", noteKey: "tierListNoteNoVATSAfterFix" },
+          // "Неудержимость" (Limit Breaking) for Full HP + VATS
+          { id: "WIP4_LegendaryShard_Shared4_LimitBreak", noteKey: "tierListNoteFullHpVATS" },
         ]
       },
       {
         categoryNameKey: "tierListCategoryRegular",
         modules: [
-          { name: "Хирургия", noteKey: "tierListNoteLowHp" },
-          { name: "Неудержимость + рендж/хир", noteKey: "tierListNoteLowHp" },
+          // "Хирургия" -> Sawbones's
+          { id: "WIP4_LegendaryShard_Shared4_Sawbones", noteKey: "tierListNoteLowHp" },
+          // "Неудержимость + рендж/хир" - This is complex. Representing "Неудержимость" (Limit Breaking)
+          // The note implies combination, which is a build strategy, not a single module.
+          // For simplicity, listing Limit Breaking and user can infer combinations.
+          { id: "WIP4_LegendaryShard_Shared4_LimitBreak", noteKey: "tierListNoteLowHp" },
         ]
       }
     ]
@@ -30,25 +37,25 @@ window.armorTierListData = [
     tierNameKey: "tierListTierA",
     tierColor: "var(--tier-a-color)",
     tierBorderColor: "var(--tier-a-border-color)",
-    textColor: "var(--tier-a-text-color)", // Added
+    textColor: "var(--tier-a-text-color)",
     categories: [
       {
         categoryNameKey: "tierListCategoryPower",
         modules: [
-          { name: "Обновление", noteKey: "tierListNoteAfterFix" },
-          { name: "Отражающий" },
-          { name: "Рейнджерский" },
-          { name: "Сканирующий" },
-          { name: "Стойкость" },
-          { name: "Укрывание" },
-          { name: "Ядерно-энергетический" },
+          { id: "WIP4_LegendaryShard_Armor4_Rejuvenators", noteKey: "tierListNoteAfterFix" }, // Обновление
+          { id: "WIP4_LegendaryShard_Armor4_Reflective" }, // Отражающий
+          { id: "WIP4_LegendaryShard_Shared4_Ranger" },    // Рейнджерский
+          { id: "WIP4_LegendaryShard_Armor4_Scanners" },   // Сканирующий
+          { id: "WIP4_LegendaryShard_Shared4_Tanky" },     // Стойкость
+          { id: "WIP4_LegendaryShard_Armor4_Aegis" },      // Укрывание
+          { id: "WIP4_LegendaryShard_Armor4_RadioactivePowered" }, // Ядерно-энергетический
         ]
       },
       {
         categoryNameKey: "tierListCategoryRegular",
         modules: [
-          { name: "Рейнджерский" },
-          { name: "Стойкость" },
+          { id: "WIP4_LegendaryShard_Shared4_Ranger" }, // Рейнджерский
+          { id: "WIP4_LegendaryShard_Shared4_Tanky" },  // Стойкость
         ]
       }
     ]
@@ -57,39 +64,42 @@ window.armorTierListData = [
     tierNameKey: "tierListTierF",
     tierColor: "var(--tier-f-color)",
     tierBorderColor: "var(--tier-f-border-color)",
-    textColor: "var(--tier-f-text-color)", // Added
+    textColor: "var(--tier-f-text-color)",
     categories: [
       {
         categoryNameKey: "tierListCategoryEverywhere",
         modules: [
-          { name: "Боксерский" },
-          { name: "Зловонный" },
-          { name: "Курьерский" },
-          { name: "Несгибаемость" },
-          { name: "Погрузочный" },
-          { name: "Форсирующий" },
-          { name: "Чух-чух" },
+          { id: "WIP4_LegendaryShard_Shared4_Bruiser" }, // Боксерский
+          { id: "WIP4_LegendaryShard_Shared4_Miasma" },  // Зловонный
+          { id: "WIP4_LegendaryShard_Shared4_Runner" },  // Курьерский
+          { id: "WIP4_LegendaryShard_Armor4_Stalwarts" },// Несгибаемость
+          { id: "WIP4_LegendaryShard_Shared4_BattleLoaders" }, // Погрузочный
+          { id: "WIP4_LegendaryShard_Armor4_Propelling" }, // Форсирующий
+          { id: "WIP4_LegendaryShard_Armor4_ChooChoo" },   // Чух-чух
         ]
       }
     ]
   }
 ];
 
-// --- Weapon Tier List Data ---
 window.weaponTierListData = [
   {
     tierNameKey: "tierListTierS",
     tierColor: "var(--tier-s-color)",
     tierBorderColor: "var(--tier-s-border-color)",
-    textColor: "var(--tier-s-text-color)", // Added
+    textColor: "var(--tier-s-text-color)",
     categories: [
       {
-        categoryNameKey: "tierListCategoryGeneral", 
+        categoryNameKey: "tierListCategoryGeneral",
         modules: [
-          { name: "Филигранность", noteKey: "tierListNoteNowAndAfterFix" },
-          { name: "Колотушка" },
-          { name: "Задиристый", noteKey: "tierListNoteAfterFixes" },
-          { name: "Полированный", noteKey: "tierListNoteExplosiveOnly" },
+          // "Филигранность" -> Pin-Pointer's
+          { id: "WIP4_LegendaryShard_Weapon4_Guns_PinPointers", noteKey: "tierListNoteNowAndAfterFix" },
+          // "Колотушка" -> Pounder's
+          { id: "WIP4_LegendaryShard_Weapon4_Melee_Pounders" },
+          // "Задиристый" -> Bully's
+          { id: "WIP4_LegendaryShard_Weapon4_Bully", noteKey: "tierListNoteAfterFixes" },
+          // "Полированный" -> Polished
+          { id: "WIP4_LegendaryShard_Weapon4_Polished", noteKey: "tierListNoteExplosiveOnly" },
         ]
       }
     ]
@@ -98,17 +108,17 @@ window.weaponTierListData = [
     tierNameKey: "tierListTierA",
     tierColor: "var(--tier-a-color)",
     tierBorderColor: "var(--tier-a-border-color)",
-    textColor: "var(--tier-a-text-color)", // Added
+    textColor: "var(--tier-a-text-color)",
     categories: [
       {
         categoryNameKey: "tierListCategoryGeneral",
         modules: [
-          { name: "Гадючий" },
-          { name: "Пироманский" },
-          { name: "Полированный" },
-          { name: "Проводник" },
-          { name: "Фехтование" },
-          { name: "Электротехнический" },
+          { id: "WIP4_LegendaryShard_Weapon4_Vipers" },       // Гадючий
+          { id: "WIP4_LegendaryShard_Weapon4_Pyromaniac" },   // Пироманский
+          { id: "WIP4_LegendaryShard_Weapon4_Polished" },     // Полированный
+          { id: "WIP4_LegendaryShard_Weapon4_Conductors" },   // Проводник
+          { id: "WIP4_LegendaryShard_Weapon4_Melee_Fencers" },// Фехтование
+          { id: "WIP4_LegendaryShard_Weapon4_Guns_Electricians" }, // Электротехнический
         ]
       }
     ]
@@ -117,17 +127,17 @@ window.weaponTierListData = [
     tierNameKey: "tierListTierF",
     tierColor: "var(--tier-f-color)",
     tierBorderColor: "var(--tier-f-border-color)",
-    textColor: "var(--tier-f-text-color)", // Added
+    textColor: "var(--tier-f-text-color)",
     categories: [
       {
         categoryNameKey: "tierListCategoryGeneral",
         modules: [
-          { name: "Жатва" },
-          { name: "Задиристый", noteKey: "tierListNoteNowBeforeFiligreeFix" },
-          { name: "Костоломный" },
-          { name: "Сокрушающий" },
-          { name: "Стабилизатор" },
-          { name: "Хладнокровный" },
+          { id: "WIP4_LegendaryShard_Weapon4_Encirclers" },      // Жатва
+          { id: "WIP4_LegendaryShard_Weapon4_Bully", noteKey: "tierListNoteNowBeforeFiligreeFix" }, // Задиристый
+          { id: "WIP4_LegendaryShard_Weapon4_Fracturers" },     // Костоломный
+          { id: "WIP4_LegendaryShard_Weapon4_Melee_ComboBreaker" },// Сокрушающий
+          { id: "WIP4_LegendaryShard_Weapon4_Guns_Stabilizers" },// Стабилизатор
+          { id: "WIP4_LegendaryShard_Weapon4_Melee_Icemens" },   // Хладнокровный
         ]
       }
     ]

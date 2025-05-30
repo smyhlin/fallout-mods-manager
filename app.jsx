@@ -2,21 +2,19 @@
 
 // --- Main App Component ---
 function App() {
-    const [isLoading, setIsLoading] = React.useState(true);
-    const [initialModulesData, setInitialModulesData] = React.useState(null);
+    const { t, language, switchLanguage, languageModules: initialModulesDataFromContext, isLoadingContext } = useTranslation();
+
     const [modules, setModules] = React.useState([]);
     const [filter, setFilter] = React.useState('all');
     const [selectedStars, setSelectedStars] = React.useState(null);
+    const [selectedCompatibility, setSelectedCompatibility] = React.useState(null); // New state for compatibility filter
     const [searchTerm, setSearchTerm] = React.useState('');
     const [notification, showNotification] = useNotification();
-    const [isDesktopSidebarCollapsed, setIsDesktopSidebarCollapsed] = React.useState(false);
-    
-    const [activeView, setActiveView] = React.useState('modules'); // 'modules' or 'holohub'
-    const [activeHoloHubPage, setActiveHoloHubPage] = React.useState(holoHubPagesConfig[0].id); // Default to first Holo-Hub page
+
+    const [activeView, setActiveView] = React.useState('modules');
+    const [activeHoloHubPage, setActiveHoloHubPage] = React.useState(holoHubPagesConfig[0].id);
 
     const fileInputRef = React.useRef(null);
-
-    const { t, language, switchLanguage } = useTranslation();
 
     const {
         columnSettings, columnVisibility, columnWidths, sortConfig, tempWidths,
@@ -24,11 +22,12 @@ function App() {
         handleResetSettings, applyImportedSettings,
     } = useTableState(columnConfig, showNotification);
 
-    const { isMobileSidebarOpen, toggleMobileSidebar } = useSidebarState();
+    const { isMobileSidebarOpen, toggleMobileSidebar, isDesktopSidebarCollapsed, toggleDesktopSidebar } = useSidebarState();
     const { isModalOpen, itemBeingEdited, openModal, closeModal } = useModalState();
+
     const {
         handleLearnedChange, handleAddNewModule, handleSaveChangesInModal, handleDeleteModule,
-    } = useModuleManagement(modules, setModules, showNotification, closeModal, t);
+    } = useModuleManagement(modules, setModules, showNotification, closeModal);
 
     const debouncedSearchTerm = useDebounce(searchTerm, DEBOUNCE_DELAY.SEARCH);
 
@@ -41,49 +40,118 @@ function App() {
     }, [language, t]);
 
     React.useEffect(() => {
-        const loadInitialData = async () => {
-            try {
-                setIsLoading(true);
-                const response = await fetch('./modules.json');
-                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                const fetchedInitialModules = await response.json();
-                setInitialModulesData(fetchedInitialModules);
-                setModules(loadModules(fetchedInitialModules));
-            } catch (error) {
-                console.error("Failed to load initial data:", error);
-                showNotification(t('notificationErrorInitialData'), 'error');
-                setInitialModulesData([]);
-                setModules(loadModules([]));
-            } finally {
-                setIsLoading(false);
-            }
-        };
-        loadInitialData();
-    }, [showNotification, t]);
+        if (isLoadingContext) return;
 
+        const loadedLearnedStatus = loadLearnedStatus();
+        const loadedCustomModules = loadCustomModules();
+
+        const baseModules = initialModulesDataFromContext.map(m => {
+            const key = m.module_editor_id || `${m.module_name}-${m.module_star}`;
+            return {
+                ...m,
+                learned: !!loadedLearnedStatus[key],
+                isCustom: false,
+            };
+        });
+
+        const customModulesWithLearned = loadedCustomModules.map(cm => {
+            const key = cm.module_editor_id || `${cm.ruName}-${cm.stars}`;
+            return {
+                ...cm,
+                learned: !!loadedLearnedStatus[key],
+            };
+        });
+
+        setModules([...baseModules, ...customModulesWithLearned]);
+
+    }, [initialModulesDataFromContext, language, isLoadingContext]);
+
+    // THIS IS THE CORRECTED useEffect for saving data
     React.useEffect(() => {
-        if (!isLoading && initialModulesData !== null && activeView === 'modules') {
-            saveModules(modules);
-        }
-    }, [modules, isLoading, initialModulesData, activeView]);
+        if (isLoadingContext || modules.length === 0) return;
+
+        const learnedToSave = {};
+        const customToSave = [];
+
+        modules.forEach(m => {
+            // Determine the key: module_editor_id for base, or for custom if it exists.
+            // Fallback to name-stars for custom modules if module_editor_id is somehow missing.
+            const key = m.module_editor_id || 
+                        (m.isCustom ? `${m.ruName}-${m.stars}` : `${m.module_name}-${m.module_star}`);
+            
+            if (typeof m.learned === 'boolean') {
+                 learnedToSave[key] = m.learned;
+            }
+            if (m.isCustom) {
+                // Ensure custom modules save with the fields expected by loadCustomModules
+                const customModuleToSave = {
+                    ruName: m.ruName,
+                    enName: m.enName,
+                    stars: m.stars,
+                    effect: m.effect,
+                    compatibility: m.compatibility, // Stored as string
+                    materials: m.materials,
+                    isCustom: true,
+                    module_editor_id: m.module_editor_id, // Persist if it has one
+                };
+                customToSave.push(customModuleToSave);
+            }
+        });
+        saveLearnedStatus(learnedToSave);
+        saveCustomModules(customToSave);
+    }, [modules, isLoadingContext]); // End of corrected useEffect
+
 
     const handleOpenEditModal = React.useCallback((module) => openModal(module), [openModal]);
     const handleOpenAddModal = React.useCallback(() => openModal(), [openModal]);
     const handleSearchChange = React.useCallback((e) => setSearchTerm(e.target.value), []);
-    
+    // New handler for compatibility filter change
+    const handleCompatibilityFilterChange = React.useCallback((compatibility) => {
+        setSelectedCompatibility(compatibility);
+    }, []);
+
+    // Define compatibility options for filtering
+    const compatibilityOptions = React.useMemo(() => [
+        'Weapon Range',
+        'Melee',
+        'Armor',
+        'Power Armor',
+    ], []);
+
     const handleExport = React.useCallback(() => {
         try {
+            const learnedStatusToExport = {};
+            const customModulesToExport = [];
+            modules.forEach(m => {
+                const key = m.module_editor_id || (m.isCustom ? `${m.ruName}-${m.stars}` : `${m.module_name}-${m.module_star}`);
+                if (typeof m.learned === 'boolean') learnedStatusToExport[key] = m.learned;
+                if (m.isCustom) {
+                     const customModuleToExport = {
+                        ruName: m.ruName,
+                        enName: m.enName,
+                        stars: m.stars,
+                        effect: m.effect,
+                        compatibility: m.compatibility,
+                        materials: m.materials,
+                        isCustom: true,
+                        module_editor_id: m.module_editor_id,
+                    };
+                    customModulesToExport.push(customModuleToExport);
+                }
+            });
+
             const dataToExport = {
-                modules: modules.map(({ ruName, stars, learned, enName, effect, isCustom }) => 
-                    ({ ruName, stars, learned, enName, effect, isCustom })),
+                learnedStatus: learnedStatusToExport,
+                customModules: customModulesToExport,
                 columnSettings: { visibility: columnVisibility, widths: columnWidths },
+                languageExportedFrom: language,
             };
             const jsonString = JSON.stringify(dataToExport, null, 2);
             const blob = new Blob([jsonString], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `fallout76_modules_backup_${new Date().toISOString().slice(0,10)}.json`;
+            a.download = `fallout76_modules_backup_${language}_${new Date().toISOString().slice(0,10)}.json`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -93,7 +161,7 @@ function App() {
             console.error("Export failed:", error);
             showNotification(t('notificationExportError'), 'error');
         }
-    }, [modules, columnVisibility, columnWidths, showNotification, t]);
+    }, [modules, columnVisibility, columnWidths, language, showNotification, t]);
 
     const handleImportClick = React.useCallback(() => {
         fileInputRef.current?.click();
@@ -108,58 +176,53 @@ function App() {
             try {
                 const importedData = JSON.parse(e.target.result);
                 if (!importedData || typeof importedData !== 'object') throw new Error(t('notificationImportErrorInvalidFormat'));
-                if (!Array.isArray(importedData.modules)) throw new Error(t('notificationImportErrorMissingModules'));
-                
-                if (initialModulesData === null) {
+
+                if (isLoadingContext) {
                     showNotification(t('notificationImportInitialDataNotLoaded'), 'error');
                     return;
                 }
 
-                const hasSettings = importedData.columnSettings && 
-                                 typeof importedData.columnSettings === 'object';
-
                 if (window.confirm(t('confirmImport'))) {
-                    let importedModules = [];
-                    const initialMap = new Map(initialModulesData.map(m => [`${m.ruName}-${m.stars}`, { ...m, isCustom: false }]));
-                    const importedMap = new Map();
-                    
-                    importedData.modules.forEach(m => {
-                        if(m && m.ruName && m.stars) importedMap.set(`${m.ruName}-${m.stars}`, m);
-                    });
+                    let newLearnedStatus = loadLearnedStatus();
+                    if (importedData.learnedStatus && typeof importedData.learnedStatus === 'object') {
+                        newLearnedStatus = { ...newLearnedStatus, ...importedData.learnedStatus };
+                    }
+                    saveLearnedStatus(newLearnedStatus);
 
-                    initialMap.forEach((initialModule, key) => {
-                        const imported = importedMap.get(key);
-                        if (imported) {
-                            importedModules.push({
-                                ...initialModule,
-                                learned: !!imported.learned,
-                                isCustom: typeof imported.isCustom === 'boolean' ? imported.isCustom : !initialMap.has(key)
-                            });
-                            importedMap.delete(key);
-                        } else {
-                            importedModules.push({ ...initialModule, learned: false });
-                        }
-                    });
-
-                    importedMap.forEach(custom => {
-                        importedModules.push({
-                            ruName: custom.ruName,
-                            enName: custom.enName || '',
-                            stars: custom.stars,
-                            effect: custom.effect || '',
-                            learned: !!custom.learned,
-                            isCustom: true
+                    let newCustomModules = loadCustomModules();
+                    if (Array.isArray(importedData.customModules)) {
+                        const importedCustomMap = new Map(importedData.customModules.map(m => [m.module_editor_id || `${m.ruName}-${m.stars}`, m]));
+                        newCustomModules = newCustomModules.map(existingCm => {
+                            const key = existingCm.module_editor_id || `${existingCm.ruName}-${existingCm.stars}`;
+                            if (importedCustomMap.has(key)) {
+                                const imported = importedCustomMap.get(key);
+                                importedCustomMap.delete(key);
+                                return imported;
+                            }
+                            return existingCm;
                         });
+                        importedCustomMap.forEach(newCm => newCustomModules.push(newCm));
+                    }
+                    saveCustomModules(newCustomModules);
+
+                    const currentInitial = initialModulesDataFromContext;
+                    const baseModules = currentInitial.map(m => {
+                        const key = m.module_editor_id || `${m.module_name}-${m.module_star}`;
+                        return { ...m, learned: !!newLearnedStatus[key], isCustom: false };
                     });
+                    const customModulesWithLearned = newCustomModules.map(cm => {
+                        const key = cm.module_editor_id || `${cm.ruName}-${cm.stars}`;
+                        return { ...cm, learned: !!newLearnedStatus[key] };
+                    });
+                    setModules([...baseModules, ...customModulesWithLearned]);
 
-                    setModules(importedModules);
 
-                    if (hasSettings) {
+                    if (importedData.columnSettings && typeof importedData.columnSettings === 'object') {
                         applyImportedSettings(importedData.columnSettings);
                     } else {
                         handleResetSettings();
                     }
-                    
+
                     showNotification(t('notificationImportSuccess'), 'success');
                 }
             } catch (error) {
@@ -175,43 +238,101 @@ function App() {
             if (fileInputRef.current) fileInputRef.current.value = '';
         };
         reader.readAsText(file);
-    }, [showNotification, initialModulesData, applyImportedSettings, handleResetSettings, setModules, t]);
-    
-    const toggleDesktopSidebar = React.useCallback(() => setIsDesktopSidebarCollapsed(prev => !prev), []);
-    
+    }, [showNotification, isLoadingContext, initialModulesDataFromContext, applyImportedSettings, handleResetSettings, setModules, t]);
+
     const overallAppTitle = React.useMemo(() => t('pageTitleApp'), [t]);
 
     const currentViewDisplayTitle = React.useMemo(() => {
-        // This is the H2 title for the current tab/view content area
         if (activeView === 'modules') return t('headerTitleModules');
         if (activeView === 'holohub') {
             const pageConfig = holoHubPagesConfig.find(p => p.id === activeHoloHubPage);
             return pageConfig ? t(pageConfig.labelKey) : t('headerTitleHoloHub');
         }
-        return ''; 
+        return '';
     }, [activeView, activeHoloHubPage, t]);
 
     const processedModules = React.useMemo(() => {
-        if (isLoading || activeView !== 'modules') return [];
+        if (isLoadingContext || activeView !== 'modules') return [];
         const searchTermLower = debouncedSearchTerm.toLowerCase();
-        const searched = !searchTermLower ? modules : modules.filter(m =>
-            m.ruName.toLowerCase().includes(searchTermLower) ||
-            (m.enName && m.enName.toLowerCase().includes(searchTermLower)) ||
-            (m.effect && m.effect.toLowerCase().includes(searchTermLower))
-        );
+
+        const searched = !searchTermLower ? modules : modules.filter(m => {
+            const primaryName = m.module_name || m.ruName || '';
+            const effectText = m.module_description || m.effect || '';
+            const materialsText = m.module_materials || (m.isCustom && m.materials) || '';
+            const compatibilityArray = m.module_compatibility || (m.isCustom && m.compatibility ? m.compatibility.split(',').map(s=>s.trim()) : []);
+            const compatibilityText = compatibilityArray.join(' ').toLowerCase();
+
+
+            return primaryName.toLowerCase().includes(searchTermLower) ||
+                   effectText.toLowerCase().includes(searchTermLower) ||
+                   materialsText.toLowerCase().includes(searchTermLower) ||
+                   compatibilityText.includes(searchTermLower);
+        });
+
         let filtered = [];
         switch (filter) {
             case 'learned': filtered = searched.filter(m => m.learned); break;
             case 'notLearned': filtered = searched.filter(m => !m.learned); break;
             default: filtered = searched; break;
         }
-        if (selectedStars !== null) filtered = filtered.filter(m => m.stars === selectedStars);
+        if (selectedStars !== null) {
+            filtered = filtered.filter(m => (m.module_star || m.stars) === selectedStars);
+        }
+        // New filter for compatibility
+        if (selectedCompatibility !== null) {
+             filtered = filtered.filter(m => {
+                // Get compatibility data, handling both base (array) and custom (string) modules
+                const moduleCompatibility = m.module_compatibility || (m.isCustom ? m.compatibility : '');
+
+                // Convert to a consistent array of lowercase, trimmed strings
+                const compatibilityItems = Array.isArray(moduleCompatibility)
+                    ? moduleCompatibility.map(item => String(item).trim().toLowerCase())
+                    : String(moduleCompatibility || '').split(',').map(item => item.trim().toLowerCase()).filter(item => item !== ''); // Split string, trim, lowercase, remove empty
+
+                // Check if any item in the module's compatibility list matches the selected filter option
+                const selectedLower = selectedCompatibility.toLowerCase();
+
+                return compatibilityItems.some(item => {
+                    // Specific checks for weapon types based on keywords
+                    if (selectedLower === 'weapon range') {
+                        return item.includes('range'); // Match 'weapon: ranged' or similar
+                    } else if (selectedLower === 'melee') {
+                        return item.includes('melee'); // Match 'weapon: melee' or similar
+                    } else {
+                        // For Armor and Power Armor, assume exact match is intended
+                        return item === selectedLower;
+                    }
+                });
+             });
+        }
+
+
         const { key: sortKey, direction: sortDirection } = sortConfig;
         const sortMultiplier = sortDirection === 'asc' ? 1 : -1;
         const columnType = columnConfig.find(c => c.id === sortKey)?.type || 'string';
+
         const sorted = [...filtered];
         sorted.sort((a, b) => {
-            let valA = a[sortKey]; let valB = b[sortKey];
+            let valA, valB;
+            if (sortKey === 'name') {
+                valA = a.module_name || a.ruName || '';
+                valB = b.module_name || b.ruName || '';
+            } else if (sortKey === 'stars') {
+                valA = a.module_star || a.stars || 0;
+                valB = b.module_star || b.stars || 0;
+            } else if (sortKey === 'effect') {
+                valA = a.module_description || a.effect || '';
+                valB = b.module_description || b.effect || '';
+            } else if (sortKey === 'module_materials') {
+                valA = a.module_materials || (a.isCustom && a.materials) || '';
+                valB = b.module_materials || (b.isCustom && b.materials) || '';
+            }
+            else {
+                valA = a[sortKey];
+                valB = b[sortKey];
+            }
+
+
             if (columnType === 'string') {
                 valA = String(valA ?? '').toLowerCase(); valB = String(valB ?? '').toLowerCase();
                 const comp = valA.localeCompare(valB, language);
@@ -223,37 +344,48 @@ function App() {
                 valA = Boolean(valA); valB = Boolean(valB);
                 if (valA !== valB) return (valA - valB) * sortMultiplier;
             }
-            const compName = a.ruName.localeCompare(b.ruName, language);
+
+            const nameA = a.module_name || a.ruName || '';
+            const nameB = b.module_name || b.ruName || '';
+            const compName = nameA.localeCompare(nameB, language);
             if (compName !== 0) return compName;
-            return (a.stars - b.stars);
+
+            const starsA = a.module_star || a.stars || 0;
+            const starsB = b.module_star || b.stars || 0;
+            return (starsA - starsB);
         });
         return sorted;
-    }, [modules, filter, selectedStars, sortConfig, debouncedSearchTerm, isLoading, language, activeView]);
-    
-    const dataLabels = React.useMemo(() => columnConfig.reduce((acc, col) => { acc[col.id] = t(col.labelKey); return acc; }, {}), [columnConfig, t]);
-    
-    const stats = React.useMemo(() => {
-        if (isLoading || activeView !== 'modules') return { totalCount: 0, learnedCount: 0, percentage: "0.0", visibleCount: 0, visibleModuleSamples: [] };
-        const totalCount = modules.length;
-        const learnedCount = modules.filter(m => m.learned).length;
-        const percentage = totalCount > 0 ? ((learnedCount / totalCount) * 100).toFixed(1) : "0.0";
-        const visibleCount = processedModules.length;
-        const visibleModuleSamples = processedModules.slice(0, MAX_VISIBLE_MODULE_SAMPLES_IN_BANNER).map(m => m.ruName);
-        return { totalCount, learnedCount, percentage, visibleCount, visibleModuleSamples };
-    }, [modules, isLoading, processedModules, activeView]); 
+    }, [modules, filter, selectedStars, selectedCompatibility, sortConfig, debouncedSearchTerm, isLoadingContext, language, activeView]);
 
-    if (isLoading && initialModulesData === null) return <div className="loading-indicator">{t('loadingMessage')}</div>;
+    const dataLabels = React.useMemo(() => columnConfig.reduce((acc, col) => { acc[col.id] = t(col.labelKey); return acc; }, {}), [t]);
+
+    const stats = React.useMemo(() => {
+        if (isLoadingContext || activeView !== 'modules') return { totalCount: 0, learnedCount: 0, percentage: "0.0", visibleCount: 0, visibleModuleSamples: [] };
+
+        const totalDisplayableModules = modules.length;
+        const learnedCount = modules.filter(m => m.learned).length;
+        const percentage = totalDisplayableModules > 0 ? ((learnedCount / totalDisplayableModules) * 100).toFixed(1) : "0.0";
+        const visibleCount = processedModules.length;
+        const visibleModuleSamples = processedModules.slice(0, MAX_VISIBLE_MODULE_SAMPLES_IN_BANNER).map(m => m.module_name || m.ruName);
+
+        return { totalCount: totalDisplayableModules, learnedCount, percentage, visibleCount, visibleModuleSamples };
+    }, [modules, isLoadingContext, processedModules, activeView]);
+
+    if (isLoadingContext && !initialModulesDataFromContext.length && !loadCustomModules().length) {
+        return <div className="loading-indicator">{t('loadingMessage')}</div>;
+    }
+
 
     return (
         <React.Fragment>
             <button id="mobile-settings-button" onClick={toggleMobileSidebar} aria-label={t('mobileMenuButtonLabel')}>☰</button>
             <div id="sidebar-overlay" className={isMobileSidebarOpen ? 'active' : ''} onClick={toggleMobileSidebar}></div>
-            <input 
-                type="file" 
-                id="file-import-input" 
-                ref={fileInputRef} 
-                onChange={handleImportFile} 
-                accept=".json" 
+            <input
+                type="file"
+                id="file-import-input"
+                ref={fileInputRef}
+                onChange={handleImportFile}
+                accept=".json"
                 style={{ display: 'none' }}
             />
 
@@ -262,7 +394,7 @@ function App() {
                     isMobileOpen={isMobileSidebarOpen}
                     isDesktopCollapsed={isDesktopSidebarCollapsed}
                     onMobileClose={toggleMobileSidebar}
-                    activeView={activeView} // Pass activeView
+                    activeView={activeView}
                     currentFilter={filter}
                     onFilterChange={setFilter}
                     columnConfig={columnConfig}
@@ -277,10 +409,13 @@ function App() {
                     onLanguageChange={switchLanguage}
                     selectedStars={selectedStars}
                     onStarFilterChange={setSelectedStars}
-                    activeHoloHubPage={activeHoloHubPage} // Pass HoloHub page state
-                    onHoloHubPageChange={setActiveHoloHubPage} // Pass HoloHub page handler
+                    selectedCompatibility={selectedCompatibility} // Pass new state
+                    onCompatibilityFilterChange={handleCompatibilityFilterChange} // Pass new handler
+                    compatibilityOptions={compatibilityOptions} // Pass compatibility options
+                    activeHoloHubPage={activeHoloHubPage}
+                    onHoloHubPageChange={setActiveHoloHubPage}
                 />
-                
+
                 <div className="pipboy-content">
                     <div className="app-main-header">
                         <div className="app-main-header-title-area">
@@ -322,11 +457,11 @@ function App() {
                             </button>
                         </div>
                     </div>
-                    
+
                     <ScrollableContainer className="pipboy-content-wrapper hide-scrollbar">
                         {activeView === 'modules' && (
                             <React.Fragment>
-                                <StatsBanner stats={stats} /> 
+                                <StatsBanner stats={stats} />
                                 <ModuleTable
                                     modules={processedModules}
                                     columnConfig={columnConfig}
@@ -343,14 +478,19 @@ function App() {
                             </React.Fragment>
                         )}
                         {activeView === 'holohub' && (
-                            <HoloHubView activePage={activeHoloHubPage} allModules={modules} /> // Pass allModules
+                            <HoloHubView activePage={activeHoloHubPage} allModules={modules} />
                         )}
                     </ScrollableContainer>
                 </div>
             </div>
 
             {activeView === 'modules' && (
-                <EditModuleModal isOpen={isModalOpen} module={itemBeingEdited} onClose={closeModal} onSave={itemBeingEdited ? handleSaveChangesInModal : handleAddNewModule} />
+                 <EditModuleModal
+                    isOpen={isModalOpen}
+                    module={itemBeingEdited}
+                    onClose={closeModal}
+                    onSave={itemBeingEdited ? (originalModule, updatedData) => handleSaveChangesInModal(itemBeingEdited, updatedData) : handleAddNewModule}
+                />
             )}
             <Notification {...notification} />
         </React.Fragment>

@@ -1,0 +1,1626 @@
+[
+  {
+    "module_star": 1,
+    "module_name": "Пронзительная",
+    "module_description": "+50% Бронебойность.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "5 Черного титана",
+    "module_editor_id": "LegendaryShard_Weapon1_AntiArmor",
+    "module_form_id": "0078040E",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Аристократическая",
+    "module_description": "[Оружие] До +50% к урону в зависимости от количества имеющихся у вас крышек.\n[Броня] Повышение сопротивляемости обычному и энергетическому урону по мере увеличения количества крышек (до +20).",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Пупс: Крышки",
+    "module_editor_id": "LegendaryShard_Shared1_ProportionalCaps",
+    "module_form_id": "00784BDC",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Убийственная",
+    "module_description": "[Оружие] +50% Урон людям.\n[Броня]-15% Урон от людей.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Жидкая храбрость",
+    "module_editor_id": "LegendaryShard_Shared1_DMGPlayers",
+    "module_form_id": "00784BD2",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Стимуляторная",
+    "module_description": "Автоматическое применение стимулятора при падении здоровья до 25% или ниже раз в 60 сек.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "5 Стимуляторов",
+    "module_editor_id": "LegendaryShard_Armor1_LowHealthTriggersStimpak",
+    "module_form_id": "00784BD7",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Берсеркерское",
+    "module_description": "Пока снижается Сопр. урону, увеличивается урон, но не более чем на +50%.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "5 Психо",
+    "module_editor_id": "LegendaryShard_Weapon1_DamageUnarmored",
+    "module_form_id": "00786C7C",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Окровавленное",
+    "module_description": "При снижении уровня здоровья увеличивается урон, но не более чем на +95%.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Сыворотка «Надпочечниковая реакция»",
+    "module_editor_id": "LegendaryShard_Weapon1_DamageInverseHealth",
+    "module_form_id": "00786C7A",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Подкрепляющая",
+    "module_description": "Повышение сопротивляемости обычному и энергетическому урону по мере уменьшения здоровья (до +35).",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "5 Мед-Х",
+    "module_editor_id": "LegendaryShard_Armor1_ResistancesInverseHealth",
+    "module_form_id": "00784BD9",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Хамелеон",
+    "module_description": "Сливайтесь с окружением в режиме скрытного передвижения и стоя на месте.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Сыворотка «Хамелеон»",
+    "module_editor_id": "LegendaryShard_Armor1_Chameleon",
+    "module_form_id": "0078040D",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Маскирующая",
+    "module_description": "Ранение в ближнем бою делает игрока невидимым раз в 30 секунд.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Стелс-бой",
+    "module_editor_id": "LegendaryShard_Armor1_CloakOnMelee",
+    "module_form_id": "00784BCD",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Палаческое",
+    "module_description": "На +50% больше урона, когда у вашей цели осталось меньше 40% здоровья.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "25 Кожи",
+    "module_editor_id": "LegendaryShard_Weapon1_Execute",
+    "module_form_id": "00786C81",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Гибельная",
+    "module_description": "[Оружие] +50% Урон насекомым. +50% Урон болотникам.\n[Броня] -15% Урон от болотников и насекомых.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Хоботок кровомошки, 1 Жало жалящего крыла",
+    "module_editor_id": "LegendaryShard_Shared1_DMGBugs",
+    "module_form_id": "00784BD0",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Яростное",
+    "module_description": "+5% к урону с каждой последующей атакой одной и той же цели, но не более +45%.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Ярость",
+    "module_editor_id": "LegendaryShard_Weapon1_DmgConsecutiveHits",
+    "module_form_id": "00786C80",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Антирадиационная",
+    "module_description": "[Оружие] +50% Урон гулям.\n[Броня]-15% Урон от гулей.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Радщит",
+    "module_editor_id": "LegendaryShard_Shared1_DMGGhouls",
+    "module_form_id": "00784BD1",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Гурманское",
+    "module_description": "По мере заполнения шкал голода и жажды урон увеличивается вплоть до +24%.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Вегетарианская ветчина",
+    "module_editor_id": "LegendaryShard_Weapon1_Gourmand",
+    "module_form_id": "00786C82",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Охотничья",
+    "module_description": "[Оружие] +50% Урон животным.\n[Броня] -15% Урон от животных.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Шкура Яо-гая",
+    "module_editor_id": "LegendaryShard_Shared1_DMGAnimals",
+    "module_form_id": "00784BCF",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Провоцирующее",
+    "module_description": "+100% к урону целям при полном здоровье.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "5 Виски",
+    "module_editor_id": "LegendaryShard_Weapon1_DamageFirstBlood",
+    "module_form_id": "00786C79",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Гиганта",
+    "module_description": "При увеличении уровня здоровья увеличивается урон, но не более чем на +25%.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "5 Баффаутов",
+    "module_editor_id": "LegendaryShard_Weapon1_DamageViaHealth",
+    "module_form_id": "00786C7E",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Наркоманское",
+    "module_description": "Урон увеличивается за каждую зависимость, но не более чем на +50%.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "5 Ментатов",
+    "module_editor_id": "LegendaryShard_Weapon1_DamageAddiction",
+    "module_form_id": "00786C78",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Спасательная",
+    "module_description": "Погибая, вы сможете раз в минуту оживлять себя с помощью стимулятора с вероятностью 50%.",
+    "module_compatibility": [
+      "Armor"
+    ],
+    "module_materials": "5 Стимуляторов",
+    "module_editor_id": "LegendaryShard_Armor1_AutoRevive",
+    "module_form_id": "0078040C",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Медицинское",
+    "module_description": "Атаки восстанавливают 5% здоровья вашим соратникам.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Пупс: Медицина",
+    "module_editor_id": "LegendaryShard_Weapon1_Medic",
+    "module_form_id": "00786C77",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Мутантоистребительная",
+    "module_description": "[Оружие] +50% Урон супермутантам.\n[Броня] -15% Урон от супермутантов.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Голова супермутанта",
+    "module_editor_id": "LegendaryShard_Shared1_DMGSuperMutants",
+    "module_form_id": "00784BD5",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Мутантная",
+    "module_description": "[Оружие] При получении мутаций увеличивается урон, но не более чем на +25%.\n[Броня] +10 к сопротивляемости обычному и энергетическому урону при мутации.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "10 Асбеста",
+    "module_editor_id": "LegendaryShard_Shared1_Mutation",
+    "module_form_id": "00784BDA",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Ночная",
+    "module_description": "[Оружие] +50% к урону в ночное время.\n[Броня] +40 к сопротивляемости обычному и энергетическому урону по ночам.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "10 Ядерного материала",
+    "module_editor_id": "LegendaryShard_Shared1_Night",
+    "module_form_id": "00784BDB",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Лакомки",
+    "module_description": "Снижает получаемый урон до +6% по мере заполнения шкал голода и жажды.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Идеальная жвачка",
+    "module_editor_id": "LegendaryShard_Armor1_Overeater",
+    "module_form_id": "00784BD8",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Четверное",
+    "module_description": "+300% Боезапас.",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "1 Ядерный блок",
+    "module_editor_id": "LegendaryShard_Weapon1_Guns_AmmoCapacity4x",
+    "module_form_id": "00786C85",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Регенерирующая",
+    "module_description": "+0,5% темп лечения.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Сыворотка «Лечебный фактор»",
+    "module_editor_id": "LegendaryShard_Armor1_HealthRegen",
+    "module_form_id": "00784BCE",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Следопытское",
+    "module_description": "+100% к точности в V.A.T.S. по цене +50% очков действия, если вы не в бою.",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "1 Калмекс",
+    "module_editor_id": "LegendaryShard_Weapon1_Guns_AccuracyNotInCombat",
+    "module_form_id": "00786C84",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Глушительное",
+    "module_description": "Наносимый целью урон будет снижен на 25% в течение 5 секунд после вашей атаки.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Сыворотка «Заземление»",
+    "module_editor_id": "LegendaryShard_Weapon1_DebuffDamage",
+    "module_form_id": "00786C7F",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Ремонтная",
+    "module_description": "[Оружие] +50% Урон роботам.\n[Броня] -15% Урон от роботов.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "10 Схем",
+    "module_editor_id": "LegendaryShard_Shared1_DMGRobots",
+    "module_form_id": "00784BD3",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Двуствольное",
+    "module_description": "+1 Снаряды +25% Урон -150% точность стрельбы от бедра +100% Отдача.",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "20 Свинца",
+    "module_editor_id": "LegendaryShard_Weapon1_Guns_TwoShot",
+    "module_form_id": "00786C86",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Стойкая",
+    "module_description": "Прибавка до +3 ко всем параметрам S.P.E.C.I.A.L. (кроме выносливости) при низком уровне здоровья.",
+    "module_compatibility": [
+      "Armor"
+    ],
+    "module_materials": "5 Х-клеток",
+    "module_editor_id": "LegendaryShard_Armor1_LowHealthIncreasesStats",
+    "module_form_id": "00784BD6",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Вампирское",
+    "module_description": "Вы восстанавливаете 2% здоровья в течение 2 сек. после попадания по цели.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "10 Пакетов крови",
+    "module_editor_id": "LegendaryShard_Weapon1_Vampire",
+    "module_form_id": "00786C83",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Авангардная",
+    "module_description": "Повышение сопротивляемости обычному и энергетическому урону по мере увеличения здоровья (до +35).",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "5 Пакетов крови",
+    "module_editor_id": "LegendaryShard_Armor1_ResistancesProportionalHealth",
+    "module_form_id": "00784BDD",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Невесомая",
+    "module_description": "-90% Вес.",
+    "module_compatibility": [
+      "Armor"
+    ],
+    "module_materials": "1 Сыворотка «Птичьи кости»",
+    "module_editor_id": "LegendaryShard_Armor1_Weightless",
+    "module_form_id": "00784BDE",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Фанатическая",
+    "module_description": "[Оружие] +50% Урон горелым.\n[Броня] -15% Урон от горелых.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "10 Ультрацита",
+    "module_editor_id": "LegendaryShard_Shared1_DMGScorched",
+    "module_form_id": "00784BD4",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Ловкость",
+    "module_description": "+2 Ловкость.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Пупс: Ловкость",
+    "module_editor_id": "LegendaryShard_Shared2_StatAgility",
+    "module_form_id": "00784BE6",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Антисептик",
+    "module_description": "+25% вероятность заболеть от окружающей среды.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "10 Антибиотиков",
+    "module_editor_id": "LegendaryShard_Armor2_DiseaseResistance",
+    "module_form_id": "00784BE0",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Хрясь!",
+    "module_description": "+50% Урон в ближнем бою.",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "25 Бетона",
+    "module_editor_id": "LegendaryShard_Weapon2_Guns_Bashing",
+    "module_form_id": "00786F79",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Харизма",
+    "module_description": "+2 Харизма.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Пупс: Харизма",
+    "module_editor_id": "LegendaryShard_Shared2_StatCharisma",
+    "module_form_id": "00784BE7",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Калечащее",
+    "module_description": "+50% Урон конечностям.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "5 Черного титана",
+    "module_editor_id": "LegendaryShard_Weapon2_DmgLimbs",
+    "module_form_id": "00786F78",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Выносливость",
+    "module_description": "+2 Выносливость.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Пупс: Выносливость",
+    "module_editor_id": "LegendaryShard_Shared2_StatEndurance",
+    "module_form_id": "00784BE8",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Взрывное",
+    "module_description": "Снаряды взрываются и увеличивают урон от оружия на 20%.",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "1 Пупс: Взрывчатка",
+    "module_editor_id": "LegendaryShard_Weapon2_Guns_ExplosiveBullets",
+    "module_form_id": "00786F7B",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Огнеупорная",
+    "module_description": "+25 к сопротивлению огню.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "10 Мешков с гноем огнедышащего летуна",
+    "module_editor_id": "LegendaryShard_Armor2_Fireproof",
+    "module_form_id": "00784BE1",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Обжоры",
+    "module_description": "Уровни голода и жажды растут на 10% медленнее.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Идеальная жвачка",
+    "module_editor_id": "LegendaryShard_Armor2_Glutton",
+    "module_form_id": "00784BE2",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Живучесть",
+    "module_description": "Снижает урон от взрывов на 7%.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Пупс: Взрывчатка",
+    "module_editor_id": "LegendaryShard_Armor2_ReduceExploisionDamage",
+    "module_form_id": "00784BE5",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Защита",
+    "module_description": "+25 сопротивляемость радиации.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "10 Рад-Х",
+    "module_editor_id": "LegendaryShard_Armor2_RadResistance",
+    "module_form_id": "00784BE4",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Тяжёлое",
+    "module_description": "+40% Урон от мощных атак.",
+    "module_compatibility": [
+      "Weapon: Melee"
+    ],
+    "module_materials": "25 Бетона",
+    "module_editor_id": "LegendaryShard_Weapon2_Melee_DamagePowerAttack",
+    "module_form_id": "00786F80",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Ликвидаторское",
+    "module_description": "+25% к наносимому урону при прицеливании.",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "10 Оптоволокна",
+    "module_editor_id": "LegendaryShard_Weapon2_Guns_DmgSights",
+    "module_form_id": "00786F7A",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Инерционное",
+    "module_description": "Восстанавливает 15 ОД при каждом убийстве.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "10 Консервированного кофе",
+    "module_editor_id": "LegendaryShard_Weapon2_APViaKill",
+    "module_form_id": "00786F76",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Интеллект",
+    "module_description": "+2 Интеллект.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Пупс: Интеллект",
+    "module_editor_id": "LegendaryShard_Shared2_StatIntelligence",
+    "module_form_id": "00784BE9",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Последний выстрел",
+    "module_description": "Последний патрон в магазине с вероятностью 25% наносит на +100% больше урона.",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "15 Пороха",
+    "module_editor_id": "LegendaryShard_Weapon2_Guns_LastShot",
+    "module_form_id": "00786F7C",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Удача",
+    "module_description": "+2 Удача.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Пупс: Удача",
+    "module_editor_id": "LegendaryShard_Shared2_StatLuck",
+    "module_form_id": "00784BEA",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Восприятие",
+    "module_description": "+2 Восприятие.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Пупс: Восприятие",
+    "module_editor_id": "LegendaryShard_Shared2_StatPerception",
+    "module_form_id": "00784BEB",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Знахарская",
+    "module_description": "+25 сопротивляемость ядам.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "10 Мешков с гноем кусачего летуна",
+    "module_editor_id": "LegendaryShard_Armor2_PoisonResistance",
+    "module_form_id": "00784BE3",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Силовая",
+    "module_description": "+5% восстановлению очков действия.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "10 Консервированного кофе",
+    "module_editor_id": "LegendaryShard_Armor2_APRegen",
+    "module_form_id": "0078040B",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Стремительное",
+    "module_description": "+25% Скорость оружия (дальнобойное оружие). +40% Скорость оружия (холодное оружие).",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Сыворотка «Демон скорости»",
+    "module_editor_id": "LegendaryShard_Weapon2_Speed",
+    "module_form_id": "00786F7D",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Парирующее",
+    "module_description": "+50% отражения урона в ближнем бою при блокировании.",
+    "module_compatibility": [
+      "Weapon: Melee"
+    ],
+    "module_materials": "25 Стекла",
+    "module_editor_id": "LegendaryShard_Weapon2_Melee_BlockReflects",
+    "module_form_id": "00786F7F",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Стойкое",
+    "module_description": "+25% к урону в ближнем бою, пока вы не двигаетесь.",
+    "module_compatibility": [
+      "Weapon: Melee"
+    ],
+    "module_materials": "3 Оранжевых ментата",
+    "module_editor_id": "LegendaryShard_Weapon2_Melee_Steady",
+    "module_form_id": "00786F81",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Сила",
+    "module_description": "+2 Сила.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Пупс: Сила",
+    "module_editor_id": "LegendaryShard_Shared2_StatStrength",
+    "module_form_id": "00784BEC",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "С улучшенным V.A.T.S.",
+    "module_description": "+50% Шанс поразить цель в V.A.T.S.",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "3 Ягодных ментата",
+    "module_editor_id": "LegendaryShard_Weapon2_Guns_VATSAccuracy",
+    "module_form_id": "00786F7E",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Актуальное",
+    "module_description": "+50% Критический урон.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Сыворотка «Орлиные глаза»",
+    "module_editor_id": "LegendaryShard_Weapon2_DmgCrits",
+    "module_form_id": "00786F77",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Нагревающая",
+    "module_description": "+25 сопротивляемость холоду.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "10 Мешков с гноем морозного летуна",
+    "module_editor_id": "LegendaryShard_Armor2_CryoResistance",
+    "module_form_id": "00784BDF",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Трюковая",
+    "module_description": "-50% урон от падения.",
+    "module_compatibility": [
+      "Armor"
+    ],
+    "module_materials": "1 Сыворотка «Сумчатое»",
+    "module_editor_id": "LegendaryShard_Armor3_LessFallDamage",
+    "module_form_id": "00784BF5",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Адамантиевая",
+    "module_description": "Снижает урон конечностям на 15%.",
+    "module_compatibility": [
+      "Armor"
+    ],
+    "module_materials": "1 Сыворотка «Скрученные мышцы»",
+    "module_editor_id": "LegendaryShard_Armor3_ReducedLimbDamage",
+    "module_form_id": "00784BF8",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Ловкость",
+    "module_description": "+3 Ловкость.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Пупс: Ловкость",
+    "module_editor_id": "LegendaryShard_Shared3_StatAgility",
+    "module_form_id": "0079AD60",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Хранителя оружия",
+    "module_description": "Оружие весит на 20% меньше.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Пупс: Легкое оружие",
+    "module_editor_id": "LegendaryShard_Armor3_WeightWeapons",
+    "module_form_id": "00784BFF",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "С поясом",
+    "module_description": "Боеприпасы весят на 20% меньше.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "25 Свинца",
+    "module_editor_id": "LegendaryShard_Armor3_WeightAmmo",
+    "module_form_id": "00784BFC",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Горящая",
+    "module_description": "5%-ный шанс нанести 19 единиц урона огнем.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "15 Мешков с гноем огнедышащего летуна",
+    "module_editor_id": "LegendaryShard_Armor3_Burning",
+    "module_form_id": "00784BED",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Cavalier's",
+    "module_description": "[Броня] -5% урона при беге\n[Оружие ближнего боя] -15% урона при блокировании",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Melee"
+    ],
+    "module_materials": "10 Масла",
+    "module_editor_id": null,
+    "module_form_id": null,
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Харизма",
+    "module_description": "+3 Харизма.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Пупс: Харизма",
+    "module_editor_id": "LegendaryShard_Shared3_StatCharisma",
+    "module_form_id": "0079AD61",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Defender's",
+    "module_description": "[Броня] -15% урона при блокировании\n[Оружие ближнего боя] -40% урона при силовой атаке",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Melee"
+    ],
+    "module_materials": "25 Стали",
+    "module_editor_id": null,
+    "module_form_id": null,
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Рассеивающая",
+    "module_description": "+0,25% Восстановление урона от радиации.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "10 Антирадина",
+    "module_editor_id": "LegendaryShard_Armor3_RadsRegen",
+    "module_form_id": "00784BF7",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Дайверская",
+    "module_description": "Позволяет дышать под водой.",
+    "module_compatibility": [
+      "Armor"
+    ],
+    "module_materials": "15 Пластика",
+    "module_editor_id": "LegendaryShard_Armor3_Waterbreathing",
+    "module_form_id": "00784BFB",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Врачебная",
+    "module_description": "+5% к эффективности стимуляторов, антирадина и Рад-Х.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Суперстимулятор",
+    "module_editor_id": "LegendaryShard_Armor3_IncreaseHealing",
+    "module_form_id": "00784BF1",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Прочность",
+    "module_description": "[Оружие] Оружие на 50% медленнее выходит из строя.\n[Броня] Вероятность поломки снижается на 50%.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Пупс: Ремонт",
+    "module_editor_id": "LegendaryShard_Armor3_Durability",
+    "module_form_id": "00784BEE",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Электрифицированная",
+    "module_description": "5%-ный шанс нанести 18 единиц энергетического урона в ближнем бою в течение 3 секунд.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Сыворотка «Электрически заряженный»",
+    "module_editor_id": "LegendaryShard_Armor3_Electrified",
+    "module_form_id": "00784BEF",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Выносливость",
+    "module_description": "+3 Выносливость.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Пупс: Выносливость",
+    "module_editor_id": "LegendaryShard_Shared3_StatEndurance",
+    "module_form_id": "0079AD62",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Ледяная",
+    "module_description": "5%-ный шанс нанести 12 единиц урона холодом в ближнем бою в течение 4 секунд.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "15 Мешков с гноем морозного летуна",
+    "module_editor_id": "LegendaryShard_Armor3_Frozen",
+    "module_form_id": "00784BF0",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Призрака",
+    "module_description": "При попадании в цель у игрока есть 10% шанс стать невидимым на 2 секунд.",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "1 Стелс-бой",
+    "module_editor_id": "LegendaryShard_Weapon3_Guns_CloakOnHit",
+    "module_form_id": "00786F83",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Интеллект",
+    "module_description": "+3 Интеллект.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Пупс: Интеллект",
+    "module_editor_id": "LegendaryShard_Shared3_StatIntelligence",
+    "module_form_id": "0079AD63",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Легкая",
+    "module_description": "-90% Вес.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "10 Пробки",
+    "module_editor_id": "LegendaryShard_Weapon3_Lightweight",
+    "module_form_id": "007A2541",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Удача",
+    "module_description": "+3 Удача.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Пупс: Удача",
+    "module_editor_id": "LegendaryShard_Shared3_StatLuck",
+    "module_form_id": "0079AD64",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Счастливое",
+    "module_description": "+15 Бонус к критической атаке в V.A.T.S..",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Пупс: Удача",
+    "module_editor_id": "LegendaryShard_Weapon3_CritSpeed",
+    "module_form_id": "00786F82",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Ловкое",
+    "module_description": "+100% увеличенная скорость передвижения при прицеливании.",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "25 Пружин",
+    "module_editor_id": "LegendaryShard_Weapon3_Guns_MoveSpeedSights",
+    "module_form_id": "00786F84",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Барахольщицкая",
+    "module_description": "Хлам весит на 20% меньше.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Сыворотка «Сумчатое»",
+    "module_editor_id": "LegendaryShard_Armor3_WeightJunk",
+    "module_form_id": "00784BFE",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Восприятие",
+    "module_description": "+3 Восприятие.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Пупс: Восприятие",
+    "module_editor_id": "LegendaryShard_Shared3_StatPerception",
+    "module_form_id": "0079AD65",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Безотказное",
+    "module_description": "+250 к сопротивляемости урону при перезарядке.",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "5 Мед-Х",
+    "module_editor_id": "LegendaryShard_Weapon3_Guns_ResistReload",
+    "module_form_id": "00786F86",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Воровская",
+    "module_description": "Увеличение размера зачетной зоны при взломе замков на 2.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Пупс: Взлом",
+    "module_editor_id": "LegendaryShard_Armor3_LockPick",
+    "module_form_id": "00784BF6",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Тайного агента",
+    "module_description": "+25% Меньше шума при скрытном перемещении. +25% Уменьшить шанс обнаружения.",
+    "module_compatibility": [
+      "Armor"
+    ],
+    "module_materials": "1 Пупс: Скрытность",
+    "module_editor_id": "LegendaryShard_Armor3_Sneak",
+    "module_form_id": "00784BF9",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Защитная",
+    "module_description": "75% шанс снизить урон пока вы не двигаетесь.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Сыворотка «Чешуйчатая кожа»",
+    "module_editor_id": "LegendaryShard_Armor3_LessDamageStandStill",
+    "module_form_id": "00784BF4",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Надёжное",
+    "module_description": "+50 к сопротивляемости урону при прицеливании.",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "5 Баллистического волокна",
+    "module_editor_id": "LegendaryShard_Weapon3_Guns_ResistSights",
+    "module_form_id": "00786F87",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Сила",
+    "module_description": "+3 Сила.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Пупс: Сила",
+    "module_editor_id": "LegendaryShard_Shared3_StatStrength",
+    "module_form_id": "0079AD66",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Быстрое",
+    "module_description": "+15% Скорость перезарядки.",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "1 Сыворотка «Демон скорости»",
+    "module_editor_id": "LegendaryShard_Weapon3_Guns_ReloadSpeed",
+    "module_form_id": "00786F85",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Походная",
+    "module_description": "Еда, вода и препараты весят на 20% меньше.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "10 Очищенной воды",
+    "module_editor_id": "LegendaryShard_Armor3_WeightFoodDrinkChems",
+    "module_form_id": "00784BFD",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Ядовитая",
+    "module_description": "5%-ный шанс нанести 12 единиц урона ядом в ближнем бою в течение 7 секунд.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "15 Мешков с гноем кусачего летуна",
+    "module_editor_id": "LegendaryShard_Armor3_Toxic",
+    "module_form_id": "00784BFA",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Оптимизированное V.A.T.S.",
+    "module_description": "-25% Расход очков действия.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "10 Сахара",
+    "module_editor_id": "LegendaryShard_Weapon3_VATSCostAP",
+    "module_form_id": "00786F88",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Укрывание",
+    "module_description": "Усиливает на +50 сопротивляемость физическому и энергетическому урону и на +20 — сопротивляемость ядам, холоду и огню игрока и соратников в радиусе 50 футов.",
+    "module_compatibility": [
+      "Power Armor"
+    ],
+    "module_materials": "5 Схем",
+    "module_editor_id": "WIP4_LegendaryShard_Armor4_Aegis",
+    "module_form_id": "007ACE4E",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Погрузочный",
+    "module_description": "Удары прикладом по врагам мгновенно пополняют магазин вашего оружия с вероятностью 15% (до 75% при максимальной силе эффекта).",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Сыворотка «Когти»",
+    "module_editor_id": "WIP4_LegendaryShard_Shared4_BattleLoaders",
+    "module_form_id": "007A1226",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Боксерский",
+    "module_description": "Увеличивает урон холодного оружия на 5% (до +25% при максимальной силе эффекта).",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Баффтаты",
+    "module_editor_id": "WIP4_LegendaryShard_Shared4_Bruiser",
+    "module_form_id": "007A1227",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Задиристый",
+    "module_description": "При атаке без использования V.A.T.S. увеличивает урон при поражении мест на +50%.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Баффаут",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Bully",
+    "module_form_id": "007A123B",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Чух-чух",
+    "module_description": "10%-ный шанс нанести 500 единиц урона и активировать «Кровавую баню», когда вы врезаетесь в цель при ускорении (до 50% при максимальной силе эффекта).",
+    "module_compatibility": [
+      "Power Armor"
+    ],
+    "module_materials": "15 Пушечных ядер",
+    "module_editor_id": "WIP4_LegendaryShard_Armor4_ChooChoo",
+    "module_form_id": "007A1233",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Сокрушающий",
+    "module_description": "50%-ный шанс не потратить очки действия при нанесении урона (10%-ный шанс для автоматического холодного оружия).",
+    "module_compatibility": [
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 «Дыня»",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Melee_ComboBreaker",
+    "module_form_id": "007A1248",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Проводник",
+    "module_description": "Критические удары восстанавливают 5% здоровья и очков действия игроку и соратникам в радиусе 50 футов.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "5 Чистых багровых флюсов",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Conductors",
+    "module_form_id": "007ACB0A",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Электротехнический",
+    "module_description": "При перезарядке создаёт ударную волну, которая оглушает находящиеся рядом цели на 3 секунды.",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "1 Пупс: Энергетическое оружие",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Guns_Electricians",
+    "module_form_id": "007A1242",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Жатва",
+    "module_description": "+10% к урону за каждую боевую цель рядом с вами, но не более +50%.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Овердрайв",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Encirclers",
+    "module_form_id": "007ACBF3",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Фехтование",
+    "module_description": "+12,5% к урону в ближнем бою. Ещё +12,5% за каждого соратника, находящегося рядом (до +50% в полной команде).",
+    "module_compatibility": [
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Пупс: Холодное оружие",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Melee_Fencers",
+    "module_form_id": "007ACBF2",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Костоломный",
+    "module_description": "Покалеченные конечности взрываются и наносят до 50 единиц урона взрывом находящимся рядом целям.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "25 Пороха",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Fracturers",
+    "module_form_id": "007A123A",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Хладнокровный",
+    "module_description": "При нанесении урона в V.A.T.S. замораживает цель, замедляя её.",
+    "module_compatibility": [
+      "Weapon: Melee"
+    ],
+    "module_materials": "5 Чистых флуоресцентных флюсов",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Melee_Icemens",
+    "module_form_id": "007A1247",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Неудержимость",
+    "module_description": "Каждая надетая деталь брони уменьшает стоимость критических атак на 10% (до -50% при максимальной силе эффекта).",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "5 Чистых фиолетовых флюсов",
+    "module_editor_id": "WIP4_LegendaryShard_Shared4_LimitBreak",
+    "module_form_id": "007A1229",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Зловонный",
+    "module_description": "При попадании создает ядовитое облако, которое наносит урон находящимся рядом целям в течении 10 секунд. Чем больше деталей брони надето, тем больше урон от яда.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Сыворотка «Чумной ходок»",
+    "module_editor_id": "WIP4_LegendaryShard_Shared4_Miasma",
+    "module_form_id": "007A122A",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Филигранность",
+    "module_description": "+50% к урону вражеским конечностям (рукам, ногам и др.).",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "1 Формула Р",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Guns_PinPointers",
+    "module_form_id": "007ACA06",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Полированный",
+    "module_description": "Чем лучше состояние используемого предмета (+100%), тем больше урона наносит оружие (до +60%).",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Улучшенный ремкомплект",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Polished",
+    "module_form_id": "007A1238",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Колотушка",
+    "module_description": "+10% к урону за каждый заряд «Натиска», +10 к макс, количеству зарядов.",
+    "module_compatibility": [
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Ярость",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Melee_Pounders",
+    "module_form_id": "007ACB3D",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Форсирующий",
+    "module_description": "Повышает скорость передвижения и ускорения на 5% (до +25% при максимальной силе эффекта).",
+    "module_compatibility": [
+      "Power Armor"
+    ],
+    "module_materials": "15 Хлама из Убежища",
+    "module_editor_id": "WIP4_LegendaryShard_Armor4_Propelling",
+    "module_form_id": "007A1234",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Пироманский",
+    "module_description": "Пока цель в бою горит, увеличивает наносимый урон на 50%.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "15 Асбеста",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Pyromaniac",
+    "module_form_id": "007A1249",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Ядерно-энергетический",
+    "module_description": "+2 к восстанавлению очков действия за счёт радиации (до +10 при максимальной силе эффекта).",
+    "module_compatibility": [
+      "Power Armor"
+    ],
+    "module_materials": "5 Чистых кобальтовых флюсов",
+    "module_editor_id": "WIP4_LegendaryShard_Armor4_RadioactivePowered",
+    "module_form_id": "007A1235",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Рейнджерский",
+    "module_description": "Увеличивает урон дальнобойного оружия на 5% (до +25% при максимальной силе эффекта).",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Психобафф",
+    "module_editor_id": "WIP4_LegendaryShard_Shared4_Ranger",
+    "module_form_id": "007A122D",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Отражающий",
+    "module_description": "Возвращает 10% полученного урона врагу, который его нанёс (до 50% при максимальной силе эффекта).",
+    "module_compatibility": [
+      "Power Armor"
+    ],
+    "module_materials": "1 Пупс: Наука",
+    "module_editor_id": "WIP4_LegendaryShard_Armor4_Reflective",
+    "module_form_id": "007A1236",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Обновление",
+    "module_description": "Постепенно восстанавливает здоровье и очки владельца и соратников в радиусе 50 футов.",
+    "module_compatibility": [
+      "Power Armor"
+    ],
+    "module_materials": "5 Диффузоров стимуляторов",
+    "module_editor_id": "WIP4_LegendaryShard_Armor4_Rejuvenators",
+    "module_form_id": "007ACD6D",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Курьерский",
+    "module_description": "Уменьшает расход очков действия при ускорении на 20% (до -100% при максимальной силе эффекта).",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "10 Очищенной воды",
+    "module_editor_id": "WIP4_LegendaryShard_Shared4_Runner",
+    "module_form_id": "007A122E",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Хирургия",
+    "module_description": "Здоровье медленно восстанавливается (+1 единица в секунду, до +5 единиц в секунду при максимальной силе эффекта).",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Сыворотка «Лечебный фактор»",
+    "module_editor_id": "WIP4_LegendaryShard_Shared4_Sawbones",
+    "module_form_id": "007A122B",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Сканирующий",
+    "module_description": "Уменьшает расход очков действия на атаки в V.A.T.S. на 5% (до -25% при максимальной силе эффекта).",
+    "module_compatibility": [
+      "Power Armor"
+    ],
+    "module_materials": "1 Х-клетка",
+    "module_editor_id": "WIP4_LegendaryShard_Armor4_Scanners",
+    "module_form_id": "007A1237",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Стабилизатор",
+    "module_description": "Улучшает отдачу и стабильность оружия на 50%.",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "25 Резины",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Guns_Stabilizers",
+    "module_form_id": "007AC88C",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Несгибаемость",
+    "module_description": "Запас прочности силовой брони игрока и всех соратников в радиусе 50 футов увеличивается на 5% (до 25% при максимальной силе эффекта).",
+    "module_compatibility": [
+      "Power Armor"
+    ],
+    "module_materials": "1 Пупс: Лидер",
+    "module_editor_id": "WIP4_LegendaryShard_Armor4_Stalwarts",
+    "module_form_id": "007ACEB1",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Стойкость",
+    "module_description": "Пока вы стоите неподвижно, +200 к сопротивляемости урону на 10 секунд (до +1000 при максимальной силе эффекта). Срабатывает не чаще чем раз в 20 секунд.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "5 Баллистического волокна",
+    "module_editor_id": "WIP4_LegendaryShard_Shared4_Tanky",
+    "module_form_id": "007A1230",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Гадючий",
+    "module_description": "Пока цель в бою отравлена, увеличивает наносимый урон на 50%.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "15 Кислоты",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Vipers",
+    "module_form_id": "007A124B",
+    "module_is_custom": false
+  }
+]

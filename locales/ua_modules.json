@@ -1,0 +1,1626 @@
+[
+  {
+    "module_star": 1,
+    "module_name": "Пронизлива",
+    "module_description": "+50% Бронебійність.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "5 Чорного титану",
+    "module_editor_id": "LegendaryShard_Weapon1_AntiArmor",
+    "module_form_id": "0078040E",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Аристократична",
+    "module_description": "[Зброя] До +50% до шкоди залежно від кількості наявних у вас кришок.\n[Броня] Підвищення опірності звичайній та енергетичній шкоді в міру збільшення кількості кришок (до +20).",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Пупс: Кришки",
+    "module_editor_id": "LegendaryShard_Shared1_ProportionalCaps",
+    "module_form_id": "00784BDC",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Вбивча",
+    "module_description": "[Зброя] +50% Шкода людям.\n[Броня]-15% Шкода від людей.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Рідка хоробрість",
+    "module_editor_id": "LegendaryShard_Shared1_DMGPlayers",
+    "module_form_id": "00784BD2",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Стимуляторна",
+    "module_description": "Автоматичне застосування стимулятора при падінні здоров'я до 25% або нижче раз на 60 сек.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "5 Стимуляторів",
+    "module_editor_id": "LegendaryShard_Armor1_LowHealthTriggersStimpak",
+    "module_form_id": "00784BD7",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Берсеркерська",
+    "module_description": "Поки знижується Опір. шкоді, збільшується шкода, але не більше ніж на +50%.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "5 Психо",
+    "module_editor_id": "LegendaryShard_Weapon1_DamageUnarmored",
+    "module_form_id": "00786C7C",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Закривавлена",
+    "module_description": "При зниженні рівня здоров'я збільшується шкода, але не більше ніж на +95%.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Сироватка «Наднирникова реакція»",
+    "module_editor_id": "LegendaryShard_Weapon1_DamageInverseHealth",
+    "module_form_id": "00786C7A",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Підкріплююча",
+    "module_description": "Підвищення опірності звичайній та енергетичній шкоді в міру зменшення здоров'я (до +35).",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "5 Мед-Х",
+    "module_editor_id": "LegendaryShard_Armor1_ResistancesInverseHealth",
+    "module_form_id": "00784BD9",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Хамелеон",
+    "module_description": "Зливайтеся з оточенням у режимі потайного пересування і стоячи на місці.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Сироватка «Хамелеон»",
+    "module_editor_id": "LegendaryShard_Armor1_Chameleon",
+    "module_form_id": "0078040D",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Маскувальна",
+    "module_description": "Поранення в ближньому бою робить гравця невидимим раз на 30 секунд.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Стелс-бой",
+    "module_editor_id": "LegendaryShard_Armor1_CloakOnMelee",
+    "module_form_id": "00784BCD",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Катівська",
+    "module_description": "На +50% більше шкоди, коли у вашої цілі залишилося менше 40% здоров'я.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "25 Шкіри",
+    "module_editor_id": "LegendaryShard_Weapon1_Execute",
+    "module_form_id": "00786C81",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Згубна",
+    "module_description": "[Зброя] +50% Шкода комахам. +50% Шкода болотникам.\n[Броня] -15% Шкода від болотників і комах.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Хоботок кровомошки, 1 Жало жалючого крила",
+    "module_editor_id": "LegendaryShard_Shared1_DMGBugs",
+    "module_form_id": "00784BD0",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Лютісна",
+    "module_description": "+5% до шкоди з кожною наступною атакою однієї й тієї ж цілі, але не більше +45%.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Лють",
+    "module_editor_id": "LegendaryShard_Weapon1_DmgConsecutiveHits",
+    "module_form_id": "00786C80",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Антирадіаційна",
+    "module_description": "[Зброя] +50% Шкода гулям.\n[Броня]-15% Шкода від гулів.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Радщит",
+    "module_editor_id": "LegendaryShard_Shared1_DMGGhouls",
+    "module_form_id": "00784BD1",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Гурманська",
+    "module_description": "У міру заповнення шкал голоду і спраги шкода збільшується аж до +24%.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Вегетаріанська шинка",
+    "module_editor_id": "LegendaryShard_Weapon1_Gourmand",
+    "module_form_id": "00786C82",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Мисливська",
+    "module_description": "[Зброя] +50% Шкода тваринам.\n[Броня] -15% Шкода від тварин.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Шкура Яо-гая",
+    "module_editor_id": "LegendaryShard_Shared1_DMGAnimals",
+    "module_form_id": "00784BCF",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Провокуюча",
+    "module_description": "+100% до шкоди цілям при повному здоров'ї.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "5 Віскі",
+    "module_editor_id": "LegendaryShard_Weapon1_DamageFirstBlood",
+    "module_form_id": "00786C79",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Гіганта",
+    "module_description": "При збільшенні рівня здоров'я збільшується шкода, але не більше ніж на +25%.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "5 Баффаутів",
+    "module_editor_id": "LegendaryShard_Weapon1_DamageViaHealth",
+    "module_form_id": "00786C7E",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Наркоманська",
+    "module_description": "Шкода збільшується за кожну залежність, але не більше ніж на +50%.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "5 Ментатів",
+    "module_editor_id": "LegendaryShard_Weapon1_DamageAddiction",
+    "module_form_id": "00786C78",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Рятівна",
+    "module_description": "Гинучи, ви зможете раз на хвилину оживляти себе за допомогою стимулятора з ймовірністю 50%.",
+    "module_compatibility": [
+      "Armor"
+    ],
+    "module_materials": "5 Стимуляторів",
+    "module_editor_id": "LegendaryShard_Armor1_AutoRevive",
+    "module_form_id": "0078040C",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Медична",
+    "module_description": "Атаки відновлюють 5% здоров'я вашим соратникам.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Пупс: Медицина",
+    "module_editor_id": "LegendaryShard_Weapon1_Medic",
+    "module_form_id": "00786C77",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Мутантознищувальна",
+    "module_description": "[Зброя] +50% Шкода супермутантам.\n[Броня] -15% Шкода від супермутантів.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Голова супермутанта",
+    "module_editor_id": "LegendaryShard_Shared1_DMGSuperMutants",
+    "module_form_id": "00784BD5",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Мутантна",
+    "module_description": "[Зброя] При отриманні мутацій збільшується шкода, але не більше ніж на +25%.\n[Броня] +10 до опірності звичайній та енергетичній шкоді при мутації.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "10 Азбесту",
+    "module_editor_id": "LegendaryShard_Shared1_Mutation",
+    "module_form_id": "00784BDA",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Нічна",
+    "module_description": "[Зброя] +50% до шкоди в нічний час.\n[Броня] +40 до опірності звичайній та енергетичній шкоді вночі.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "10 Ядерного матеріалу",
+    "module_editor_id": "LegendaryShard_Shared1_Night",
+    "module_form_id": "00784BDB",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Ласуна",
+    "module_description": "Знижує отримувану шкоду до +6% в міру заповнення шкал голоду і спраги.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Ідеальна жуйка",
+    "module_editor_id": "LegendaryShard_Armor1_Overeater",
+    "module_form_id": "00784BD8",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Четверна",
+    "module_description": "+300% Боєзапас.",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "1 Ядерний блок",
+    "module_editor_id": "LegendaryShard_Weapon1_Guns_AmmoCapacity4x",
+    "module_form_id": "00786C85",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Регенеруюча",
+    "module_description": "+0,5% темп лікування.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Сироватка «Лікувальний фактор»",
+    "module_editor_id": "LegendaryShard_Armor1_HealthRegen",
+    "module_form_id": "00784BCE",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Слідопитська",
+    "module_description": "+100% до точності в V.A.T.S. за ціною +50% очок дії, якщо ви не в бою.",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "1 Калмекс",
+    "module_editor_id": "LegendaryShard_Weapon1_Guns_AccuracyNotInCombat",
+    "module_form_id": "00786C84",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Глушильна",
+    "module_description": "Нанесена ціллю шкода буде знижена на 25% протягом 5 секунд після вашої атаки.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Сироватка «Заземлення»",
+    "module_editor_id": "LegendaryShard_Weapon1_DebuffDamage",
+    "module_form_id": "00786C7F",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Ремонтна",
+    "module_description": "[Зброя] +50% Шкода роботам.\n[Броня] -15% Шкода від роботів.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "10 Схем",
+    "module_editor_id": "LegendaryShard_Shared1_DMGRobots",
+    "module_form_id": "00784BD3",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Двоствольна",
+    "module_description": "+1 Снаряди +25% Шкода -150% точність стрільби від стегна +100% Віддача.",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "20 Свинцю",
+    "module_editor_id": "LegendaryShard_Weapon1_Guns_TwoShot",
+    "module_form_id": "00786C86",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Стійка",
+    "module_description": "Додаток до +3 до всіх параметрів S.P.E.C.I.A.L. (крім витривалості) при низькому рівні здоров'я.",
+    "module_compatibility": [
+      "Armor"
+    ],
+    "module_materials": "5 Х-клітин",
+    "module_editor_id": "LegendaryShard_Armor1_LowHealthIncreasesStats",
+    "module_form_id": "00784BD6",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Вампірська",
+    "module_description": "Ви відновлюєте 2% здоров'я протягом 2 сек. після влучення по цілі.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "10 Пакетів крові",
+    "module_editor_id": "LegendaryShard_Weapon1_Vampire",
+    "module_form_id": "00786C83",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Авангардна",
+    "module_description": "Підвищення опірності звичайній та енергетичній шкоді в міру збільшення здоров'я (до +35).",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "5 Пакетів крові",
+    "module_editor_id": "LegendaryShard_Armor1_ResistancesProportionalHealth",
+    "module_form_id": "00784BDD",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Невагома",
+    "module_description": "-90% Вага.",
+    "module_compatibility": [
+      "Armor"
+    ],
+    "module_materials": "1 Сироватка «Пташині кістки»",
+    "module_editor_id": "LegendaryShard_Armor1_Weightless",
+    "module_form_id": "00784BDE",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Фанатична",
+    "module_description": "[Зброя] +50% Шкода обпаленим.\n[Броня] -15% Шкода від обпалених.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "10 Ультрациту",
+    "module_editor_id": "LegendaryShard_Shared1_DMGScorched",
+    "module_form_id": "00784BD4",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Спритність",
+    "module_description": "+2 Спритність.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Пупс: Спритність",
+    "module_editor_id": "LegendaryShard_Shared2_StatAgility",
+    "module_form_id": "00784BE6",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Антисептик",
+    "module_description": "+25% ймовірність захворіти від навколишнього середовища.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "10 Антибіотиків",
+    "module_editor_id": "LegendaryShard_Armor2_DiseaseResistance",
+    "module_form_id": "00784BE0",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Хрясь!",
+    "module_description": "+50% Шкода в ближньому бою.",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "25 Бетону",
+    "module_editor_id": "LegendaryShard_Weapon2_Guns_Bashing",
+    "module_form_id": "00786F79",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Харизма",
+    "module_description": "+2 Харизма.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Пупс: Харизма",
+    "module_editor_id": "LegendaryShard_Shared2_StatCharisma",
+    "module_form_id": "00784BE7",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Калічача",
+    "module_description": "+50% Шкода кінцівкам.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "5 Чорного титану",
+    "module_editor_id": "LegendaryShard_Weapon2_DmgLimbs",
+    "module_form_id": "00786F78",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Витривалість",
+    "module_description": "+2 Витривалість.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Пупс: Витривалість",
+    "module_editor_id": "LegendaryShard_Shared2_StatEndurance",
+    "module_form_id": "00784BE8",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Вибухова",
+    "module_description": "Снаряди вибухають і збільшують шкоду від зброї на 20%.",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "1 Пупс: Вибухівка",
+    "module_editor_id": "LegendaryShard_Weapon2_Guns_ExplosiveBullets",
+    "module_form_id": "00786F7B",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Вогнетривка",
+    "module_description": "+25 до опору вогню.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "10 Мішків з гноєм вогнедишного летуна",
+    "module_editor_id": "LegendaryShard_Armor2_Fireproof",
+    "module_form_id": "00784BE1",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Ненажери",
+    "module_description": "Рівні голоду і спраги зростають на 10% повільніше.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Ідеальна жуйка",
+    "module_editor_id": "LegendaryShard_Armor2_Glutton",
+    "module_form_id": "00784BE2",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Живучість",
+    "module_description": "Знижує шкоду від вибухів на 7%.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Пупс: Вибухівка",
+    "module_editor_id": "LegendaryShard_Armor2_ReduceExploisionDamage",
+    "module_form_id": "00784BE5",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Захист",
+    "module_description": "+25 опірності радіації.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "10 Рад-Х",
+    "module_editor_id": "LegendaryShard_Armor2_RadResistance",
+    "module_form_id": "00784BE4",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Важка",
+    "module_description": "+40% Шкода від потужних атак.",
+    "module_compatibility": [
+      "Weapon: Melee"
+    ],
+    "module_materials": "25 Бетону",
+    "module_editor_id": "LegendaryShard_Weapon2_Melee_DamagePowerAttack",
+    "module_form_id": "00786F80",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Ліквідаторська",
+    "module_description": "+25% до завдаваної шкоди при прицілюванні.",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "10 Оптоволокна",
+    "module_editor_id": "LegendaryShard_Weapon2_Guns_DmgSights",
+    "module_form_id": "00786F7A",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Інерційна",
+    "module_description": "Відновлює 15 ОД при кожному вбивстві.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "10 Консервованої кави",
+    "module_editor_id": "LegendaryShard_Weapon2_APViaKill",
+    "module_form_id": "00786F76",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Інтелект",
+    "module_description": "+2 Інтелект.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Пупс: Інтелект",
+    "module_editor_id": "LegendaryShard_Shared2_StatIntelligence",
+    "module_form_id": "00784BE9",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Останній постріл",
+    "module_description": "Останній патрон у магазині з ймовірністю 25% завдає на +100% більше шкоди.",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "15 Пороху",
+    "module_editor_id": "LegendaryShard_Weapon2_Guns_LastShot",
+    "module_form_id": "00786F7C",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Удача",
+    "module_description": "+2 Удача.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Пупс: Удача",
+    "module_editor_id": "LegendaryShard_Shared2_StatLuck",
+    "module_form_id": "00784BEA",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Сприйняття",
+    "module_description": "+2 Сприйняття.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Пупс: Сприйняття",
+    "module_editor_id": "LegendaryShard_Shared2_StatPerception",
+    "module_form_id": "00784BEB",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Знахарська",
+    "module_description": "+25 опірності отрутам.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "10 Мішків з гноєм кусючого летуна",
+    "module_editor_id": "LegendaryShard_Armor2_PoisonResistance",
+    "module_form_id": "00784BE3",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Силова",
+    "module_description": "+5% відновленню очок дії.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "10 Консервованої кави",
+    "module_editor_id": "LegendaryShard_Armor2_APRegen",
+    "module_form_id": "0078040B",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Стрімка",
+    "module_description": "+25% Швидкість зброї (далекобійна зброя). +40% Швидкість зброї (холодна зброя).",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Сироватка «Демон швидкості»",
+    "module_editor_id": "LegendaryShard_Weapon2_Speed",
+    "module_form_id": "00786F7D",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Парируюча",
+    "module_description": "+50% відбиття шкоди в ближньому бою при блокуванні.",
+    "module_compatibility": [
+      "Weapon: Melee"
+    ],
+    "module_materials": "25 Скла",
+    "module_editor_id": "LegendaryShard_Weapon2_Melee_BlockReflects",
+    "module_form_id": "00786F7F",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Стійка",
+    "module_description": "+25% до шкоди в ближньому бою, поки ви не рухаєтеся.",
+    "module_compatibility": [
+      "Weapon: Melee"
+    ],
+    "module_materials": "3 Помаранчевих ментатів",
+    "module_editor_id": "LegendaryShard_Weapon2_Melee_Steady",
+    "module_form_id": "00786F81",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Сила",
+    "module_description": "+2 Сила.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Пупс: Сила",
+    "module_editor_id": "LegendaryShard_Shared2_StatStrength",
+    "module_form_id": "00784BEC",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "З поліпшеним V.A.T.S.",
+    "module_description": "+50% Шанс вразити ціль у V.A.T.S.",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "3 Ягідних ментатів",
+    "module_editor_id": "LegendaryShard_Weapon2_Guns_VATSAccuracy",
+    "module_form_id": "00786F7E",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Актуальна",
+    "module_description": "+50% Критична шкода.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Сироватка «Орлині очі»",
+    "module_editor_id": "LegendaryShard_Weapon2_DmgCrits",
+    "module_form_id": "00786F77",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Нагріваюча",
+    "module_description": "+25 опірності холоду.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "10 Мішків з гноєм морозного летуна",
+    "module_editor_id": "LegendaryShard_Armor2_CryoResistance",
+    "module_form_id": "00784BDF",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Трюкова",
+    "module_description": "-50% шкода від падіння.",
+    "module_compatibility": [
+      "Armor"
+    ],
+    "module_materials": "1 Сироватка «Сумчасте»",
+    "module_editor_id": "LegendaryShard_Armor3_LessFallDamage",
+    "module_form_id": "00784BF5",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Адамантієва",
+    "module_description": "Знижує шкоду кінцівкам на 15%.",
+    "module_compatibility": [
+      "Armor"
+    ],
+    "module_materials": "1 Сироватка «Скручені м'язи»",
+    "module_editor_id": "LegendaryShard_Armor3_ReducedLimbDamage",
+    "module_form_id": "00784BF8",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Спритність",
+    "module_description": "+3 Спритність.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Пупс: Спритність",
+    "module_editor_id": "LegendaryShard_Shared3_StatAgility",
+    "module_form_id": "0079AD60",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Зберігача зброї",
+    "module_description": "Зброя важить на 20% менше.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Пупс: Легка зброя",
+    "module_editor_id": "LegendaryShard_Armor3_WeightWeapons",
+    "module_form_id": "00784BFF",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "З поясом",
+    "module_description": "Боєприпаси важать на 20% менше.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "25 Свинцю",
+    "module_editor_id": "LegendaryShard_Armor3_WeightAmmo",
+    "module_form_id": "00784BFC",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Палаюча",
+    "module_description": "5%-й шанс завдати 19 одиниць шкоди вогнем.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "15 Мішків з гноєм вогнедишного летуна",
+    "module_editor_id": "LegendaryShard_Armor3_Burning",
+    "module_form_id": "00784BED",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Кавалерійська",
+    "module_description": "[Броня] -5% отримуваної шкоди під час бігу\n[Зброя ближнього бою] -15% отримуваної шкоди під час блокування",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Melee"
+    ],
+    "module_materials": "10 Мастила",
+    "module_editor_id": null,
+    "module_form_id": null,
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Харизма",
+    "module_description": "+3 Харизма.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Пупс: Харизма",
+    "module_editor_id": "LegendaryShard_Shared3_StatCharisma",
+    "module_form_id": "0079AD61",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Захисника",
+    "module_description": "[Броня] -15% отримуваної шкоди під час блокування\n[Зброя ближнього бою] -40% отримуваної шкоди під час силової атаки",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Melee"
+    ],
+    "module_materials": "25 Сталі",
+    "module_editor_id": null,
+    "module_form_id": null,
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Розсіююча",
+    "module_description": "+0,25% Відновлення шкоди від радіації.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "10 Антирадіну",
+    "module_editor_id": "LegendaryShard_Armor3_RadsRegen",
+    "module_form_id": "00784BF7",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Дайверська",
+    "module_description": "Дозволяє дихати під водою.",
+    "module_compatibility": [
+      "Armor"
+    ],
+    "module_materials": "15 Пластику",
+    "module_editor_id": "LegendaryShard_Armor3_Waterbreathing",
+    "module_form_id": "00784BFB",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Лікарська",
+    "module_description": "+5% до ефективності стимуляторів, антирадіну та Рад-Х.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Суперстимулятор",
+    "module_editor_id": "LegendaryShard_Armor3_IncreaseHealing",
+    "module_form_id": "00784BF1",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Міцність",
+    "module_description": "[Зброя] Зброя на 50% повільніше виходить з ладу.\n[Броня] Ймовірність поломки знижується на 50%.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Пупс: Ремонт",
+    "module_editor_id": "LegendaryShard_Armor3_Durability",
+    "module_form_id": "00784BEE",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Електрифікована",
+    "module_description": "5%-й шанс завдати 18 одиниць енергетичної шкоди в ближньому бою протягом 3 секунд.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Сироватка «Електрично заряджений»",
+    "module_editor_id": "LegendaryShard_Armor3_Electrified",
+    "module_form_id": "00784BEF",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Витривалість",
+    "module_description": "+3 Витривалість.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Пупс: Витривалість",
+    "module_editor_id": "LegendaryShard_Shared3_StatEndurance",
+    "module_form_id": "0079AD62",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Крижана",
+    "module_description": "5%-й шанс завдати 12 одиниць шкоди холодом в ближньому бою протягом 4 секунд.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "15 Мішків з гноєм морозного летуна",
+    "module_editor_id": "LegendaryShard_Armor3_Frozen",
+    "module_form_id": "00784BF0",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Привида",
+    "module_description": "При влученні в ціль у гравця є 10% шанс стати невидимим на 2 секунди.",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "1 Стелс-бой",
+    "module_editor_id": "LegendaryShard_Weapon3_Guns_CloakOnHit",
+    "module_form_id": "00786F83",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Інтелект",
+    "module_description": "+3 Інтелект.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Пупс: Інтелект",
+    "module_editor_id": "LegendaryShard_Shared3_StatIntelligence",
+    "module_form_id": "0079AD63",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Легка",
+    "module_description": "-90% Вага.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "10 Корка",
+    "module_editor_id": "LegendaryShard_Weapon3_Lightweight",
+    "module_form_id": "007A2541",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Удача",
+    "module_description": "+3 Удача.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Пупс: Удача",
+    "module_editor_id": "LegendaryShard_Shared3_StatLuck",
+    "module_form_id": "0079AD64",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Щаслива",
+    "module_description": "+15 Бонус до критичної атаки в V.A.T.S..",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Пупс: Удача",
+    "module_editor_id": "LegendaryShard_Weapon3_CritSpeed",
+    "module_form_id": "00786F82",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Спритна",
+    "module_description": "+100% збільшена швидкість пересування при прицілюванні.",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "25 Пружин",
+    "module_editor_id": "LegendaryShard_Weapon3_Guns_MoveSpeedSights",
+    "module_form_id": "00786F84",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Барахляна",
+    "module_description": "Мо́тлох важить на 20% менше.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Сироватка «Сумчасте»",
+    "module_editor_id": "LegendaryShard_Armor3_WeightJunk",
+    "module_form_id": "00784BFE",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Сприйняття",
+    "module_description": "+3 Сприйняття.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Пупс: Сприйняття",
+    "module_editor_id": "LegendaryShard_Shared3_StatPerception",
+    "module_form_id": "0079AD65",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Безвідмовна",
+    "module_description": "+250 до опірності шкоді при перезарядці.",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "5 Мед-Х",
+    "module_editor_id": "LegendaryShard_Weapon3_Guns_ResistReload",
+    "module_form_id": "00786F86",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Злодійська",
+    "module_description": "Збільшення розміру залікової зони при зломі замків на 2.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Пупс: Злам",
+    "module_editor_id": "LegendaryShard_Armor3_LockPick",
+    "module_form_id": "00784BF6",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Таємного агента",
+    "module_description": "+25% Менше шуму при потайному переміщенні. +25% Зменшити шанс виявлення.",
+    "module_compatibility": [
+      "Armor"
+    ],
+    "module_materials": "1 Пупс: Скрадність",
+    "module_editor_id": "LegendaryShard_Armor3_Sneak",
+    "module_form_id": "00784BF9",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Захисна",
+    "module_description": "75% шанс знизити шкоду поки ви не рухаєтеся.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Сироватка «Луската шкіра»",
+    "module_editor_id": "LegendaryShard_Armor3_LessDamageStandStill",
+    "module_form_id": "00784BF4",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Надійна",
+    "module_description": "+50 до опірності шкоді при прицілюванні.",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "5 Балістичного волокна",
+    "module_editor_id": "LegendaryShard_Weapon3_Guns_ResistSights",
+    "module_form_id": "00786F87",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Сила",
+    "module_description": "+3 Сила.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Пупс: Сила",
+    "module_editor_id": "LegendaryShard_Shared3_StatStrength",
+    "module_form_id": "0079AD66",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Швидка",
+    "module_description": "+15% Швидкість перезарядки.",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "1 Сироватка «Демон швидкості»",
+    "module_editor_id": "LegendaryShard_Weapon3_Guns_ReloadSpeed",
+    "module_form_id": "00786F85",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Похідна",
+    "module_description": "Їжа, вода та препарати важать на 20% менше.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "10 Очищеної води",
+    "module_editor_id": "LegendaryShard_Armor3_WeightFoodDrinkChems",
+    "module_form_id": "00784BFD",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Отруйна",
+    "module_description": "5%-й шанс завдати 12 одиниць шкоди отрутою в ближньому бою протягом 7 секунд.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "15 Мішків з гноєм кусючого летуна",
+    "module_editor_id": "LegendaryShard_Armor3_Toxic",
+    "module_form_id": "00784BFA",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Оптимізована V.A.T.S.",
+    "module_description": "-25% Витрата очок дії.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "10 Цукру",
+    "module_editor_id": "LegendaryShard_Weapon3_VATSCostAP",
+    "module_form_id": "00786F88",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Укриття",
+    "module_description": "Посилює на +50 опірність фізичній та енергетичній шкоді і на +20 — опірність отрутам, холоду та вогню гравця та соратників у радіусі 50 футів.",
+    "module_compatibility": [
+      "Power Armor"
+    ],
+    "module_materials": "5 Схем",
+    "module_editor_id": "WIP4_LegendaryShard_Armor4_Aegis",
+    "module_form_id": "007ACE4E",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Завантажувальна",
+    "module_description": "Удари прикладом по ворогах миттєво поповнюють магазин вашої зброї з ймовірністю 15% (до 75% при максимальній силі ефекту).",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Сироватка «Кігті»",
+    "module_editor_id": "WIP4_LegendaryShard_Shared4_BattleLoaders",
+    "module_form_id": "007A1226",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Боксерська",
+    "module_description": "Збільшує шкоду холодної зброї на 5% (до +25% при максимальній силі ефекту).",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Баффтати",
+    "module_editor_id": "WIP4_LegendaryShard_Shared4_Bruiser",
+    "module_form_id": "007A1227",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Задириста",
+    "module_description": "При атаці без використання V.A.T.S. збільшує шкоду при ураженні слабких місць на +50%.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Баффаут",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Bully",
+    "module_form_id": "007A123B",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Чух-чух",
+    "module_description": "10%-й шанс завдати 500 одиниць шкоди та активувати «Криваву баню», коли ви врізаєтеся в ціль при прискоренні (до 50% при максимальній силі ефекту).",
+    "module_compatibility": [
+      "Power Armor"
+    ],
+    "module_materials": "15 Гарматних ядер",
+    "module_editor_id": "WIP4_LegendaryShard_Armor4_ChooChoo",
+    "module_form_id": "007A1233",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Нищівна",
+    "module_description": "50%-й шанс не витратити очки дії при завданні шкоди (10%-й шанс для автоматичної холодної зброї).",
+    "module_compatibility": [
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 «Диня»",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Melee_ComboBreaker",
+    "module_form_id": "007A1248",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Провідник",
+    "module_description": "Критичні удари відновлюють 5% здоров'я та очок дії гравцю та соратникам у радіусі 50 футів.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "5 Чистих багряних флюсів",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Conductors",
+    "module_form_id": "007ACB0A",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Електротехнічна",
+    "module_description": "При перезарядці створює ударну хвилю, яка оглушує цілі, що знаходяться поруч, на 3 секунди.",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "1 Пупс: Енергетична зброя",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Guns_Electricians",
+    "module_form_id": "007A1242",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Жнива",
+    "module_description": "+10% до шкоди за кожну бойову ціль поруч з вами, але не більше +50%.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Овердрайв",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Encirclers",
+    "module_form_id": "007ACBF3",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Фехтувальна",
+    "module_description": "+12,5% до шкоди в ближньому бою. Ще +12,5% за кожного соратника, що знаходиться поруч (до +50% у повній команді).",
+    "module_compatibility": [
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Пупс: Холодна зброя",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Melee_Fencers",
+    "module_form_id": "007ACBF2",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Кістколомна",
+    "module_description": "Скалічені кінцівки вибухають і завдають до 50 одиниць шкоди вибухом цілям, що знаходяться поруч.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "25 Пороху",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Fracturers",
+    "module_form_id": "007A123A",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Холоднокровна",
+    "module_description": "При завданні шкоди в V.A.T.S. заморожує ціль, уповільнюючи її.",
+    "module_compatibility": [
+      "Weapon: Melee"
+    ],
+    "module_materials": "5 Чистих флуоресцентних флюсів",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Melee_Icemens",
+    "module_form_id": "007A1247",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Нестримність",
+    "module_description": "Кожна надягнута деталь броні зменшує вартість критичних атак на 10% (до -50% при максимальній силі ефекту).",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "5 Чистих фіолетових флюсів",
+    "module_editor_id": "WIP4_LegendaryShard_Shared4_LimitBreak",
+    "module_form_id": "007A1229",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Смердюча",
+    "module_description": "При влученні створює отруйну хмару, яка завдає шкоди цілям, що знаходяться поруч, протягом 10 секунд. Чим більше деталей броні надягнуто, тим більша шкода від отрути.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Сироватка «Чумний ходок»",
+    "module_editor_id": "WIP4_LegendaryShard_Shared4_Miasma",
+    "module_form_id": "007A122A",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Філігранність",
+    "module_description": "+50% до шкоди ворожим кінцівкам (рукам, ногам тощо).",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "1 Формула Р",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Guns_PinPointers",
+    "module_form_id": "007ACA06",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Полірована",
+    "module_description": "Чим кращий стан використовуваного предмета (+100%), тим більше шкоди завдає зброя (до +60%).",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Покращений ремкомплект",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Polished",
+    "module_form_id": "007A1238",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Молоток",
+    "module_description": "+10% до шкоди за кожен заряд «Натиску», +10 до макс. кількості зарядів.",
+    "module_compatibility": [
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Лють",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Melee_Pounders",
+    "module_form_id": "007ACB3D",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Форсуюча",
+    "module_description": "Підвищує швидкість пересування та прискорення на 5% (до +25% при максимальній силі ефекту).",
+    "module_compatibility": [
+      "Power Armor"
+    ],
+    "module_materials": "15 Брухту зі Сховища",
+    "module_editor_id": "WIP4_LegendaryShard_Armor4_Propelling",
+    "module_form_id": "007A1234",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Піроманська",
+    "module_description": "Поки ціль у бою горить, збільшує завдавану шкоду на 50%.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "15 Азбесту",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Pyromaniac",
+    "module_form_id": "007A1249",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Ядерно-енергетична",
+    "module_description": "+2 до відновлення очок дії за рахунок радіації (до +10 при максимальній силі ефекту).",
+    "module_compatibility": [
+      "Power Armor"
+    ],
+    "module_materials": "5 Чистих кобальтових флюсів",
+    "module_editor_id": "WIP4_LegendaryShard_Armor4_RadioactivePowered",
+    "module_form_id": "007A1235",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Рейнджерська",
+    "module_description": "Збільшує шкоду далекобійної зброї на 5% (до +25% при максимальній силі ефекту).",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Психобафф",
+    "module_editor_id": "WIP4_LegendaryShard_Shared4_Ranger",
+    "module_form_id": "007A122D",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Відбиваюча",
+    "module_description": "Повертає 10% отриманої шкоди ворогу, який її завдав (до 50% при максимальній силі ефекту).",
+    "module_compatibility": [
+      "Power Armor"
+    ],
+    "module_materials": "1 Пупс: Наука",
+    "module_editor_id": "WIP4_LegendaryShard_Armor4_Reflective",
+    "module_form_id": "007A1236",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Оновлення",
+    "module_description": "Поступово відновлює здоров'я та очки власника та соратників у радіусі 50 футів.",
+    "module_compatibility": [
+      "Power Armor"
+    ],
+    "module_materials": "5 Дифузорів стимуляторів",
+    "module_editor_id": "WIP4_LegendaryShard_Armor4_Rejuvenators",
+    "module_form_id": "007ACD6D",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Кур'єрська",
+    "module_description": "Зменшує витрату очок дії при прискоренні на 20% (до -100% при максимальній силі ефекту).",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "10 Очищеної води",
+    "module_editor_id": "WIP4_LegendaryShard_Shared4_Runner",
+    "module_form_id": "007A122E",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Хірургія",
+    "module_description": "Здоров'я повільно відновлюється (+1 одиниця на секунду, до +5 одиниць на секунду при максимальній силі ефекту).",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Сироватка «Лікувальний фактор»",
+    "module_editor_id": "WIP4_LegendaryShard_Shared4_Sawbones",
+    "module_form_id": "007A122B",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Скануюча",
+    "module_description": "Зменшує витрату очок дії на атаки в V.A.T.S. на 5% (до -25% при максимальній силі ефекту).",
+    "module_compatibility": [
+      "Power Armor"
+    ],
+    "module_materials": "1 Х-клітина",
+    "module_editor_id": "WIP4_LegendaryShard_Armor4_Scanners",
+    "module_form_id": "007A1237",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Стабілізатор",
+    "module_description": "Покращує віддачу та стабільність зброї на 50%.",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "25 Гуми",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Guns_Stabilizers",
+    "module_form_id": "007AC88C",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Непохитність",
+    "module_description": "Запас міцності силової броні гравця та всіх соратників у радіусі 50 футів збільшується на 5% (до 25% при максимальній силі ефекту).",
+    "module_compatibility": [
+      "Power Armor"
+    ],
+    "module_materials": "1 Пупс: Лідер",
+    "module_editor_id": "WIP4_LegendaryShard_Armor4_Stalwarts",
+    "module_form_id": "007ACEB1",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Стійкість",
+    "module_description": "Поки ви стоїте нерухомо, +200 до опірності шкоді на 10 секунд (до +1000 при максимальній силі ефекту). Спрацьовує не частіше ніж раз на 20 секунд.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "5 Балістичного волокна",
+    "module_editor_id": "WIP4_LegendaryShard_Shared4_Tanky",
+    "module_form_id": "007A1230",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Гадюча",
+    "module_description": "Поки ціль у бою отруєна, збільшує завдавану шкоду на 50%.",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "15 Кислоти",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Vipers",
+    "module_form_id": "007A124B",
+    "module_is_custom": false
+  }
+]

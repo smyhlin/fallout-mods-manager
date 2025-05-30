@@ -1,0 +1,1626 @@
+[
+  {
+    "module_star": 1,
+    "module_name": "Anti-armor",
+    "module_description": "+50% Armor Penetration",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "5 Black Titanium",
+    "module_editor_id": "LegendaryShard_Weapon1_AntiArmor",
+    "module_form_id": "0078040E",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Aristocrat's",
+    "module_description": "[Armor] Grants up to +20 Energy Resistance and Damage Resistance, the higher Your Caps.\n[Weapon] Up to +50% Damage based on Caps you have. ",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Bobblehead: Caps",
+    "module_editor_id": "LegendaryShard_Shared1_ProportionalCaps",
+    "module_form_id": "00784BDC",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Assassin's",
+    "module_description": "[Armor] -15% Damage From Humans\n[Weapon] +50% Damage to Humans",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Liquid Courage",
+    "module_editor_id": "LegendaryShard_Shared1_DMGPlayers",
+    "module_form_id": "00784BD2",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Auto Stim",
+    "module_description": "Automatically use a Stimpak When Hit While Health is 25% or less, once every 60 seconds",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "5 Stimpak",
+    "module_editor_id": "LegendaryShard_Armor1_LowHealthTriggersStimpak",
+    "module_form_id": "00784BD7",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Berserker's",
+    "module_description": "Damage Increases up to +50% as Damage Resistance Decreases. ",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "5 Psycho",
+    "module_editor_id": "LegendaryShard_Weapon1_DamageUnarmored",
+    "module_form_id": "00786C7C",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Bloodied",
+    "module_description": "Damage Increases up to +95% as Health Decreases. ",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Adrenal Reaction Serum",
+    "module_editor_id": "LegendaryShard_Weapon1_DamageInverseHealth",
+    "module_form_id": "00786C7A",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Bolstering",
+    "module_description": "Grants up to +35 Energy Resistance and Damage Resistance, the Lower Your Health.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "5 Med-X",
+    "module_editor_id": "LegendaryShard_Armor1_ResistancesInverseHealth",
+    "module_form_id": "00784BD9",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Chameleon",
+    "module_description": "Become Invisible While Sneaking and Not Moving",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Chameleon Serum",
+    "module_editor_id": "LegendaryShard_Armor1_Chameleon",
+    "module_form_id": "0078040D",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Cloaking",
+    "module_description": "Being Hit in Melee causes the Player to become Invisible Once Every 30 Seconds",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Stealth Boy",
+    "module_editor_id": "LegendaryShard_Armor1_CloakOnMelee",
+    "module_form_id": "00784BCD",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Executioner's",
+    "module_description": "+50% More Damage when Your Target is Below 40% Health",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "25 Leather",
+    "module_editor_id": "LegendaryShard_Weapon1_Execute",
+    "module_form_id": "00786C81",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Exterminator's",
+    "module_description": "[Armor] -15% Damage From Mirelurks and Insects\n[Weapon] +50% Damage to Mirelurks and Insects",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Bloodbug Proboscis, 1 Stigwing Barb",
+    "module_editor_id": "LegendaryShard_Shared1_DMGBugs",
+    "module_form_id": "00784BD0",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Furious",
+    "module_description": "+5% Damage per Onslaught stack, +9 max stacks",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Fury",
+    "module_editor_id": "LegendaryShard_Weapon1_DmgConsecutiveHits",
+    "module_form_id": "00786C80",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Ghoul Slayer's",
+    "module_description": "[Armor] -15% Damage From Ghouls\n[Weapon] +50% Damage to Ghouls",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 RadShield",
+    "module_editor_id": "LegendaryShard_Shared1_DMGGhouls",
+    "module_form_id": "00784BD1",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Gourmand's",
+    "module_description": "Damage Increases up to 24% as you Fill Your Hunger and Thirst Meters. Currently +24%",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Vegetarian Ham",
+    "module_editor_id": "LegendaryShard_Weapon1_Gourmand",
+    "module_form_id": "00786C82",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Hunter's",
+    "module_description": "[Armor] -15% Damage From Animals\n[Weapon] +50% Damage to Animals",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Yao Guai Hide",
+    "module_editor_id": "LegendaryShard_Shared1_DMGAnimals",
+    "module_form_id": "00784BCF",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Instigating",
+    "module_description": "+100% Damage Against Targets with Full Health",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "5 Whiskey",
+    "module_editor_id": "LegendaryShard_Weapon1_DamageFirstBlood",
+    "module_form_id": "00786C79",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Juggernaut's",
+    "module_description": "Damage Increases up to +25% as Health Increases. ",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "5 Buffout",
+    "module_editor_id": "LegendaryShard_Weapon1_DamageViaHealth",
+    "module_form_id": "00786C7E",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Junkie's",
+    "module_description": "Damage Increases per Addiction up to +50% ",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "5 Mentats",
+    "module_editor_id": "LegendaryShard_Weapon1_DamageAddiction",
+    "module_form_id": "00786C78",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Life Saving",
+    "module_description": "When Incapacitated, Gain a 50% Chance to Revive Yourself with a Stimpak, Once Every 60 seconds",
+    "module_compatibility": [
+      "Armor"
+    ],
+    "module_materials": "5 Stimpak",
+    "module_editor_id": "LegendaryShard_Armor1_AutoRevive",
+    "module_form_id": "0078040C",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Medic's",
+    "module_description": "Attacks will Heal Friendly Targets by 5% Health",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Bobblehead: Medicine",
+    "module_editor_id": "LegendaryShard_Weapon1_Medic",
+    "module_form_id": "00786C77",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Mutant Slayer's",
+    "module_description": "[Armor] -15% Damage From Super Mutants\n[Weapon] +50% Damage to Super Mutants",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Super Mutant Head",
+    "module_editor_id": "LegendaryShard_Shared1_DMGSuperMutants",
+    "module_form_id": "00784BD5",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Mutant's",
+    "module_description": "[Armor] +10 Damage Resistance and Energy Resistance While Mutated\n[Weapon] Damage Increases up to 25% as you gain Mutations. ",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "10 Asbestos",
+    "module_editor_id": "LegendaryShard_Shared1_Mutation",
+    "module_form_id": "00784BDA",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Nocturnal",
+    "module_description": "[Armor] +40 Damage Resistance and Energy Resistance at Night\n[Weapon] +50% Damage at Night",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "10 Nuclear Material",
+    "module_editor_id": "LegendaryShard_Shared1_Night",
+    "module_form_id": "00784BDB",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Overeater's",
+    "module_description": "Increases Damage Reduction up to 6% as you Fill Your Hunger and Thirst Meters. ",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Perfect Bubblegum",
+    "module_editor_id": "LegendaryShard_Armor1_Overeater",
+    "module_form_id": "00784BD8",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Quad",
+    "module_description": "+300% Ammo Capacity",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "1 Fusion Core",
+    "module_editor_id": "LegendaryShard_Weapon1_Guns_AmmoCapacity4x",
+    "module_form_id": "00786C85",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Regenerating",
+    "module_description": "+0.5% Heal Rate",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Healing Factor Serum",
+    "module_editor_id": "LegendaryShard_Armor1_HealthRegen",
+    "module_form_id": "00784BCE",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Stalker's",
+    "module_description": "If Not In Combat, +100% V.A.T.S. Accuracy at +50% Action Points Cost",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "1 Calmex",
+    "module_editor_id": "LegendaryShard_Weapon1_Guns_AccuracyNotInCombat",
+    "module_form_id": "00786C84",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Suppressor's",
+    "module_description": "Reduce Your Target's Damage Output by 25% for 5 seconds",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Grounded Serum",
+    "module_editor_id": "LegendaryShard_Weapon1_DebuffDamage",
+    "module_form_id": "00786C7F",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Troubleshooter's",
+    "module_description": "[Armor] -15% Damage From Robots\n[Weapon] +50% Damage to Robots",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "10 Circuitry",
+    "module_editor_id": "LegendaryShard_Shared1_DMGRobots",
+    "module_form_id": "00784BD3",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Two Shot",
+    "module_description": "+1 Projectiles +25% Damage -150% Hip-Fire Accuracy +100% Recoil",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "20 Lead",
+    "module_editor_id": "LegendaryShard_Weapon1_Guns_TwoShot",
+    "module_form_id": "00786C86",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Unyielding",
+    "module_description": "Gain up to +3 to All S.P.E.C.I.A.L. Stats (except END) when Health is Low.",
+    "module_compatibility": [
+      "Armor"
+    ],
+    "module_materials": "5 X-Cell",
+    "module_editor_id": "LegendaryShard_Armor1_LowHealthIncreasesStats",
+    "module_form_id": "00784BD6",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Vampire's",
+    "module_description": "Restore 2% Health over 2 seconds when you Hit a Target",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "10 Bloodpacks",
+    "module_editor_id": "LegendaryShard_Weapon1_Vampire",
+    "module_form_id": "00786C83",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Vanguard's",
+    "module_description": "Grants up to +35 Energy Resistance and Damage Resistance, the higher Your Health.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "5 Blood Pack",
+    "module_editor_id": "LegendaryShard_Armor1_ResistancesProportionalHealth",
+    "module_form_id": "00784BDD",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Weightless",
+    "module_description": "-90% Weight",
+    "module_compatibility": [
+      "Armor"
+    ],
+    "module_materials": "1 Bird Bones Serum",
+    "module_editor_id": "LegendaryShard_Armor1_Weightless",
+    "module_form_id": "00784BDE",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 1,
+    "module_name": "Zealot's",
+    "module_description": "[Armor] -15% Damage From Scorched\n[Weapon] +50% Damage to Scorched",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "10 Ultracite",
+    "module_editor_id": "LegendaryShard_Shared1_DMGScorched",
+    "module_form_id": "00784BD4",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Agility",
+    "module_description": "+2 Agility",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Bobblehead: Agility",
+    "module_editor_id": "LegendaryShard_Shared2_StatAgility",
+    "module_form_id": "00784BE6",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Antiseptic",
+    "module_description": "+25% Reduced Disease Chance From Environmental Hazards",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "10 Disease Cure",
+    "module_editor_id": "LegendaryShard_Armor2_DiseaseResistance",
+    "module_form_id": "00784BE0",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Basher's",
+    "module_description": "+50% Bash Damage",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "25 Concrete",
+    "module_editor_id": "LegendaryShard_Weapon2_Guns_Bashing",
+    "module_form_id": "00786F79",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Charisma",
+    "module_description": "+2 Charisma",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Bobblehead: Charisma",
+    "module_editor_id": "LegendaryShard_Shared2_StatCharisma",
+    "module_form_id": "00784BE7",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Crippling",
+    "module_description": "+50% Limb Damage",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "5 Black Titanium",
+    "module_editor_id": "LegendaryShard_Weapon2_DmgLimbs",
+    "module_form_id": "00786F78",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Endurance",
+    "module_description": "+2 Endurance",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Bobblehead: Endurance",
+    "module_editor_id": "LegendaryShard_Shared2_StatEndurance",
+    "module_form_id": "00784BE8",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Explosive",
+    "module_description": "Projectiles explode for +20% weapon damage",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "1 Bobblehead: Explosive",
+    "module_editor_id": "LegendaryShard_Weapon2_Guns_ExplosiveBullets",
+    "module_form_id": "00786F7B",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Fireproof",
+    "module_description": "+25 Fire Resistance",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "10 Floater Flamer Puc Sac",
+    "module_editor_id": "LegendaryShard_Armor2_Fireproof",
+    "module_form_id": "00784BE1",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Glutton",
+    "module_description": "Hunger and Thirst Grow 10% Slower",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Perfect Bubblegum",
+    "module_editor_id": "LegendaryShard_Armor2_Glutton",
+    "module_form_id": "00784BE2",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Hardy",
+    "module_description": "Receive 7% Less Explosion Damage",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Bobblehead: Explosive",
+    "module_editor_id": "LegendaryShard_Armor2_ReduceExploisionDamage",
+    "module_form_id": "00784BE5",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "HazMat",
+    "module_description": "+25 Radiation Resistance",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "10 Rad-x",
+    "module_editor_id": "LegendaryShard_Armor2_RadResistance",
+    "module_form_id": "00784BE4",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Heavy Hitter's",
+    "module_description": "+40% Power Attack Damage",
+    "module_compatibility": [
+      "Weapon: Melee"
+    ],
+    "module_materials": "25 Concrete",
+    "module_editor_id": "LegendaryShard_Weapon2_Melee_DamagePowerAttack",
+    "module_form_id": "00786F80",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Hitman's",
+    "module_description": "+25% Damage While Aiming",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "10 Fiber Optics",
+    "module_editor_id": "LegendaryShard_Weapon2_Guns_DmgSights",
+    "module_form_id": "00786F7A",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Inertial",
+    "module_description": "Replenish 15 Action Points with Each Kill",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "10 Canned Coffee",
+    "module_editor_id": "LegendaryShard_Weapon2_APViaKill",
+    "module_form_id": "00786F76",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Intelligence",
+    "module_description": "+2 Intelligence",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Bobblehead: Intelligence",
+    "module_editor_id": "LegendaryShard_Shared2_StatIntelligence",
+    "module_form_id": "00784BE9",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Last Shot",
+    "module_description": "The last round in a magazine has a 25% chance to Deal +100% Damage",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "15 Gunpowder",
+    "module_editor_id": "LegendaryShard_Weapon2_Guns_LastShot",
+    "module_form_id": "00786F7C",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Luck",
+    "module_description": "+2 Luck",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Bobblehead: Luck",
+    "module_editor_id": "LegendaryShard_Shared2_StatLuck",
+    "module_form_id": "00784BEA",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Perception",
+    "module_description": "+2 Perception",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Bobblehead: Perception",
+    "module_editor_id": "LegendaryShard_Shared2_StatPerception",
+    "module_form_id": "00784BEB",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Poisoner's",
+    "module_description": "+25 Poison Resistance",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "10 Floater Gnasher Puc Sac",
+    "module_editor_id": "LegendaryShard_Armor2_PoisonResistance",
+    "module_form_id": "00784BE3",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Powered",
+    "module_description": "+5% Action Point Regen",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "10 Canned Coffee",
+    "module_editor_id": "LegendaryShard_Armor2_APRegen",
+    "module_form_id": "0078040B",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Rapid",
+    "module_description": "[Ranged] +25% Weapon Speed\n[Melee] +40% Weapon Speed",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Speed Demon Serum",
+    "module_editor_id": "LegendaryShard_Weapon2_Speed",
+    "module_form_id": "00786F7D",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Riposting",
+    "module_description": "+50% Melee Damage Reflection While Blocking",
+    "module_compatibility": [
+      "Weapon: Melee"
+    ],
+    "module_materials": "25 Glass",
+    "module_editor_id": "LegendaryShard_Weapon2_Melee_BlockReflects",
+    "module_form_id": "00786F7F",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Steady",
+    "module_description": "+25% Melee Damage While Not Moving",
+    "module_compatibility": [
+      "Weapon: Melee"
+    ],
+    "module_materials": "3 Orange Mentats",
+    "module_editor_id": "LegendaryShard_Weapon2_Melee_Steady",
+    "module_form_id": "00786F81",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Strength",
+    "module_description": "+2 Strength",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Bobblehead: Strength",
+    "module_editor_id": "LegendaryShard_Shared2_StatStrength",
+    "module_form_id": "00784BEC",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "V.A.T.S. Enhanced",
+    "module_description": "+50% Chance to Hit a Target in V.A.T.S.",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "3 Berry Mentats",
+    "module_editor_id": "LegendaryShard_Weapon2_Guns_VATSAccuracy",
+    "module_form_id": "00786F7E",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Vital",
+    "module_description": "+50% Critical Damage",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Eagle Eyes Serum",
+    "module_editor_id": "LegendaryShard_Weapon2_DmgCrits",
+    "module_form_id": "00786F77",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 2,
+    "module_name": "Warming",
+    "module_description": "+25 Cryo Resistance",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "10 Floater Freezer Pus Sac",
+    "module_editor_id": "LegendaryShard_Armor2_CryoResistance",
+    "module_form_id": "00784BDF",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Acrobat's",
+    "module_description": "-50% Fall Damage",
+    "module_compatibility": [
+      "Armor"
+    ],
+    "module_materials": "1 Marsupial Serum",
+    "module_editor_id": "LegendaryShard_Armor3_LessFallDamage",
+    "module_form_id": "00784BF5",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Adamantium",
+    "module_description": "Receive 15% less Limb Damage",
+    "module_compatibility": [
+      "Armor"
+    ],
+    "module_materials": "1 Twisted Muscles Serum",
+    "module_editor_id": "LegendaryShard_Armor3_ReducedLimbDamage",
+    "module_form_id": "00784BF8",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Agility",
+    "module_description": "+3 Agility",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Bobblehead: Agility",
+    "module_editor_id": "LegendaryShard_Shared3_StatAgility",
+    "module_form_id": "0079AD60",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Arms Keeper's",
+    "module_description": "Weapon Weights Reduced by 20%",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Bobblehead: Small Guns",
+    "module_editor_id": "LegendaryShard_Armor3_WeightWeapons",
+    "module_form_id": "00784BFF",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Belted",
+    "module_description": "Ammo Weight Reduced by 20%",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "25 Lead",
+    "module_editor_id": "LegendaryShard_Armor3_WeightAmmo",
+    "module_form_id": "00784BFC",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Burning",
+    "module_description": "5% chance to deal 12 Fire damage per second for 3 to Melee Attackers.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "15 Floater Flamer Pus Sac",
+    "module_editor_id": "LegendaryShard_Armor3_Burning",
+    "module_form_id": "00784BED",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Cavalier's",
+    "module_description": "[Armor] -5% Damage Taken While Sprinting\n[Weapon Melee] -15% Damage Taken While Blocking",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Melee"
+    ],
+    "module_materials": "10 Oil",
+    "module_editor_id": null,
+    "module_form_id": null,
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Charisma",
+    "module_description": "+3 Charisma",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Bobblehead: Charisma",
+    "module_editor_id": "LegendaryShard_Shared3_StatCharisma",
+    "module_form_id": "0079AD61",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Defender's",
+    "module_description": "[Armor] -15% Damage Taken While Blocking\n[Weapon Melee] -40% Damage Taken While Power Attacking",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Melee"
+    ],
+    "module_materials": "25 Steel",
+    "module_editor_id": null,
+    "module_form_id": null,
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Dissipating",
+    "module_description": "+0.25% Radiation Damage Recovery",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "10 RadAway",
+    "module_editor_id": "LegendaryShard_Armor3_RadsRegen",
+    "module_form_id": "00784BF7",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Diver's",
+    "module_description": "Breathe Underwater",
+    "module_compatibility": [
+      "Armor"
+    ],
+    "module_materials": "15 Plastic",
+    "module_editor_id": "LegendaryShard_Armor3_Waterbreathing",
+    "module_form_id": "00784BFB",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Doctor's",
+    "module_description": "+5% Effectiveness of Stimpaks, RadAway, and Rad-X",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Stimpak: Super",
+    "module_editor_id": "LegendaryShard_Armor3_IncreaseHealing",
+    "module_form_id": "00784BF1",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Durability",
+    "module_description": "Breaks 50% slower",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor",
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Bobblehead: Repair",
+    "module_editor_id": "LegendaryShard_Armor3_Durability",
+    "module_form_id": "00784BEE",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Electrified",
+    "module_description": "5% chance to deal 12 Energy damage per second for 3 to Melee Attackers.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Electrically Charged Serum",
+    "module_editor_id": "LegendaryShard_Armor3_Electrified",
+    "module_form_id": "00784BEF",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Endurance",
+    "module_description": "+3 Endurance",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Bobblehead: Endurance",
+    "module_editor_id": "LegendaryShard_Shared3_StatEndurance",
+    "module_form_id": "0079AD62",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Frozen",
+    "module_description": "5% chance to deal 12 Cryo damage per second for 4 to Melee Attackers.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "15 Floater Freezer Pus Sac",
+    "module_editor_id": "LegendaryShard_Armor3_Frozen",
+    "module_form_id": "00784BF0",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Ghost's",
+    "module_description": "10% Chance to cause the Player to be Invisible for 2 seconds when Hitting a Target",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "1 Stealth Boy",
+    "module_editor_id": "LegendaryShard_Weapon3_Guns_CloakOnHit",
+    "module_form_id": "00786F83",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Intelligence",
+    "module_description": "+3 Intelligence",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Bobblehead: Intelligence",
+    "module_editor_id": "LegendaryShard_Shared3_StatIntelligence",
+    "module_form_id": "0079AD63",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Lightweight",
+    "module_description": "-90% weight",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "10 Cork",
+    "module_editor_id": "LegendaryShard_Weapon3_Lightweight",
+    "module_form_id": "007A2541",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Luck",
+    "module_description": "+3 Luck",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Bobblehead: Luck",
+    "module_editor_id": "LegendaryShard_Shared3_StatLuck",
+    "module_form_id": "0079AD64",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Lucky",
+    "module_description": "+15 Bonus V.A.T.S. Critical Charge",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Bobblehead: Luck",
+    "module_editor_id": "LegendaryShard_Weapon3_CritSpeed",
+    "module_form_id": "00786F82",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Nimble",
+    "module_description": "+100% Faster Movement Speed While Aiming",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "25 Springs",
+    "module_editor_id": "LegendaryShard_Weapon3_Guns_MoveSpeedSights",
+    "module_form_id": "00786F84",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Pack Rat's",
+    "module_description": "Junk Item Weights Reduced by 20%",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Marsupial Serum",
+    "module_editor_id": "LegendaryShard_Armor3_WeightJunk",
+    "module_form_id": "00784BFE",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Perception",
+    "module_description": "+3 Perception",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Bobblehead: Perception",
+    "module_editor_id": "LegendaryShard_Shared3_StatPerception",
+    "module_form_id": "0079AD65",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Resilient",
+    "module_description": "+250 Damage Resistance While Reloading",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "5 Med-X",
+    "module_editor_id": "LegendaryShard_Weapon3_Guns_ResistReload",
+    "module_form_id": "00786F86",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Safecracker's",
+    "module_description": "+1 Lockpicking Skill +1 Hacking Skill",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Bobblehead: Lock Picking",
+    "module_editor_id": "LegendaryShard_Armor3_LockPick",
+    "module_form_id": "00784BF6",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Secret Agent's",
+    "module_description": "+25% Less Noise While Sneaking +25% Reduce Detection Chance",
+    "module_compatibility": [
+      "Armor"
+    ],
+    "module_materials": "1 Bobblehead: Sneak",
+    "module_editor_id": "LegendaryShard_Armor3_Sneak",
+    "module_form_id": "00784BF9",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Sentinel's",
+    "module_description": "-5% Damage Taken While Not Moving",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Scaly Skin Serum",
+    "module_editor_id": "LegendaryShard_Armor3_LessDamageStandStill",
+    "module_form_id": "00784BF4",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Steadfast",
+    "module_description": "+50 Damage Resistance While Aiming",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "5 Ballistic Fiber",
+    "module_editor_id": "LegendaryShard_Weapon3_Guns_ResistSights",
+    "module_form_id": "00786F87",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Strength",
+    "module_description": "+3 Strength",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Bobblehead: Strength",
+    "module_editor_id": "LegendaryShard_Shared3_StatStrength",
+    "module_form_id": "0079AD66",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Swift",
+    "module_description": "+15% Reload Speed",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "1 Speed Demon Serum",
+    "module_editor_id": "LegendaryShard_Weapon3_Guns_ReloadSpeed",
+    "module_form_id": "00786F85",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Thru-hiker's",
+    "module_description": "Food, Drink, and Chem Weights Reduced by 20%",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "10 Purified Water",
+    "module_editor_id": "LegendaryShard_Armor3_WeightFoodDrinkChems",
+    "module_form_id": "00784BFD",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "Toxic",
+    "module_description": "5% chance to deal 12 Poison damage per second for 7 to Melee Attackers.",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "15 Floater Gnasher Pus Sac",
+    "module_editor_id": "LegendaryShard_Armor3_Toxic",
+    "module_form_id": "00784BFA",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 3,
+    "module_name": "V.A.T.S. Optimized",
+    "module_description": "-25% Action Point Cost",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "10 Sugar",
+    "module_editor_id": "LegendaryShard_Weapon3_VATSCostAP",
+    "module_form_id": "00786F88",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Aegis",
+    "module_description": "Fortifies Physical & Energy Resists by +50 and Poison, Cryo & Fire Resists by +20 for Wearer & Teammates Within a 50ft Radius",
+    "module_compatibility": [
+      "Power Armor"
+    ],
+    "module_materials": "5 Circuitry",
+    "module_editor_id": "WIP4_LegendaryShard_Armor4_Aegis",
+    "module_form_id": "007ACE4E",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Battle-Loader's",
+    "module_description": "15% Chance to Instantly Reload When Bashing Enemies (up to 75% Chance on Full Stack)",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Talons Serum",
+    "module_editor_id": "WIP4_LegendaryShard_Shared4_BattleLoaders",
+    "module_form_id": "007A1226",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Bruiser's",
+    "module_description": "Melee Weapons Deal +5% Bonus Damage (up to +25% on Full Stack)",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Bufftats",
+    "module_editor_id": "WIP4_LegendaryShard_Shared4_Bruiser",
+    "module_form_id": "007A1227",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Bully's",
+    "module_description": "When Attacking Outside of V.A.T.S., Deal +50% Bonus Weak-Point Damage",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Buffout",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Bully",
+    "module_form_id": "007A123B",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Choo-Choo's",
+    "module_description": "10% Chance for 500 Damage & \"Bloody Mess\" When Sprinting Into Targets (up to 50% Chance on Full Stack)",
+    "module_compatibility": [
+      "Power Armor"
+    ],
+    "module_materials": "15 Cannonballs",
+    "module_editor_id": "WIP4_LegendaryShard_Armor4_ChooChoo",
+    "module_form_id": "007A1233",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Combo-Breaker's",
+    "module_description": "When Dealing Damage, 50% Chance to Not Use AP (10% Chance for Auto Melee Weapons)",
+    "module_compatibility": [
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Day Tripper",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Melee_ComboBreaker",
+    "module_form_id": "007A1248",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Conductor's",
+    "module_description": "Critical Hits Restore 5% of Health & Action Points for Player & Teammates Within a 50ft Radius",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "5 Pure Crimson Flux",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Conductors",
+    "module_form_id": "007ACB0A",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Electrician's",
+    "module_description": "When Reloading, Emit a Shock Wave That Stuns Nearby Targets for 3s",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "1 Bobblehead: Energy Weapons",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Guns_Electricians",
+    "module_form_id": "007A1242",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Encircler's",
+    "module_description": "+10% Damage For Each Combat Target Around You (up to +50%)",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Overdrive",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Encirclers",
+    "module_form_id": "007ACBF3",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Fencer's",
+    "module_description": "+12.5% Melee Damage. Additional +12.5% for Each Nearby Teammate (up to +50% on Full Team)",
+    "module_compatibility": [
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Bobblehead: Melee",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Melee_Fencers",
+    "module_form_id": "007ACBF2",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Fracturer's",
+    "module_description": "When Crippling Limbs, They Explode and Deal up to 50 Explosion Damage to Nearby Targets",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "25 Gunpowder",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Fracturers",
+    "module_form_id": "007A123A",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Icemen's",
+    "module_description": "Applies Cryo On Hit That Slow Targets When Dealing Damage in V.A.T.S.",
+    "module_compatibility": [
+      "Weapon: Melee"
+    ],
+    "module_materials": "5 Pure Fluorescent Flux",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Melee_Icemens",
+    "module_form_id": "007A1247",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Limit-Breaking",
+    "module_description": "Each Worn Armor Piece Reduces the Cost of Critical Hits by -10% (up to -50% on Full Stack)",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "5 Pure Violet Flux",
+    "module_editor_id": "WIP4_LegendaryShard_Shared4_LimitBreak",
+    "module_form_id": "007A1229",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Miasma's",
+    "module_description": "When Hit, a Poisonous DoT Cloud Harms Nearby Targets for 10s (DoT DMG Increases Per Equipped Piece)",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Plague Walker Serum",
+    "module_editor_id": "WIP4_LegendaryShard_Shared4_Miasma",
+    "module_form_id": "007A122A",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Pin-Pointer's",
+    "module_description": "+50% Damage When Targeting Enemy Appendages (i.e. Arms, Legs)",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "1 Formula P",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Guns_PinPointers",
+    "module_form_id": "007ACA06",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Polished",
+    "module_description": "The Greater the Equipped Item Condition (+100%), the Greater the Weapon Damage (up to +60%)",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Improved Repair Kit",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Polished",
+    "module_form_id": "007A1238",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Pounder's",
+    "module_description": "+10% Damage per Onslaught stack, +10 max stacks",
+    "module_compatibility": [
+      "Weapon: Melee"
+    ],
+    "module_materials": "1 Fury",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Melee_Pounders",
+    "module_form_id": "007ACB3D",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Propelling",
+    "module_description": "Movement & Sprint Speed Increased by +5% (up to +25% on Full Stack)",
+    "module_compatibility": [
+      "Power Armor"
+    ],
+    "module_materials": "15 Vault Steel Scrap",
+    "module_editor_id": "WIP4_LegendaryShard_Armor4_Propelling",
+    "module_form_id": "007A1234",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Pyromaniac's",
+    "module_description": "When a Combat Target is Burning, Deal +50% Bonus Damage",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "15 Asbestos",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Pyromaniac",
+    "module_form_id": "007A1249",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Radioactive-Powered",
+    "module_description": "Gain +2 AP Regeneration at the Cost of RADS (up to +10 AP on Full Stack)",
+    "module_compatibility": [
+      "Power Armor"
+    ],
+    "module_materials": "5 Pure Cobalt Flux",
+    "module_editor_id": "WIP4_LegendaryShard_Armor4_RadioactivePowered",
+    "module_form_id": "007A1235",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Ranger's",
+    "module_description": "Ranged Weapons Deal +5% Bonus Damage (up to +25% on Full Stack)",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Psychobuff",
+    "module_editor_id": "WIP4_LegendaryShard_Shared4_Ranger",
+    "module_form_id": "007A122D",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Reflective",
+    "module_description": "Return 10% of Damage Received from an Enemy Target Back Towards Them (up to 50% on Full Stack)",
+    "module_compatibility": [
+      "Power Armor"
+    ],
+    "module_materials": "1 Bobblehead: Science",
+    "module_editor_id": "WIP4_LegendaryShard_Armor4_Reflective",
+    "module_form_id": "007A1236",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Rejuvenator's",
+    "module_description": "Gradually Restores Wearer's & Teammates Health & Action Points Within A 50ft Radius",
+    "module_compatibility": [
+      "Power Armor"
+    ],
+    "module_materials": "5 Stimpak Diffuser",
+    "module_editor_id": "WIP4_LegendaryShard_Armor4_Rejuvenators",
+    "module_form_id": "007ACD6D",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Runner's",
+    "module_description": "Sprinting Action Point Cost Reduced by -20% (up to -100% on Full Stack)",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "10 Purified Water",
+    "module_editor_id": "WIP4_LegendaryShard_Shared4_Runner",
+    "module_form_id": "007A122E",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Sawbones's",
+    "module_description": "Health Regenerates Slowly (+1 Health per second) (up to +5 Health per second on Full Stack)",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "1 Healing Factor Serum",
+    "module_editor_id": "WIP4_LegendaryShard_Shared4_Sawbones",
+    "module_form_id": "007A122B",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Scanner's",
+    "module_description": "Action Point Cost of V.A.T.S. Attacks Reduced by -5% (up to -25% on Full Stack)",
+    "module_compatibility": [
+      "Power Armor"
+    ],
+    "module_materials": "1 X-Cell",
+    "module_editor_id": "WIP4_LegendaryShard_Armor4_Scanners",
+    "module_form_id": "007A1237",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Stabilizer's",
+    "module_description": "Improves Weapon Recoil & Stability by 50%",
+    "module_compatibility": [
+      "Weapon: Ranged"
+    ],
+    "module_materials": "25 Rubber",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Guns_Stabilizers",
+    "module_form_id": "007AC88C",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Stalwart's",
+    "module_description": "Power Armor Breaks 5% Slower For Owner & All Teammates Within A 50ft Radius (up to 25% Slower on Full Stack)",
+    "module_compatibility": [
+      "Power Armor"
+    ],
+    "module_materials": "1 Bobblehead: Leader",
+    "module_editor_id": "WIP4_LegendaryShard_Armor4_Stalwarts",
+    "module_form_id": "007ACEB1",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Tanky's",
+    "module_description": "+200 Damage Resist for 10s When Standing Still (20s Cooldown) (up to +1000 on Full Stack)",
+    "module_compatibility": [
+      "Armor",
+      "Power Armor"
+    ],
+    "module_materials": "5 Ballistic Fiber",
+    "module_editor_id": "WIP4_LegendaryShard_Shared4_Tanky",
+    "module_form_id": "007A1230",
+    "module_is_custom": false
+  },
+  {
+    "module_star": 4,
+    "module_name": "Viper's",
+    "module_description": "When a Combat Target is Poisoned, Deal +50% Bonus Damage",
+    "module_compatibility": [
+      "Weapon: Ranged",
+      "Weapon: Melee"
+    ],
+    "module_materials": "15 Acid",
+    "module_editor_id": "WIP4_LegendaryShard_Weapon4_Vipers",
+    "module_form_id": "007A124B",
+    "module_is_custom": false
+  }
+]

@@ -92,7 +92,7 @@ SearchInput.propTypes = {
 const FilterControls = React.memo(({ currentFilter, onFilterChange, onSidebarClose }) => {
     const { t } = window.useTranslation();
     return (
-        <div className="sidebar-section filter-buttons-container"> {/* Added a class for specific styling if needed */}
+        <div className="sidebar-section filter-buttons-container">
             <button className={`sidebar-button ${currentFilter === 'all' ? 'active' : ''}`} onClick={() => { onFilterChange('all'); onSidebarClose?.(); }}>{t('filterAll')}</button>
             <button className={`sidebar-button ${currentFilter === 'learned' ? 'active' : ''}`} onClick={() => { onFilterChange('learned'); onSidebarClose?.(); }}>{t('filterLearned')}</button>
             <button className={`sidebar-button ${currentFilter === 'notLearned' ? 'active' : ''}`} onClick={() => { onFilterChange('notLearned'); onSidebarClose?.(); }}>{t('filterNotLearned')}</button>
@@ -102,7 +102,7 @@ const FilterControls = React.memo(({ currentFilter, onFilterChange, onSidebarClo
 FilterControls.propTypes = {
     currentFilter: PropTypes.oneOf(['all', 'learned', 'notLearned']).isRequired,
     onFilterChange: PropTypes.func.isRequired,
-    onSidebarClose: PropTypes.func, 
+    onSidebarClose: PropTypes.func,
 };
 
 const StatsBanner = React.memo(({ stats }) => {
@@ -117,8 +117,11 @@ const StatsBanner = React.memo(({ stats }) => {
                     <span className="stat-card-value">{stats.totalCount}</span>
                 </div>
                 <div className="stat-card-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zm0-10h14V7H7v2z"/>
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="15" y="15" width="25" height="25" rx="3" ry="3" fill="currentColor"/>
+                        <rect x="60" y="15" width="25" height="25" rx="3" ry="3" fill="currentColor"/>
+                        <rect x="15" y="60" width="25" height="25" rx="3" ry="3" fill="currentColor"/>
+                        <rect x="60" y="60" width="25" height="25" rx="3" ry="3" fill="currentColor"/>
                     </svg>
                 </div>
             </div>
@@ -128,8 +131,9 @@ const StatsBanner = React.memo(({ stats }) => {
                     <span className="stat-card-value">{stats.learnedCount}</span>
                 </div>
                 <div className="stat-card-icon">
-                     <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17zM19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/>
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="10" y="10" width="80" height="80" rx="10" ry="10" fill="none" stroke="currentColor" stroke-width="8"/>
+                        <polyline points="30,55 45,70 70,35" fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </div>
             </div>
@@ -138,8 +142,8 @@ const StatsBanner = React.memo(({ stats }) => {
                     <span className="stat-card-title">{t('bannerPercentageLearned')}</span>
                     <span className="stat-card-value">{stats.percentage}%</span>
                     <div className="stat-progress-bar-container">
-                        <div 
-                            className="stat-progress-bar-filled" 
+                        <div
+                            className="stat-progress-bar-filled"
                             style={{ width: `${percentage}%` }}
                             aria-valuenow={percentage}
                             aria-valuemin="0"
@@ -149,8 +153,10 @@ const StatsBanner = React.memo(({ stats }) => {
                     </div>
                 </div>
                 <div className="stat-card-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M7.5 11C8.33 11 9 10.33 9 9.5S8.33 8 7.5 8 6 8.67 6 9.5 6.67 11 7.5 11zm9 4c.83 0 1.5-.67 1.5-1.5S17.33 12 16.5 12s-1.5.67-1.5 1.5.67 1.5 1.5 1.5zm-9.95-5.71L17.29 19.04c.39.39 1.02.39 1.41 0s.39-1.02 0-1.41L7.96 6.88a.9959.9959 0 00-1.41 0c-.39.39-.39 1.03 0 1.41z"/>
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="28" cy="28" r="10" fill="currentColor"/>
+                        <line x1="20" y1="80" x2="80" y2="20" stroke="currentColor" stroke-width="8"/>
+                        <circle cx="72" cy="72" r="10" fill="currentColor"/>
                     </svg>
                 </div>
             </div>
@@ -161,8 +167,9 @@ const StatsBanner = React.memo(({ stats }) => {
                     {stats.visibleCount > 0 && stats.visibleModuleSamples && stats.visibleModuleSamples.length > 0}
                 </div>
                 <div className="stat-card-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/>
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 50 Q50 10 90 50 Q50 90 10 50 Z" fill="none" stroke="currentColor" stroke-width="8"/>
+                        <circle cx="50" cy="50" r="15" fill="currentColor"/>
                     </svg>
                 </div>
             </div>
@@ -240,9 +247,9 @@ const LanguageSwitcher = React.memo(({ currentLanguage, onLanguageChange }) => {
     return (
         <div className="sidebar-section">
             <h3 className="settings-label settings-title">{t('languageSwitcherLabel')}</h3>
-            <select 
-                value={currentLanguage} 
-                onChange={(e) => onLanguageChange(e.target.value)} 
+            <select
+                value={currentLanguage}
+                onChange={(e) => onLanguageChange(e.target.value)}
                 className="language-selector"
                 aria-label={t('languageSwitcherLabel')}
             >
@@ -281,9 +288,9 @@ const ScrollableContainer = ({ children, className = '' }) => {
         mutationObserver.observe(el, { childList: true, subtree: true, characterData: true, attributes: true });
         el.addEventListener('scroll', checkScroll, { passive: true });
         window.addEventListener('resize', checkScroll);
-        checkScroll(); 
-        
-        const observerTimeout = setTimeout(checkScroll, 50); 
+        checkScroll();
+
+        const observerTimeout = setTimeout(checkScroll, 50);
 
         return () => {
             clearTimeout(observerTimeout);
@@ -332,24 +339,55 @@ const StarFilter = React.memo(({ selectedStars, onStarFilterChange }) => {
 
     return (
         <div className="sidebar-section star-filter-section">
-            <h3 className="settings-label settings-title">{t('starFilterTitle')}</h3>
-            <div className="star-filter-buttons">
+            <h3 className="settings-label settings-title" style={{ textAlign: 'center' }}>{t('starFilterTitle')}</h3>
+            <div className="star-filter-buttons" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 <button
                     className={`sidebar-button ${!selectedStars ? 'active' : ''}`}
                     onClick={() => onStarFilterChange(null)}
+                    style={{ 
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '4px',
+                        padding: '8px',
+                        textAlign: 'center',
+                        width: '100%'
+                    }}
                 >
-                    {t('starFilterAll')}
+                    <span style={{ textAlign: 'center', width: '100%', display: 'block', marginTop: '4px', marginBottom: '4px' }}>
+                        {t('starFilterAll')}
+                    </span>
                 </button>
-                {stars.map(star => (
-                    <button
-                        key={star}
-                        className={`sidebar-button ${selectedStars === star ? 'active' : ''}`}
-                        onClick={() => onStarFilterChange(star)}
-                        aria-label={t('starFilterButtonLabel', { count: star })}
-                    >
-                        {'⭐'.repeat(star)}
-                    </button>
-                ))}
+                <div style={{ 
+                    display: 'grid', 
+                    gridTemplateColumns: 'repeat(2, 1fr)', 
+                    gap: '8px',
+                    marginTop: '4px'
+                }}>
+                    {stars.map(star => (
+                        <button
+                            key={star}
+                            className={`sidebar-button ${selectedStars === star ? 'active' : ''}`}
+                            onClick={() => onStarFilterChange(star)}
+                            aria-label={t('starFilterButtonLabel', { count: star })}
+                            style={{ 
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                gap: '4px',
+                                padding: '8px',
+                                textAlign: 'center',
+                                width: '100%'
+                            }}
+                        >
+                            <span style={{ textAlign: 'center', width: '100%', display: 'block' }}>
+                                {'⭐'.repeat(star)}
+                            </span>
+                        </button>
+                    ))}
+                </div>
             </div>
         </div>
     );
@@ -358,6 +396,105 @@ StarFilter.propTypes = {
     selectedStars: PropTypes.number,
     onStarFilterChange: PropTypes.func.isRequired,
 };
+
+// New Compatibility Filter component
+const CompatibilityFilter = React.memo(({ selectedCompatibility, onCompatibilityFilterChange, compatibilityOptions }) => {
+    const { t } = window.useTranslation();
+    
+    // Helper function to get icon path (reused from CompatibilityIcons)
+    const getIconPath = (type) => {
+        const typeLower = type.toLowerCase();
+        if (typeLower.includes("power armor")) return "images/power_armor.png";
+        if (typeLower.includes("armor")) return "images/armor.png";
+        if (typeLower.includes("melee")) return "images/melee_weapon.png"; // Changed from "Weapon: Melee" to "Melee" based on options
+        if (typeLower.includes("range")) return "images/range_weapon.png"; // Changed from "Weapon: Ranged" to "Range" based on options
+        // Add more specific checks if needed, or a default
+        return null; // Return null if no specific icon is found
+    };
+
+    // Handler for image load errors
+    const handleImageError = React.useCallback((e) => {
+        console.error("Failed to load image:", e.target.src);
+        // Optionally, you could hide the image or replace it with alt text here
+        // e.target.style.display = 'none';
+    }, []);
+
+
+    return (
+        <div className="sidebar-section compatibility-filter-section">
+            <h3 className="settings-label settings-title" style={{ textAlign: 'center' }}>{t('compatibilityFilterTitle')}</h3>
+            <div className="compatibility-filter-buttons" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <button
+                    className={`sidebar-button ${!selectedCompatibility ? 'active' : ''}`}
+                    onClick={() => onCompatibilityFilterChange(null)}
+                    style={{ 
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '4px',
+                        padding: '8px',
+                        textAlign: 'center',
+                        width: '100%'
+                    }}
+                >
+                    <span style={{ textAlign: 'center', width: '100%', display: 'block', marginTop: '4px', marginBottom: '4px' }}>
+                        {t('compatibilityFilterAll')}
+                    </span>
+                </button>
+                <div style={{ 
+                    display: 'grid', 
+                    gridTemplateColumns: 'repeat(2, 1fr)', 
+                    gap: '8px',
+                    marginTop: '4px'
+                }}>
+                    {Array.isArray(compatibilityOptions) && compatibilityOptions.map(option => {
+                        const iconPath = getIconPath(option);
+                        return (
+                            <button
+                                key={option}
+                                className={`sidebar-button ${selectedCompatibility === option ? 'active' : ''}`}
+                                onClick={() => onCompatibilityFilterChange(option)}
+                                aria-label={t('compatibilityFilterButtonLabel', { type: option })}
+                                title={option}
+                                style={{ 
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    gap: '4px',
+                                    padding: '8px',
+                                    textAlign: 'center',
+                                    width: '100%'
+                                }}
+                            >
+                                {iconPath ? (
+                                    <>
+                                        <img
+                                            src={iconPath}
+                                            alt={option}
+                                            style={{ width: '20px', height: '20px', objectFit: 'contain' }}
+                                            onError={handleImageError}
+                                        />
+                                        <span style={{ textAlign: 'center', width: '100%', display: 'block' }}>{option}</span>
+                                    </>
+                                ) : (
+                                    <span style={{ textAlign: 'center', width: '100%', display: 'block' }}>{option}</span>
+                                )}
+                            </button>
+                        );
+                    })}
+                </div>
+            </div>
+        </div>
+    );
+});
+CompatibilityFilter.propTypes = {
+    selectedCompatibility: PropTypes.string,
+    onCompatibilityFilterChange: PropTypes.func.isRequired,
+    compatibilityOptions: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
+
 
 const HoloHubNavigation = React.memo(({ activeHoloHubPage, onHoloHubPageChange, onSidebarClose }) => {
     const { t } = window.useTranslation();
@@ -386,25 +523,33 @@ HoloHubNavigation.propTypes = {
 
 const Sidebar = React.memo(({
     isMobileOpen, isDesktopCollapsed, onMobileClose,
-    activeView, 
+    activeView,
     currentFilter, onFilterChange, columnConfig, columnVisibility,
     tempWidths, onVisibilityChange, onTempWidthChange,
-    onResetSettings, searchTerm, onSearchChange, 
+    onResetSettings, searchTerm, onSearchChange,
     currentLanguage, onLanguageChange, selectedStars, onStarFilterChange,
-    activeHoloHubPage, onHoloHubPageChange 
+    selectedCompatibility, onCompatibilityFilterChange, compatibilityOptions, // Add new props
+    activeHoloHubPage, onHoloHubPageChange
 }) => {
     const { t } = window.useTranslation();
+
     return (
         <div className={`pipboy-sidebar ${isDesktopCollapsed ? 'sidebar-collapsed' : ''} ${isMobileOpen ? 'mobile-sidebar-open' : ''}`}>
             <button className="mobile-close-button" onClick={onMobileClose} aria-label={t('mobileCloseButtonLabel')}>×</button>
             <ScrollableContainer className="sidebar-content-wrapper">
                 <h2>{activeView === 'modules' ? t('sidebarTitleControls') : t('sidebarTitleHoloHub')}</h2>
-                
+
                 {activeView === 'modules' && (
                     <React.Fragment>
                         <SearchInput searchTerm={searchTerm} onSearchChange={onSearchChange} />
                         <FilterControls currentFilter={currentFilter} onFilterChange={onFilterChange} onSidebarClose={onMobileClose} />
                         <StarFilter selectedStars={selectedStars} onStarFilterChange={onStarFilterChange} />
+                        {/* Replace StarFilter1 with CompatibilityFilter */}
+                        <CompatibilityFilter
+                            selectedCompatibility={selectedCompatibility}
+                            onCompatibilityFilterChange={onCompatibilityFilterChange}
+                            compatibilityOptions={compatibilityOptions}
+                        />
                         <hr className="dotted-separator" />
                         <SettingsSection
                             columnConfig={columnConfig}
@@ -418,16 +563,16 @@ const Sidebar = React.memo(({
                 )}
 
                 {activeView === 'holohub' && (
-                    <HoloHubNavigation 
+                    <HoloHubNavigation
                         activeHoloHubPage={activeHoloHubPage}
                         onHoloHubPageChange={onHoloHubPageChange}
                         onSidebarClose={onMobileClose}
                     />
                 )}
-                
-                <LanguageSwitcher 
-                    currentLanguage={currentLanguage} 
-                    onLanguageChange={onLanguageChange} 
+
+                <LanguageSwitcher
+                    currentLanguage={currentLanguage}
+                    onLanguageChange={onLanguageChange}
                 />
             </ScrollableContainer>
         </div>
@@ -452,6 +597,9 @@ Sidebar.propTypes = {
     onLanguageChange: PropTypes.func.isRequired,
     selectedStars: PropTypes.number,
     onStarFilterChange: PropTypes.func.isRequired,
+    selectedCompatibility: PropTypes.string, // Add prop type
+    onCompatibilityFilterChange: PropTypes.func.isRequired, // Add prop type
+    compatibilityOptions: PropTypes.arrayOf(PropTypes.string).isRequired, // Add prop type
     activeHoloHubPage: PropTypes.string.isRequired,
     onHoloHubPageChange: PropTypes.func.isRequired,
 };
@@ -459,14 +607,17 @@ Sidebar.propTypes = {
 
 const ModuleActions = React.memo(({ module, onEdit, onDelete }) => {
     const { t } = window.useTranslation();
+    const displayName = module.module_name || module.ruName;
+    const displayStars = module.module_star || module.stars;
+
     return (
         <div className="module-actions">
-            <button onClick={() => onEdit(module)} className="action-button edit-button" aria-label={t('moduleActionsEditLabel', { moduleName: module.ruName })}>
+            <button onClick={() => onEdit(module)} className="action-button edit-button" aria-label={t('moduleActionsEditLabel', { moduleName: displayName })}>
                 <svg viewBox="0 0 24 24">
                     <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
                 </svg>
             </button>
-            <button onClick={() => onDelete(module.ruName, module.stars)} className="action-button delete-button" aria-label={t('moduleActionsDeleteLabel', { moduleName: module.ruName })}>
+            <button onClick={() => onDelete(module)} className="action-button delete-button" aria-label={t('moduleActionsDeleteLabel', { moduleName: displayName })}>
                 <svg viewBox="0 0 24 24">
                     <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
                 </svg>
@@ -480,10 +631,50 @@ ModuleActions.propTypes = {
     onDelete: PropTypes.func.isRequired,
 };
 
+const CompatibilityIcons = React.memo(({ compatibility }) => {
+    if (!compatibility || compatibility.length === 0) return '-';
+
+    const getIconPath = (type) => {
+        const typeLower = type.toLowerCase();
+        if (typeLower.includes("armor") && typeLower.includes("power")) return "images/power_armor.png";
+        if (typeLower.includes("armor")) return "images/armor.png";
+        if (typeLower.includes("weapon: melee")) return "images/melee_weapon.png";
+        if (typeLower.includes("weapon: ranged")) return "images/range_weapon.png";
+        if (typeLower.includes("weapon")) return "images/range_weapon.png";
+        return null;
+    };
+
+    return (
+        <div style={{ display: 'flex', gap: '4px', alignItems: 'center', flexWrap: 'wrap' }}>
+            {compatibility.map((type, index) => {
+                const iconPath = getIconPath(type);
+                return iconPath ? (
+                    <img key={index} src={iconPath} alt={type} title={type} style={{ width: '25px', height: '25px', objectFit: 'contain' }} />
+                ) : (
+                    <span key={index} style={{ fontSize: '0.8em', backgroundColor: 'rgba(255,255,255,0.1)', padding: '2px 4px', borderRadius: '3px', marginRight: '4px' }}>{type}</span>
+                );
+            })}
+        </div>
+    );
+});
+CompatibilityIcons.propTypes = {
+    compatibility: PropTypes.arrayOf(PropTypes.string),
+};
+
+
 const ModuleTableRow = React.memo(({ module, columnVisibility, dataLabels, onLearnedChange, onEdit, onDelete, highlightTerm }) => {
-    const moduleKey = `${module.ruName}-${module.stars}`;
     const { t } = window.useTranslation();
+
+    const displayName = module.module_name || module.ruName || '';
+    const displayStars = module.module_star || module.stars || 0;
+    const displayEffect = module.module_description || module.effect || '';
+    const displayCompatibility = module.module_compatibility || (module.isCustom && module.compatibility ? module.compatibility.split(',').map(s=>s.trim()) : []);
+    const displayMaterials = module.module_materials || (module.isCustom && module.materials) || '';
+
+
+    const moduleKey = module.module_editor_id || `${displayName}-${displayStars}`;
     const learnedStatusText = module.learned ? t('learnedStatusLearned') : t('learnedStatusNotLearned');
+
     return (
      <tr key={moduleKey}>
         <td style={{ width: '60px', textAlign: 'center', verticalAlign: 'middle' }}>
@@ -491,13 +682,14 @@ const ModuleTableRow = React.memo(({ module, columnVisibility, dataLabels, onLea
                 type="checkbox"
                 className="learned-checkbox"
                 checked={!!module.learned}
-                onChange={() => onLearnedChange(module.ruName, module.stars)}
-                aria-label={t('learnedCheckboxLabel', { moduleName: module.ruName, status: learnedStatusText })} />
+                onChange={() => onLearnedChange(module)}
+                aria-label={t('learnedCheckboxLabel', { moduleName: displayName, status: learnedStatusText })} />
         </td>
-        {columnVisibility.ruName && <td>{highlightText(module.ruName, highlightTerm)}</td>}
-        {columnVisibility.enName && <td>{highlightText(module.enName || '-', highlightTerm)}</td>}
-        {columnVisibility.stars && <td style={{ textAlign: 'center' }}>{getStars(module.stars)}</td>}
-        {columnVisibility.effect && <td className="effect-cell">{highlightText(formatEffectText(module.effect), highlightTerm)}</td>}
+        {columnVisibility.name && <td>{highlightText(displayName, highlightTerm)}</td>}
+        {columnVisibility.stars && <td style={{ textAlign: 'center' }}>{getStars(displayStars)}</td>}
+        {columnVisibility.module_compatibility && <td><CompatibilityIcons compatibility={displayCompatibility} /></td>}
+        {columnVisibility.module_materials && <td>{highlightText(displayMaterials, highlightTerm)}</td>}
+        {columnVisibility.effect && <td className="effect-cell">{highlightText(formatEffectText(displayEffect), highlightTerm)}</td>}
         <td style={{ textAlign: 'center', verticalAlign: 'middle' }}>
             <ModuleActions module={module} onEdit={onEdit} onDelete={onDelete} />
         </td>
@@ -506,15 +698,16 @@ const ModuleTableRow = React.memo(({ module, columnVisibility, dataLabels, onLea
                 type="checkbox"
                 className="learned-checkbox"
                 checked={!!module.learned}
-                onChange={() => onLearnedChange(module.ruName, module.stars)}
-                aria-label={t('learnedCheckboxLabel', { moduleName: module.ruName, status: learnedStatusText })} />
+                onChange={() => onLearnedChange(module)}
+                aria-label={t('learnedCheckboxLabel', { moduleName: displayName, status: learnedStatusText })} />
              <ModuleActions module={module} onEdit={onEdit} onDelete={onDelete} />
         </div>
         <div className="card-body">
-            {columnVisibility.ruName && <div className="data-row" data-label={dataLabels.ruName}><span>{highlightText(module.ruName, highlightTerm)}</span></div>}
-            {columnVisibility.enName && <div className="data-row" data-label={dataLabels.enName}><span>{highlightText(module.enName || '-', highlightTerm)}</span></div>}
-            {columnVisibility.stars && <div className="data-row" data-label={dataLabels.stars}><span>{getStars(module.stars)}</span></div>}
-            {columnVisibility.effect && <div className="data-row" data-label={dataLabels.effect}><span className="effect-cell">{highlightText(formatEffectText(module.effect), highlightTerm)}</span></div>}
+            {columnVisibility.name && <div className="data-row" data-label={dataLabels.name}><span>{highlightText(displayName, highlightTerm)}</span></div>}
+            {columnVisibility.stars && <div className="data-row" data-label={dataLabels.stars}><span>{getStars(displayStars)}</span></div>}
+            {columnVisibility.module_compatibility && <div className="data-row" data-label={dataLabels.module_compatibility}><span><CompatibilityIcons compatibility={displayCompatibility} /></span></div>}
+            {columnVisibility.module_materials && <div className="data-row" data-label={dataLabels.module_materials}><span>{highlightText(displayMaterials, highlightTerm)}</span></div>}
+            {columnVisibility.effect && <div className="data-row" data-label={dataLabels.effect}><span className="effect-cell">{highlightText(formatEffectText(displayEffect), highlightTerm)}</span></div>}
         </div>
     </tr>
     );
@@ -532,7 +725,7 @@ ModuleTableRow.propTypes = {
 
 const ModuleTable = React.memo(({ modules, columnConfig, columnVisibility, columnWidths, sortConfig, onSort, dataLabels, onLearnedChange, onEdit, onDelete, highlightTerm }) => {
     const { t } = window.useTranslation();
-    const visibleColumnCount = columnConfig.filter(c => columnVisibility[c.id]).length + 1; 
+    const visibleColumnCount = columnConfig.filter(c => columnVisibility[c.id]).length + 1;
     return (
     <table className="module-table">
         <thead>
@@ -558,18 +751,21 @@ const ModuleTable = React.memo(({ modules, columnConfig, columnVisibility, colum
         </thead>
         <tbody>
             {modules.length > 0 ? (
-                modules.map((module) => (
-                    <ModuleTableRow
-                        key={`${module.ruName}-${module.stars}`}
-                        module={module}
-                        columnVisibility={columnVisibility}
-                        dataLabels={dataLabels}
-                        onLearnedChange={onLearnedChange}
-                        onEdit={onEdit}
-                        onDelete={onDelete}
-                        highlightTerm={highlightTerm}
-                    />
-                ))
+                modules.map((module) => {
+                    const key = module.module_editor_id || `${module.module_name || module.ruName}-${module.module_star || module.stars}`;
+                    return (
+                        <ModuleTableRow
+                            key={key}
+                            module={module}
+                            columnVisibility={columnVisibility}
+                            dataLabels={dataLabels}
+                            onLearnedChange={onLearnedChange}
+                            onEdit={onEdit}
+                            onDelete={onDelete}
+                            highlightTerm={highlightTerm}
+                        />
+                    );
+                })
             ) : (
                 <tr>
                     <td colSpan={visibleColumnCount} className="no-modules-message">
@@ -599,47 +795,100 @@ const ModuleForm = React.memo(({ formData, onChange, onSubmit, isEditMode = fals
     const { t } = window.useTranslation();
     const isPredefined = isEditMode && moduleBeingEdited && !moduleBeingEdited.isCustom;
     const submitButtonText = isEditMode ? t('formButtonSaveEdit') : t('formButtonAddModule');
+
+    let nameValue = formData.name;
+    let nameDisabled = false;
+    if (isPredefined) {
+        nameValue = moduleBeingEdited.module_name || '';
+        nameDisabled = true;
+    }
+
+    let starsValue = formData.stars;
+    let starsDisabled = false;
+    if (isPredefined) {
+        starsValue = moduleBeingEdited.module_star || 1;
+        starsDisabled = true;
+    }
+
+    let effectValue = formData.effect;
+    let effectDisabled = false;
+    if (isPredefined) {
+        effectValue = moduleBeingEdited.module_description || '';
+        effectDisabled = true;
+    }
+
+    let compatibilityValue = formData.compatibility;
+    let compatibilityDisabled = false;
+    if (isPredefined) {
+        compatibilityValue = Array.isArray(moduleBeingEdited.module_compatibility) ? moduleBeingEdited.module_compatibility.join(', ') : '';
+        compatibilityDisabled = true;
+    }
+
+    let materialsValue = formData.materials;
+    let materialsDisabled = false;
+    if (isPredefined) {
+        materialsValue = moduleBeingEdited.module_materials || '';
+        materialsDisabled = true;
+    }
+
+
     return (
         <form onSubmit={onSubmit} className={`module-form ${isEditMode ? 'modal-form' : ''}`}>
             <div>
-                <label htmlFor={isEditMode ? "edit-ruName" : "add-ruName"}>{t('formLabelRuName')}</label>
+                <label htmlFor={isEditMode ? "edit-name" : "add-name"}>{t('formLabelName')}</label>
                 <input
                     type="text"
-                    id={isEditMode ? "edit-ruName" : "add-ruName"}
-                    name="ruName"
-                    value={formData.ruName}
+                    id={isEditMode ? "edit-name" : "add-name"}
+                    name="name"
+                    value={nameValue}
                     onChange={onChange}
                     required
-                    disabled={isPredefined}
-                    aria-disabled={isPredefined}
-                    aria-label={t('formLabelRuName')}
+                    disabled={nameDisabled}
+                    aria-disabled={nameDisabled}
+                    aria-label={t('formLabelName')}
                 />
-            </div>
-            <div>
-                <label htmlFor={isEditMode ? "edit-enName" : "add-enName"}>{t('formLabelEnName')}</label>
-                <input
-                    type="text"
-                    id={isEditMode ? "edit-enName" : "add-enName"}
-                    name="enName"
-                    value={formData.enName}
-                    onChange={onChange}
-                    aria-label={t('formLabelEnName')}
-                 />
             </div>
             <div>
                 <label htmlFor={isEditMode ? "edit-stars" : "add-stars"}>{t('formLabelStars')}</label>
                 <select
                     id={isEditMode ? "edit-stars" : "add-stars"}
                     name="stars"
-                    value={formData.stars}
+                    value={starsValue}
                     onChange={onChange}
                     required
-                    disabled={isPredefined}
-                    aria-disabled={isPredefined}
+                    disabled={starsDisabled}
+                    aria-disabled={starsDisabled}
                     aria-label={t('formLabelStars')}
                 >
                     {[1, 2, 3, 4].map(star => <option key={star} value={star}>{star}</option>)}
                 </select>
+            </div>
+            <div className="form-field-full-width">
+                <label htmlFor={isEditMode ? "edit-compatibility" : "add-compatibility"}>{t('formLabelCompatibility')}</label>
+                <input
+                    type="text"
+                    id={isEditMode ? "edit-compatibility" : "add-compatibility"}
+                    name="compatibility"
+                    value={compatibilityValue}
+                    onChange={onChange}
+                    disabled={compatibilityDisabled}
+                    aria-disabled={compatibilityDisabled}
+                    aria-label={t('formLabelCompatibility')}
+                    placeholder="e.g., Armor, Weapon: Ranged"
+                />
+            </div>
+             <div className="form-field-full-width">
+                <label htmlFor={isEditMode ? "edit-materials" : "add-materials"}>{t('formLabelMaterials')}</label>
+                <input
+                    type="text"
+                    id={isEditMode ? "edit-materials" : "add-materials"}
+                    name="materials"
+                    value={materialsValue}
+                    onChange={onChange}
+                    disabled={materialsDisabled}
+                    aria-disabled={materialsDisabled}
+                    aria-label={t('formLabelMaterials')}
+                />
             </div>
             <div className="form-field-full-width">
                 <label htmlFor={isEditMode ? "edit-effect" : "add-effect"}>{t('formLabelEffect')}</label>
@@ -647,9 +896,11 @@ const ModuleForm = React.memo(({ formData, onChange, onSubmit, isEditMode = fals
                     type="text"
                     id={isEditMode ? "edit-effect" : "add-effect"}
                     name="effect"
-                    value={formData.effect}
+                    value={effectValue}
                     onChange={onChange}
                     required
+                    disabled={effectDisabled}
+                    aria-disabled={effectDisabled}
                     aria-label={t('formLabelEffect')}
                 />
             </div>
@@ -664,10 +915,11 @@ const ModuleForm = React.memo(({ formData, onChange, onSubmit, isEditMode = fals
 });
 ModuleForm.propTypes = {
     formData: PropTypes.shape({
-        ruName: PropTypes.string.isRequired,
-        enName: PropTypes.string,
+        name: PropTypes.string.isRequired,
         stars: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
         effect: PropTypes.string.isRequired,
+        compatibility: PropTypes.string,
+        materials: PropTypes.string,
     }).isRequired,
     onChange: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
@@ -678,23 +930,20 @@ ModuleForm.propTypes = {
 
 const EditModuleModal = React.memo(({ module, isOpen, onClose, onSave }) => {
     const { t } = window.useTranslation();
-    const [formData, setFormData] = React.useState({ ruName: '', enName: '', stars: 1, effect: '' });
-    const [originalKey, setOriginalKey] = React.useState(null);
+    const [formData, setFormData] = React.useState({ name: '', stars: 1, effect: '', compatibility: '', materials: '' });
     const isEditMode = !!module;
 
     React.useEffect(() => {
         if (module) {
             setFormData({
-                ruName: module.ruName || '',
-                enName: module.enName || '',
-                stars: module.stars || 1,
-                effect: module.effect || '',
-                isCustom: module.isCustom
+                name: module.module_name || module.ruName || '',
+                stars: module.module_star || module.stars || 1,
+                effect: module.module_description || module.effect || '',
+                compatibility: module.isCustom ? (module.compatibility || '') : (Array.isArray(module.module_compatibility) ? module.module_compatibility.join(', ') : ''),
+                materials: module.isCustom ? (module.materials || '') : (module.module_materials || ''),
             });
-            setOriginalKey(`${module.ruName}-${module.stars}`);
         } else {
-            setFormData({ ruName: '', enName: '', stars: 1, effect: '' });
-            setOriginalKey(null);
+            setFormData({ name: '', stars: 1, effect: '', compatibility: '', materials: '' });
         }
     }, [module]);
 
@@ -705,8 +954,9 @@ const EditModuleModal = React.memo(({ module, isOpen, onClose, onSave }) => {
 
     const handleSubmit = React.useCallback((e) => {
         e.preventDefault();
-        onSave(originalKey, formData); 
-    }, [formData, originalKey, onSave]);
+        onSave(module, formData);
+    }, [formData, module, onSave]);
+
 
     const handleOverlayClick = React.useCallback((e) => {
         if (e.target === e.currentTarget) {
@@ -748,23 +998,23 @@ const TabNavigation = React.memo(({ activeView, onTabChange }) => {
     const { t } = window.useTranslation();
     return (
         <div className="tab-navigation">
-            <button 
+            <button
                 className={`tab-button ${activeView === 'modules' ? 'active' : ''}`}
                 onClick={() => onTabChange('modules')}
                 aria-pressed={activeView === 'modules'}
             >
                 <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style={{ marginRight: '8px' }}>
-                    <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/> 
+                    <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/>
                 </svg>
                 {t('tabModules')}
             </button>
-            <button 
+            <button
                 className={`tab-button ${activeView === 'holohub' ? 'active' : ''}`}
                 onClick={() => onTabChange('holohub')}
                 aria-pressed={activeView === 'holohub'}
             >
                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style={{ marginRight: '8px' }}>
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/> 
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
                 </svg>
                 {t('tabHoloHub')}
             </button>
@@ -776,7 +1026,6 @@ TabNavigation.propTypes = {
     onTabChange: PropTypes.func.isRequired,
 };
 
-// --- New Module Description Modal ---
 const ModuleDescriptionModal = React.memo(({ isOpen, onClose, moduleData }) => {
     const { t } = window.useTranslation();
 
@@ -786,7 +1035,7 @@ const ModuleDescriptionModal = React.memo(({ isOpen, onClose, moduleData }) => {
     const noteText = noteKey ? t(noteKey) : null;
     const learnedStatusText = learnedStatus === 'learned' ? t('learnedStatusLearned') :
                              learnedStatus === 'not-learned' ? t('learnedStatusNotLearned') :
-                             t('statusUnknownInCollection'); // New translation key
+                             t('statusUnknownInCollection');
 
     return (
         <div className={`modal-overlay ${isOpen ? 'active' : ''}`} onClick={onClose} role="dialog" aria-modal="true" aria-labelledby="module-desc-title">
@@ -809,7 +1058,7 @@ const ModuleDescriptionModal = React.memo(({ isOpen, onClose, moduleData }) => {
                         )}
                         <hr className="dotted-separator" />
                         <p><strong>{t('columnLabelEffect')}:</strong></p>
-                        <p className="effect-text-modal">{effect || t('effectNotAvailable')}</p> {/* New translation key */}
+                        <p className="effect-text-modal">{effect || t('effectNotAvailable')}</p>
                     </div>
                 </div>
             </div>
@@ -823,55 +1072,65 @@ ModuleDescriptionModal.propTypes = {
         name: PropTypes.string.isRequired,
         stars: PropTypes.number,
         effect: PropTypes.string,
-        learnedStatus: PropTypes.string, // 'learned', 'not-learned', 'unknown'
+        learnedStatus: PropTypes.string,
         noteKey: PropTypes.string,
     }),
 };
 
 
-// --- Modified Tier List Components ---
-
-const ModuleTierCard = React.memo(({ moduleName, moduleNoteKey, allModules, onCardClick }) => {
+const ModuleTierCard = React.memo(({ moduleIdFromTierList, moduleNoteKey, allModules, onCardClick }) => {
     const { t } = window.useTranslation();
-    const userModule = allModules.find(m => m.ruName === moduleName);
-    
-    let learnedStatus = 'unknown'; 
+
+    const userModule = allModules.find(m =>
+        (m.module_editor_id === moduleIdFromTierList) || // Primary match for base modules
+        (m.isCustom && (m.ruName === moduleIdFromTierList || m.module_editor_id === moduleIdFromTierList)) // Match custom by ruName or its own editor_id
+    );
+
+    let learnedStatus = 'unknown';
     let stars = null;
     let effect = null;
+    let displayName = moduleIdFromTierList; // Fallback to the ID if module not found
 
     if (userModule) {
         learnedStatus = userModule.learned ? 'learned' : 'not-learned';
-        stars = userModule.stars;
-        effect = userModule.effect;
+        stars = userModule.module_star || userModule.stars;
+        effect = userModule.module_description || userModule.effect;
+        displayName = userModule.module_name || userModule.ruName; // Use the actual module name for display
+    } else {
+        console.warn(`Tier list module with ID/name "${moduleIdFromTierList}" not found in allModules.`);
     }
 
     const noteText = moduleNoteKey ? t(moduleNoteKey) : null;
 
     const handleClick = () => {
-        onCardClick({
-            name: moduleName,
-            stars,
-            effect,
-            learnedStatus,
-            noteKey: moduleNoteKey // Pass the original noteKey for the modal
-        });
+        if (userModule) { // Only allow click if module is found, to show details
+            onCardClick({
+                name: displayName,
+                stars,
+                effect,
+                learnedStatus,
+                noteKey: moduleNoteKey
+            });
+        }
     };
 
     return (
-        <div 
-            className={`tier-module-card status-${learnedStatus} clickable`} // Added 'clickable' class
-            onClick={handleClick}
-            role="button"
-            tabIndex="0" // Make it focusable
-            onKeyPress={(e) => (e.key === 'Enter' || e.key === ' ') && handleClick()} // Keyboard accessibility
+        <div
+            className={`tier-module-card status-${learnedStatus} ${userModule ? 'clickable' : 'not-found'}`}
+            onClick={userModule ? handleClick : undefined}
+            role={userModule ? "button" : undefined}
+            tabIndex={userModule ? "0" : undefined}
+            onKeyPress={userModule ? (e) => (e.key === 'Enter' || e.key === ' ') && handleClick() : undefined}
+            title={!userModule ? `Module ID: ${moduleIdFromTierList} (Not found in current language data)`: displayName}
         >
             <div className="tier-module-card-content">
                 <div className="tier-module-card-header">
                     {learnedStatus === 'learned' && <span className="learned-badge" title={t('learnedStatusLearned')}>✔</span>}
                     {learnedStatus === 'not-learned' && <span className="not-learned-badge" title={t('learnedStatusNotLearned')}>✖</span>}
+                    {learnedStatus === 'unknown' && !userModule && <span className="not-learned-badge" title={t('statusUnknownInCollection')}>?</span>}
                 </div>
                 <div className="tier-module-name">
-                    {moduleName}
+                    {displayName}
                     {stars && <span className="tier-module-stars"> ({getStars(stars)})</span>}
                 </div>
                 {noteText && <div className="tier-module-note">{noteText}</div>}
@@ -880,13 +1139,13 @@ const ModuleTierCard = React.memo(({ moduleName, moduleNoteKey, allModules, onCa
     );
 });
 ModuleTierCard.propTypes = {
-    moduleName: PropTypes.string.isRequired,
+    moduleIdFromTierList: PropTypes.string.isRequired,
     moduleNoteKey: PropTypes.string,
     allModules: PropTypes.array.isRequired,
-    onCardClick: PropTypes.func.isRequired, // Added prop type
+    onCardClick: PropTypes.func.isRequired,
 };
 
-const TierCategory = React.memo(({ categoryNameKey, modulesInTier, allModules, onCardClick }) => { // Added onCardClick
+const TierCategory = React.memo(({ categoryNameKey, modulesInTier, allModules, onCardClick }) => {
     const { t } = window.useTranslation();
     const categoryName = categoryNameKey ? t(categoryNameKey) : null;
 
@@ -896,11 +1155,11 @@ const TierCategory = React.memo(({ categoryNameKey, modulesInTier, allModules, o
             <div className="tier-category-modules">
                 {modulesInTier.map((modInfo, index) => (
                     <ModuleTierCard
-                        key={`${modInfo.name}-${index}`}
-                        moduleName={modInfo.name}
+                        key={`${modInfo.id}-${index}`} // Use modInfo.id (which is module_editor_id)
+                        moduleIdFromTierList={modInfo.id}
                         moduleNoteKey={modInfo.noteKey}
                         allModules={allModules}
-                        onCardClick={onCardClick} // Pass down
+                        onCardClick={onCardClick}
                     />
                 ))}
             </div>
@@ -909,13 +1168,16 @@ const TierCategory = React.memo(({ categoryNameKey, modulesInTier, allModules, o
 });
 TierCategory.propTypes = {
     categoryNameKey: PropTypes.string,
-    modulesInTier: PropTypes.array.isRequired,
+    modulesInTier: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string.isRequired, // Changed from name to id
+        noteKey: PropTypes.string
+    })).isRequired,
     allModules: PropTypes.array.isRequired,
-    onCardClick: PropTypes.func.isRequired, // Added prop type
+    onCardClick: PropTypes.func.isRequired,
 };
 
 
-const TierRow = React.memo(({ tierNameKey, tierColor, tierBorderColor, textColor, categories, allModules, onCardClick }) => { // Added onCardClick
+const TierRow = React.memo(({ tierNameKey, tierColor, tierBorderColor, textColor, categories, allModules, onCardClick }) => {
     const { t } = window.useTranslation();
     const headerStyle = {
         backgroundColor: tierColor,
@@ -938,7 +1200,7 @@ const TierRow = React.memo(({ tierNameKey, tierColor, tierBorderColor, textColor
                         categoryNameKey={cat.categoryNameKey}
                         modulesInTier={cat.modules}
                         allModules={allModules}
-                        onCardClick={onCardClick} // Pass down
+                        onCardClick={onCardClick}
                     />
                 ))}
             </div>
@@ -952,7 +1214,7 @@ TierRow.propTypes = {
     textColor: PropTypes.string.isRequired,
     categories: PropTypes.array.isRequired,
     allModules: PropTypes.array.isRequired,
-    onCardClick: PropTypes.func.isRequired, // Added prop type
+    onCardClick: PropTypes.func.isRequired,
 };
 
 const TierListPage = React.memo(({ tierListData, listTitleKey, allModules }) => {
@@ -983,7 +1245,7 @@ const TierListPage = React.memo(({ tierListData, listTitleKey, allModules }) => 
                         textColor={tier.textColor}
                         categories={tier.categories}
                         allModules={allModules}
-                        onCardClick={handleOpenDescriptionModal} // Pass handler
+                        onCardClick={handleOpenDescriptionModal}
                     />
                 ))}
             </div>
@@ -1002,28 +1264,24 @@ TierListPage.propTypes = {
 };
 
 
-// --- Reusable Stat List Item Component ---
 const StatListItem = React.memo(({ label, value, valueType = 'int', note, isSubtotal = false, isFinalTotal = false }) => {
     const { t } = window.useTranslation();
     let valueClass = 'stat-value';
     if (valueType === 'xp') valueClass = 'xp-bonus';
-    // isSubtotal and isFinalTotal add their own classes via the li element
 
-    // Allow label to be a translation key or direct string
     const displayLabel = label.startsWith('xpFarming') ? t(label) : label;
-    const displayValue = value.startsWith('xpFarming') ? t(value) : value; // For subtotals/totals from JSON
+    const displayValue = value.startsWith('xpFarming') ? t(value) : value;
 
-    // Extract the actual numeric/percentage part for styling if it's a complex string like "Subtotal: +10 INT"
     let mainText = displayLabel;
     let statPart = displayValue;
 
     if (isSubtotal || isFinalTotal) {
         const parts = displayValue.split(':');
         if (parts.length > 1) {
-            mainText = parts[0].trim() + ":"; // "Subtotal:"
-            statPart = parts.slice(1).join(':').trim(); // "+52 INT"
+            mainText = parts[0].trim() + ":";
+            statPart = parts.slice(1).join(':').trim();
         } else {
-            mainText = displayLabel; // Fallback if no colon
+            mainText = displayLabel;
             statPart = displayValue;
         }
     }
@@ -1031,39 +1289,36 @@ const StatListItem = React.memo(({ label, value, valueType = 'int', note, isSubt
     return (
         <li className={`stat-list-item ${isSubtotal ? 'subtotal-line' : ''} ${isFinalTotal ? 'final-total-line' : ''}`}>
             <span className="stat-label">{mainText}</span>
-            {note && <span className="stat-note"><em>{t(note)}</em></span>} {/* Note spans across */}
-            <span className={valueClass}>{statPart}</span> {/* Value is aligned right */}
+            {note && <span className="stat-note"><em>{t(note)}</em></span>}
+            <span className={valueClass}>{statPart}</span>
         </li>
     );
 });
 
 StatListItem.propTypes = {
     label: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired, // Can be direct value or a key for subtotal/final total
+    value: PropTypes.string.isRequired,
     valueType: PropTypes.oneOf(['int', 'xp', 'generic']),
-    note: PropTypes.string, // Translation key for the note
+    note: PropTypes.string,
     isSubtotal: PropTypes.bool,
     isFinalTotal: PropTypes.bool,
 };
 
 
-// --- HoloHub View and Page Content ---
 const HoloHubPageContent = ({ pageId, t, allModules }) => {
     switch (pageId) {
         case 'xpFarming':
             return (
-                <div className="holohub-page-content holohub-xp-farming-guide"> {/* Added main container class */}
+                <div className="holohub-page-content holohub-xp-farming-guide">
                     <h2>{t('holoHubPageXPFarming')}</h2>
                     <p>{t('xpFarmingIntro')}</p>
 
-                    {/* Key Principle Section */}
-                    <div className="info-card key-principle-card"> {/* Added info-card */}
+                    <div className="info-card key-principle-card">
                         <h4>{t('xpFarmingKeyPrincipleTitle')}</h4>
                         <p>{t('xpFarmingKeyPrincipleDesc')}</p>
                     </div>
 
-                    {/* Helpful Resources Section */}
-                     <div className="info-card"> {/* Added info-card */}
+                     <div className="info-card">
                         <h4>{t('xpFarmingHelpfulResourcesTitle')}</h4>
                         <ul>
                             <li>{t('xpFarmingInteractiveMapsTitle')}</li>
@@ -1073,8 +1328,7 @@ const HoloHubPageContent = ({ pageId, t, allModules }) => {
                         </ul>
                     </div>
 
-                    {/* Farming Basics Section */}
-                    <div className="info-card"> {/* Added info-card */}
+                    <div className="info-card">
                         <h4>{t('xpFarmingBasicsTitle')}</h4>
                         <h5>{t('xpFarmingTeamTitle')}</h5>
                         <ul>
@@ -1094,8 +1348,7 @@ const HoloHubPageContent = ({ pageId, t, allModules }) => {
                         </ul>
                     </div>
 
-                    {/* Supplementary Perks / Mutations Section */}
-                    <div className="info-card"> {/* Added info-card */}
+                    <div className="info-card">
                         <h4><span className="holohub-icon">🍀</span> {t('xpFarmingTitleSupplementaryPerks')}</h4>
                         <ul>
                             <StatListItem label="xpFarmingPerkStrangeInNumbersNote" value="" valueType="generic" />
@@ -1107,10 +1360,9 @@ const HoloHubPageContent = ({ pageId, t, allModules }) => {
                     </div>
 
 
-                    {/* Core Intelligence Build Section */}
                     <h3 className="section-title"><span className="holohub-icon">🧠</span> {t('xpFarmingTitleCoreIntelBuild')}</h3>
 
-                    <div className="info-card"> {/* Added info-card */}
+                    <div className="info-card">
                         <h4><span className="holohub-icon">🛡️</span> {t('xpFarmingTitleEquippedGear')}</h4>
                         <ul>
                             <StatListItem label="xpFarmingGearBaseIntel" value="+15 INT" />
@@ -1124,7 +1376,7 @@ const HoloHubPageContent = ({ pageId, t, allModules }) => {
                         </ul>
                     </div>
 
-                    <div className="info-card"> {/* Added info-card */}
+                    <div className="info-card">
                         <h4><span className="holohub-icon">🧬</span> {t('xpFarmingTitleMutationsPerks')}</h4>
                         <ul>
                             <StatListItem label="xpFarmingMutationHerdMentalityDetail" value="+3 INT" />
@@ -1135,7 +1387,7 @@ const HoloHubPageContent = ({ pageId, t, allModules }) => {
                         </ul>
                     </div>
 
-                    <div className="info-card"> {/* Added info-card */}
+                    <div className="info-card">
                         <h4><span className="holohub-icon">⏱️</span> {t('xpFarmingTitleTimedBuffs')}</h4>
                         <ul>
                             <StatListItem label="xpFarmingBuffBerryMentatsSpecific" value="+5 INT (10 min)" />
@@ -1150,7 +1402,7 @@ const HoloHubPageContent = ({ pageId, t, allModules }) => {
                         </ul>
                     </div>
 
-                    <div className="info-card"> {/* Added info-card */}
+                    <div className="info-card">
                         <h4><span className="holohub-icon">⚡</span> {t('xpFarmingTitleUnreliableDifficult')}</h4>
                         <ul>
                             <StatListItem label="xpFarmingUDMarsupialSuppressionSpecific" value="+1 INT" />
@@ -1163,8 +1415,7 @@ const HoloHubPageContent = ({ pageId, t, allModules }) => {
                         </ul>
                     </div>
 
-                    {/* Consumables and Temporary Buffs Section */}
-                    <div className="info-card"> {/* Added info-card */}
+                    <div className="info-card">
                         <h4>{t('xpFarmingConsumablesTitle')}</h4>
                         <h5>{t('xpFarmingChemsIntelTitle')}</h5>
                         <ul>
@@ -1222,8 +1473,7 @@ const HoloHubPageContent = ({ pageId, t, allModules }) => {
                         </ul>
                     </div>
 
-                    {/* Global Events & Where to Farm XP Section */}
-                    <div className="info-card"> {/* Added info-card */}
+                    <div className="info-card">
                         <h4>{t('xpFarmingGlobalEventsTitle')}</h4>
                         <ul>
                             <li>{t('xpFarmingEventDoubleXP')}</li>
@@ -1235,7 +1485,7 @@ const HoloHubPageContent = ({ pageId, t, allModules }) => {
                         <ul>
                             <li><em>{t('xpFarmingLocationWestTekPathNote')}</em></li>
                         </ul>
-                        <em>{t('xpFarmingLocationBestOverallNote')}</em> {/* Added the new note here */}
+                        <em>{t('xpFarmingLocationBestOverallNote')}</em>
                         <h5>{t('xpFarmingPublicEventsSubTitle')}</h5>
                         <ul>
                             <li>{t('xpFarmingEventRadRumble')}</li>
@@ -1254,29 +1504,24 @@ const HoloHubPageContent = ({ pageId, t, allModules }) => {
                         </ul>
                     </div>
 
-                    {/* Summary: Maximum XP Boost Strategy Section */}
-                    <div className="info-card"> {/* Added info-card */}
+                    <div className="info-card">
                         <h4>{t('xpFarmingFinalBoostTitle')}</h4>
                         <h5>{t('xpFarmingFinalBoostPrepTitle')}</h5>
                         <ul>
-                            {/* Split steps by newline and format */}
                             {t('xpFarmingFinalBoostPrepSteps').split('\n').map((step, index) => <li key={`prep-step-${index}`}>{step.trim()}</li>)}
                         </ul>
                         <h5>{t('xpFarmingFinalBoostBuffsTitle')}</h5>
                          <ul>
-                            {/* Split steps by newline and format */}
                             {t('xpFarmingFinalBoostBuffsSteps').split('\n').map((step, index) => <li key={`buff-step-${index}`}>{step.trim()}</li>)}
                         </ul>
                         <h5>{t('xpFarmingFinalBoostFarmTitle')}</h5>
                          <ul>
-                            {/* Split steps by newline and format */}
                             {t('xpFarmingFinalBoostFarmSteps').split('\n').map((step, index) => <li key={`farm-step-${index}`}>{step.trim()}</li>)}
                         </ul>
                     </div>
 
 
-                    {/* Final Intelligence Totals Section */}
-                     <div className="info-card"> {/* Added info-card */}
+                     <div className="info-card">
                         <h4><span className="holohub-icon">🎯</span> {t('xpFarmingTitleFinalIntelTotals')}</h4>
                         <ul>
                             <StatListItem label="" value="xpFarmingTotalCoreOnlySpecific" isFinalTotal={true} />
@@ -1291,7 +1536,7 @@ const HoloHubPageContent = ({ pageId, t, allModules }) => {
                 </div>
             );
         case 'critCalculator':
-            return <CritCalculatorPage />; // Use the new component
+            return <CritCalculatorPage />;
         case 'weaponTierList':
             return <TierListPage tierListData={window.weaponTierListData} listTitleKey="holoHubPageWeaponTierList" allModules={allModules} />;
         case 'armorTierList':
@@ -1300,25 +1545,30 @@ const HoloHubPageContent = ({ pageId, t, allModules }) => {
             return <div className="holohub-page-content"><h2>{t('unknownPage')}</h2><p>{t('unknownPageMessage')}</p></div>;
     }
 };
-const HoloHubView = React.memo(({ activePage, allModules }) => { 
+HoloHubPageContent.propTypes = {
+    pageId: PropTypes.string.isRequired,
+    t: PropTypes.func.isRequired,
+    allModules: PropTypes.array.isRequired,
+};
+
+const HoloHubView = React.memo(({ activePage, allModules }) => {
     const { t } = window.useTranslation();
     return (
         <div className="holohub-view-container">
-            <HoloHubPageContent pageId={activePage} t={t} allModules={allModules} /> 
+            <HoloHubPageContent pageId={activePage} t={t} allModules={allModules} />
         </div>
     );
 });
 HoloHubView.propTypes = {
     activePage: PropTypes.string.isRequired,
-    allModules: PropTypes.array.isRequired, 
+    allModules: PropTypes.array.isRequired,
 };
 
-// --- Crit Calculator Page Component ---
 const CritCalculatorPage = () => {
     const { t } = window.useTranslation();
     const [critSavvyRank, setCritSavvyRank] = React.useState(0);
     const [LimitBreakingPieces, setLimitBreakingPieces] = React.useState(0);
-    const [hasLucky, sethasLucky] = React.useState(0); // 0 for No, 1 for Yes
+    const [hasLucky, sethasLucky] = React.useState(0);
     const [luckRequired, setLuckRequired] = React.useState(null);
 
     React.useEffect(() => {
@@ -1350,7 +1600,7 @@ const CritCalculatorPage = () => {
                             >
                                 {rank} {'⭐'.repeat(rank) || t('critCalcButtonNo')}
                             </button>
-                        ))}
+                                               ))}
                     </div>
 
                     <h4>{t('critCalcLabelLimitBreaking')}</h4>
@@ -1392,6 +1642,7 @@ const CritCalculatorPage = () => {
                 </div>
             </div>
 
+           
             <div className="info-card crit-legend-card">
                 <h4>{t('critCalcLegendTitle')}</h4>
                 <ul>
@@ -1403,4 +1654,3 @@ const CritCalculatorPage = () => {
         </div>
     );
 };
-

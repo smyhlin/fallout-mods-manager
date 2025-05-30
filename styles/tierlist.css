@@ -180,16 +180,6 @@
     border-top: 1px dashed rgba(var(--border-color-rgb), 0.2); 
 }
 
-.tier-module-card.status-learned {
-    /* border-left: 4px solid var(--primary-color); */ 
-}
-.tier-module-card.status-not-learned {
-    /* border-left: 4px solid var(--danger-color); */
-}
-.tier-module-card.status-unknown {
-    /* border-left: 4px solid var(--text-color-muted); */
-}
-
 .tier-module-card.clickable {
     cursor: pointer;
 }

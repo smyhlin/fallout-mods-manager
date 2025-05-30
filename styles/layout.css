@@ -182,6 +182,7 @@
     padding: var(--spacing-lg);
     border-radius: var(--border-radius);
     border: 1px solid var(--border-color);
+    overflow-wrap: break-word; /* Added for text wrapping */
 }
 .holohub-page-content h2 {
     font-family: var(--font-family-header);
@@ -414,7 +415,7 @@
 
 .crit-calculator-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjusted minmax */
     gap: var(--spacing-lg);
     align-items: flex-start; /* Align cards to the top if they have different heights */
 }
@@ -438,6 +439,7 @@
     border-radius: var(--border-radius-sm);
     overflow: hidden;
     border: 1px solid var(--border-color);
+    /* Removed: width: fit-content; */
     margin-bottom: var(--spacing-lg);
 }
 
@@ -478,7 +480,7 @@
     border-radius: var(--border-radius-sm);
     overflow: hidden;
     border: 1px solid var(--border-color);
-    width: fit-content; /* Adjust width to content */
+    /* Removed: width: fit-content; */ /* Adjust width to content */
 }
 .toggle-button {
     padding: var(--spacing-sm) var(--spacing-md);
@@ -536,4 +538,59 @@
     content: "ℹ️"; /* Info icon or similar */
     margin-right: var(--spacing-sm);
     color: var(--primary-color);
+}
+
+/* Add mobile responsiveness */
+@media (max-width: 768px) {
+    .pipboy-container {
+        width: calc(100% - var(--spacing-md)*2); /* Reduce outer margin */
+        margin: var(--spacing-md); /* Reduce outer margin */
+        height: calc(100vh - var(--spacing-md)*2);
+    }
+
+    .pipboy-content-wrapper {
+        padding: var(--spacing-md); /* Reduce inner padding */
+    }
+
+    .holohub-page-content {
+        padding: var(--spacing-md); /* Reduce inner padding */
+    }
+
+    /* XP Farming Guide specific adjustments */
+    .holohub-xp-farming-guide .info-card {
+        padding: var(--spacing-sm); /* Slightly reduce info card padding */
+    }
+
+    /* Allow stat values/bonuses/totals to wrap */
+    .stat-value,
+    .xp-bonus,
+    .subtotal-value,
+    .final-value {
+        white-space: normal; /* Allow wrapping on small screens */
+        padding: 3px 4px; /* Slightly reduce padding on values */
+    }
+
+    /* Optional: Adjust font sizes slightly if needed */
+    .holohub-page-content h2 { font-size: var(--font-size-xl); }
+    .holohub-page-content h3 { font-size: var(--font-size-lg); }
+    .holohub-page-content p, .holohub-page-content li { font-size: var(--font-size-md); }
+
+
+    /* Optional: Adjust grid minmax if needed, though 250px is already quite small */
+
+    .crit-calculator-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    .perk-mutation-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+
+    /* Optional: Adjust segmented control padding */
+
+    .segment-button {
+        padding: var(--spacing-sm) var(--spacing-xs);
+        font-size: var(--font-size-sm);
+    }
+
 }
