@@ -52,7 +52,7 @@ window.LanguageProvider = ({ children }) => {
                 } catch (finalError) {
                     console.error("Critical error loading fallback English data:", finalError);
                     fetchedTranslations = {
-                        appTitle: "Fallout 76 Legendary Modules Manager",
+                        appTitle: "Fallout 76 Legendary Mods Manager",
                         loadingMessage: "Loading Error. Please refresh.",
                         errorBoundaryTitle: "Error",
                         errorBoundaryMessage: "A critical error occurred loading application data."

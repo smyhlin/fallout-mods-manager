@@ -41,7 +41,7 @@ function loadLearnedStatus() {
     }
 }
 
-// --- Storage Functions for Custom Modules ---
+// --- Storage Functions for Custom Mods ---
 function saveCustomModules(customModulesArray) {
     try {
         localStorage.setItem(LS_KEYS.CUSTOM_MODULES, JSON.stringify(customModulesArray));
