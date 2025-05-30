@@ -115,7 +115,7 @@
     "xpFarmingMutationCarnivore": "Carnivore: Doubles the positive effects of meat-based food. Alternative to Herbivore, but XP buffs from meat are usually harder to obtain.",
     "xpFarmingMutationMarsupialDesc": "Marsupial: Increases jump height and carry weight, but reduces INT by -1 (or -0.25 INT with Class Freak).",
     "xpFarmingMutationMarsupialTip": "Recommendation: You can temporarily negate the INT penalty by using a 'Marsupial' serum before farming. This provides the mutation's benefits without the INT loss for the serum's duration.",
-    "xpFarmingMutationsPerksNote": "Important: Use 'Starched Genes' (Luck) to prevent accidental curing of mutations and 'ClassFreak' (Luck) to reduce negative mutation effects by 75%.",
+    "xpFarmingMutationsPerksNote": "Important: Use 'Starched Genes' (Endurance) to prevent accidental curing of mutations and 'ClassFreak' (Luck) to reduce negative mutation effects by 75%.",
     "xpFarmingPerksTitle": "Perks (Ability Cards)",
     "xpFarmingPerkSPECIALIntelFocus": "S.P.E.C.I.A.L. - Intelligence: Invest 15 points.",
     "xpFarmingPerkPerceptionTitle": "Perception",
