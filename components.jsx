@@ -1234,7 +1234,6 @@ const TierListPage = React.memo(({ tierListData, listTitleKey, allModules }) => 
 
     return (
         <div className="tier-list-container holohub-page-content">
-            <h2>{t(listTitleKey)}</h2>
             <div className="tier-list">
                 {tierListData.map(tier => (
                     <TierRow
@@ -1310,7 +1309,6 @@ const HoloHubPageContent = ({ pageId, t, allModules }) => {
         case 'xpFarming':
             return (
                 <div className="holohub-page-content holohub-xp-farming-guide">
-                    <h2>{t('holoHubPageXPFarming')}</h2>
                     <p>{t('xpFarmingIntro')}</p>
 
                     <div className="info-card key-principle-card">
@@ -1586,8 +1584,6 @@ const CritCalculatorPage = () => {
 
     return (
         <div className="holohub-page-content crit-calculator-page">
-            <h2>{t('holoHubPageCritCalculator')}</h2>
-
             <div className="crit-calculator-grid">
                 <div className="info-card crit-input-card">
                     <h4>{t('critCalcLabelCritSavvy')}</h4>
